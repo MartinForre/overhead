@@ -1,0 +1,11 @@
+{
+  "name": "overhead",
+  "private": true,
+  "scripts": {
+    "dev": "vite apps --host 127.0.0.1 --port 8000 --strictPort",
+    "build:windows": "deno compile --no-config --target x86_64-pc-windows-msvc --allow-net=127.0.0.1:8000,opendata.adsb.fi:443,api.adsb.lol:443 --include apps/display --include apps/companion --include assets/aircrafts --exclude '**/.DS_Store' --output dist/Overhead.exe apps/portable/server.mjs"
+  },
+  "devDependencies": {
+    "vite": "^8.3.8"
+  }
+}

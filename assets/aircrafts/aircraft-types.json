@@ -1,0 +1,636 @@
+{
+  "A139": {
+    "manufacturer": "Leonardo",
+    "model": "AW139",
+    "category": "helicopter"
+  },
+  "A189": {
+    "manufacturer": "Leonardo",
+    "model": "AW189",
+    "category": "helicopter"
+  },
+  "A20N": {
+    "manufacturer": "Airbus",
+    "model": "A320neo",
+    "category": "airliner"
+  },
+  "A21N": {
+    "manufacturer": "Airbus",
+    "model": "A321neo",
+    "category": "airliner"
+  },
+  "A223": {
+    "manufacturer": "Airbus",
+    "model": "A220-300",
+    "category": "airliner"
+  },
+  "A318": {
+    "manufacturer": "Airbus",
+    "model": "A318",
+    "category": "airliner"
+  },
+  "A319": {
+    "manufacturer": "Airbus",
+    "model": "A319",
+    "category": "airliner"
+  },
+  "A320": {
+    "manufacturer": "Airbus",
+    "model": "A320",
+    "category": "airliner"
+  },
+  "A321": {
+    "manufacturer": "Airbus",
+    "model": "A321",
+    "category": "airliner"
+  },
+  "A332": {
+    "manufacturer": "Airbus",
+    "model": "A330-200",
+    "category": "airliner"
+  },
+  "A333": {
+    "manufacturer": "Airbus",
+    "model": "A330-300",
+    "category": "airliner"
+  },
+  "A338": {
+    "manufacturer": "Airbus",
+    "model": "A330-800",
+    "category": "airliner"
+  },
+  "A339": {
+    "manufacturer": "Airbus",
+    "model": "A330-900",
+    "category": "airliner"
+  },
+  "A343": {
+    "manufacturer": "Airbus",
+    "model": "A340-300",
+    "category": "airliner"
+  },
+  "A359": {
+    "manufacturer": "Airbus",
+    "model": "A350-900",
+    "category": "airliner"
+  },
+  "A35K": {
+    "manufacturer": "Airbus",
+    "model": "A350-1000",
+    "category": "airliner"
+  },
+  "A388": {
+    "manufacturer": "Airbus",
+    "model": "A380-800",
+    "category": "airliner"
+  },
+  "AJ27": {
+    "manufacturer": "COMAC",
+    "model": "C909 (ARJ21-700)",
+    "category": "airliner"
+  },
+  "AS50": {
+    "manufacturer": "Airbus",
+    "model": "AS350 Écureuil",
+    "category": "helicopter"
+  },
+  "AT76": {
+    "manufacturer": "ATR",
+    "model": "72-600",
+    "category": "airliner"
+  },
+  "B38M": {
+    "manufacturer": "Boeing",
+    "model": "737 MAX 8",
+    "category": "airliner"
+  },
+  "B39M": {
+    "manufacturer": "Boeing",
+    "model": "737 MAX 9",
+    "category": "airliner"
+  },
+  "B737": {
+    "manufacturer": "Boeing",
+    "model": "737-700",
+    "category": "airliner"
+  },
+  "B738": {
+    "manufacturer": "Boeing",
+    "model": "737-800",
+    "category": "airliner"
+  },
+  "B739": {
+    "manufacturer": "Boeing",
+    "model": "737-900",
+    "category": "airliner"
+  },
+  "B744": {
+    "manufacturer": "Boeing",
+    "model": "747-400",
+    "category": "airliner"
+  },
+  "B748": {
+    "manufacturer": "Boeing",
+    "model": "747-8",
+    "category": "airliner"
+  },
+  "B752": {
+    "manufacturer": "Boeing",
+    "model": "757-200",
+    "category": "airliner"
+  },
+  "B763": {
+    "manufacturer": "Boeing",
+    "model": "767-300",
+    "category": "airliner"
+  },
+  "B772": {
+    "manufacturer": "Boeing",
+    "model": "777-200 / 777-200ER",
+    "category": "airliner"
+  },
+  "B77L": {
+    "manufacturer": "Boeing",
+    "model": "777-200LR / 777F",
+    "category": "airliner"
+  },
+  "B77W": {
+    "manufacturer": "Boeing",
+    "model": "777-300ER",
+    "category": "airliner"
+  },
+  "B788": {
+    "manufacturer": "Boeing",
+    "model": "787-8",
+    "category": "airliner"
+  },
+  "B789": {
+    "manufacturer": "Boeing",
+    "model": "787-9",
+    "category": "airliner"
+  },
+  "B78X": {
+    "manufacturer": "Boeing",
+    "model": "787-10",
+    "category": "airliner"
+  },
+  "BCS3": {
+    "manufacturer": "Airbus",
+    "model": "A220-300",
+    "category": "airliner"
+  },
+  "C919": {
+    "manufacturer": "COMAC",
+    "model": "C919",
+    "category": "airliner"
+  },
+  "CRJ9": {
+    "manufacturer": "Bombardier",
+    "model": "CRJ900",
+    "category": "airliner"
+  },
+  "DA42": {
+    "manufacturer": "Diamond",
+    "model": "DA42",
+    "category": "fixed-wing"
+  },
+  "DA62": {
+    "manufacturer": "Diamond",
+    "model": "DA62",
+    "category": "fixed-wing"
+  },
+  "DH8A": {
+    "manufacturer": "De Havilland Canada",
+    "model": "Dash 8-100",
+    "category": "airliner"
+  },
+  "DH8B": {
+    "manufacturer": "De Havilland Canada",
+    "model": "Dash 8-200",
+    "category": "airliner"
+  },
+  "DH8C": {
+    "manufacturer": "De Havilland Canada",
+    "model": "Dash 8-300",
+    "category": "airliner"
+  },
+  "DH8D": {
+    "manufacturer": "De Havilland Canada",
+    "model": "Dash 8-Q400",
+    "category": "airliner"
+  },
+  "E170": {
+    "manufacturer": "Embraer",
+    "model": "E170",
+    "category": "airliner"
+  },
+  "E190": {
+    "manufacturer": "Embraer",
+    "model": "E190",
+    "category": "airliner"
+  },
+  "E195": {
+    "manufacturer": "Embraer",
+    "model": "E195",
+    "category": "airliner"
+  },
+  "E290": {
+    "manufacturer": "Embraer",
+    "model": "E190-E2",
+    "category": "airliner"
+  },
+  "E295": {
+    "manufacturer": "Embraer",
+    "model": "E195-E2",
+    "category": "airliner"
+  },
+  "E75L": {
+    "manufacturer": "Embraer",
+    "model": "E175 (long wing)",
+    "category": "airliner"
+  },
+  "E75S": {
+    "manufacturer": "Embraer",
+    "model": "E175 (short wing)",
+    "category": "airliner"
+  },
+  "EC35": {
+    "manufacturer": "Airbus",
+    "model": "H135",
+    "category": "helicopter"
+  },
+  "EC45": {
+    "manufacturer": "Airbus",
+    "model": "H145",
+    "category": "helicopter"
+  },
+  "EH10": {
+    "manufacturer": "Leonardo",
+    "model": "AW101",
+    "category": "helicopter"
+  },
+  "S92": {
+    "manufacturer": "Sikorsky",
+    "model": "S-92",
+    "category": "helicopter"
+  },
+  "A10": {
+    "manufacturer": "Fairchild Republic",
+    "model": "A-10 Thunderbolt II",
+    "category": "fixed-wing",
+    "role": "attack"
+  },
+  "A400": {
+    "manufacturer": "Airbus",
+    "model": "A400M Atlas",
+    "category": "fixed-wing"
+  },
+  "B06": {
+    "manufacturer": "Bell",
+    "model": "206 JetRanger / LongRanger",
+    "category": "helicopter"
+  },
+  "B407": {
+    "manufacturer": "Bell",
+    "model": "407",
+    "category": "helicopter"
+  },
+  "B412": {
+    "manufacturer": "Bell",
+    "model": "412",
+    "category": "helicopter"
+  },
+  "BE20": {
+    "manufacturer": "Beechcraft",
+    "model": "King Air 200",
+    "category": "fixed-wing"
+  },
+  "BE36": {
+    "manufacturer": "Beechcraft",
+    "model": "Bonanza 36",
+    "category": "fixed-wing"
+  },
+  "BE58": {
+    "manufacturer": "Beechcraft",
+    "model": "Baron 58",
+    "category": "fixed-wing"
+  },
+  "C130": {
+    "manufacturer": "Lockheed",
+    "model": "C-130 Hercules",
+    "category": "fixed-wing"
+  },
+  "C150": {
+    "manufacturer": "Cessna",
+    "model": "150",
+    "category": "fixed-wing"
+  },
+  "C152": {
+    "manufacturer": "Cessna",
+    "model": "152",
+    "category": "fixed-wing"
+  },
+  "C17": {
+    "manufacturer": "Boeing",
+    "model": "C-17 Globemaster III",
+    "category": "fixed-wing"
+  },
+  "C172": {
+    "manufacturer": "Cessna",
+    "model": "172 Skyhawk",
+    "category": "fixed-wing"
+  },
+  "C182": {
+    "manufacturer": "Cessna",
+    "model": "182 Skylane",
+    "category": "fixed-wing"
+  },
+  "C185": {
+    "manufacturer": "Cessna",
+    "model": "185 Skywagon",
+    "category": "fixed-wing"
+  },
+  "C206": {
+    "manufacturer": "Cessna",
+    "model": "206 Stationair",
+    "category": "fixed-wing"
+  },
+  "C208": {
+    "manufacturer": "Cessna",
+    "model": "208 Caravan / Grand Caravan",
+    "category": "fixed-wing"
+  },
+  "C30J": {
+    "manufacturer": "Lockheed Martin",
+    "model": "C-130J Super Hercules",
+    "category": "fixed-wing"
+  },
+  "DA40": {
+    "manufacturer": "Diamond",
+    "model": "DA40 Diamond Star",
+    "category": "fixed-wing"
+  },
+  "DHC2": {
+    "manufacturer": "de Havilland Canada",
+    "model": "DHC-2 Beaver",
+    "category": "fixed-wing"
+  },
+  "DV20": {
+    "manufacturer": "Diamond",
+    "model": "DA20 Katana / Eclipse",
+    "category": "fixed-wing"
+  },
+  "E3TF": {
+    "manufacturer": "Boeing",
+    "model": "E-3 Sentry (TF33)",
+    "category": "fixed-wing"
+  },
+  "EC20": {
+    "manufacturer": "Eurocopter",
+    "model": "EC120 Colibri",
+    "category": "helicopter"
+  },
+  "EUFI": {
+    "manufacturer": "Eurofighter",
+    "model": "Typhoon",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F104": {
+    "manufacturer": "Lockheed",
+    "model": "F-104 Starfighter",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F14": {
+    "manufacturer": "Grumman",
+    "model": "F-14 Tomcat",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F15": {
+    "manufacturer": "McDonnell Douglas",
+    "model": "F-15 Eagle",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F16": {
+    "manufacturer": "General Dynamics",
+    "model": "F-16 Fighting Falcon",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F18": {
+    "manufacturer": "McDonnell Douglas / Boeing",
+    "model": "F/A-18 Hornet / Super Hornet",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F22": {
+    "manufacturer": "Lockheed Martin",
+    "model": "F-22 Raptor",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F35": {
+    "manufacturer": "Lockheed Martin",
+    "model": "F-35 Lightning II",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F4": {
+    "manufacturer": "McDonnell Douglas",
+    "model": "F-4 Phantom II",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "F5": {
+    "manufacturer": "Northrop",
+    "model": "F-5 Freedom Fighter / Tiger II",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "G2CA": {
+    "manufacturer": "Hélicoptères Guimbal",
+    "model": "Cabri G2",
+    "category": "helicopter"
+  },
+  "H47": {
+    "manufacturer": "Boeing",
+    "model": "CH-47 Chinook",
+    "category": "helicopter"
+  },
+  "H500": {
+    "manufacturer": "MD Helicopters",
+    "model": "MD 500",
+    "category": "helicopter"
+  },
+  "H60": {
+    "manufacturer": "Sikorsky",
+    "model": "S-70 / H-60 Black Hawk family",
+    "category": "helicopter"
+  },
+  "H64": {
+    "manufacturer": "Boeing",
+    "model": "AH-64 Apache",
+    "category": "helicopter"
+  },
+  "HUSK": {
+    "manufacturer": "Aviat",
+    "model": "A-1 Husky",
+    "category": "fixed-wing"
+  },
+  "IKAR": {
+    "manufacturer": "Comco Ikarus",
+    "model": "C42",
+    "category": "fixed-wing"
+  },
+  "K35R": {
+    "manufacturer": "Boeing",
+    "model": "KC-135R Stratotanker",
+    "category": "fixed-wing"
+  },
+  "LA4": {
+    "manufacturer": "Lake",
+    "model": "LA-4 Buccaneer",
+    "category": "fixed-wing"
+  },
+  "MIR2": {
+    "manufacturer": "Dassault",
+    "model": "Mirage 2000",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "NH90": {
+    "manufacturer": "NHIndustries",
+    "model": "NH90",
+    "category": "helicopter"
+  },
+  "P28A": {
+    "manufacturer": "Piper",
+    "model": "PA-28 Cherokee / Warrior / Archer",
+    "category": "fixed-wing"
+  },
+  "P28R": {
+    "manufacturer": "Piper",
+    "model": "PA-28R Arrow",
+    "category": "fixed-wing"
+  },
+  "P3": {
+    "manufacturer": "Lockheed",
+    "model": "P-3 Orion",
+    "category": "fixed-wing"
+  },
+  "P51": {
+    "manufacturer": "North American Aviation",
+    "model": "P-51 Mustang",
+    "category": "fixed-wing",
+    "role": "propeller-fighter"
+  },
+  "PA18": {
+    "manufacturer": "Piper",
+    "model": "PA-18 Super Cub",
+    "category": "fixed-wing"
+  },
+  "PA32": {
+    "manufacturer": "Piper",
+    "model": "PA-32 Cherokee Six / Saratoga",
+    "category": "fixed-wing"
+  },
+  "PA34": {
+    "manufacturer": "Piper",
+    "model": "PA-34 Seneca",
+    "category": "fixed-wing"
+  },
+  "PC12": {
+    "manufacturer": "Pilatus",
+    "model": "PC-12",
+    "category": "fixed-wing"
+  },
+  "R22": {
+    "manufacturer": "Robinson",
+    "model": "R22",
+    "category": "helicopter"
+  },
+  "R44": {
+    "manufacturer": "Robinson",
+    "model": "R44 Raven",
+    "category": "helicopter"
+  },
+  "R66": {
+    "manufacturer": "Robinson",
+    "model": "R66 Turbine",
+    "category": "helicopter"
+  },
+  "RFAL": {
+    "manufacturer": "Dassault",
+    "model": "Rafale",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "RV7": {
+    "manufacturer": "Van's Aircraft",
+    "model": "RV-7 / RV-7A",
+    "category": "fixed-wing"
+  },
+  "SB29": {
+    "manufacturer": "Saab",
+    "model": "29 Tunnan",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "SB35": {
+    "manufacturer": "Saab",
+    "model": "35 Draken",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "SB37": {
+    "manufacturer": "Saab",
+    "model": "37 Viggen",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "SB39": {
+    "manufacturer": "Saab",
+    "model": "JAS 39 Gripen",
+    "category": "fixed-wing",
+    "role": "fighter-jet"
+  },
+  "SF50": {
+    "manufacturer": "Cirrus",
+    "model": "SF50 Vision Jet",
+    "category": "fixed-wing"
+  },
+  "SPIT": {
+    "manufacturer": "Supermarine",
+    "model": "Spitfire",
+    "category": "fixed-wing",
+    "role": "propeller-fighter"
+  },
+  "SR20": {
+    "manufacturer": "Cirrus",
+    "model": "SR20",
+    "category": "fixed-wing"
+  },
+  "SR22": {
+    "manufacturer": "Cirrus",
+    "model": "SR22",
+    "category": "fixed-wing"
+  },
+  "SREY": {
+    "manufacturer": "Progressive Aerodyne",
+    "model": "SeaRey",
+    "category": "fixed-wing"
+  },
+  "TOR": {
+    "manufacturer": "Panavia",
+    "model": "Tornado",
+    "category": "fixed-wing"
+  },
+  "V22": {
+    "manufacturer": "Bell Boeing",
+    "model": "V-22 Osprey",
+    "category": "fixed-wing"
+  }
+}

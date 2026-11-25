@@ -1,0 +1,3865 @@
+{
+  "illustrations": {
+    "aw139-lufttransport-offshore": {
+      "icaoType": "A139",
+      "livery": "Lufttransport offshore",
+      "operatorIcaoCodes": [
+        "LTR"
+      ],
+      "path": "helicopters/aw139-lufttransport-offshore.png",
+      "status": "ready",
+      "reference": "https://www.stordlufthamn.no/nyhende/helikopter-pa-treningsflyging/"
+    },
+    "aw139-lufttransport-rescue": {
+      "icaoType": "A139",
+      "livery": "Lufttransport offshore rescue",
+      "airframeOnly": true,
+      "path": "helicopters/aw139-lufttransport-rescue.png",
+      "status": "ready",
+      "reference": "https://aircraftregister.net/aircraft/LN-OLA"
+    },
+    "aw139-neutral": {
+      "icaoType": "A139",
+      "livery": "Neutral",
+      "path": "helicopters/aw139-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "aw139-lufttransport-offshore"
+    },
+    "aw189-lufttransport-offshore": {
+      "icaoType": "A189",
+      "livery": "Lufttransport offshore, blue and white",
+      "operatorIcaoCodes": [
+        "LTR"
+      ],
+      "path": "helicopters/aw189-lufttransport-offshore.png",
+      "status": "ready",
+      "reference": "https://styrke.no/nyhet/equinor-har-kjopt-helikoptre-med-darlig-stoydemping-i-kabinen/"
+    },
+    "aw189-neutral": {
+      "icaoType": "A189",
+      "livery": "Neutral",
+      "path": "helicopters/aw189-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "aw189-lufttransport-offshore"
+    },
+    "h145-norsk-luftambulanse-yellow": {
+      "icaoType": "EC45",
+      "livery": "Norsk Luftambulanse operational yellow",
+      "operatorIcaoCodes": [
+        "DOC"
+      ],
+      "path": "helicopters/h145-norsk-luftambulanse-yellow.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11999535"
+    },
+    "crj900-sas-cityjet": {
+      "icaoType": "CRJ9",
+      "livery": "Scandinavian Airlines, operated by CityJet",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/crj900-sas-cityjet.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11822990"
+    },
+    "crj900-neutral": {
+      "icaoType": "CRJ9",
+      "livery": "Neutral",
+      "path": "airliners/crj900-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "crj900-sas-cityjet"
+    },
+    "e195-e2-klm-cityhopper": {
+      "icaoType": "E295",
+      "livery": "KLM Cityhopper",
+      "operatorIcaoCodes": [
+        "KLC",
+        "KLM"
+      ],
+      "path": "airliners/e195-e2-klm-cityhopper.png",
+      "status": "ready",
+      "reference": "https://www.aeroinside.com/21352/klm-cityhopper-e295-enroute-on-dec-1st-2025-avionics-or-electrical-problems"
+    },
+    "e195-e2-neutral": {
+      "icaoType": "E295",
+      "livery": "Neutral",
+      "path": "airliners/e195-e2-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e195-e2-klm-cityhopper"
+    },
+    "737-800-norwegian-red-nose": {
+      "icaoType": "B738",
+      "livery": "Norwegian Air Shuttle red nose",
+      "operatorIcaoCodes": [
+        "NAX",
+        "NOZ",
+        "NSZ"
+      ],
+      "path": "airliners/737-800-norwegian-red-nose.png",
+      "status": "ready"
+    },
+    "a320neo-sas": {
+      "icaoType": "A20N",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a320neo-sas.png",
+      "status": "ready"
+    },
+    "aw101-sar-queen-norwegian-rescue": {
+      "icaoType": "EH10",
+      "livery": "Norwegian SAR Queen",
+      "airframeOnly": true,
+      "path": "helicopters/aw101-sar-queen-norwegian-rescue.png",
+      "status": "ready"
+    },
+    "h135-norsk-luftambulanse": {
+      "icaoType": "EC35",
+      "livery": "Norsk Luftambulanse",
+      "operatorIcaoCodes": [
+        "DOC"
+      ],
+      "path": "helicopters/h135-norsk-luftambulanse.png",
+      "status": "ready"
+    },
+    "s92-bristow-norway-offshore": {
+      "icaoType": "S92",
+      "livery": "Bristow Norway offshore",
+      "operatorIcaoCodes": [
+        "NOR"
+      ],
+      "path": "helicopters/s92-bristow-norway-offshore.png",
+      "status": "ready"
+    },
+    "generic-fixed-wing": {
+      "category": "fixed-wing",
+      "livery": "Unmarked",
+      "path": "fallbacks/generic-fixed-wing.png",
+      "status": "ready"
+    },
+    "generic-helicopter": {
+      "category": "helicopter",
+      "livery": "Unmarked",
+      "path": "fallbacks/generic-helicopter.png",
+      "status": "ready"
+    },
+    "737-800-neutral": {
+      "icaoType": "B738",
+      "livery": "Neutral",
+      "path": "airliners/737-800-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "737-800-norwegian-red-nose"
+    },
+    "a320neo-neutral": {
+      "icaoType": "A20N",
+      "livery": "Neutral",
+      "path": "airliners/a320neo-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a320neo-sas"
+    },
+    "aw101-neutral": {
+      "icaoType": "EH10",
+      "livery": "Neutral",
+      "path": "helicopters/aw101-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "h135-neutral": {
+      "icaoType": "EC35",
+      "livery": "Neutral",
+      "path": "helicopters/h135-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "h135-norsk-luftambulanse"
+    },
+    "s92-neutral": {
+      "icaoType": "S92",
+      "livery": "Neutral",
+      "path": "helicopters/s92-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "s92-bristow-norway-offshore"
+    },
+    "dash-8-q400-wideroe": {
+      "icaoType": "DH8D",
+      "livery": "Widerøe",
+      "operatorIcaoCodes": [
+        "WIF"
+      ],
+      "path": "airliners/dash-8-q400-wideroe.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airframe/de-havilland-canada-dhc-8-400-ln-wdh-wideroe/en4qd8"
+    },
+    "dash-8-q400-neutral": {
+      "icaoType": "DH8D",
+      "livery": "Neutral",
+      "path": "airliners/dash-8-q400-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "dash-8-q400-wideroe"
+    },
+    "737-max-8-norwegian-karin-boye": {
+      "icaoType": "B38M",
+      "livery": "Norwegian Air Shuttle red nose, Karin Boye tail",
+      "airframeOnly": true,
+      "path": "airliners/737-max-8-norwegian-karin-boye.png",
+      "status": "ready",
+      "reference": "https://www.airhistory.net/photo/868741/LN-FGF"
+    },
+    "737-max-8-norwegian-red-nose": {
+      "icaoType": "B38M",
+      "livery": "Norwegian red nose, plain tail",
+      "operatorIcaoCodes": [
+        "NAX",
+        "NOZ",
+        "NSZ"
+      ],
+      "path": "airliners/737-max-8-norwegian-red-nose.png",
+      "status": "ready",
+      "referenceIllustration": "737-max-8-neutral",
+      "reference": "https://media.no.norwegian.com/pressreleases/norwegian-henter-hjem-det-foerste-av-80-nye-boeing-737-max-8-3413554"
+    },
+    "737-max-8-neutral": {
+      "icaoType": "B38M",
+      "livery": "Neutral",
+      "path": "airliners/737-max-8-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "737-max-8-norwegian-karin-boye"
+    },
+    "h145-norsk-luftambulanse": {
+      "icaoType": "EC45",
+      "livery": "Norsk Luftambulanse Foundation research livery",
+      "airframeOnly": true,
+      "path": "helicopters/h145-norsk-luftambulanse.png",
+      "status": "ready",
+      "reference": "https://www.notak.no/wp-content/uploads/2024/04/231107-Triage-1-2024-ferdig-enkle.pdf"
+    },
+    "h145-neutral": {
+      "icaoType": "EC45",
+      "livery": "Neutral",
+      "path": "helicopters/h145-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "h145-norsk-luftambulanse"
+    },
+    "s92-chc-helikopter-service": {
+      "icaoType": "S92",
+      "livery": "CHC Helikopter Service offshore",
+      "operatorIcaoCodes": [
+        "HKS"
+      ],
+      "path": "helicopters/s92-chc-helikopter-service.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1942177/ln-oqu-chc-helikopter-service-sikorsky-s-92a"
+    },
+    "e190-e2-wideroe": {
+      "icaoType": "E290",
+      "livery": "Widerøe",
+      "operatorIcaoCodes": [
+        "WIF"
+      ],
+      "path": "airliners/e190-e2-wideroe.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airframe/embraer-e190-e2-ln-wea-wideroe/epw8do"
+    },
+    "e190-e2-neutral": {
+      "icaoType": "E290",
+      "livery": "Neutral",
+      "path": "airliners/e190-e2-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e190-e2-wideroe"
+    },
+    "e190-klm-cityhopper": {
+      "icaoType": "E190",
+      "livery": "KLM Cityhopper",
+      "operatorIcaoCodes": [
+        "KLC",
+        "KLM"
+      ],
+      "path": "airliners/e190-klm-cityhopper.png",
+      "status": "ready",
+      "reference": "https://commons.wikimedia.org/wiki/Category:PH-EXV_(aircraft)"
+    },
+    "e190-neutral": {
+      "icaoType": "E190",
+      "livery": "Neutral",
+      "path": "airliners/e190-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e190-klm-cityhopper"
+    },
+    "a330-300-sas": {
+      "icaoType": "A333",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a330-300-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/airbus-a330-300-and-airbus-a340-300/"
+    },
+    "a330-300-neutral": {
+      "icaoType": "A333",
+      "livery": "Neutral",
+      "path": "airliners/a330-300-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a330-300-sas"
+    },
+    "a350-900-turkish-airlines": {
+      "icaoType": "A359",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a350-900-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a350-900-neutral": {
+      "icaoType": "A359",
+      "livery": "Neutral",
+      "path": "airliners/a350-900-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a350-900-turkish-airlines"
+    },
+    "787-8-lot-polish-airlines": {
+      "icaoType": "B788",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/787-8-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "787-8-neutral": {
+      "icaoType": "B788",
+      "livery": "Neutral",
+      "path": "airliners/787-8-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "787-8-lot-polish-airlines"
+    },
+    "787-9-turkish-airlines": {
+      "icaoType": "B789",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/787-9-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "787-9-neutral": {
+      "icaoType": "B789",
+      "livery": "Neutral",
+      "path": "airliners/787-9-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-turkish-airlines"
+    },
+    "777-300er-turkish-airlines": {
+      "icaoType": "B77W",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/777-300er-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "777-300er-neutral": {
+      "icaoType": "B77W",
+      "livery": "Neutral",
+      "path": "airliners/777-300er-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-turkish-airlines"
+    },
+    "a350-1000-qatar-airways": {
+      "icaoType": "A35K",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a350-1000-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a350-1000-neutral": {
+      "icaoType": "A35K",
+      "livery": "Neutral",
+      "path": "airliners/a350-1000-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a350-1000-qatar-airways"
+    },
+    "a350-900-sas": {
+      "icaoType": "A359",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a350-900-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/airbus-a330-300-and-airbus-a340-300/"
+    },
+    "787-9-lot-polish-airlines": {
+      "icaoType": "B789",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/787-9-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "a380-800-emirates": {
+      "icaoType": "A388",
+      "livery": "Emirates",
+      "operatorIcaoCodes": [
+        "UAE"
+      ],
+      "path": "airliners/a380-800-emirates.png",
+      "status": "ready",
+      "reference": "https://www.emirates.com/us/english/experience/our-fleet/"
+    },
+    "a380-800-neutral": {
+      "icaoType": "A388",
+      "livery": "Neutral",
+      "path": "airliners/a380-800-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a380-800-emirates"
+    },
+    "787-9-etihad-airways": {
+      "icaoType": "B789",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/787-9-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "777-300er-emirates": {
+      "icaoType": "B77W",
+      "livery": "Emirates",
+      "operatorIcaoCodes": [
+        "UAE"
+      ],
+      "path": "airliners/777-300er-emirates.png",
+      "status": "ready",
+      "reference": "https://www.emirates.com/us/english/experience/our-fleet/"
+    },
+    "a350-900-lufthansa": {
+      "icaoType": "A359",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a350-900-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "777-300er-qatar-airways": {
+      "icaoType": "B77W",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/777-300er-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a350-1000-etihad-airways": {
+      "icaoType": "A35K",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a350-1000-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "777-200lr-emirates": {
+      "icaoType": "B77L",
+      "livery": "Emirates",
+      "operatorIcaoCodes": [
+        "UAE"
+      ],
+      "path": "airliners/777-200lr-emirates.png",
+      "status": "ready",
+      "reference": "https://www.emirates.com/us/english/experience/our-fleet/"
+    },
+    "777-200lr-neutral": {
+      "icaoType": "B77L",
+      "livery": "Neutral",
+      "path": "airliners/777-200lr-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "777-200lr-emirates"
+    },
+    "767-300er-icelandair": {
+      "icaoType": "B763",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/767-300er-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "767-300-neutral": {
+      "icaoType": "B763",
+      "livery": "Neutral",
+      "path": "airliners/767-300-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "767-300er-icelandair"
+    },
+    "777-200lr-air-canada": {
+      "icaoType": "B77L",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/777-200lr-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "a330-300-hainan-airlines": {
+      "icaoType": "A333",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/a330-300-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "787-9-air-canada": {
+      "icaoType": "B789",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/787-9-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "757-200-icelandair": {
+      "icaoType": "B752",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/757-200-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "757-200-neutral": {
+      "icaoType": "B752",
+      "livery": "Neutral",
+      "path": "airliners/757-200-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "757-200-icelandair"
+    },
+    "777-200lr-qatar-airways": {
+      "icaoType": "B77L",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/777-200lr-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "787-9-hainan-airlines": {
+      "icaoType": "B789",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/787-9-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "a380-800-etihad-airways": {
+      "icaoType": "A388",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a380-800-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "a350-900-emirates": {
+      "icaoType": "A359",
+      "livery": "Emirates",
+      "operatorIcaoCodes": [
+        "UAE"
+      ],
+      "path": "airliners/a350-900-emirates.png",
+      "status": "ready",
+      "reference": "https://www.emirates.com/us/english/experience/our-fleet/"
+    },
+    "787-8-air-canada": {
+      "icaoType": "B788",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/787-8-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "747-8-lufthansa": {
+      "icaoType": "B748",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/747-8-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "747-8-neutral": {
+      "icaoType": "B748",
+      "livery": "Neutral",
+      "path": "airliners/747-8-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "747-8-lufthansa"
+    },
+    "a350-900-qatar-airways": {
+      "icaoType": "A359",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a350-900-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "777-300er-air-canada": {
+      "icaoType": "B77W",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/777-300er-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "a380-800-lufthansa": {
+      "icaoType": "A388",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a380-800-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a330-300-air-canada": {
+      "icaoType": "A333",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/a330-300-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "747-400-lufthansa": {
+      "icaoType": "B744",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/747-400-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "747-400-neutral": {
+      "icaoType": "B744",
+      "livery": "Neutral",
+      "path": "airliners/747-400-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "747-400-lufthansa"
+    },
+    "787-9-lufthansa": {
+      "icaoType": "B789",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/787-9-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a330-200-hainan-airlines": {
+      "icaoType": "A332",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/a330-200-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "a330-200-neutral": {
+      "icaoType": "A332",
+      "livery": "Neutral",
+      "path": "airliners/a330-200-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a330-200-hainan-airlines"
+    },
+    "a340-300-lufthansa": {
+      "icaoType": "A343",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a340-300-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a340-300-neutral": {
+      "icaoType": "A343",
+      "livery": "Neutral",
+      "path": "airliners/a340-300-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a340-300-lufthansa"
+    },
+    "a330-300-turkish-airlines": {
+      "icaoType": "A333",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a330-300-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a330-200-klm": {
+      "icaoType": "A332",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/a330-200-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "a330-300-klm": {
+      "icaoType": "A333",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/a330-300-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "a350-900-klm": {
+      "icaoType": "A359",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/a350-900-klm.png",
+      "status": "ready",
+      "reference": "https://news.klm.com/klms-first-airbus-a350-flight-to-toronto/"
+    },
+    "777-200er-klm": {
+      "icaoType": "B772",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/777-200er-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "777-200-neutral": {
+      "icaoType": "B772",
+      "livery": "Neutral",
+      "path": "airliners/777-200-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "777-200er-klm"
+    },
+    "777-300er-klm": {
+      "icaoType": "B77W",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/777-300er-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "787-9-klm": {
+      "icaoType": "B789",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/787-9-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "787-10-klm": {
+      "icaoType": "B78X",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/787-10-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "787-10-neutral": {
+      "icaoType": "B78X",
+      "livery": "Neutral",
+      "path": "airliners/787-10-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "787-10-klm"
+    },
+    "a319-turkish-airlines": {
+      "icaoType": "A319",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a319-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a319-neutral": {
+      "icaoType": "A319",
+      "livery": "Neutral",
+      "path": "airliners/a319-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a319-turkish-airlines"
+    },
+    "a320-turkish-airlines": {
+      "icaoType": "A320",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a320-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a320-neutral": {
+      "icaoType": "A320",
+      "livery": "Neutral",
+      "path": "airliners/a320-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a320-turkish-airlines"
+    },
+    "a321-turkish-airlines": {
+      "icaoType": "A321",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a321-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a321-neutral": {
+      "icaoType": "A321",
+      "livery": "Neutral",
+      "path": "airliners/a321-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a321-turkish-airlines"
+    },
+    "a321neo-turkish-airlines": {
+      "icaoType": "A21N",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a321neo-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a321neo-neutral": {
+      "icaoType": "A21N",
+      "livery": "Neutral",
+      "path": "airliners/a321neo-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-turkish-airlines"
+    },
+    "737-800-turkish-airlines": {
+      "icaoType": "B738",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/737-800-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "737-900-turkish-airlines": {
+      "icaoType": "B739",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/737-900-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "737-900-neutral": {
+      "icaoType": "B739",
+      "livery": "Neutral",
+      "path": "airliners/737-900-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "737-900-turkish-airlines"
+    },
+    "737-max-8-turkish-airlines": {
+      "icaoType": "B38M",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/737-max-8-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "737-max-9-turkish-airlines": {
+      "icaoType": "B39M",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/737-max-9-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "737-max-9-neutral": {
+      "icaoType": "B39M",
+      "livery": "Neutral",
+      "path": "airliners/737-max-9-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "737-max-9-turkish-airlines"
+    },
+    "a330-200-turkish-airlines": {
+      "icaoType": "A332",
+      "livery": "Turkish Airlines",
+      "operatorIcaoCodes": [
+        "THY"
+      ],
+      "path": "airliners/a330-200-turkish-airlines.png",
+      "status": "ready",
+      "reference": "https://investor.turkishairlines.com/en/financial-and-operational/fleet"
+    },
+    "a319-sas": {
+      "icaoType": "A319",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a319-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/"
+    },
+    "a320-sas": {
+      "icaoType": "A320",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a320-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/"
+    },
+    "a321lr-sas": {
+      "icaoType": "A21N",
+      "livery": "Scandinavian Airlines",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/a321lr-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/a320neo-a321lr/"
+    },
+    "e195-sas": {
+      "icaoType": "E195",
+      "livery": "Scandinavian Airlines, operated by SAS Link",
+      "operatorIcaoCodes": [
+        "SAS",
+        "SVS"
+      ],
+      "path": "airliners/e195-sas.png",
+      "status": "ready",
+      "reference": "https://www.sasgroup.net/about-sas/the-fleet/"
+    },
+    "e195-neutral": {
+      "icaoType": "E195",
+      "livery": "Neutral",
+      "path": "airliners/e195-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e195-sas"
+    },
+    "atr72-600-sas": {
+      "icaoType": "AT76",
+      "livery": "Scandinavian Airlines, operated by Braathens Regional Airways",
+      "operatorIcaoCodes": [
+        "SAS"
+      ],
+      "path": "airliners/atr72-600-sas.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/2009459/se-mkb-sas-scandinavian-airlines-atr-72-600-72-212a"
+    },
+    "atr72-600-neutral": {
+      "icaoType": "AT76",
+      "livery": "Neutral",
+      "path": "airliners/atr72-600-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "atr72-600-sas"
+    },
+    "e175-short-wing-lot-polish-airlines": {
+      "icaoType": "E75S",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/e175-short-wing-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "e175-short-wing-neutral": {
+      "icaoType": "E75S",
+      "livery": "Neutral",
+      "path": "airliners/e175-short-wing-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e175-short-wing-lot-polish-airlines"
+    },
+    "e190-lot-polish-airlines": {
+      "icaoType": "E190",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/e190-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "e195-lot-polish-airlines": {
+      "icaoType": "E195",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/e195-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "e195-e2-lot-polish-airlines": {
+      "icaoType": "E295",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/e195-e2-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "737-800-lot-polish-airlines": {
+      "icaoType": "B738",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/737-800-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "737-max-8-lot-polish-airlines": {
+      "icaoType": "B38M",
+      "livery": "LOT Polish Airlines",
+      "operatorIcaoCodes": [
+        "LOT"
+      ],
+      "path": "airliners/737-max-8-lot-polish-airlines.png",
+      "status": "ready",
+      "reference": "https://www.lot.com/us/en/explore/about-lot/fleet"
+    },
+    "a320-qatar-airways": {
+      "icaoType": "A320",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a320-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a321neo-qatar-airways": {
+      "icaoType": "A21N",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a321neo-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "737-max-8-qatar-airways": {
+      "icaoType": "B38M",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/737-max-8-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/qr-qtr/fleet"
+    },
+    "a330-200-qatar-airways": {
+      "icaoType": "A332",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a330-200-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a330-300-qatar-airways": {
+      "icaoType": "A333",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a330-300-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a380-800-qatar-airways": {
+      "icaoType": "A388",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/a380-800-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "787-8-qatar-airways": {
+      "icaoType": "B788",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/787-8-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "787-9-qatar-airways": {
+      "icaoType": "B789",
+      "livery": "Qatar Airways",
+      "operatorIcaoCodes": [
+        "QTR"
+      ],
+      "path": "airliners/787-9-qatar-airways.png",
+      "status": "ready",
+      "reference": "https://www.qatarairways.com/en-us/fleet.html"
+    },
+    "a320-etihad-airways": {
+      "icaoType": "A320",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a320-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "a320neo-etihad-airways": {
+      "icaoType": "A20N",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a320neo-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ey-etd/fleet"
+    },
+    "a321-etihad-airways": {
+      "icaoType": "A321",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a321-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "a321neo-etihad-airways": {
+      "icaoType": "A21N",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/a321neo-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "777-300er-etihad-airways": {
+      "icaoType": "B77W",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/777-300er-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "787-10-etihad-airways": {
+      "icaoType": "B78X",
+      "livery": "Etihad Airways",
+      "operatorIcaoCodes": [
+        "ETD"
+      ],
+      "path": "airliners/787-10-etihad-airways.png",
+      "status": "ready",
+      "reference": "https://www.etihad.com/en-gb/plan/fly-with-etihad/our-fleet"
+    },
+    "a220-300-air-canada": {
+      "icaoType": "BCS3",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/a220-300-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "a220-300-neutral": {
+      "icaoType": "BCS3",
+      "livery": "Neutral",
+      "path": "airliners/a220-300-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a220-300-air-canada"
+    },
+    "a320-air-canada": {
+      "icaoType": "A320",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/a320-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "a321-air-canada": {
+      "icaoType": "A321",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/a321-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/fly/onboard/fleet.html"
+    },
+    "a321xlr-air-canada": {
+      "icaoType": "A21N",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/a321xlr-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/media/a-new-era-in-customer-comfort-and-network-growth-begins-as-air-canada-receives-its-first-airbus-a321xlr"
+    },
+    "737-max-8-air-canada": {
+      "icaoType": "B38M",
+      "livery": "Air Canada",
+      "operatorIcaoCodes": [
+        "ACA"
+      ],
+      "path": "airliners/737-max-8-air-canada.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html"
+    },
+    "a319-lufthansa": {
+      "icaoType": "A319",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a319-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a320-lufthansa": {
+      "icaoType": "A320",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a320-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a320neo-lufthansa": {
+      "icaoType": "A20N",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a320neo-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a321-lufthansa": {
+      "icaoType": "A321",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a321-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a321neo-lufthansa": {
+      "icaoType": "A21N",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a321neo-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a330-300-lufthansa": {
+      "icaoType": "A333",
+      "livery": "Lufthansa",
+      "operatorIcaoCodes": [
+        "DLH"
+      ],
+      "path": "airliners/a330-300-lufthansa.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa.com/de/en/seat-maps"
+    },
+    "a350-1000-lufthansa-centenary": {
+      "icaoType": "A35K",
+      "livery": "Lufthansa centenary livery",
+      "airframeOnly": true,
+      "path": "airliners/a350-1000-lufthansa-centenary.png",
+      "status": "ready",
+      "reference": "https://newsroom.lufthansagroup.com/en/lufthansas-first-airbus-a350-1000-arrives-with-a-special-livery/"
+    },
+    "dash-8-200-icelandair": {
+      "icaoType": "DH8B",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/dash-8-200-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "dash-8-200-neutral": {
+      "icaoType": "DH8B",
+      "livery": "Neutral",
+      "path": "airliners/dash-8-200-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "dash-8-200-icelandair"
+    },
+    "dash-8-q400-icelandair": {
+      "icaoType": "DH8D",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/dash-8-q400-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "737-max-8-icelandair": {
+      "icaoType": "B38M",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/737-max-8-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "737-max-9-icelandair": {
+      "icaoType": "B39M",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/737-max-9-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/"
+    },
+    "a321lr-icelandair": {
+      "icaoType": "A21N",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/a321lr-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.icelandair.com/about/our-fleet/airbus-a321lr/"
+    },
+    "a320neo-hainan-airlines": {
+      "icaoType": "A20N",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/a320neo-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "a321neo-hainan-airlines": {
+      "icaoType": "A21N",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/a321neo-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "737-800-hainan-airlines": {
+      "icaoType": "B738",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/737-800-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "737-max-8-hainan-airlines": {
+      "icaoType": "B38M",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/737-max-8-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.hainanairlines.com/HUPortal/dyn/portal/DisplayPage?COUNTRY_SITE=GB&LANGUAGE=GB&PAGE=FLET&SITE=CBHZCBHZ"
+    },
+    "a330-900-hainan-airlines": {
+      "icaoType": "A339",
+      "livery": "Hainan Airlines",
+      "operatorIcaoCodes": [
+        "CHH"
+      ],
+      "path": "airliners/a330-900-hainan-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/aircraft/B-32MU"
+    },
+    "a330-900-neutral": {
+      "icaoType": "A339",
+      "livery": "Neutral",
+      "path": "airliners/a330-900-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "a330-900-hainan-airlines"
+    },
+    "a321neo-klm": {
+      "icaoType": "A21N",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/a321neo-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "737-700-klm": {
+      "icaoType": "B737",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/737-700-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.nl/en/information/travel-class-extra-options/aircraft-types/boeing-737-700"
+    },
+    "737-700-neutral": {
+      "icaoType": "B737",
+      "livery": "Neutral",
+      "path": "airliners/737-700-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "737-700-klm"
+    },
+    "737-800-klm": {
+      "icaoType": "B738",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/737-800-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.nl/en/information/travel-class-extra-options/aircraft-types/boeing-737-800"
+    },
+    "737-900-klm": {
+      "icaoType": "B739",
+      "livery": "KLM Royal Dutch Airlines",
+      "operatorIcaoCodes": [
+        "KLM"
+      ],
+      "path": "airliners/737-900-klm.png",
+      "status": "ready",
+      "reference": "https://www.klm.nl/en/information/travel-class-extra-options/aircraft-types/boeing-737-900"
+    },
+    "e175-long-wing-klm-cityhopper": {
+      "icaoType": "E75L",
+      "livery": "KLM Cityhopper",
+      "operatorIcaoCodes": [
+        "KLC",
+        "KLM"
+      ],
+      "path": "airliners/e175-long-wing-klm-cityhopper.png",
+      "status": "ready",
+      "reference": "https://www.klm.com/information/travel-class-extra-options/aircraft-types"
+    },
+    "e175-long-wing-neutral": {
+      "icaoType": "E75L",
+      "livery": "Neutral",
+      "path": "airliners/e175-long-wing-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "e175-long-wing-klm-cityhopper"
+    },
+    "737-900-klm-skyteam": {
+      "icaoType": "B739",
+      "livery": "KLM SkyTeam",
+      "airframeOnly": true,
+      "path": "airliners/737-900-klm-skyteam.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12175957"
+    },
+    "e190-klm-cityhopper-skyteam": {
+      "icaoType": "E190",
+      "livery": "KLM Cityhopper SkyTeam",
+      "airframeOnly": true,
+      "path": "airliners/e190-klm-cityhopper-skyteam.png",
+      "status": "ready",
+      "reference": "https://flightcatcherpro.com/photos/reg/PH-EZX"
+    },
+    "777-300er-klm-orange-pride": {
+      "icaoType": "B77W",
+      "livery": "KLM Orange Pride",
+      "airframeOnly": true,
+      "path": "airliners/777-300er-klm-orange-pride.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12271635"
+    },
+    "747-400erf-klm-cargo": {
+      "icaoType": "B744",
+      "livery": "KLM Cargo (Martinair)",
+      "airframeOnly": true,
+      "path": "airliners/747-400erf-klm-cargo.png",
+      "status": "ready",
+      "reference": "https://commons.wikimedia.org/wiki/File:Boeing_747-400ERF_KLM_Cargo_-_PH-CKC_taking_off_from_Schiphol.jpg"
+    },
+    "737-800-ryanair": {
+      "icaoType": "B738",
+      "livery": "Ryanair",
+      "operatorIcaoCodes": [
+        "RYR",
+        "RUK",
+        "RYS",
+        "MAY"
+      ],
+      "path": "airliners/737-800-ryanair.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12254161"
+    },
+    "737-max-8-200-ryanair": {
+      "icaoType": "B38M",
+      "livery": "Ryanair",
+      "operatorIcaoCodes": [
+        "RYR",
+        "RUK",
+        "RYS",
+        "MAY"
+      ],
+      "path": "airliners/737-max-8-200-ryanair.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1995030/ei-ill-ryanair-boeing-737-8200-max"
+    },
+    "737-700-buzz-ryanair": {
+      "icaoType": "B737",
+      "livery": "Ryanair livery (Buzz)",
+      "airframeOnly": true,
+      "path": "airliners/737-700-buzz-ryanair.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12251287"
+    },
+    "737-max-8-200-buzz": {
+      "icaoType": "B38M",
+      "livery": "Buzz",
+      "airframeOnly": true,
+      "path": "airliners/737-max-8-200-buzz.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12253268"
+    },
+    "737-max-8-200-malta-air": {
+      "icaoType": "B38M",
+      "livery": "Malta Air",
+      "airframeOnly": true,
+      "path": "airliners/737-max-8-200-malta-air.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12248563"
+    },
+    "a320-lauda-europe": {
+      "icaoType": "A320",
+      "livery": "Lauda Europe",
+      "operatorIcaoCodes": [
+        "LDA"
+      ],
+      "path": "airliners/a320-lauda-europe.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12237972"
+    },
+    "dash-8-q400-air-canada-express": {
+      "icaoType": "DH8D",
+      "livery": "Air Canada Express",
+      "operatorIcaoCodes": [
+        "JZA"
+      ],
+      "path": "airliners/dash-8-q400-air-canada-express.png",
+      "status": "ready",
+      "reference": "https://flyjazz.com/en/operations/air-canada-express/"
+    },
+    "crj900-air-canada-express": {
+      "icaoType": "CRJ9",
+      "livery": "Air Canada Express",
+      "operatorIcaoCodes": [
+        "JZA"
+      ],
+      "path": "airliners/crj900-air-canada-express.png",
+      "status": "ready",
+      "reference": "https://flyjazz.com/en/operations/air-canada-express/"
+    },
+    "e175-short-wing-air-canada-express": {
+      "icaoType": "E75S",
+      "livery": "Air Canada Express",
+      "operatorIcaoCodes": [
+        "JZA"
+      ],
+      "path": "airliners/e175-short-wing-air-canada-express.png",
+      "status": "ready",
+      "reference": "https://flyjazz.com/en/operations/air-canada-express/"
+    },
+    "a319-air-canada-rouge": {
+      "icaoType": "A319",
+      "livery": "Air Canada Rouge",
+      "operatorIcaoCodes": [
+        "ROU"
+      ],
+      "path": "airliners/a319-air-canada-rouge.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html"
+    },
+    "a320-air-canada-rouge": {
+      "icaoType": "A320",
+      "livery": "Air Canada Rouge",
+      "operatorIcaoCodes": [
+        "ROU"
+      ],
+      "path": "airliners/a320-air-canada-rouge.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html"
+    },
+    "a321-air-canada-rouge": {
+      "icaoType": "A321",
+      "livery": "Air Canada Rouge",
+      "operatorIcaoCodes": [
+        "ROU"
+      ],
+      "path": "airliners/a321-air-canada-rouge.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html"
+    },
+    "737-max-8-air-canada-rouge": {
+      "icaoType": "B38M",
+      "livery": "Air Canada Rouge",
+      "operatorIcaoCodes": [
+        "ROU"
+      ],
+      "path": "airliners/737-max-8-air-canada-rouge.png",
+      "status": "ready",
+      "reference": "https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html"
+    },
+    "dash-8-100-wideroe": {
+      "icaoType": "DH8A",
+      "livery": "Widerøe",
+      "operatorIcaoCodes": [
+        "WIF"
+      ],
+      "path": "airliners/dash-8-100-wideroe.png",
+      "status": "ready",
+      "reference": "https://www.wideroe.no/en/about-wideroe/fleet"
+    },
+    "dash-8-100-neutral": {
+      "icaoType": "DH8A",
+      "livery": "Neutral",
+      "path": "airliners/dash-8-100-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "dash-8-100-wideroe"
+    },
+    "dash-8-200-wideroe": {
+      "icaoType": "DH8B",
+      "livery": "Widerøe",
+      "operatorIcaoCodes": [
+        "WIF"
+      ],
+      "path": "airliners/dash-8-200-wideroe.png",
+      "status": "ready",
+      "reference": "https://www.wideroe.no/en/about-wideroe/fleet"
+    },
+    "dash-8-300-wideroe": {
+      "icaoType": "DH8C",
+      "livery": "Widerøe",
+      "operatorIcaoCodes": [
+        "WIF"
+      ],
+      "path": "airliners/dash-8-300-wideroe.png",
+      "status": "ready",
+      "reference": "https://www.wideroe.no/en/about-wideroe/fleet"
+    },
+    "dash-8-300-neutral": {
+      "icaoType": "DH8C",
+      "livery": "Neutral",
+      "path": "airliners/dash-8-300-neutral.png",
+      "status": "ready",
+      "referenceIllustration": "dash-8-300-wideroe"
+    },
+    "a319-british-airways": {
+      "icaoType": "A319",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/a319-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a319-lufthansa",
+      "reference": "https://www.flugzeug-bild.de/bild/passagierflugzeuge~airbus~a-319/162943/british-airways-g-eupp-airbus-a319-131-msn.html"
+    },
+    "a320-british-airways": {
+      "icaoType": "A320",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW",
+        "EFW"
+      ],
+      "path": "airliners/a320-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a320-turkish-airlines",
+      "reference": "https://www.planespotters.net/photo/1384167/g-euul-british-airways-airbus-a320-232"
+    },
+    "a320neo-british-airways": {
+      "icaoType": "A20N",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/a320neo-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a320neo-sas",
+      "reference": "https://commons.wikimedia.org/wiki/File%3ABritish_Airways_Airbus_A320Neo_G-TTNA_%2827919173938%29.jpg"
+    },
+    "a321-british-airways": {
+      "icaoType": "A321",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW",
+        "EFW"
+      ],
+      "path": "airliners/a321-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a321-lufthansa",
+      "reference": "https://www.flugzeug-bild.de/bild/passagierflugzeuge~airbus~a-321/147664/british-airways-g-euxd-airbus-a321-231-msn.html"
+    },
+    "a321neo-british-airways": {
+      "icaoType": "A21N",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/a321neo-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-lufthansa",
+      "reference": "https://www.planespotters.net/photo/1331182/g-neop-british-airways-airbus-a321-251nx"
+    },
+    "a350-1000-british-airways": {
+      "icaoType": "A35K",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/a350-1000-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a350-1000-qatar-airways",
+      "reference": "https://commons.wikimedia.org/wiki/File:G-XWBA_A350-1000_British_Airways_LHR_4.11.20.jpg"
+    },
+    "a380-800-british-airways": {
+      "icaoType": "A388",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/a380-800-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "a380-800-lufthansa",
+      "reference": "https://www.flugzeug-bild.de/bild/passagierflugzeuge~airbus~a-380/57398/british-airways-g-xlea-airbus-a380-841-05092013.html"
+    },
+    "777-200er-british-airways": {
+      "icaoType": "B772",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/777-200er-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "777-200er-klm",
+      "reference": "https://www.aeroinside.com/18239/british-airways-b772-near-new-york-on-jun-13th-2023-smell-of-fumes-in-cockpit"
+    },
+    "777-300er-british-airways": {
+      "icaoType": "B77W",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/777-300er-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-klm",
+      "reference": "https://www.flugzeug-bild.de/bild/flughaefen~deutschland~frankfurt-am-main-fra/113409/g-stbl-british-airways-boeing-777-336er-.html"
+    },
+    "787-8-british-airways": {
+      "icaoType": "B788",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/787-8-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "787-8-lot-polish-airlines",
+      "reference": "https://commons.wikimedia.org/wiki/File%3ABoeing_787-8_G-ZBJD_British_Airways_%2810497409623%29.jpg"
+    },
+    "787-9-british-airways": {
+      "icaoType": "B789",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/787-9-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-lufthansa",
+      "reference": "https://www.planespotters.net/photo/1418409/g-zbka-british-airways-boeing-787-9-dreamliner"
+    },
+    "787-10-british-airways": {
+      "icaoType": "B78X",
+      "livery": "British Airways",
+      "operatorIcaoCodes": [
+        "BAW"
+      ],
+      "path": "airliners/787-10-british-airways.png",
+      "status": "ready",
+      "referenceIllustration": "787-10-klm",
+      "reference": "https://www.planespotters.net/photo/1213188/g-zblb-british-airways-boeing-787-10-dreamliner"
+    },
+    "e190-ba-cityflyer": {
+      "icaoType": "E190",
+      "livery": "British Airways (BA CityFlyer)",
+      "operatorIcaoCodes": [
+        "CFE"
+      ],
+      "path": "airliners/e190-ba-cityflyer.png",
+      "status": "ready",
+      "referenceIllustration": "e190-klm-cityhopper",
+      "reference": "https://www.flickr.com/photos/ghbhd/51818919052/"
+    },
+    "a320-wizz-air": {
+      "icaoType": "A320",
+      "livery": "Wizz Air",
+      "operatorIcaoCodes": [
+        "WZZ",
+        "WMT"
+      ],
+      "path": "airliners/a320-wizz-air.png",
+      "status": "ready",
+      "referenceIllustration": "a320-lufthansa",
+      "reference": "https://www.flugzeug-bild.de/bild/passagierflugzeuge~airbus~a-320/120481/wizz-air-ha-lyq-airbus-a320-232-msn.html"
+    },
+    "a320neo-wizz-air": {
+      "icaoType": "A20N",
+      "livery": "Wizz Air",
+      "operatorIcaoCodes": [
+        "WMT"
+      ],
+      "path": "airliners/a320neo-wizz-air.png",
+      "status": "ready",
+      "referenceIllustration": "a320neo-sas",
+      "reference": "https://www.aeroinside.com/21646/wizz-malta-a20n-at-cluj-on-mar-19th-2026-bird-strike"
+    },
+    "a321-wizz-air": {
+      "icaoType": "A321",
+      "livery": "Wizz Air",
+      "operatorIcaoCodes": [
+        "WZZ",
+        "WMT"
+      ],
+      "path": "airliners/a321-wizz-air.png",
+      "status": "ready",
+      "referenceIllustration": "a321-lufthansa",
+      "reference": "https://www.flugzeug-bild.de/bild/passagierflugzeuge~airbus~a-321/177255/wizz-air-ha-lxl-airbus-a321-231-msn.html"
+    },
+    "a321neo-wizz-air": {
+      "icaoType": "A21N",
+      "livery": "Wizz Air",
+      "operatorIcaoCodes": [
+        "WZZ",
+        "WMT",
+        "WUK"
+      ],
+      "path": "airliners/a321neo-wizz-air.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-lufthansa",
+      "reference": "https://www.planespotters.net/photo/1790375/ha-lzi-wizz-air-airbus-a321-271nx"
+    },
+    "a321xlr-wizz-air": {
+      "icaoType": "A21N",
+      "livery": "Wizz Air",
+      "airframeOnly": true,
+      "path": "airliners/a321xlr-wizz-air.png",
+      "status": "ready",
+      "referenceIllustration": "a321lr-sas",
+      "reference": "https://xfw-spotter.blogspot.com/2025/08/a321-271ny-wizz-air-d-avzp-9h-xlb-msn.html"
+    },
+    "a220-300-air-france": {
+      "icaoType": "BCS3",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a220-300-air-france.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1308292/f-hzuk-air-france-airbus-a220-300-bd-500-1a11"
+    },
+    "a318-air-france": {
+      "icaoType": "A318",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a318-air-france.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1286206/f-gugn-air-france-airbus-a318-111"
+    },
+    "a319-air-france": {
+      "icaoType": "A319",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a319-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "a319-lufthansa",
+      "reference": "https://www.baaa-acro.com/spotting/f-grxf-1"
+    },
+    "a320-air-france": {
+      "icaoType": "A320",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a320-air-france.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1735449/f-hepf-air-france-airbus-a320-214-wl"
+    },
+    "a321-air-france": {
+      "icaoType": "A321",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a321-air-france.png",
+      "status": "ready",
+      "reference": "https://www.aeroinside.com/18810/france-a321-at-birmingham-on-nov-7th-2023-rejected-takeoff-with-aircraft-on-short-final"
+    },
+    "a330-200-air-france": {
+      "icaoType": "A332",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a330-200-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "a330-200-klm",
+      "reference": "https://www.planespotters.net/photo/1401780/f-gzcn-air-france-airbus-a330-203"
+    },
+    "a350-900-air-france": {
+      "icaoType": "A359",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/a350-900-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "a350-900-neutral",
+      "reference": "https://www.aeroinside.com/21307/france-a359-at-buenos-aires-on-nov-20th-2025-smell-of-smoke-on-board"
+    },
+    "777-200er-air-france": {
+      "icaoType": "B772",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/777-200er-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "777-200er-british-airways",
+      "reference": "https://www.planespotters.net/photo/1724600/f-gspg-air-france-boeing-777-228er"
+    },
+    "777-300er-air-france": {
+      "icaoType": "B77W",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/777-300er-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-neutral",
+      "reference": "https://www.aeroinside.com/21586/france-b773-at-fort-de-france-on-feb-21st-2026-engine-surges"
+    },
+    "787-9-air-france": {
+      "icaoType": "B789",
+      "livery": "Air France",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/787-9-air-france.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-klm",
+      "reference": "https://worldairlinenews.com/2021/02/28/air-france-revises-its-livery-with-larger-titles-and-other-subtle-changes/"
+    },
+    "e170-air-france-hop": {
+      "icaoType": "E170",
+      "livery": "Air France HOP",
+      "operatorIcaoCodes": [
+        "HOP",
+        "AFR"
+      ],
+      "path": "airliners/e170-air-france-hop.png",
+      "status": "ready",
+      "reference": "https://www.flugzeug-bild.de/1200/air-france-hopembraer-e170stdf-hbxiham-eddhhamburg210724--167098.jpg"
+    },
+    "e190-air-france-hop": {
+      "icaoType": "E190",
+      "livery": "Air France HOP",
+      "operatorIcaoCodes": [
+        "HOP",
+        "AFR"
+      ],
+      "path": "airliners/e190-air-france-hop.png",
+      "status": "ready",
+      "referenceIllustration": "e190-klm-cityhopper",
+      "reference": "https://www.planespotters.net/photo/1906108/f-hbly-air-france-hop-embraer-erj-190std-erj-190-100"
+    },
+    "777f-air-france-cargo": {
+      "icaoType": "B77L",
+      "livery": "Air France Cargo",
+      "operatorIcaoCodes": [
+        "AFR"
+      ],
+      "path": "airliners/777f-air-france-cargo.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1436996/f-guob-air-france-boeing-777-f28"
+    },
+    "a319-china-eastern": {
+      "icaoType": "A319",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a319-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1899523/b-6427-china-eastern-airlines-airbus-a319-133-wl"
+    },
+    "a320-china-eastern": {
+      "icaoType": "A320",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a320-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1329943/b-9945-china-eastern-airlines-airbus-a320-232-wl"
+    },
+    "a320neo-china-eastern": {
+      "icaoType": "A20N",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a320neo-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1647645/b-307j-china-eastern-airlines-airbus-a320-251n"
+    },
+    "a321-china-eastern": {
+      "icaoType": "A321",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a321-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "a321-wizz-air",
+      "reference": "https://www.planespotters.net/photo/1982317/b-9971-china-eastern-airlines-airbus-a321-231-wl"
+    },
+    "a321neo-china-eastern": {
+      "icaoType": "A21N",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a321neo-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1898244/b-32lh-china-eastern-airlines-airbus-a321-251nx"
+    },
+    "a330-200-china-eastern": {
+      "icaoType": "A332",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a330-200-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.flugzeug-bild.de/bild/fluggesellschaften~asien~china-eastern-airlines-mu-ces/91441/china-eastern-airlines-b-5962-airbus-a330-243e.html"
+    },
+    "a330-300-china-eastern": {
+      "icaoType": "A333",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a330-300-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "a330-300-lufthansa",
+      "reference": "https://www.planespotters.net/photo/1271518/b-6506-china-eastern-airlines-airbus-a330-343"
+    },
+    "a350-900-china-eastern": {
+      "icaoType": "A359",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/a350-900-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "a350-900-neutral",
+      "reference": "https://www.planespotters.net/photo/1567987/b-304d-china-eastern-airlines-airbus-a350-941"
+    },
+    "737-700-china-eastern": {
+      "icaoType": "B737",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/737-700-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "737-700-klm",
+      "reference": "https://www.planespotters.net/photo/1087951/b-5298-china-eastern-yunnan-airlines-boeing-737-79p-wl"
+    },
+    "737-800-china-eastern": {
+      "icaoType": "B738",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/737-800-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "737-800-neutral",
+      "reference": "https://media.abpic.co.uk/pictures/full_size_0416/1628201-large.jpg"
+    },
+    "737-max-8-china-eastern": {
+      "icaoType": "B38M",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/737-max-8-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "737-max-8-neutral",
+      "reference": "https://commons.wikimedia.org/wiki/File:B-1380@KMG_(20180213173137).jpg"
+    },
+    "777-300er-china-eastern": {
+      "icaoType": "B77W",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/777-300er-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-neutral",
+      "reference": "https://www.flugzeug-bild.de/bild/Passagierflugzeuge~Boeing~777/114323/b-2003-boeing-777-39p-china-eastern-melbourne.html"
+    },
+    "787-9-china-eastern": {
+      "icaoType": "B789",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/787-9-china-eastern.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-neutral",
+      "reference": "https://www.planespotters.net/photo/897062/b-206k-china-eastern-yunnan-airlines-boeing-787-9-dreamliner"
+    },
+    "c909-china-eastern": {
+      "icaoType": "AJ27",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/c909-china-eastern.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1820577/b-656y-china-eastern-airlines-comac-arj21-700"
+    },
+    "c919-china-eastern": {
+      "icaoType": "C919",
+      "livery": "China Eastern Airlines",
+      "operatorIcaoCodes": [
+        "CES"
+      ],
+      "path": "airliners/c919-china-eastern.png",
+      "status": "ready",
+      "reference": "https://k.sina.com.cn/article_5787187353_158f1789902001p0ta.html"
+    },
+    "a319-finnair": {
+      "icaoType": "A319",
+      "livery": "Finnair",
+      "operatorIcaoCodes": [
+        "FIN"
+      ],
+      "path": "airliners/a319-finnair.png",
+      "status": "ready",
+      "reference": "https://www.finnair.com/en/flight-information/finnair-fleet"
+    },
+    "a320-finnair": {
+      "icaoType": "A320",
+      "livery": "Finnair",
+      "operatorIcaoCodes": [
+        "FIN"
+      ],
+      "path": "airliners/a320-finnair.png",
+      "status": "ready",
+      "reference": "https://www.finnair.com/en/flight-information/finnair-fleet"
+    },
+    "e190-finnair": {
+      "icaoType": "E190",
+      "livery": "Finnair",
+      "operatorIcaoCodes": [
+        "FIN",
+        "FCM"
+      ],
+      "path": "airliners/e190-finnair.png",
+      "status": "ready",
+      "reference": "https://www.finnair.com/en/flight-information/finnair-fleet"
+    },
+    "a320-atlantic-airways": {
+      "icaoType": "A320",
+      "livery": "Atlantic Airways",
+      "operatorIcaoCodes": [
+        "FLI"
+      ],
+      "path": "airliners/a320-atlantic-airways.png",
+      "status": "ready",
+      "reference": "https://www.atlanticairways.com/about-us/experience-our-advanced-fleet"
+    },
+    "a320neo-atlantic-airways": {
+      "icaoType": "A20N",
+      "livery": "Atlantic Airways",
+      "operatorIcaoCodes": [
+        "FLI"
+      ],
+      "path": "airliners/a320neo-atlantic-airways.png",
+      "status": "ready",
+      "reference": "https://www.atlanticairways.com/about-us/experience-our-advanced-fleet"
+    },
+    "a320-easyjet": {
+      "icaoType": "A320",
+      "livery": "easyJet",
+      "operatorIcaoCodes": [
+        "EZY",
+        "EJU",
+        "EZS"
+      ],
+      "path": "airliners/a320-easyjet.png",
+      "status": "ready",
+      "reference": "https://www.easyjet.com/en/traveller/best-of-europe/what-planes-does-easyjet-use"
+    },
+    "a320neo-easyjet": {
+      "icaoType": "A20N",
+      "livery": "easyJet",
+      "operatorIcaoCodes": [
+        "EZY",
+        "EJU",
+        "EZS"
+      ],
+      "path": "airliners/a320neo-easyjet.png",
+      "status": "ready",
+      "reference": "https://www.easyjet.com/en/traveller/best-of-europe/what-planes-does-easyjet-use"
+    },
+    "a321neo-easyjet": {
+      "icaoType": "A21N",
+      "livery": "easyJet",
+      "operatorIcaoCodes": [
+        "EZY",
+        "EJU",
+        "EZS"
+      ],
+      "path": "airliners/a321neo-easyjet.png",
+      "status": "ready",
+      "reference": "https://www.easyjet.com/en/traveller/best-of-europe/what-planes-does-easyjet-use"
+    },
+    "a319-easyjet": {
+      "icaoType": "A319",
+      "livery": "easyJet",
+      "operatorIcaoCodes": [
+        "EZY",
+        "EJU",
+        "EZS"
+      ],
+      "path": "airliners/a319-easyjet.png",
+      "status": "ready",
+      "reference": "https://www.easyjet.com/en/traveller/best-of-europe/what-planes-does-easyjet-use"
+    },
+    "787-9-austrian-airlines": {
+      "icaoType": "B789",
+      "livery": "Austrian Airlines",
+      "operatorIcaoCodes": [
+        "AUA"
+      ],
+      "path": "airliners/787-9-austrian-airlines.png",
+      "status": "ready",
+      "reference": "https://www.austrian.com/al/en/aircraft-fleet"
+    },
+    "777-200er-austrian-airlines": {
+      "icaoType": "B772",
+      "aircraft": "Boeing 777-200ER",
+      "livery": "Austrian Airlines",
+      "operatorIcaoCodes": [
+        "AUA"
+      ],
+      "path": "airliners/777-200er-austrian-airlines.png",
+      "status": "ready",
+      "reference": "https://www.austrian.com/al/en/aircraft-fleet"
+    },
+    "767-300er-austrian-airlines": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER",
+      "livery": "Austrian Airlines",
+      "operatorIcaoCodes": [
+        "AUA"
+      ],
+      "path": "airliners/767-300er-austrian-airlines.png",
+      "status": "ready",
+      "reference": "https://www.austrian.com/al/en/aircraft-fleet"
+    },
+    "787-8-royal-jordanian": {
+      "icaoType": "B788",
+      "livery": "Royal Jordanian",
+      "operatorIcaoCodes": [
+        "RJA"
+      ],
+      "path": "airliners/787-8-royal-jordanian.png",
+      "status": "ready",
+      "reference": "https://www.rj.com/-/media/RJ-Annual-Report-2025-En-Final-Compressed.pdf"
+    },
+    "787-9-royal-jordanian": {
+      "icaoType": "B789",
+      "livery": "Royal Jordanian",
+      "operatorIcaoCodes": [
+        "RJA"
+      ],
+      "path": "airliners/787-9-royal-jordanian.png",
+      "status": "ready",
+      "reference": "https://www.rj.com/-/media/RJ-Annual-Report-2025-En-Final-Compressed.pdf"
+    },
+    "787-9-united-airlines": {
+      "icaoType": "B789",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/787-9-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "787-8-united-airlines": {
+      "icaoType": "B788",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/787-8-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "787-10-united-airlines": {
+      "icaoType": "B78X",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/787-10-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "777-200er-united-airlines": {
+      "icaoType": "B772",
+      "aircraft": "Boeing 777-200ER",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/777-200er-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "777-300er-united-airlines": {
+      "icaoType": "B77W",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/777-300er-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "767-300er-united-airlines": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER",
+      "livery": "United Airlines",
+      "operatorIcaoCodes": [
+        "UAL"
+      ],
+      "path": "airliners/767-300er-united-airlines.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/ua-ual/fleet"
+    },
+    "a330-900-delta-air-lines": {
+      "icaoType": "A339",
+      "livery": "Delta Air Lines",
+      "operatorIcaoCodes": [
+        "DAL"
+      ],
+      "path": "airliners/a330-900-delta-air-lines.png",
+      "status": "ready",
+      "reference": "https://www.delta.com/us/en/aircraft/overview"
+    },
+    "767-300er-delta-air-lines": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER",
+      "livery": "Delta Air Lines",
+      "operatorIcaoCodes": [
+        "DAL"
+      ],
+      "path": "airliners/767-300er-delta-air-lines.png",
+      "status": "ready",
+      "reference": "https://www.delta.com/us/en/aircraft/overview"
+    },
+    "787-9-el-al": {
+      "icaoType": "B789",
+      "livery": "EL AL Israel Airlines",
+      "operatorIcaoCodes": [
+        "ELY"
+      ],
+      "path": "airliners/787-9-el-al.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airline/El-Al-Israel-Airlines"
+    },
+    "787-8-el-al": {
+      "icaoType": "B788",
+      "livery": "EL AL Israel Airlines",
+      "operatorIcaoCodes": [
+        "ELY"
+      ],
+      "path": "airliners/787-8-el-al.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airline/El-Al-Israel-Airlines"
+    },
+    "777-200er-el-al": {
+      "icaoType": "B772",
+      "aircraft": "Boeing 777-200ER",
+      "livery": "EL AL Israel Airlines",
+      "operatorIcaoCodes": [
+        "ELY"
+      ],
+      "path": "airliners/777-200er-el-al.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airline/El-Al-Israel-Airlines"
+    },
+    "a330-800-air-greenland": {
+      "icaoType": "A338",
+      "livery": "Air Greenland",
+      "operatorIcaoCodes": [
+        "GRL"
+      ],
+      "path": "airliners/a330-800-air-greenland.png",
+      "status": "ready",
+      "reference": "https://www.airgreenland.com/about-us/the-fleet/"
+    },
+    "787-9-american-airlines": {
+      "icaoType": "B789",
+      "livery": "American Airlines",
+      "operatorIcaoCodes": [
+        "AAL"
+      ],
+      "path": "airliners/787-9-american-airlines.png",
+      "status": "ready",
+      "reference": "https://www.aa.com/pubcontent/en_US/travel-info/experience/planes/planes.html"
+    },
+    "787-8-american-airlines": {
+      "icaoType": "B788",
+      "livery": "American Airlines",
+      "operatorIcaoCodes": [
+        "AAL"
+      ],
+      "path": "airliners/787-8-american-airlines.png",
+      "status": "ready",
+      "reference": "https://www.aa.com/pubcontent/en_US/travel-info/experience/planes/planes.html"
+    },
+    "777-200er-american-airlines": {
+      "icaoType": "B772",
+      "aircraft": "Boeing 777-200ER",
+      "livery": "American Airlines",
+      "operatorIcaoCodes": [
+        "AAL"
+      ],
+      "path": "airliners/777-200er-american-airlines.png",
+      "status": "ready",
+      "reference": "https://www.aa.com/pubcontent/en_US/travel-info/experience/planes/planes.html"
+    },
+    "777-300er-american-airlines": {
+      "icaoType": "B77W",
+      "livery": "American Airlines",
+      "operatorIcaoCodes": [
+        "AAL"
+      ],
+      "path": "airliners/777-300er-american-airlines.png",
+      "status": "ready",
+      "reference": "https://www.aa.com/pubcontent/en_US/travel-info/experience/planes/planes.html"
+    },
+    "777f-air-china-cargo": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "Air China Cargo",
+      "operatorIcaoCodes": [
+        "CAO"
+      ],
+      "path": "airliners/777f-air-china-cargo.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/airlines/cao/fleet"
+    },
+    "a330-200p2f-air-china-cargo": {
+      "icaoType": "A332",
+      "aircraft": "Airbus A330-200P2F",
+      "livery": "Air China Cargo",
+      "operatorIcaoCodes": [
+        "CAO"
+      ],
+      "path": "airliners/a330-200p2f-air-china-cargo.png",
+      "status": "ready",
+      "reference": "https://www.flightradar24.com/data/aircraft/b-6091"
+    },
+    "777f-emirates-skycargo": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "Emirates SkyCargo",
+      "airframeOnly": true,
+      "path": "airliners/777f-emirates-skycargo.png",
+      "status": "ready",
+      "reference": "https://www.skycargo.com/media-centre/emirates-skycargo-introduces-new-freighter-service-connecting-milan-with-new-york/"
+    },
+    "777-300ersf-emirates-skycargo": {
+      "icaoType": "B77W",
+      "aircraft": "Boeing 777-300ERSF",
+      "livery": "Emirates SkyCargo",
+      "airframeOnly": true,
+      "path": "airliners/777-300ersf-emirates-skycargo.png",
+      "status": "ready",
+      "reference": "https://www.emirates.com/media-centre/emirates-becomes-first-airline-cargo-carrier-to-deploy-the-boeing-777-300ersf/"
+    },
+    "777f-lufthansa-cargo": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "Lufthansa Cargo",
+      "operatorIcaoCodes": [
+        "GEC"
+      ],
+      "path": "airliners/777f-lufthansa-cargo.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa-cargo.com/en/fleet-ulds/fleet"
+    },
+    "a321p2f-lufthansa-cargo": {
+      "icaoType": "A321",
+      "aircraft": "Airbus A321P2F",
+      "livery": "Lufthansa Cargo",
+      "operatorIcaoCodes": [
+        "GEC"
+      ],
+      "path": "airliners/a321p2f-lufthansa-cargo.png",
+      "status": "ready",
+      "reference": "https://www.lufthansa-cargo.com/en/fleet-ulds/fleet/a321f"
+    },
+    "767-300f-air-canada-cargo": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER(BDSF)",
+      "livery": "Air Canada Cargo",
+      "airframeOnly": true,
+      "path": "airliners/767-300f-air-canada-cargo.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airframe/boeing-767-300-c-fxca-air-canada/3wll6e"
+    },
+    "a320-icelandair": {
+      "icaoType": "A320",
+      "livery": "Icelandair",
+      "operatorIcaoCodes": [
+        "ICE"
+      ],
+      "path": "airliners/a320-icelandair.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12165604"
+    },
+    "737-800-jettime": {
+      "icaoType": "B738",
+      "livery": "Jettime",
+      "operatorIcaoCodes": [
+        "JTD"
+      ],
+      "path": "airliners/737-800-jettime.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/airframe/boeing-737-800-oy-jyf-jettime/e017o1"
+    },
+    "as350-b3-airlift": {
+      "icaoType": "AS50",
+      "aircraft": "Airbus AS350 B3 Écureuil",
+      "livery": "Airlift",
+      "operatorIcaoCodes": [
+        "ALI"
+      ],
+      "path": "helicopters/as350-b3-airlift.png",
+      "status": "ready",
+      "reference": "https://aircraftregister.net/aircraft/LN-OXP"
+    },
+    "cessna-172-floatplane-neutral": {
+      "icaoType": "C172",
+      "aircraft": "Cessna 172 Skyhawk on straight twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/cessna-172-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "cessna-185-floatplane-neutral": {
+      "icaoType": "C185",
+      "aircraft": "Cessna 185 Skywagon on twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/cessna-185-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://www.seabee.info/seaplanes/seaplanes_photos_c180.htm"
+    },
+    "cessna-206-floatplane-neutral": {
+      "icaoType": "C206",
+      "aircraft": "Cessna TU206G Stationair on straight twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/cessna-206-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://www.aircraftregister.net/aircraft/LN-AAI"
+    },
+    "piper-pa18-super-cub-floatplane-neutral": {
+      "icaoType": "PA18",
+      "aircraft": "Piper PA-18 Super Cub on straight twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/piper-pa18-super-cub-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "aviat-a1-husky-floatplane-neutral": {
+      "icaoType": "HUSK",
+      "aircraft": "Aviat A-1 Husky on amphibious twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/aviat-a1-husky-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "dhc2-beaver-amphibious-floatplane-neutral": {
+      "icaoType": "DHC2",
+      "aircraft": "de Havilland Canada DHC-2 Beaver on amphibious twin floats",
+      "livery": "Neutral",
+      "airframeOnly": true,
+      "path": "seaplanes/dhc2-beaver-amphibious-floatplane-neutral.png",
+      "status": "ready",
+      "reference": "https://havarikommisjonen.no/Luftfart/Luftfart/Avgitte-rapporter/2025-02?attach=1&pid=SHT-Report-ReportFile"
+    },
+    "lake-la4-buccaneer-amphibian-neutral": {
+      "icaoType": "LA4",
+      "aircraft": "Lake LA-4-200 Buccaneer amphibious flying boat",
+      "livery": "Neutral",
+      "path": "seaplanes/lake-la4-buccaneer-amphibian-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "progressive-aerodyne-searey-amphibian-neutral": {
+      "icaoType": "SREY",
+      "aircraft": "Progressive Aerodyne SeaRey amphibious flying boat",
+      "livery": "Neutral",
+      "path": "seaplanes/progressive-aerodyne-searey-amphibian-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "cessna-172-neutral": {
+      "icaoType": "C172",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-172-neutral.png",
+      "status": "ready",
+      "reference": "https://solaflyklubb.no/flyskolen/"
+    },
+    "piper-pa28-archer-neutral": {
+      "icaoType": "P28A",
+      "aircraft": "Piper PA-28 Archer",
+      "livery": "Neutral",
+      "path": "general-aviation/piper-pa28-archer-neutral.png",
+      "status": "ready",
+      "reference": "https://solaflyklubb.no/flyskolen/"
+    },
+    "cessna-152-neutral": {
+      "icaoType": "C152",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-152-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/en/cessna-logbook?id=A0BADC4274724D4486DAA7FA1646E90A"
+    },
+    "cessna-150-neutral": {
+      "icaoType": "C150",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-150-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/en/cessna-logbook?id=A0BADC4274724D4486DAA7FA1646E90A"
+    },
+    "cessna-182-neutral": {
+      "icaoType": "C182",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-182-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/en/piston"
+    },
+    "cessna-206-neutral": {
+      "icaoType": "C206",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-206-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/en/cessna-logbook?id=A0BADC4274724D4486DAA7FA1646E90A"
+    },
+    "cessna-185-neutral": {
+      "icaoType": "C185",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-185-neutral.png",
+      "status": "ready",
+      "reference": "https://seabee.info/seaplanes/seaplanes_current.htm"
+    },
+    "cessna-208-caravan-neutral": {
+      "icaoType": "C208",
+      "aircraft": "Cessna 208 Caravan on wheels",
+      "livery": "Neutral",
+      "path": "general-aviation/cessna-208-caravan-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/en/turboprop/caravan"
+    },
+    "piper-pa18-super-cub-neutral": {
+      "icaoType": "PA18",
+      "livery": "Neutral",
+      "path": "general-aviation/piper-pa18-super-cub-neutral.png",
+      "status": "ready",
+      "reference": "https://www.piper.com/wp-content/uploads/2025/03/753-755-Customer-Service-Info-File-10.pdf"
+    },
+    "piper-pa28r-arrow-neutral": {
+      "icaoType": "P28R",
+      "livery": "Neutral",
+      "path": "general-aviation/piper-pa28r-arrow-neutral.png",
+      "status": "ready",
+      "reference": "https://www.piper.com/wp-content/uploads/2025/03/753-755-Customer-Service-Info-File-10.pdf"
+    },
+    "piper-pa32-cherokee-six-neutral": {
+      "icaoType": "PA32",
+      "aircraft": "Piper PA-32 Cherokee Six",
+      "livery": "Neutral",
+      "path": "general-aviation/piper-pa32-cherokee-six-neutral.png",
+      "status": "ready",
+      "reference": "https://www.piper.com/wp-content/uploads/2025/03/753-755-Customer-Service-Info-File-10.pdf"
+    },
+    "piper-pa34-seneca-neutral": {
+      "icaoType": "PA34",
+      "livery": "Neutral",
+      "path": "general-aviation/piper-pa34-seneca-neutral.png",
+      "status": "ready",
+      "reference": "https://www.piper.com/wp-content/uploads/2025/03/753-755-Customer-Service-Info-File-10.pdf"
+    },
+    "diamond-da20-neutral": {
+      "icaoType": "DV20",
+      "aircraft": "Diamond DA20 Katana",
+      "livery": "Neutral",
+      "path": "general-aviation/diamond-da20-neutral.png",
+      "status": "ready",
+      "reference": "https://www.diamondaircraft.com/en/private-pilots/aircraft/"
+    },
+    "diamond-da40-neutral": {
+      "icaoType": "DA40",
+      "livery": "Neutral",
+      "path": "general-aviation/diamond-da40-neutral.png",
+      "status": "ready",
+      "reference": "https://www.luftfartsfag.no/en/vare-fly"
+    },
+    "diamond-da42-neutral": {
+      "icaoType": "DA42",
+      "livery": "Neutral",
+      "path": "general-aviation/diamond-da42-neutral.png",
+      "status": "ready",
+      "reference": "https://osloflightacademy.com/fleet"
+    },
+    "diamond-da62-neutral": {
+      "icaoType": "DA62",
+      "livery": "Neutral",
+      "path": "general-aviation/diamond-da62-neutral.png",
+      "status": "ready",
+      "reference": "https://www.diamondaircraft.com/en/private-pilots/aircraft/"
+    },
+    "cirrus-sr20-neutral": {
+      "icaoType": "SR20",
+      "livery": "Neutral",
+      "path": "general-aviation/cirrus-sr20-neutral.png",
+      "status": "ready",
+      "reference": "https://cirrusaircraft.com/aircraft/"
+    },
+    "cirrus-sr22-neutral": {
+      "icaoType": "SR22",
+      "livery": "Neutral",
+      "path": "general-aviation/cirrus-sr22-neutral.png",
+      "status": "ready",
+      "reference": "https://cirrusaircraft.com/aircraft/"
+    },
+    "beechcraft-bonanza-36-neutral": {
+      "icaoType": "BE36",
+      "livery": "Neutral",
+      "path": "general-aviation/beechcraft-bonanza-36-neutral.png",
+      "status": "ready",
+      "reference": "https://beechcraft.txtav.com/en/"
+    },
+    "beechcraft-baron-58-neutral": {
+      "icaoType": "BE58",
+      "livery": "Neutral",
+      "path": "general-aviation/beechcraft-baron-58-neutral.png",
+      "status": "ready",
+      "reference": "https://beechcraft.txtav.com/en/"
+    },
+    "beechcraft-king-air-200-neutral": {
+      "icaoType": "BE20",
+      "livery": "Neutral",
+      "path": "general-aviation/beechcraft-king-air-200-neutral.png",
+      "status": "ready",
+      "reference": "https://www.luftambulanse.no/basene-vare/fartoyene-vare/"
+    },
+    "pilatus-pc12-neutral": {
+      "icaoType": "PC12",
+      "livery": "Neutral",
+      "path": "general-aviation/pilatus-pc12-neutral.png",
+      "status": "ready",
+      "reference": "https://www.pilatus-aircraft.com/en/aircraft/pc-12"
+    },
+    "cirrus-sf50-vision-jet-neutral": {
+      "icaoType": "SF50",
+      "livery": "Neutral",
+      "path": "general-aviation/cirrus-sf50-vision-jet-neutral.png",
+      "status": "ready",
+      "reference": "https://cirrusaircraft.com/aircraft/"
+    },
+    "vans-rv7-neutral": {
+      "icaoType": "RV7",
+      "aircraft": "Van's Aircraft RV-7 taildragger",
+      "livery": "Neutral",
+      "path": "general-aviation/vans-rv7-neutral.png",
+      "status": "ready",
+      "reference": "https://www.vansaircraft.com/rv-7/"
+    },
+    "ikarus-c42-neutral": {
+      "icaoType": "IKAR",
+      "livery": "Neutral",
+      "path": "general-aviation/ikarus-c42-neutral.png",
+      "status": "ready",
+      "reference": "https://www.comco-ikarus.de/"
+    },
+    "robinson-r22-neutral": {
+      "icaoType": "R22",
+      "livery": "Neutral",
+      "path": "helicopters/robinson-r22-neutral.png",
+      "status": "ready",
+      "reference": "https://www.robinsonheli.com/helicopters"
+    },
+    "robinson-r44-neutral": {
+      "icaoType": "R44",
+      "livery": "Neutral",
+      "path": "helicopters/robinson-r44-neutral.png",
+      "status": "ready",
+      "reference": "https://www.robinsonheli.com/helicopters"
+    },
+    "robinson-r66-neutral": {
+      "icaoType": "R66",
+      "livery": "Neutral",
+      "path": "helicopters/robinson-r66-neutral.png",
+      "status": "ready",
+      "reference": "https://www.robinsonheli.com/helicopters"
+    },
+    "guimbal-cabri-g2-neutral": {
+      "icaoType": "G2CA",
+      "livery": "Neutral",
+      "path": "helicopters/guimbal-cabri-g2-neutral.png",
+      "status": "ready",
+      "reference": "https://www.guimbal.com/cabri-g2/"
+    },
+    "bell-206-jetranger-neutral": {
+      "icaoType": "B06",
+      "aircraft": "Bell 206B JetRanger",
+      "livery": "Neutral",
+      "path": "helicopters/bell-206-jetranger-neutral.png",
+      "status": "ready",
+      "reference": "https://www.bellflight.com/products"
+    },
+    "bell-407-neutral": {
+      "icaoType": "B407",
+      "livery": "Neutral",
+      "path": "helicopters/bell-407-neutral.png",
+      "status": "ready",
+      "reference": "https://www.bellflight.com/products"
+    },
+    "as350-b3-neutral": {
+      "icaoType": "AS50",
+      "aircraft": "Airbus AS350 B3 Écureuil",
+      "livery": "Neutral",
+      "path": "helicopters/as350-b3-neutral.png",
+      "status": "ready",
+      "reference": "https://www.airbus.com/en/products-services/helicopters/civil-helicopters/h125"
+    },
+    "eurocopter-ec120-neutral": {
+      "icaoType": "EC20",
+      "livery": "Neutral",
+      "path": "helicopters/eurocopter-ec120-neutral.png",
+      "status": "ready",
+      "reference": "https://mediaassets.airbus.com/pm_38_875_875538-03eqd9ouw2.pdf"
+    },
+    "md-500-neutral": {
+      "icaoType": "H500",
+      "aircraft": "MD Helicopters MD 500E",
+      "livery": "Neutral",
+      "path": "helicopters/md-500-neutral.png",
+      "status": "ready",
+      "reference": "https://www.mdhelicopters.com/"
+    },
+    "bell-412-neutral": {
+      "icaoType": "B412",
+      "livery": "Neutral",
+      "path": "helicopters/bell-412-neutral.png",
+      "status": "ready",
+      "reference": "https://www.bellflight.com/products"
+    },
+    "c130h-hercules-neutral": {
+      "icaoType": "C130",
+      "aircraft": "Lockheed C-130H Hercules",
+      "livery": "U.S. Air Force transport gray, unmarked",
+      "path": "military/c130h-hercules-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1555054/c-130-hercules/"
+    },
+    "c130j-30-super-hercules-neutral": {
+      "icaoType": "C30J",
+      "aircraft": "Lockheed Martin C-130J-30 Super Hercules",
+      "livery": "Royal Air Force olive green, unmarked",
+      "path": "military/c130j-30-super-hercules-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/1555054/c-130-hercules/"
+    },
+    "f14-tomcat-neutral": {
+      "icaoType": "F14",
+      "aircraft": "Grumman F-14A Tomcat",
+      "livery": "U.S. Navy tactical gray, unmarked",
+      "path": "military/f14-tomcat-neutral.png",
+      "status": "ready",
+      "reference": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/f/f-14a-tomcat.html"
+    },
+    "f16-fighting-falcon-neutral": {
+      "icaoType": "F16",
+      "aircraft": "General Dynamics F-16A Fighting Falcon",
+      "livery": "U.S. Air Force three-tone gray, unmarked",
+      "path": "military/f16-fighting-falcon-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "f35a-lightning-ii-neutral": {
+      "icaoType": "F35",
+      "aircraft": "Lockheed Martin F-35A Lightning II",
+      "livery": "F-35A low-visibility gray, unmarked",
+      "path": "military/f35a-lightning-ii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.f35.com/f35/about.html"
+    },
+    "jas39c-gripen-neutral": {
+      "icaoType": "SB39",
+      "aircraft": "Saab JAS 39C Gripen",
+      "livery": "Swedish Air Force two-tone gray, unmarked",
+      "path": "military/jas39c-gripen-neutral.png",
+      "status": "ready",
+      "reference": "https://www.saab.com/products/gripen-c-series"
+    },
+    "ja37-viggen-neutral": {
+      "icaoType": "SB37",
+      "aircraft": "Saab JA 37 Viggen",
+      "livery": "Swedish Air Force late-service gray, unmarked",
+      "path": "military/ja37-viggen-neutral.png",
+      "status": "ready",
+      "reference": "https://flygvapenmuseum.se/kunskapsbank/flygplan-och-helikoptrar-i-samlingarna/jaktflygplan/"
+    },
+    "ch47f-chinook-neutral": {
+      "icaoType": "H47",
+      "aircraft": "Boeing CH-47F Chinook",
+      "livery": "U.S. Army olive drab, unmarked",
+      "path": "military/ch47f-chinook-neutral.png",
+      "status": "ready",
+      "reference": "https://www.boeing.com/defense/ch-47-chinook"
+    },
+    "mv22b-osprey-neutral": {
+      "icaoType": "V22",
+      "aircraft": "Bell Boeing MV-22B Osprey with nacelles forward for cruise",
+      "livery": "U.S. Marine Corps tactical gray, unmarked",
+      "path": "military/mv22b-osprey-neutral.png",
+      "status": "ready",
+      "reference": "https://www.boeing.com/defense/v-22-osprey"
+    },
+    "f15c-eagle-neutral": {
+      "icaoType": "F15",
+      "aircraft": "McDonnell Douglas F-15C Eagle",
+      "livery": "U.S. Air Force Mod Eagle gray, unmarked",
+      "path": "military/f15c-eagle-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "fa18c-hornet-neutral": {
+      "icaoType": "F18",
+      "aircraft": "McDonnell Douglas F/A-18C Hornet",
+      "livery": "U.S. Navy tactical gray, unmarked",
+      "path": "military/fa18c-hornet-neutral.png",
+      "status": "ready",
+      "reference": "https://www.navair.navy.mil/product/FA-18-D-Hornet"
+    },
+    "f22-raptor-neutral": {
+      "icaoType": "F22",
+      "livery": "U.S. Air Force stealth gray, unmarked",
+      "path": "military/f22-raptor-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "eurofighter-typhoon-neutral": {
+      "icaoType": "EUFI",
+      "livery": "Royal Air Force camouflage gray, unmarked",
+      "path": "military/eurofighter-typhoon-neutral.png",
+      "status": "ready",
+      "reference": "https://www.raf.mod.uk/aircraft/current-aircraft/typhoon-fgr41/"
+    },
+    "rafale-c-neutral": {
+      "icaoType": "RFAL",
+      "aircraft": "Dassault Rafale C",
+      "livery": "French Air and Space Force gray, unmarked",
+      "path": "military/rafale-c-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassault-aviation.com/en/defense/"
+    },
+    "mirage-2000c-neutral": {
+      "icaoType": "MIR2",
+      "aircraft": "Dassault Mirage 2000C",
+      "livery": "French Air Force blue-gray camouflage, unmarked",
+      "path": "military/mirage-2000c-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassault-aviation.com/en/defense/"
+    },
+    "j35-draken-neutral": {
+      "icaoType": "SB35",
+      "aircraft": "Saab J 35A Draken",
+      "livery": "Swedish Air Force natural metal, unmarked",
+      "path": "military/j35-draken-neutral.png",
+      "status": "ready",
+      "reference": "https://flygvapenmuseum.se/utstallning/j-35a-draken-35051-2/"
+    },
+    "j29-tunnan-neutral": {
+      "icaoType": "SB29",
+      "aircraft": "Saab J 29F Tunnan",
+      "livery": "Swedish Air Force natural metal, unmarked",
+      "path": "military/j29-tunnan-neutral.png",
+      "status": "ready",
+      "reference": "https://flygvapenmuseum.se/kunskapsbank/flygplan-och-helikoptrar-i-samlingarna/jaktflygplan/"
+    },
+    "f4-phantom-ii-neutral": {
+      "icaoType": "F4",
+      "aircraft": "McDonnell Douglas F-4E Phantom II",
+      "livery": "U.S. Air Force Southeast Asia camouflage, unmarked",
+      "path": "military/f4-phantom-ii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/"
+    },
+    "f5a-freedom-fighter-neutral": {
+      "icaoType": "F5",
+      "aircraft": "Northrop F-5A Freedom Fighter",
+      "livery": "Royal Norwegian Air Force natural metal, unmarked",
+      "path": "military/f5a-freedom-fighter-neutral.png",
+      "status": "ready",
+      "reference": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/"
+    },
+    "f104-starfighter-neutral": {
+      "icaoType": "F104",
+      "aircraft": "Lockheed F-104 Starfighter",
+      "livery": "F-104G natural metal, unmarked",
+      "path": "military/f104-starfighter-neutral.png",
+      "status": "ready",
+      "reference": "https://www.flysam.no/informasjon/nyheter/vis/?ID=33861&T=Historien+om+CF-104+med+halenr.+886&af=1"
+    },
+    "tornado-ids-neutral": {
+      "icaoType": "TOR",
+      "aircraft": "Panavia Tornado IDS",
+      "livery": "German Air Force Norm 83 camouflage, unmarked",
+      "path": "military/tornado-ids-neutral.png",
+      "status": "ready",
+      "reference": "https://www.rafmuseum.org.uk/documents/collections/X003-2283_TORNADO_ZA457.pdf"
+    },
+    "a10-thunderbolt-ii-neutral": {
+      "icaoType": "A10",
+      "livery": "U.S. Air Force European One camouflage, unmarked",
+      "path": "military/a10-thunderbolt-ii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "spitfire-mk-i-neutral": {
+      "icaoType": "SPIT",
+      "aircraft": "Supermarine Spitfire Mk I",
+      "livery": "Royal Air Force Temperate Land Scheme, unmarked",
+      "path": "military/spitfire-mk-i-neutral.png",
+      "status": "ready",
+      "reference": "https://www.rafmuseum.org.uk/research/collections/supermarine-spitfire/"
+    },
+    "p51d-mustang-neutral": {
+      "icaoType": "P51",
+      "aircraft": "North American P-51D Mustang",
+      "livery": "U.S. Army Air Forces natural metal, unmarked",
+      "path": "military/p51d-mustang-neutral.png",
+      "status": "ready",
+      "reference": "https://www.nationalmuseum.af.mil/Visit/Museum-Exhibits/Fact-Sheets/"
+    },
+    "c17-globemaster-iii-neutral": {
+      "icaoType": "C17",
+      "livery": "U.S. Air Force transport gray, unmarked",
+      "path": "military/c17-globemaster-iii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "a400m-atlas-neutral": {
+      "icaoType": "A400",
+      "livery": "Royal Air Force transport gray, unmarked",
+      "path": "military/a400m-atlas-neutral.png",
+      "status": "ready",
+      "reference": "https://www.airbus.com/en/products-services/defence/military-aircraft/a400m"
+    },
+    "p3c-orion-neutral": {
+      "icaoType": "P3",
+      "aircraft": "Lockheed P-3C Orion",
+      "livery": "U.S. Navy light gull gray and white, unmarked",
+      "path": "military/p3c-orion-neutral.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/slutt-for-p-3-orion-etter-54-ar--roser-personellet"
+    },
+    "e3a-sentry-neutral": {
+      "icaoType": "E3TF",
+      "aircraft": "Boeing E-3A Sentry with TF33 engines",
+      "livery": "NATO E-3A gray, unmarked",
+      "path": "military/e3a-sentry-neutral.png",
+      "status": "ready",
+      "reference": "https://www.nato.int/cps/en/natohq/topics_48904.htm"
+    },
+    "kc135r-stratotanker-neutral": {
+      "icaoType": "K35R",
+      "livery": "U.S. Air Force tanker gray, unmarked",
+      "path": "military/kc135r-stratotanker-neutral.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Aircraft-Factsheets/"
+    },
+    "uh60-black-hawk-neutral": {
+      "icaoType": "H60",
+      "aircraft": "Sikorsky UH-60 Black Hawk",
+      "livery": "U.S. Army helicopter drab, unmarked",
+      "path": "military/uh60-black-hawk-neutral.png",
+      "status": "ready",
+      "reference": "https://home.army.mil/hawaii/application/files/9216/2147/2779/2_-_LA_AASLT_Handbook_cao_30APR21.pdf"
+    },
+    "ah64-apache-neutral": {
+      "icaoType": "H64",
+      "livery": "U.S. Army helicopter drab, unmarked",
+      "path": "military/ah64-apache-neutral.png",
+      "status": "ready",
+      "reference": "https://home.army.mil/hawaii/application/files/9216/2147/2779/2_-_LA_AASLT_Handbook_cao_30APR21.pdf"
+    },
+    "nh90-neutral": {
+      "icaoType": "NH90",
+      "aircraft": "NHIndustries NH90 NFH",
+      "livery": "Royal Netherlands Navy gray, unmarked",
+      "path": "military/nh90-neutral.png",
+      "status": "ready",
+      "reference": "https://www.airbus.com/en/products-services/military-helicopters/nh90"
+    },
+    "f35a-royal-norwegian-air-force": {
+      "icaoType": "F35",
+      "aircraft": "Lockheed Martin F-35A Lightning II",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "operatorIcaoCodes": [
+        "NOW"
+      ],
+      "path": "military/f35a-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/f-35-komplett"
+    },
+    "c130j-30-royal-norwegian-air-force": {
+      "icaoType": "C30J",
+      "aircraft": "Lockheed Martin C-130J-30 Super Hercules",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "operatorIcaoCodes": [
+        "NOW"
+      ],
+      "path": "military/c130j-30-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/rask-respons-hercules-fly-i-lufta-mot-jan-mayen-etter-to-timer"
+    },
+    "p8a-poseidon-royal-norwegian-air-force": {
+      "icaoType": "B738",
+      "aircraft": "Boeing P-8A Poseidon",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/p8a-poseidon-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.boeing.com/defense/patrol-early-warning-and-battle-management/p-8-poseidon"
+    },
+    "bell-412-royal-norwegian-air-force": {
+      "icaoType": "B412",
+      "aircraft": "Bell 412",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "operatorIcaoCodes": [
+        "NOW"
+      ],
+      "path": "military/bell-412-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/aktuelt-og-presse/presse/pressemeldinger/okt-militaer-helikopteraktivitet-over-deler-av-ostlandet"
+    },
+    "f16am-royal-norwegian-air-force": {
+      "icaoType": "F16",
+      "aircraft": "General Dynamics F-16AM Fighting Falcon",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/f16am-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/om-forsvaret/utstyr-og-materiell/f-16"
+    },
+    "cf104-royal-norwegian-air-force": {
+      "icaoType": "F104",
+      "aircraft": "Canadair CF-104 Starfighter",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/cf104-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.flysam.no/informasjon/nyheter/vis/?ID=33861&T=Historien+om+CF-104+med+halenr.+886&af=1"
+    },
+    "p3c-orion-royal-norwegian-air-force": {
+      "icaoType": "P3",
+      "aircraft": "Lockheed P-3C Orion",
+      "livery": "Royal Norwegian Air Force colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/p3c-orion-royal-norwegian-air-force.png",
+      "status": "ready",
+      "reference": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/slutt-for-p-3-orion-etter-54-ar--roser-personellet"
+    },
+    "jas39c-gripen-swedish-air-force": {
+      "icaoType": "SB39",
+      "aircraft": "Saab JAS 39C Gripen",
+      "livery": "Swedish Air Force colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/jas39c-gripen-swedish-air-force.png",
+      "status": "ready",
+      "reference": "https://www.saab.com/products/gripen-c-series"
+    },
+    "ja37-viggen-swedish-air-force": {
+      "icaoType": "SB37",
+      "aircraft": "Saab JA 37 Viggen",
+      "livery": "Swedish Air Force splinter camouflage, unmarked",
+      "airframeOnly": true,
+      "path": "military/ja37-viggen-swedish-air-force.png",
+      "status": "ready",
+      "reference": "https://flygvapenmuseum.se/kunskapsbank/flygplan-och-helikoptrar-i-samlingarna/jaktflygplan/"
+    },
+    "f14a-tomcat-us-navy": {
+      "icaoType": "F14",
+      "aircraft": "Grumman F-14A Tomcat",
+      "livery": "U.S. Navy colors, unmarked",
+      "airframeOnly": true,
+      "path": "military/f14a-tomcat-us-navy.png",
+      "status": "ready",
+      "reference": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/f/f-14a-tomcat.html"
+    }
+  },
+  "airframes": {
+    "4D2064": {
+      "registration": "9H-XLA",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D20DC": {
+      "registration": "9H-XLB",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D213B": {
+      "registration": "9H-XLC",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D2168": {
+      "registration": "9H-XLD",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D216A": {
+      "registration": "9H-XLE",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D2186": {
+      "registration": "9H-XLF",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D2187": {
+      "registration": "9H-XLG",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D21DA": {
+      "registration": "9H-XLH",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D21DD": {
+      "registration": "9H-XLI",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "4D229E": {
+      "registration": "9H-XLJ",
+      "illustration": "a321xlr-wizz-air"
+    },
+    "478057": {
+      "registration": "LN-OQU",
+      "illustration": "s92-chc-helikopter-service"
+    },
+    "478129": {
+      "registration": "0275",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "485871": {
+      "registration": "PH-EXV",
+      "illustration": "e190-klm-cityhopper"
+    },
+    "486802": {
+      "registration": "PH-NXU",
+      "illustration": "e195-e2-klm-cityhopper"
+    },
+    "486905": {
+      "registration": "PH-ZNA",
+      "illustration": "a350-900-klm"
+    },
+    "3C64C1": {
+      "registration": "D-AIFA",
+      "illustration": "a350-1000-lufthansa-centenary"
+    },
+    "47804B": {
+      "registration": "LN-OLA",
+      "illustration": "aw139-lufttransport-rescue"
+    },
+    "47807D": {
+      "registration": "LN-ONA",
+      "illustration": "s92-bristow-norway-offshore"
+    },
+    "4780B8": {
+      "registration": "LN-OOA",
+      "illustration": "h145-norsk-luftambulanse"
+    },
+    "4784ED": {
+      "registration": "LN-OEB",
+      "illustration": "aw189-lufttransport-offshore"
+    },
+    "4785C0": {
+      "registration": "LN-WDH",
+      "illustration": "dash-8-q400-wideroe"
+    },
+    "4786E7": {
+      "registration": "LN-OOX",
+      "illustration": "h145-norsk-luftambulanse-yellow"
+    },
+    "4787B3": {
+      "registration": "LN-NGD",
+      "illustration": "737-800-norwegian-red-nose"
+    },
+    "47880D": {
+      "registration": "LN-RKT",
+      "illustration": "a330-300-sas"
+    },
+    "478E27": {
+      "registration": "LN-WEA",
+      "illustration": "e190-e2-wideroe"
+    },
+    "47A2F4": {
+      "registration": "LN-OOU",
+      "illustration": "h145-norsk-luftambulanse-yellow"
+    },
+    "47AA2B": {
+      "registration": "LN-OLK",
+      "illustration": "aw139-lufttransport-offshore"
+    },
+    "47BFB3": {
+      "registration": "LN-FGF",
+      "illustration": "737-max-8-norwegian-karin-boye"
+    },
+    "47C01E": {
+      "registration": "LN-OUD",
+      "illustration": "h135-norsk-luftambulanse"
+    },
+    "47C2B5": {
+      "registration": "LN-OEA",
+      "illustration": "aw189-lufttransport-offshore"
+    },
+    "48AE02": {
+      "registration": "SP-LRC",
+      "illustration": "787-8-lot-polish-airlines"
+    },
+    "4BB0E5": {
+      "registration": "TC-LGE",
+      "illustration": "a350-900-turkish-airlines"
+    },
+    "4CAD94": {
+      "registration": "EI-SCD",
+      "illustration": "a320neo-sas"
+    },
+    "4CAD95": {
+      "registration": "EI-SCE",
+      "illustration": "a320neo-sas"
+    },
+    "4CAF13": {
+      "registration": "EI-HSC",
+      "illustration": "crj900-sas-cityjet"
+    },
+    "4082E7": {
+      "registration": "G-RYMA",
+      "illustration": "737-max-8-200-ryanair"
+    },
+    "48418A": {
+      "registration": "PH-BXO",
+      "illustration": "737-900-klm-skyteam"
+    },
+    "48418C": {
+      "registration": "PH-BXR",
+      "illustration": "737-900-klm"
+    },
+    "4841C3": {
+      "registration": "PH-CKA",
+      "illustration": "747-400erf-klm-cargo"
+    },
+    "4841C4": {
+      "registration": "PH-CKB",
+      "illustration": "747-400erf-klm-cargo"
+    },
+    "4841C5": {
+      "registration": "PH-CKC",
+      "illustration": "747-400erf-klm-cargo"
+    },
+    "4844C6": {
+      "registration": "PH-BXV",
+      "illustration": "737-800-klm"
+    },
+    "48455E": {
+      "registration": "PH-BVA",
+      "illustration": "777-300er-klm-orange-pride"
+    },
+    "484B90": {
+      "registration": "PH-BGI",
+      "illustration": "737-700-klm"
+    },
+    "484F80": {
+      "registration": "PH-EZX",
+      "illustration": "e190-klm-cityhopper-skyteam"
+    },
+    "48C26C": {
+      "registration": "SP-RUM",
+      "illustration": "737-700-buzz-ryanair"
+    },
+    "48C2A0": {
+      "registration": "SP-RZA",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A1": {
+      "registration": "SP-RZB",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A2": {
+      "registration": "SP-RZC",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A3": {
+      "registration": "SP-RZD",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A4": {
+      "registration": "SP-RZE",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A5": {
+      "registration": "SP-RZF",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A6": {
+      "registration": "SP-RZG",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "48C2A7": {
+      "registration": "SP-RZH",
+      "illustration": "737-max-8-200-buzz"
+    },
+    "4CA857": {
+      "registration": "EI-EMO",
+      "illustration": "737-800-ryanair"
+    },
+    "4CAF26": {
+      "registration": "EI-ILL",
+      "illustration": "737-max-8-200-ryanair"
+    },
+    "4D22BE": {
+      "registration": "9H-LOB",
+      "illustration": "a320-lauda-europe"
+    },
+    "4D22FF": {
+      "registration": "9H-VUA",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "4D2300": {
+      "registration": "9H-VUB",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "4D2301": {
+      "registration": "9H-VUC",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "4D2302": {
+      "registration": "9H-VUD",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "4D2303": {
+      "registration": "9H-VUE",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "4D2304": {
+      "registration": "9H-VUF",
+      "illustration": "737-max-8-200-malta-air"
+    },
+    "896614": {
+      "registration": "A6-EFV",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "896615": {
+      "registration": "A6-EFW",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "896616": {
+      "registration": "A6-EFX",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "896617": {
+      "registration": "A6-EFY",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "896618": {
+      "registration": "A6-EFZ",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "89631D": {
+      "registration": "A6-EFM",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8963A1": {
+      "registration": "A6-EFN",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8963A2": {
+      "registration": "A6-EFO",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8963A3": {
+      "registration": "A6-EFS",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8965B8": {
+      "registration": "A6-EFT",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8965B9": {
+      "registration": "A6-EFU",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966ED": {
+      "registration": "A6-EWK",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966EE": {
+      "registration": "A6-EWL",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966EF": {
+      "registration": "A6-EWM",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966F0": {
+      "registration": "A6-EWN",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966F1": {
+      "registration": "A6-EWO",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966F2": {
+      "registration": "A6-EWP",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8966F3": {
+      "registration": "A6-EWQ",
+      "illustration": "777f-emirates-skycargo"
+    },
+    "8960D2": {
+      "registration": "A6-EBK",
+      "illustration": "777-300ersf-emirates-skycargo"
+    },
+    "C027D1": {
+      "registration": "C-FPCA",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "C03261": {
+      "registration": "C-FTCA",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "C03CF1": {
+      "registration": "C-FXCA",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "C04EB6": {
+      "registration": "C-GDUZ",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "C05857": {
+      "registration": "C-GHLU",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "C05858": {
+      "registration": "C-GHLV",
+      "illustration": "767-300f-air-canada-cargo"
+    },
+    "45AB23": {
+      "registration": "OY-JYC",
+      "illustration": "737-800-jettime"
+    },
+    "45AB24": {
+      "registration": "OY-JYD",
+      "illustration": "737-800-jettime"
+    },
+    "45AB26": {
+      "registration": "OY-JYF",
+      "illustration": "737-800-jettime"
+    },
+    "45AB27": {
+      "registration": "OY-JYG",
+      "illustration": "737-800-jettime"
+    },
+    "45AB28": {
+      "registration": "OY-JYH",
+      "illustration": "737-800-jettime"
+    },
+    "459D6E": {
+      "registration": "OY-GKN",
+      "illustration": "a330-800-air-greenland"
+    },
+    "4CC594": {
+      "registration": "TF-IAT",
+      "illustration": "a320-icelandair"
+    },
+    "47A485": {
+      "registration": "LN-OXP",
+      "illustration": "as350-b3-airlift"
+    },
+    "47A4C1": {
+      "registration": "LN-OXO",
+      "illustration": "as350-b3-airlift"
+    },
+    "478115": {
+      "registration": "5601",
+      "illustration": "c130j-30-royal-norwegian-air-force"
+    },
+    "478695": {
+      "registration": "LN-ABO",
+      "illustration": "cessna-185-floatplane-neutral"
+    },
+    "47854F": {
+      "registration": "LN-AAI",
+      "illustration": "cessna-206-floatplane-neutral"
+    },
+    "47819D": {
+      "registration": "9582",
+      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+    },
+    "47819E": {
+      "registration": "9583",
+      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+    },
+    "47819F": {
+      "registration": "9584",
+      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+    },
+    "4781A0": {
+      "registration": "9585",
+      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+    },
+    "4781A1": {
+      "registration": "9586",
+      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+    }
+  },
+  "fallbacks": {
+    "byType": {
+      "A139": "aw139-neutral",
+      "A189": "aw189-neutral",
+      "A20N": "a320neo-neutral",
+      "A21N": "a321neo-neutral",
+      "A223": "a220-300-neutral",
+      "A319": "a319-neutral",
+      "A320": "a320-neutral",
+      "A321": "a321-neutral",
+      "A332": "a330-200-neutral",
+      "A333": "a330-300-neutral",
+      "A339": "a330-900-neutral",
+      "A343": "a340-300-neutral",
+      "A359": "a350-900-neutral",
+      "A35K": "a350-1000-neutral",
+      "A388": "a380-800-neutral",
+      "AT76": "atr72-600-neutral",
+      "B38M": "737-max-8-neutral",
+      "B39M": "737-max-9-neutral",
+      "B737": "737-700-neutral",
+      "B738": "737-800-neutral",
+      "B739": "737-900-neutral",
+      "B744": "747-400-neutral",
+      "B748": "747-8-neutral",
+      "B752": "757-200-neutral",
+      "B763": "767-300-neutral",
+      "B772": "777-200-neutral",
+      "B77L": "777-200lr-neutral",
+      "B77W": "777-300er-neutral",
+      "B788": "787-8-neutral",
+      "B789": "787-9-neutral",
+      "B78X": "787-10-neutral",
+      "BCS3": "a220-300-neutral",
+      "CRJ9": "crj900-neutral",
+      "DH8A": "dash-8-100-neutral",
+      "DH8B": "dash-8-200-neutral",
+      "DH8C": "dash-8-300-neutral",
+      "DH8D": "dash-8-q400-neutral",
+      "E190": "e190-neutral",
+      "E195": "e195-neutral",
+      "E290": "e190-e2-neutral",
+      "E295": "e195-e2-neutral",
+      "E75L": "e175-long-wing-neutral",
+      "E75S": "e175-short-wing-neutral",
+      "EC35": "h135-neutral",
+      "EC45": "h145-neutral",
+      "EH10": "aw101-neutral",
+      "S92": "s92-neutral",
+      "A10": "a10-thunderbolt-ii-neutral",
+      "A400": "a400m-atlas-neutral",
+      "AS50": "as350-b3-neutral",
+      "B06": "bell-206-jetranger-neutral",
+      "B407": "bell-407-neutral",
+      "B412": "bell-412-neutral",
+      "BE20": "beechcraft-king-air-200-neutral",
+      "BE36": "beechcraft-bonanza-36-neutral",
+      "BE58": "beechcraft-baron-58-neutral",
+      "C130": "c130h-hercules-neutral",
+      "C150": "cessna-150-neutral",
+      "C152": "cessna-152-neutral",
+      "C17": "c17-globemaster-iii-neutral",
+      "C172": "cessna-172-neutral",
+      "C182": "cessna-182-neutral",
+      "C185": "cessna-185-neutral",
+      "C206": "cessna-206-neutral",
+      "C208": "cessna-208-caravan-neutral",
+      "C30J": "c130j-30-super-hercules-neutral",
+      "DA40": "diamond-da40-neutral",
+      "DA42": "diamond-da42-neutral",
+      "DA62": "diamond-da62-neutral",
+      "DV20": "diamond-da20-neutral",
+      "E3TF": "e3a-sentry-neutral",
+      "EC20": "eurocopter-ec120-neutral",
+      "EUFI": "eurofighter-typhoon-neutral",
+      "F104": "f104-starfighter-neutral",
+      "F14": "f14-tomcat-neutral",
+      "F15": "f15c-eagle-neutral",
+      "F16": "f16-fighting-falcon-neutral",
+      "F18": "fa18c-hornet-neutral",
+      "F22": "f22-raptor-neutral",
+      "F35": "f35a-lightning-ii-neutral",
+      "F4": "f4-phantom-ii-neutral",
+      "F5": "f5a-freedom-fighter-neutral",
+      "G2CA": "guimbal-cabri-g2-neutral",
+      "H47": "ch47f-chinook-neutral",
+      "H500": "md-500-neutral",
+      "H60": "uh60-black-hawk-neutral",
+      "H64": "ah64-apache-neutral",
+      "IKAR": "ikarus-c42-neutral",
+      "K35R": "kc135r-stratotanker-neutral",
+      "LA4": "lake-la4-buccaneer-amphibian-neutral",
+      "MIR2": "mirage-2000c-neutral",
+      "NH90": "nh90-neutral",
+      "P28A": "piper-pa28-archer-neutral",
+      "P28R": "piper-pa28r-arrow-neutral",
+      "P3": "p3c-orion-neutral",
+      "P51": "p51d-mustang-neutral",
+      "PA18": "piper-pa18-super-cub-neutral",
+      "PA32": "piper-pa32-cherokee-six-neutral",
+      "PA34": "piper-pa34-seneca-neutral",
+      "PC12": "pilatus-pc12-neutral",
+      "R22": "robinson-r22-neutral",
+      "R44": "robinson-r44-neutral",
+      "R66": "robinson-r66-neutral",
+      "RFAL": "rafale-c-neutral",
+      "RV7": "vans-rv7-neutral",
+      "SB29": "j29-tunnan-neutral",
+      "SB35": "j35-draken-neutral",
+      "SB37": "ja37-viggen-neutral",
+      "SB39": "jas39c-gripen-neutral",
+      "SF50": "cirrus-sf50-vision-jet-neutral",
+      "SPIT": "spitfire-mk-i-neutral",
+      "SR20": "cirrus-sr20-neutral",
+      "SR22": "cirrus-sr22-neutral",
+      "SREY": "progressive-aerodyne-searey-amphibian-neutral",
+      "TOR": "tornado-ids-neutral",
+      "V22": "mv22b-osprey-neutral"
+    },
+    "byCategory": {
+      "fixed-wing": "generic-fixed-wing",
+      "helicopter": "generic-helicopter"
+    }
+  }
+}
