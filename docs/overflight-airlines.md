@@ -50,6 +50,9 @@ The artwork catalog lists one representative livery per airline and aircraft typ
 | Air Canada Rouge | Airbus A319 (`A319`), Airbus A320 (`A320`), Airbus A321 (`A321`), Boeing 737 MAX 8 (`B38M`) | [Air Canada Rouge MAX transition](https://www.aircanada.com/ca/en/aco/home/book/routes-and-partners/flying-rouge.html) · [September 2026 fleet](https://content.presspage.com/uploads/3167/d2235e88-f49d-43ac-87d2-4d481f60caae/q32026aircanadamdampa-english.pdf) |
 | Widerøe | De Havilland Canada Dash 8-100 (`DH8A`), De Havilland Canada Dash 8-200 (`DH8B`), De Havilland Canada Dash 8-300 (`DH8C`), De Havilland Canada Dash 8-Q400 (`DH8D`), Embraer E190-E2 (`E290`) | [Widerøe fleet](https://www.wideroe.no/en/about-wideroe/fleet) |
 | Norwegian | Boeing 737-800 (`B738`), Boeing 737 MAX 8 (`B38M`) | [Norwegian fleet](https://www.norwegian.com/en/about/our-story/our-aircraft/) |
+| Saudia (`SVA`) | Airbus A320-200 (`A320`), A321-200 (`A321`), A321neo and A321XLR (`A21N`), A330-300 (`A333`), Boeing 777-300ER (`B77W`), 787-9 (`B789`), 787-10 (`B78X`) | [Saudia fleet](https://www.flightradar24.com/data/airlines/sv-sva/fleet) · [A321XLR delivery](https://ww.spa.gov.sa/en/N2604350) |
+
+The Saudia catalog also covers the 777F (`B77L`) flown under the Saudia callsign. The anniversary 777-300ER HZ-AK28 and the five verified A321XLRs use airframe matches. Other `SVA` flights reporting `A21N` use the representative A321neo artwork. [Saudia Cargo fleet](https://cms.saudiacargo.com/getmedia/cc777931-54c1-4a7c-8c74-126e3a382d01/Our-Fleet.pdf?ext=.pdf) · [HZ-AK28](https://www.planespotters.net/airframe/boeing-777-300er-hz-ak28-saudia/e9jg4d) · [Saudi aircraft records](https://midrma.com/en/rvsm/approvalList/sa)
 
 ### Fleet changes and wet leases
 

@@ -7,6 +7,7 @@ const types = JSON.parse(readFileSync(new URL("aircraft-types.json", catalogDire
 
 const styleReferences = {
   airliner: "a320neo-sas",
+  "business-jet": "bombardier-global-7500-neutral",
   "fixed-wing": "a320neo-sas",
   "general-aviation": "a320neo-sas",
   helicopter: "aw101-sar-queen-norwegian-rescue",
@@ -20,7 +21,7 @@ const queue = Object.entries(artwork.illustrations)
     const type = types[illustration.icaoType];
     const category = type?.category ?? illustration.category;
     const output = assetPath(illustration.path);
-    const style = artwork.illustrations[styleReferences[category]];
+    const style = artwork.illustrations[styleReferences[type?.role] ?? styleReferences[category]];
     const geometry = artwork.illustrations[illustration.referenceIllustration];
 
     let action = "generate";

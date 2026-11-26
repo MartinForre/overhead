@@ -318,6 +318,12 @@
     "model": "A400M Atlas",
     "category": "fixed-wing"
   },
+  "ASTR": {
+    "manufacturer": "Gulfstream",
+    "model": "G100 / IAI Astra",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "B06": {
     "manufacturer": "Bell",
     "model": "206 JetRanger / LongRanger",
@@ -347,6 +353,18 @@
     "manufacturer": "Beechcraft",
     "model": "Bonanza 36",
     "category": "general-aviation"
+  },
+  "BE40": {
+    "manufacturer": "Beechcraft",
+    "model": "Beechjet 400 / Hawker 400XP",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "BE4W": {
+    "manufacturer": "Nextant",
+    "model": "400XT / 400XTi",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "BE58": {
     "manufacturer": "Beechcraft",
@@ -398,6 +416,30 @@
     "model": "208 Caravan / Grand Caravan",
     "category": "general-aviation"
   },
+  "C25A": {
+    "manufacturer": "Cessna",
+    "model": "Citation CJ2 / CJ2+",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C25B": {
+    "manufacturer": "Cessna",
+    "model": "Citation CJ3 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C25C": {
+    "manufacturer": "Cessna",
+    "model": "Citation CJ4 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C25M": {
+    "manufacturer": "Cessna",
+    "model": "Citation M2 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "C408": {
     "manufacturer": "Cessna",
     "model": "408 SkyCourier",
@@ -407,6 +449,108 @@
     "manufacturer": "Lockheed Martin",
     "model": "C-130J Super Hercules",
     "category": "fixed-wing"
+  },
+  "C500": {
+    "manufacturer": "Cessna",
+    "model": "Citation / Citation I",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C501": {
+    "manufacturer": "Cessna",
+    "model": "Citation I/SP",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C510": {
+    "manufacturer": "Cessna",
+    "model": "Citation Mustang",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C525": {
+    "manufacturer": "Cessna",
+    "model": "CitationJet / CJ1 / CJ1+",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C550": {
+    "manufacturer": "Cessna",
+    "model": "Citation II / S/II",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C551": {
+    "manufacturer": "Cessna",
+    "model": "Citation II/SP",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C55B": {
+    "manufacturer": "Cessna",
+    "model": "Citation Bravo",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C560": {
+    "manufacturer": "Cessna",
+    "model": "Citation V / Ultra / Encore",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C56X": {
+    "manufacturer": "Cessna",
+    "model": "Citation Excel / XLS / Ascend",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C650": {
+    "manufacturer": "Cessna",
+    "model": "Citation III / VI / VII",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C680": {
+    "manufacturer": "Cessna",
+    "model": "Citation Sovereign / Sovereign+",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C68A": {
+    "manufacturer": "Cessna",
+    "model": "Citation Latitude",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C700": {
+    "manufacturer": "Cessna",
+    "model": "Citation Longitude",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "C750": {
+    "manufacturer": "Cessna",
+    "model": "Citation X / X+",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "CL30": {
+    "manufacturer": "Bombardier",
+    "model": "Challenger 300",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "CL35": {
+    "manufacturer": "Bombardier",
+    "model": "Challenger 350 / 3500",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "CL60": {
+    "manufacturer": "Bombardier",
+    "model": "Challenger 600 / 601 / 604 / 605 / 650",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "CONC": {
     "manufacturer": "Aérospatiale / BAC",
@@ -438,10 +582,46 @@
     "model": "DA20 Katana / Eclipse",
     "category": "general-aviation"
   },
+  "E35L": {
+    "manufacturer": "Embraer",
+    "model": "Legacy 600 / 650",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "E3TF": {
     "manufacturer": "Boeing",
     "model": "E-3 Sentry (TF33)",
     "category": "fixed-wing"
+  },
+  "E50P": {
+    "manufacturer": "Embraer",
+    "model": "Phenom 100 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "E545": {
+    "manufacturer": "Embraer",
+    "model": "Legacy 450 / Praetor 500",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "E550": {
+    "manufacturer": "Embraer",
+    "model": "Legacy 500 / Praetor 600",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "E55P": {
+    "manufacturer": "Embraer",
+    "model": "Phenom 300 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "EA50": {
+    "manufacturer": "Eclipse",
+    "model": "500 / 550",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "EC20": {
     "manufacturer": "Eurocopter",
@@ -453,6 +633,12 @@
     "model": "Typhoon",
     "category": "fixed-wing",
     "role": "fighter-jet"
+  },
+  "F2TH": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 2000 family",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "F406": {
     "manufacturer": "Reims-Cessna",
@@ -513,10 +699,169 @@
     "category": "fixed-wing",
     "role": "fighter-jet"
   },
+  "F900": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 900 family",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA10": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 10 / 100",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA20": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 20 / 200",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA50": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 50 / 50EX",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA6X": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 6X",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA7X": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 7X",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "FA8X": {
+    "manufacturer": "Dassault",
+    "model": "Falcon 8X",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "G150": {
+    "manufacturer": "Gulfstream",
+    "model": "G150",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "G250": {
+    "aliasFor": "G280"
+  },
+  "G280": {
+    "manufacturer": "Gulfstream",
+    "model": "G280",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "G2CA": {
     "manufacturer": "Hélicoptères Guimbal",
     "model": "Cabri G2",
     "category": "helicopter"
+  },
+  "GA4C": {
+    "manufacturer": "Gulfstream",
+    "model": "G400 (GVII)",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GA5C": {
+    "manufacturer": "Gulfstream",
+    "model": "G500 (GVII)",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GA6C": {
+    "manufacturer": "Gulfstream",
+    "model": "G600",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GA7C": {
+    "manufacturer": "Gulfstream",
+    "model": "G700",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GA8C": {
+    "manufacturer": "Gulfstream",
+    "model": "G800",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GALX": {
+    "manufacturer": "Gulfstream",
+    "model": "G200 / IAI Galaxy",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GL5T": {
+    "manufacturer": "Bombardier",
+    "model": "Global 5000 / 5500",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GL7T": {
+    "manufacturer": "Bombardier",
+    "model": "Global 7500 / 8000",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLEX": {
+    "manufacturer": "Bombardier",
+    "model": "Global Express / 6000 / 6500",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLF2": {
+    "manufacturer": "Gulfstream",
+    "model": "Gulfstream II",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLF3": {
+    "manufacturer": "Gulfstream",
+    "model": "Gulfstream III",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLF4": {
+    "manufacturer": "Gulfstream",
+    "model": "Gulfstream IV / G300 / G350 / G400 / G450",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLF5": {
+    "manufacturer": "Gulfstream",
+    "model": "Gulfstream V / G500 (GV-SP) / G550",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "GLF6": {
+    "manufacturer": "Gulfstream",
+    "model": "G650 / G650ER",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "H25A": {
+    "manufacturer": "Hawker Siddeley",
+    "model": "HS.125-1 to -600",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "H25B": {
+    "manufacturer": "Hawker",
+    "model": "125-700 / 750 / 800 / 850 / 900",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "H25C": {
+    "manufacturer": "Hawker",
+    "model": "1000",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "H47": {
     "manufacturer": "Boeing",
@@ -538,6 +883,24 @@
     "model": "AH-64 Apache",
     "category": "helicopter"
   },
+  "HA4T": {
+    "manufacturer": "Hawker",
+    "model": "4000 Horizon",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "HDJT": {
+    "manufacturer": "Honda",
+    "model": "HA-420 HondaJet",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "HF20": {
+    "manufacturer": "Hamburger Flugzeugbau",
+    "model": "HFB 320 Hansa Jet",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "HUSK": {
     "manufacturer": "Aviat",
     "model": "A-1 Husky",
@@ -553,10 +916,106 @@
     "model": "KC-135R Stratotanker",
     "category": "fixed-wing"
   },
+  "JCOM": {
+    "manufacturer": "Aero Commander",
+    "model": "1121 Jet Commander",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "L29A": {
+    "manufacturer": "Lockheed",
+    "model": "L-1329 JetStar 6 / 8",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "L29B": {
+    "manufacturer": "Lockheed",
+    "model": "L-1329 JetStar II / 731",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "LA4": {
     "manufacturer": "Lake",
     "model": "LA-4 Buccaneer",
     "category": "general-aviation"
+  },
+  "LAR1": {
+    "manufacturer": "Flaris",
+    "model": "LAR 1",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ23": {
+    "manufacturer": "Learjet",
+    "model": "23",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ24": {
+    "manufacturer": "Learjet",
+    "model": "24",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ25": {
+    "manufacturer": "Learjet",
+    "model": "25",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ28": {
+    "manufacturer": "Learjet",
+    "model": "28 / 29 Longhorn",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ31": {
+    "manufacturer": "Learjet",
+    "model": "31 / 31A",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ35": {
+    "manufacturer": "Learjet",
+    "model": "35 / 36",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ40": {
+    "manufacturer": "Learjet",
+    "model": "40 / 40XR",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ45": {
+    "manufacturer": "Learjet",
+    "model": "45 / 45XR",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ55": {
+    "manufacturer": "Learjet",
+    "model": "55 Longhorn",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ60": {
+    "manufacturer": "Learjet",
+    "model": "60 / 60XR",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ70": {
+    "manufacturer": "Learjet",
+    "model": "70",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "LJ75": {
+    "manufacturer": "Learjet",
+    "model": "75 / 75 Liberty",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "MD11": {
     "manufacturer": "McDonnell Douglas",
@@ -568,6 +1027,18 @@
     "model": "Mirage 2000",
     "category": "fixed-wing",
     "role": "fighter-jet"
+  },
+  "MS76": {
+    "manufacturer": "Morane-Saulnier",
+    "model": "MS.760 Paris",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "MU30": {
+    "manufacturer": "Mitsubishi",
+    "model": "MU-300 Diamond",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "NH90": {
     "manufacturer": "NHIndustries",
@@ -620,6 +1091,18 @@
     "model": "PC-12",
     "category": "general-aviation"
   },
+  "PC24": {
+    "manufacturer": "Pilatus",
+    "model": "PC-24",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "PRM1": {
+    "manufacturer": "Beechcraft",
+    "model": "Premier I / IA",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "R22": {
     "manufacturer": "Robinson",
     "model": "R22",
@@ -670,10 +1153,29 @@
     "category": "fixed-wing",
     "role": "fighter-jet"
   },
+  "SBR1": {
+    "manufacturer": "North American Rockwell",
+    "model": "Sabreliner 40 / 50 / 60 / 65",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "SBR2": {
+    "manufacturer": "Rockwell",
+    "model": "Sabreliner 75 / 80",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
   "SF50": {
     "manufacturer": "Cirrus",
     "model": "SF50 Vision Jet",
-    "category": "general-aviation"
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "SJ30": {
+    "manufacturer": "SyberJet",
+    "model": "SJ30",
+    "category": "general-aviation",
+    "role": "business-jet"
   },
   "SPIT": {
     "manufacturer": "Supermarine",
@@ -705,5 +1207,17 @@
     "manufacturer": "Bell Boeing",
     "model": "V-22 Osprey",
     "category": "fixed-wing"
+  },
+  "WW23": {
+    "manufacturer": "IAI",
+    "model": "1123 Westwind",
+    "category": "general-aviation",
+    "role": "business-jet"
+  },
+  "WW24": {
+    "manufacturer": "IAI",
+    "model": "1124 Westwind I / II",
+    "category": "general-aviation",
+    "role": "business-jet"
   }
 }

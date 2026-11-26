@@ -126,6 +126,8 @@ The [southwest Norway overflight list](overflight-airlines.md) records the sampl
 
 Every level of the artwork lookup selects ready images only. The `fallbacks.byType` map selects the default profile by resolved ICAO type. Airwolf is the default for Bell 222s and the helicopter category fallback. Island Hoppers is the Hughes/MD 500 default, and the Buffalo Airways profile is the DC-3 default. The Dakota Norway artwork requires a match for LN-WND. The Top Gun Tomcat and British Airways Concorde appear in Gallery and Traffic preview. Other fixed-wing aircraft use the unmarked category illustration. Light aircraft identified only by the `A1` emitter category use a text-only card. A `PA18` gets the neutral Super Cub by default, with the snowy N7883D profile reserved for a confirmed airframe match. [FAA emitter categories](https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-165B.pdf)
 
+Business jets use representative manufacturer demonstrator paint as their default. Where variants share a designator, the type catalog names the family and the artwork shows one representative airframe. The Global 7500 represents `GL7T`, which also covers the Global 8000. The Citation I and I/SP share one profile, as do the Citation II and II/SP. [FAA aircraft type designators](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf)
+
 Offshore rescue callsigns can identify the operator for the card description. Select a rescue livery by confirmed airframe, since the same operator and type can also fly in passenger paint.
 
 | ICAO type | Livery | Example airframe | Illustration |

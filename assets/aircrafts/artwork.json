@@ -3965,6 +3965,758 @@
       "path": "spacecraft/apollo-11-lunar-module-eagle.png",
       "status": "ready",
       "reference": "https://science.nasa.gov/resource/the-eagle-prepares-to-land/"
+    },
+    "777-300er-saudia": {
+      "icaoType": "B77W",
+      "livery": "Saudia",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/777-300er-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-neutral",
+      "reference": "https://www.thedailystar.net/travel/saudi-arabian-airlines-resume-flights-dhaka-sept-23-1963897"
+    },
+    "777-300er-saudia-retro": {
+      "icaoType": "B77W",
+      "livery": "Saudia 75 Years retro",
+      "airframeOnly": true,
+      "path": "airliners/777-300er-saudia-retro.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-neutral",
+      "reference": "https://www.planespotters.net/airframe/boeing-777-300er-hz-ak28-saudia/e9jg4d"
+    },
+    "777f-saudia-cargo": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "Saudia Cargo",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/777f-saudia-cargo.png",
+      "status": "ready",
+      "referenceIllustration": "777f-air-france-cargo",
+      "reference": "https://cms.saudiacargo.com/getmedia/cc777931-54c1-4a7c-8c74-126e3a382d01/Our-Fleet.pdf?ext=.pdf"
+    },
+    "787-9-saudia": {
+      "icaoType": "B789",
+      "livery": "Saudia",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/787-9-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-neutral",
+      "reference": "https://www.jetphotos.com/photo/11732423"
+    },
+    "787-10-saudia": {
+      "icaoType": "B78X",
+      "livery": "Saudia, green and blue livery",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/787-10-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "787-10-neutral",
+      "reference": "https://www.jetphotos.com/photo/11555925"
+    },
+    "a330-300-saudia": {
+      "icaoType": "A333",
+      "livery": "Saudia",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/a330-300-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "a330-300-neutral",
+      "reference": "https://www.airhistory.net/photo/847866/HZ-AQ14"
+    },
+    "a320-saudia": {
+      "icaoType": "A320",
+      "livery": "Saudia",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/a320-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "a320-neutral",
+      "reference": "https://www.planespotters.net/photo/1346348/hz-as51-saudi-arabian-airlines-airbus-a320-214-wl"
+    },
+    "a321-saudia": {
+      "icaoType": "A321",
+      "livery": "Saudia",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/a321-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "a321-neutral",
+      "reference": "https://www.jetphotos.com/registration/HZ-ASH"
+    },
+    "a321neo-saudia": {
+      "icaoType": "A21N",
+      "livery": "Saudia, green and blue livery",
+      "operatorIcaoCodes": [
+        "SVA"
+      ],
+      "path": "airliners/a321neo-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-neutral",
+      "reference": "https://www.jetphotos.com/photo/11956464"
+    },
+    "a321xlr-saudia": {
+      "icaoType": "A21N",
+      "aircraft": "Airbus A321XLR",
+      "livery": "Saudia, green and blue livery",
+      "airframeOnly": true,
+      "path": "airliners/a321xlr-saudia.png",
+      "status": "ready",
+      "referenceIllustration": "a321xlr-air-canada",
+      "reference": "https://ww.spa.gov.sa/en/N2604350"
+    },
+    "bombardier-global-7500-neutral": {
+      "icaoType": "GL7T",
+      "aircraft": "Bombardier Global 7500",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-global-7500-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "bombardier-global-5000-neutral": {
+      "icaoType": "GL5T",
+      "aircraft": "Bombardier Global 5500",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-global-5000-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "bombardier-global-express-neutral": {
+      "icaoType": "GLEX",
+      "aircraft": "Bombardier Global Express",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-global-express-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "bombardier-challenger-300-neutral": {
+      "icaoType": "CL30",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-challenger-300-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "bombardier-challenger-350-neutral": {
+      "icaoType": "CL35",
+      "aircraft": "Bombardier Challenger 3500",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-challenger-350-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "bombardier-challenger-650-neutral": {
+      "icaoType": "CL60",
+      "aircraft": "Bombardier Challenger 650",
+      "livery": "Bombardier demonstrator",
+      "path": "general-aviation/bombardier-challenger-650-neutral.png",
+      "status": "ready",
+      "reference": "https://bombardier.com/en/aircraft"
+    },
+    "cessna-citation-cj2-neutral": {
+      "icaoType": "C25A",
+      "aircraft": "Cessna Citation CJ2+",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-cj2-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-cj3-neutral": {
+      "icaoType": "C25B",
+      "aircraft": "Cessna Citation CJ3+",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-cj3-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-cj4-neutral": {
+      "icaoType": "C25C",
+      "aircraft": "Cessna Citation CJ4",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-cj4-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-m2-neutral": {
+      "icaoType": "C25M",
+      "aircraft": "Cessna Citation M2",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-m2-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-i-neutral": {
+      "icaoType": "C500",
+      "aircraft": "Cessna Citation I",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-i-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-mustang-neutral": {
+      "icaoType": "C510",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-mustang-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citationjet-cj1-neutral": {
+      "icaoType": "C525",
+      "aircraft": "Cessna CitationJet CJ1",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citationjet-cj1-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-ii-neutral": {
+      "icaoType": "C550",
+      "aircraft": "Cessna Citation II",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-ii-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-bravo-neutral": {
+      "icaoType": "C55B",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-bravo-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-v-neutral": {
+      "icaoType": "C560",
+      "aircraft": "Cessna Citation Encore",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-v-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-excel-neutral": {
+      "icaoType": "C56X",
+      "aircraft": "Cessna Citation Ascend",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-excel-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-iii-neutral": {
+      "icaoType": "C650",
+      "aircraft": "Cessna Citation III",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-iii-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-sovereign-neutral": {
+      "icaoType": "C680",
+      "aircraft": "Cessna Citation Sovereign+",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-sovereign-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-latitude-neutral": {
+      "icaoType": "C68A",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-latitude-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-longitude-neutral": {
+      "icaoType": "C700",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-longitude-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "cessna-citation-x-neutral": {
+      "icaoType": "C750",
+      "aircraft": "Cessna Citation X+",
+      "livery": "Cessna demonstrator",
+      "path": "general-aviation/cessna-citation-x-neutral.png",
+      "status": "ready",
+      "reference": "https://cessna.txtav.com/jets"
+    },
+    "embraer-legacy-600-neutral": {
+      "icaoType": "E35L",
+      "aircraft": "Embraer Legacy 600",
+      "livery": "Embraer demonstrator",
+      "path": "general-aviation/embraer-legacy-600-neutral.png",
+      "status": "ready",
+      "reference": "https://www.embraer.com/executive-jets-overview/en/"
+    },
+    "embraer-phenom-100-neutral": {
+      "icaoType": "E50P",
+      "aircraft": "Embraer Phenom 100EX",
+      "livery": "Embraer demonstrator",
+      "path": "general-aviation/embraer-phenom-100-neutral.png",
+      "status": "ready",
+      "reference": "https://www.embraer.com/executive-jets-overview/en/"
+    },
+    "embraer-praetor-500-neutral": {
+      "icaoType": "E545",
+      "aircraft": "Embraer Praetor 500",
+      "livery": "Embraer demonstrator",
+      "path": "general-aviation/embraer-praetor-500-neutral.png",
+      "status": "ready",
+      "reference": "https://www.embraer.com/executive-jets-overview/en/"
+    },
+    "embraer-praetor-600-neutral": {
+      "icaoType": "E550",
+      "aircraft": "Embraer Praetor 600",
+      "livery": "Embraer demonstrator",
+      "path": "general-aviation/embraer-praetor-600-neutral.png",
+      "status": "ready",
+      "reference": "https://www.embraer.com/executive-jets-overview/en/"
+    },
+    "embraer-phenom-300-neutral": {
+      "icaoType": "E55P",
+      "aircraft": "Embraer Phenom 300E",
+      "livery": "Embraer demonstrator",
+      "path": "general-aviation/embraer-phenom-300-neutral.png",
+      "status": "ready",
+      "reference": "https://www.embraer.com/executive-jets-overview/en/"
+    },
+    "gulfstream-g100-neutral": {
+      "icaoType": "ASTR",
+      "aircraft": "IAI Astra / Gulfstream G100",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g100-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g150-neutral": {
+      "icaoType": "G150",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g150-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g200-neutral": {
+      "icaoType": "GALX",
+      "aircraft": "Gulfstream G200",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g200-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g280-neutral": {
+      "icaoType": "G280",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g280-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g400-neutral": {
+      "icaoType": "GA4C",
+      "aircraft": "Gulfstream G400",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g400-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g500-neutral": {
+      "icaoType": "GA5C",
+      "aircraft": "Gulfstream G500",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g500-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g600-neutral": {
+      "icaoType": "GA6C",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g600-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g700-neutral": {
+      "icaoType": "GA7C",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g700-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g800-neutral": {
+      "icaoType": "GA8C",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g800-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-gii-neutral": {
+      "icaoType": "GLF2",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-gii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-giii-neutral": {
+      "icaoType": "GLF3",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-giii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g450-neutral": {
+      "icaoType": "GLF4",
+      "aircraft": "Gulfstream G450",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g450-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g550-neutral": {
+      "icaoType": "GLF5",
+      "aircraft": "Gulfstream G550",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g550-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "gulfstream-g650-neutral": {
+      "icaoType": "GLF6",
+      "aircraft": "Gulfstream G650",
+      "livery": "Gulfstream demonstrator",
+      "path": "general-aviation/gulfstream-g650-neutral.png",
+      "status": "ready",
+      "reference": "https://www.gulfstream.com/en/aircraft/"
+    },
+    "dassault-falcon-10-neutral": {
+      "icaoType": "FA10",
+      "aircraft": "Dassault Falcon 10",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-10-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-20-neutral": {
+      "icaoType": "FA20",
+      "aircraft": "Dassault Falcon 20",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-20-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-50-neutral": {
+      "icaoType": "FA50",
+      "aircraft": "Dassault Falcon 50EX",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-50-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-900-neutral": {
+      "icaoType": "F900",
+      "aircraft": "Dassault Falcon 900LX",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-900-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-2000-neutral": {
+      "icaoType": "F2TH",
+      "aircraft": "Dassault Falcon 2000LXS",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-2000-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-6x-neutral": {
+      "icaoType": "FA6X",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-6x-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-7x-neutral": {
+      "icaoType": "FA7X",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-7x-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "dassault-falcon-8x-neutral": {
+      "icaoType": "FA8X",
+      "livery": "Dassault demonstrator",
+      "path": "general-aviation/dassault-falcon-8x-neutral.png",
+      "status": "ready",
+      "reference": "https://www.dassaultfalcon.com/aircraft/"
+    },
+    "learjet-23-neutral": {
+      "icaoType": "LJ23",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-23-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-24-neutral": {
+      "icaoType": "LJ24",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-24-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-25-neutral": {
+      "icaoType": "LJ25",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-25-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-28-neutral": {
+      "icaoType": "LJ28",
+      "aircraft": "Learjet 28 Longhorn",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-28-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-31-neutral": {
+      "icaoType": "LJ31",
+      "aircraft": "Learjet 31A",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-31-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-35-neutral": {
+      "icaoType": "LJ35",
+      "aircraft": "Learjet 35A",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-35-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-40-neutral": {
+      "icaoType": "LJ40",
+      "aircraft": "Learjet 40XR",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-40-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-45-neutral": {
+      "icaoType": "LJ45",
+      "aircraft": "Learjet 45XR",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-45-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-55-neutral": {
+      "icaoType": "LJ55",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-55-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-60-neutral": {
+      "icaoType": "LJ60",
+      "aircraft": "Learjet 60XR",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-60-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-70-neutral": {
+      "icaoType": "LJ70",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-70-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "learjet-75-neutral": {
+      "icaoType": "LJ75",
+      "aircraft": "Learjet 75",
+      "livery": "Learjet demonstrator",
+      "path": "general-aviation/learjet-75-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "hawker-siddeley-hs125-neutral": {
+      "icaoType": "H25A",
+      "aircraft": "Hawker Siddeley HS.125-600",
+      "livery": "Hawker Siddeley demonstrator",
+      "path": "general-aviation/hawker-siddeley-hs125-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "hawker-800-neutral": {
+      "icaoType": "H25B",
+      "aircraft": "Hawker 800XP",
+      "livery": "Hawker demonstrator",
+      "path": "general-aviation/hawker-800-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "hawker-1000-neutral": {
+      "icaoType": "H25C",
+      "livery": "Hawker demonstrator",
+      "path": "general-aviation/hawker-1000-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "hawker-4000-neutral": {
+      "icaoType": "HA4T",
+      "aircraft": "Hawker 4000",
+      "livery": "Hawker demonstrator",
+      "path": "general-aviation/hawker-4000-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "beechjet-400-neutral": {
+      "icaoType": "BE40",
+      "aircraft": "Beechcraft Beechjet 400A",
+      "livery": "Beechcraft demonstrator",
+      "path": "general-aviation/beechjet-400-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "beechcraft-premier-i-neutral": {
+      "icaoType": "PRM1",
+      "aircraft": "Beechcraft Premier IA",
+      "livery": "Beechcraft demonstrator",
+      "path": "general-aviation/beechcraft-premier-i-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "eclipse-500-neutral": {
+      "icaoType": "EA50",
+      "aircraft": "Eclipse 500",
+      "livery": "Eclipse demonstrator",
+      "path": "general-aviation/eclipse-500-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "nextant-400xt-neutral": {
+      "icaoType": "BE4W",
+      "aircraft": "Nextant 400XTi",
+      "livery": "Nextant demonstrator",
+      "path": "general-aviation/nextant-400xt-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "syberjet-sj30-neutral": {
+      "icaoType": "SJ30",
+      "aircraft": "Sino Swearingen SJ30-2",
+      "livery": "SyberJet demonstrator",
+      "path": "general-aviation/syberjet-sj30-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "pilatus-pc24-neutral": {
+      "icaoType": "PC24",
+      "livery": "Pilatus demonstrator",
+      "path": "general-aviation/pilatus-pc24-neutral.png",
+      "status": "ready",
+      "reference": "https://www.pilatus-aircraft.com/en/fly/pc-24"
+    },
+    "honda-hondajet-neutral": {
+      "icaoType": "HDJT",
+      "aircraft": "HondaJet Elite II",
+      "livery": "Honda demonstrator",
+      "path": "general-aviation/honda-hondajet-neutral.png",
+      "status": "ready",
+      "reference": "https://www.hondajet.com/en/Explore/HondaJet-Elite-II"
+    },
+    "cirrus-sf50-vision-jet-manufacturer": {
+      "icaoType": "SF50",
+      "aircraft": "Cirrus SF50 Vision Jet",
+      "livery": "Cirrus demonstrator",
+      "path": "general-aviation/cirrus-sf50-vision-jet-manufacturer.png",
+      "status": "ready",
+      "reference": "https://cirrusaircraft.com/aircraft/vision-jet/"
+    },
+    "mitsubishi-mu300-diamond-neutral": {
+      "icaoType": "MU30",
+      "livery": "Mitsubishi demonstrator",
+      "path": "general-aviation/mitsubishi-mu300-diamond-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "iai-westwind-1123-neutral": {
+      "icaoType": "WW23",
+      "livery": "IAI demonstrator",
+      "path": "general-aviation/iai-westwind-1123-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "iai-westwind-1124-neutral": {
+      "icaoType": "WW24",
+      "aircraft": "IAI 1124 Westwind II",
+      "livery": "IAI demonstrator",
+      "path": "general-aviation/iai-westwind-1124-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "lockheed-jetstar-neutral": {
+      "icaoType": "L29A",
+      "aircraft": "Lockheed L-1329 JetStar 8",
+      "livery": "Lockheed demonstrator",
+      "path": "general-aviation/lockheed-jetstar-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "lockheed-jetstar-ii-neutral": {
+      "icaoType": "L29B",
+      "aircraft": "Lockheed L-1329 JetStar II",
+      "livery": "Lockheed demonstrator",
+      "path": "general-aviation/lockheed-jetstar-ii-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "north-american-sabreliner-neutral": {
+      "icaoType": "SBR1",
+      "aircraft": "North American Rockwell Sabreliner 60",
+      "livery": "North American Rockwell demonstrator",
+      "path": "general-aviation/north-american-sabreliner-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "rockwell-sabreliner-80-neutral": {
+      "icaoType": "SBR2",
+      "aircraft": "Rockwell Sabreliner 80",
+      "livery": "Rockwell demonstrator",
+      "path": "general-aviation/rockwell-sabreliner-80-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "hfb-hansa-jet-neutral": {
+      "icaoType": "HF20",
+      "livery": "Hamburger Flugzeugbau demonstrator",
+      "path": "general-aviation/hfb-hansa-jet-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "morane-saulnier-paris-neutral": {
+      "icaoType": "MS76",
+      "livery": "Morane-Saulnier demonstrator",
+      "path": "general-aviation/morane-saulnier-paris-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "flaris-lar1-neutral": {
+      "icaoType": "LAR1",
+      "livery": "Flaris demonstrator",
+      "path": "general-aviation/flaris-lar1-neutral.png",
+      "status": "ready",
+      "reference": "https://flaris.pl/aircraft/"
+    },
+    "aero-commander-1121-neutral": {
+      "icaoType": "JCOM",
+      "livery": "Aero Commander demonstrator",
+      "path": "general-aviation/aero-commander-1121-neutral.png",
+      "status": "ready",
+      "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
     }
   },
   "airframes": {
@@ -4882,6 +5634,41 @@
       "registration": "9586",
       "illustration": "p8a-poseidon-royal-norwegian-air-force",
       "misreportedIcaoType": "B738"
+    },
+    "710100": {
+      "registration": "HZ-AK71",
+      "illustration": "777f-saudia-cargo",
+      "reference": "https://www.planespotters.net/hex/710100"
+    },
+    "710106": {
+      "registration": "HZ-AK28",
+      "illustration": "777-300er-saudia-retro",
+      "reference": "https://www.planespotters.net/airframe/boeing-777-300er-hz-ak28-saudia/e9jg4d"
+    },
+    "717010": {
+      "registration": "HZ-ASBF",
+      "illustration": "a321xlr-saudia",
+      "reference": "https://midrma.com/en/rvsm/approvalList/sa"
+    },
+    "716FF7": {
+      "registration": "HZ-ASBA",
+      "illustration": "a321xlr-saudia",
+      "reference": "https://midrma.com/en/rvsm/approvalList/sa"
+    },
+    "716FFC": {
+      "registration": "HZ-ASBB",
+      "illustration": "a321xlr-saudia",
+      "reference": "https://midrma.com/en/rvsm/approvalList/sa"
+    },
+    "716FFD": {
+      "registration": "HZ-ASBC",
+      "illustration": "a321xlr-saudia",
+      "reference": "https://midrma.com/en/rvsm/approvalList/sa"
+    },
+    "716FFB": {
+      "registration": "HZ-ASBE",
+      "illustration": "a321xlr-saudia",
+      "reference": "https://midrma.com/en/rvsm/approvalList/sa"
     }
   },
   "fallbacks": {
@@ -4938,12 +5725,15 @@
       "A10": "a10-thunderbolt-ii-neutral",
       "A400": "a400m-atlas-neutral",
       "AS50": "as350-b3-neutral",
+      "ASTR": "gulfstream-g100-neutral",
       "B06": "bell-206-jetranger-neutral",
       "B222": "bell-222-airwolf",
       "B407": "bell-407-neutral",
       "B412": "bell-412-neutral",
       "BE20": "beechcraft-king-air-200-neutral",
       "BE36": "beechcraft-bonanza-36-neutral",
+      "BE40": "beechjet-400-neutral",
+      "BE4W": "nextant-400xt-neutral",
       "BE58": "beechcraft-baron-58-neutral",
       "C130": "c130h-hercules-neutral",
       "C150": "cessna-150-neutral",
@@ -4954,12 +5744,39 @@
       "C185": "cessna-185-neutral",
       "C206": "cessna-206-neutral",
       "C208": "cessna-208-caravan-neutral",
+      "C25A": "cessna-citation-cj2-neutral",
+      "C25B": "cessna-citation-cj3-neutral",
+      "C25C": "cessna-citation-cj4-neutral",
+      "C25M": "cessna-citation-m2-neutral",
       "C30J": "c130j-30-super-hercules-neutral",
+      "C500": "cessna-citation-i-neutral",
+      "C501": "cessna-citation-i-neutral",
+      "C510": "cessna-citation-mustang-neutral",
+      "C525": "cessna-citationjet-cj1-neutral",
+      "C550": "cessna-citation-ii-neutral",
+      "C551": "cessna-citation-ii-neutral",
+      "C55B": "cessna-citation-bravo-neutral",
+      "C560": "cessna-citation-v-neutral",
+      "C56X": "cessna-citation-excel-neutral",
+      "C650": "cessna-citation-iii-neutral",
+      "C680": "cessna-citation-sovereign-neutral",
+      "C68A": "cessna-citation-latitude-neutral",
+      "C700": "cessna-citation-longitude-neutral",
+      "C750": "cessna-citation-x-neutral",
+      "CL30": "bombardier-challenger-300-neutral",
+      "CL35": "bombardier-challenger-350-neutral",
+      "CL60": "bombardier-challenger-650-neutral",
       "DA40": "diamond-da40-neutral",
       "DA42": "diamond-da42-neutral",
       "DA62": "diamond-da62-neutral",
       "DV20": "diamond-da20-neutral",
+      "E35L": "embraer-legacy-600-neutral",
       "E3TF": "e3a-sentry-neutral",
+      "E50P": "embraer-phenom-100-neutral",
+      "E545": "embraer-praetor-500-neutral",
+      "E550": "embraer-praetor-600-neutral",
+      "E55P": "embraer-phenom-300-neutral",
+      "EA50": "eclipse-500-neutral",
       "EC20": "eurocopter-ec120-neutral",
       "EUFI": "eurofighter-typhoon-neutral",
       "F104": "f104-starfighter-neutral",
@@ -4968,18 +5785,66 @@
       "F16": "f16-fighting-falcon-neutral",
       "F18": "fa18c-hornet-neutral",
       "F22": "f22-raptor-neutral",
+      "F2TH": "dassault-falcon-2000-neutral",
       "F35": "f35a-lightning-ii-neutral",
       "F4": "f4-phantom-ii-neutral",
       "F5": "f5a-freedom-fighter-neutral",
+      "F900": "dassault-falcon-900-neutral",
+      "FA10": "dassault-falcon-10-neutral",
+      "FA20": "dassault-falcon-20-neutral",
+      "FA50": "dassault-falcon-50-neutral",
+      "FA6X": "dassault-falcon-6x-neutral",
+      "FA7X": "dassault-falcon-7x-neutral",
+      "FA8X": "dassault-falcon-8x-neutral",
+      "G150": "gulfstream-g150-neutral",
+      "G280": "gulfstream-g280-neutral",
       "G2CA": "guimbal-cabri-g2-neutral",
+      "GA4C": "gulfstream-g400-neutral",
+      "GA5C": "gulfstream-g500-neutral",
+      "GA6C": "gulfstream-g600-neutral",
+      "GA7C": "gulfstream-g700-neutral",
+      "GA8C": "gulfstream-g800-neutral",
+      "GALX": "gulfstream-g200-neutral",
+      "GL5T": "bombardier-global-5000-neutral",
+      "GL7T": "bombardier-global-7500-neutral",
+      "GLEX": "bombardier-global-express-neutral",
+      "GLF2": "gulfstream-gii-neutral",
+      "GLF3": "gulfstream-giii-neutral",
+      "GLF4": "gulfstream-g450-neutral",
+      "GLF5": "gulfstream-g550-neutral",
+      "GLF6": "gulfstream-g650-neutral",
+      "H25A": "hawker-siddeley-hs125-neutral",
+      "H25B": "hawker-800-neutral",
+      "H25C": "hawker-1000-neutral",
       "H47": "ch47f-chinook-neutral",
       "H500": "hughes-500d-island-hoppers",
       "H60": "uh60-black-hawk-neutral",
       "H64": "ah64-apache-neutral",
+      "HA4T": "hawker-4000-neutral",
+      "HDJT": "honda-hondajet-neutral",
+      "HF20": "hfb-hansa-jet-neutral",
       "IKAR": "ikarus-c42-neutral",
       "K35R": "kc135r-stratotanker-neutral",
+      "JCOM": "aero-commander-1121-neutral",
+      "L29A": "lockheed-jetstar-neutral",
+      "L29B": "lockheed-jetstar-ii-neutral",
       "LA4": "lake-la4-buccaneer-amphibian-neutral",
+      "LAR1": "flaris-lar1-neutral",
+      "LJ23": "learjet-23-neutral",
+      "LJ24": "learjet-24-neutral",
+      "LJ25": "learjet-25-neutral",
+      "LJ28": "learjet-28-neutral",
+      "LJ31": "learjet-31-neutral",
+      "LJ35": "learjet-35-neutral",
+      "LJ40": "learjet-40-neutral",
+      "LJ45": "learjet-45-neutral",
+      "LJ55": "learjet-55-neutral",
+      "LJ60": "learjet-60-neutral",
+      "LJ70": "learjet-70-neutral",
+      "LJ75": "learjet-75-neutral",
       "MIR2": "mirage-2000c-neutral",
+      "MS76": "morane-saulnier-paris-neutral",
+      "MU30": "mitsubishi-mu300-diamond-neutral",
       "NH90": "nh90-neutral",
       "P28A": "piper-pa28-archer-neutral",
       "P28R": "piper-pa28r-arrow-neutral",
@@ -4989,6 +5854,8 @@
       "PA32": "piper-pa32-cherokee-six-neutral",
       "PA34": "piper-pa34-seneca-neutral",
       "PC12": "pilatus-pc12-neutral",
+      "PC24": "pilatus-pc24-neutral",
+      "PRM1": "beechcraft-premier-i-neutral",
       "R22": "robinson-r22-neutral",
       "R44": "robinson-r44-neutral",
       "R66": "robinson-r66-neutral",
@@ -4998,13 +5865,18 @@
       "SB35": "j35-draken-neutral",
       "SB37": "ja37-viggen-neutral",
       "SB39": "jas39c-gripen-neutral",
-      "SF50": "cirrus-sf50-vision-jet-neutral",
+      "SBR1": "north-american-sabreliner-neutral",
+      "SBR2": "rockwell-sabreliner-80-neutral",
+      "SF50": "cirrus-sf50-vision-jet-manufacturer",
+      "SJ30": "syberjet-sj30-neutral",
       "SPIT": "spitfire-mk-i-neutral",
       "SR20": "cirrus-sr20-neutral",
       "SR22": "cirrus-sr22-neutral",
       "SREY": "progressive-aerodyne-searey-amphibian-neutral",
       "TOR": "tornado-ids-neutral",
-      "V22": "mv22b-osprey-neutral"
+      "V22": "mv22b-osprey-neutral",
+      "WW23": "iai-westwind-1123-neutral",
+      "WW24": "iai-westwind-1124-neutral"
     },
     "byCategory": {
       "fixed-wing": "generic-fixed-wing",

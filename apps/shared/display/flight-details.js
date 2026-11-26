@@ -7,6 +7,7 @@ const localAirlineNames = {
   FIN: "Finnair",
   HKS: "CHC Helikopter Service",
   NOR: "Bristow Norway",
+  SVA: "Saudia",
   SVS: "SAS Link",
   SZS: "SAS Connect",
 };
