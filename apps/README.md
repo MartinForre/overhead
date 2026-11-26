@@ -12,7 +12,7 @@ npm run dev
 - [Display](http://127.0.0.1:8000/display/)
 - [Companion](http://127.0.0.1:8000/companion/)
 
-The companion opens on the same aircraft view as the kiosk. Select the gear in the upper-right corner to open settings. The **Live**, **Gallery**, and **Track** tabs switch both views. Live has location, radius, and sample traffic controls. Gallery has previous and next aircraft controls. Theme, transitions, and regional formats apply across all modes. The settings footer lists the data sources.
+The companion opens on the same aircraft view as the kiosk. Select the gear in the upper-right corner to open settings. The **Live**, **Gallery**, and **Track** tabs switch both views. Live has a List or Map view, location, radius, and sample traffic controls. Gallery has previous and next aircraft controls. Theme, transitions, and regional formats apply across all modes. The settings footer lists the data sources.
 
 Both pages mount the renderer in `apps/shared/display/`, which contains the aircraft card markup, styles, and rendering for each mode. The companion hosts the settings UI and accepts gallery input.
 
@@ -36,7 +36,9 @@ Chrome is the only other application the laptop needs. The server listens only o
 
 ## Display settings and behavior
 
-In **Settings → Display mode**, choose **Live**, **Gallery**, or **Track**. Live is the default and shows nearby traffic. When a fresh feed reports no aircraft in range, Live shows Gallery and keeps polling. The display returns to nearby traffic as soon as the first detected aircraft card is ready. A stale or unavailable feed shows **Flight data unavailable**.
+In **Settings → Display mode**, choose **Live**, **Gallery**, or **Track**. Live defaults to **List**, which shows up to three nearby aircraft. When a fresh feed reports no aircraft in range, List shows Gallery and keeps polling. The display returns to nearby traffic as soon as the first detected aircraft card is ready. A stale or unavailable feed shows **Flight data unavailable**.
+
+Choose **Settings → Live → Map** to show every aircraft with a fresh position in the same radius. The map frames the saved location with a span of twice the radius along its longer side. A 1 km radius covers 2 km from top to bottom in portrait or from left to right in landscape. Aircraft size varies with class and altitude. Tap an aircraft or choose one from a nearby ground group in Companion to open its full flight card on both screens. Use **Clear aircraft selection** to dismiss it. The solid trail follows the tail and a dashed guide points from the nose to a known destination. MapLibre runs from the Overhead server. The detailed basemap uses OpenFreeMap vector tiles and the bundled Natural Earth coastline provides a fallback. Find the full map credits and licence links under **Companion → Settings → Data sources**.
 
 Gallery shows one illustrated aircraft from the local collection and advances every ten minutes. In the companion, swipe left for the next aircraft or right for the previous one. You can also browse with the left and right arrow keys or the aircraft buttons in companion settings. In Gallery mode these controls advance connected views together. Selecting **Gallery** directly works without a saved location and pauses live polling.
 

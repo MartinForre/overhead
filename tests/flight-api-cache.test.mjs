@@ -153,3 +153,24 @@ test("flight reference lookup validates identifiers and shares not-found and fai
   await request(reference, missing);
   assert.equal(fetcher.mock.callCount(), 4);
 });
+
+test("nearby maps get already-known destinations without adding reference lookups", async (t) => {
+  t.mock.timers.enable({ apis: ["Date"], now: Date.UTC(2026, 0, 1) });
+  t.mock.method(metarCache, "peek", () => []);
+  const ac = [{ flight: "  sas588  " }, { flight: "SAS123" }, { flight: "SAS588", r: "SAS-588" }];
+  t.mock.method(adsbFi, "fetchNearby", async () => ({ snapshot: { now: Date.now(), ac } }));
+  const destination = { latitude: 58.8767, longitude: 5.6378 };
+  const fetcher = t.mock.fn(async () => Response.json({ response: { flightroute: { destination } } }));
+  const reference = createFlightReference({ fetcher });
+  const nearby = createNearbyFeed({ peekDestination: reference.peekDestination });
+  const observed = async () => JSON.parse((await request(nearby, "/api/aircraft/v2/lat/59/lon/5.5/dist/50")).body).ac;
+
+  assert.deepEqual(await observed(), ac);
+  assert.equal(fetcher.mock.callCount(), 0);
+  await request(reference, "/api/flight-reference/callsign/SAS588");
+  assert.deepEqual(await observed(), [{ ...ac[0], knownDestination: destination }, ...ac.slice(1)]);
+  assert.equal(fetcher.mock.callCount(), 1);
+  t.mock.timers.tick(15 * 60_000);
+  assert.deepEqual(await observed(), ac);
+  assert.equal(fetcher.mock.callCount(), 1);
+});

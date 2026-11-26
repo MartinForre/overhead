@@ -427,6 +427,12 @@ export function measureArtwork(image, maxTilt) {
     left: Math.min(9, (inset + scale * left / width) * 100),
     frontTop,
     profile,
+    crop: [
+      Math.max(0, left - 1) / width,
+      Math.max(0, top - 1) / height,
+      Math.min(width, right + 1) / width,
+      Math.min(height, bottom + 1) / height,
+    ],
     inset: inset * 100,
   };
   artworkBounds.set(key, bounds);

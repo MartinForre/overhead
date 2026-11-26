@@ -6,7 +6,7 @@ const primaryIntervalMs = 5_000;
 const fallbackIntervalMs = 180_000;
 const maxCachedRegions = 8;
 
-export function createNearbyFeed() {
+export function createNearbyFeed({ peekDestination } = {}) {
   const primary = pollProvider(adsbFi, primaryIntervalMs);
   const fallback = pollProvider(adsbLol, fallbackIntervalMs);
 
@@ -33,7 +33,11 @@ export function createNearbyFeed() {
 
     response.setHeader("Content-Type", "application/json");
     const metars = metarCache.peek(key, query);
-    response.end(JSON.stringify({ ...snapshot, metars, maxStationDistanceKm }));
+    const ac = peekDestination ? snapshot.ac.map(item => {
+      const destination = item && peekDestination(item);
+      return destination ? { ...item, knownDestination: destination } : item;
+    }) : snapshot.ac;
+    response.end(JSON.stringify({ ...snapshot, ac, metars, maxStationDistanceKm }));
   };
 }
 

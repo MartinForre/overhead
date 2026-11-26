@@ -13,6 +13,10 @@ export function setTrafficPreview(mode) {
   return queueWrite("/api/traffic-preview", "POST", { mode });
 }
 
+export function selectMapAircraft(aircraft) {
+  return queueWrite("/api/map/selection", "POST", { aircraft });
+}
+
 export function updateTrackQueue(action, id, number, replaceId) {
   return queueWrite("/api/track/queue", "POST", { action, id, number, replaceId });
 }

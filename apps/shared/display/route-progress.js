@@ -81,7 +81,7 @@ export function hasCoordinates(point) {
     Number.isFinite(point.longitude) && Math.abs(point.longitude) <= 180;
 }
 
-function bearingTo(from, to) {
+export function bearingTo(from, to) {
   const latitude = from.latitude * radiansPerDegree;
   const destinationLatitude = to.latitude * radiansPerDegree;
   const longitudeDifference = (to.longitude - from.longitude) * radiansPerDegree;

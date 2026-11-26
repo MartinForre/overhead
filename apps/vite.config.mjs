@@ -1,11 +1,14 @@
 import { createNearbyFeed } from "./adsb/nearby-feed.mjs";
 import { createFlightReference } from "./adsb/flight-reference.mjs";
 import { createSettingsApi } from "./settings/settings-api.mjs";
+import { mapLibreAssets } from "./maplibre-assets.mjs";
 
 function registerDisplayApi(server) {
+  const flightReference = createFlightReference();
+  server.middlewares.use(mapLibreAssets);
   server.middlewares.use(createSettingsApi("overhead.config.json"));
-  server.middlewares.use(createNearbyFeed());
-  server.middlewares.use(createFlightReference());
+  server.middlewares.use(createNearbyFeed({ peekDestination: flightReference.peekDestination }));
+  server.middlewares.use(flightReference);
 }
 
 export default {

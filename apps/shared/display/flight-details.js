@@ -1,4 +1,5 @@
 import { catalogAircraft } from "./artwork.js";
+import { flightReferenceCallsign } from "../settings-schema.js";
 
 const localAirlineNames = {
   BCY: "CityJet",
@@ -43,9 +44,8 @@ export async function resolveAircraft(aircraft, signal) {
 }
 
 export async function callsignDetails(aircraft, signal) {
-  const callsign = identifier(aircraft.flight);
-  const registration = identifier(aircraft.r).replaceAll("-", "");
-  if (!/^[A-Z0-9]{3,8}$/.test(callsign) || callsign === registration) return {};
+  const callsign = flightReferenceCallsign(aircraft);
+  if (!callsign) return {};
 
   const result = await lookup(`callsign/${callsign}`, signal);
   const route = result?.flightroute;
@@ -66,6 +66,11 @@ export async function callsignDetails(aircraft, signal) {
     destination: airportDetails(route?.destination),
     ...(route?.midpoint ? { hasIntermediateStop: true } : {}),
   };
+}
+
+export async function callsignDestination(callsign, signal) {
+  const response = await lookup(`callsign/${callsign}`, signal);
+  return airportDetails(response?.flightroute?.destination);
 }
 
 async function airlineFromCode(airlineCode, signal) {

@@ -8,7 +8,7 @@ import { flightMotionSettings } from "./motion.js";
 import { createNearbyDisplay } from "./nearby.js";
 import { startTrackedFlights } from "./tracked-flights.js";
 
-export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGalleryVisibility, onTrackAircraft } = {}) {
+export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGalleryVisibility, onTrackAircraft, onMapAircraft } = {}) {
   root.innerHTML = displayContents;
   const galleryElement = root.querySelector("#aircraft-gallery");
   const galleryTemplate = root.querySelector("#gallery-card-template");
@@ -22,12 +22,14 @@ export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGall
   const getMotion = () => flightMotionSettings(settings);
   const nearby = createNearbyDisplay({
     list: root.querySelector("#nearby-aircraft"),
+    map: root.querySelector("#live-map"),
     status: root.querySelector("#nearby-status"),
     cardTemplate: root.querySelector("#flight-card-template"),
     getMotion,
     startGallery,
     onUpdate: onNearbyUpdate,
     onTrackAircraft,
+    onMapAircraft: interactive ? onMapAircraft : undefined,
   });
 
   function startGallery(signal) {
@@ -89,13 +91,13 @@ export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGall
     if (live) {
       nearby.applySettings(settings);
       nearby.setEnabled(true);
-      void preloadAircraftArtwork(signal);
     } else if (activeMode === "gallery") {
       startGallery(signal);
     } else if (activeMode === "track") {
       tracked = startTrackedFlights(root, signal, getMotion, interactive);
       tracked.setQueue(settings.trackedFlights ?? []);
     }
+    if (live && settings.liveView !== "map") void preloadAircraftArtwork(signal);
     return formatsChanged;
   }
 

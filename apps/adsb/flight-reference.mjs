@@ -1,3 +1,5 @@
+import { flightReferenceCallsign } from "../shared/settings-schema.js";
+
 const referenceApi = "https://api.adsbdb.com/v0";
 const routePrefix = "/api/flight-reference/";
 const lookupPath = /^(aircraft|airline|callsign)\/([a-zA-Z0-9-]{2,12})$/;
@@ -57,7 +59,7 @@ export function createFlightReference({ fetcher = fetch, now = Date.now } = {}) 
     return { status: 502, cacheMs: failedCacheMs };
   }
 
-  return async function flightReference(request, response, next) {
+  async function flightReference(request, response, next) {
     const [pathname] = request.url.split("?");
     if (!pathname.startsWith(routePrefix)) return next();
     response.setHeader("Cache-Control", "no-store");
@@ -80,5 +82,19 @@ export function createFlightReference({ fetcher = fetch, now = Date.now } = {}) 
       "Cache-Control": `private, max-age=${remainingSeconds}`,
     });
     response.end(JSON.stringify({ response: data ?? null }));
+  }
+
+  flightReference.peekDestination = (aircraft) => {
+    const callsign = flightReferenceCallsign(aircraft);
+    if (!callsign) return;
+    const entry = cached.get("callsign/" + callsign);
+    if (!(entry?.expiresAt > now())) return;
+    const { latitude, longitude } = entry.data?.flightroute?.destination ?? {};
+    if (Number.isFinite(latitude) && Math.abs(latitude) <= 90 &&
+      Number.isFinite(longitude) && Math.abs(longitude) <= 180) {
+      return { latitude, longitude };
+    }
   };
+
+  return flightReference;
 }

@@ -21,6 +21,21 @@ export const displayContents = `
   <p id="traffic-preview-indicator" class="traffic-preview-indicator" data-i18n hidden>Preview</p>
   <p id="nearby-status" class="display-status" role="status">Set the display location in Companion settings.</p>
   <ul id="nearby-aircraft" class="flight-list" aria-label="Nearby aircraft" hidden></ul>
+  <section id="live-map" class="live-map" aria-label="Nearby aircraft map" data-i18n-label hidden>
+    <div class="live-map-stage">
+      <div class="live-map-basemap" aria-hidden="true"></div>
+      <canvas class="live-map-trails" aria-hidden="true"></canvas>
+      <canvas class="live-map-destinations" aria-hidden="true"></canvas>
+      <div class="live-map-center" aria-hidden="true"></div>
+      <div class="live-map-markers" role="group" aria-label="Nearby aircraft" data-i18n-label></div>
+      <p class="live-map-caption" hidden data-i18n>Basemap unavailable.</p>
+      <p class="live-map-credit" hidden>© OpenMapTiles · © OpenStreetMap</p>
+    </div>
+    <div class="live-map-footer" hidden>
+      <p class="live-map-detail-status" role="status" hidden></p>
+      <ul class="live-map-details" aria-label="Selected aircraft" data-i18n-label hidden></ul>
+    </div>
+  </section>
   <section id="aircraft-gallery" class="aircraft-gallery" aria-label="Aircraft gallery" data-i18n-label aria-live="polite" hidden>
     <p id="gallery-status" class="display-status" hidden></p>
   </section>

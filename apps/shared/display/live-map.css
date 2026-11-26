@@ -1,0 +1,259 @@
+:root {
+  --map-water: #252821;
+  --map-land: #454c38;
+  --map-line: #82886b;
+  --map-label: var(--muted-ink);
+}
+
+[data-theme="deep-blue"] { --map-water: #09152d; --map-land: #263858; --map-line: #737c91; }
+[data-theme="deep-red"] { --map-water: #351b1e; --map-land: #57302e; --map-line: #a66b64; }
+[data-theme="sky-gradient"] { --map-water: #9dc9e0; --map-land: #e2dbb7; --map-line: #838768; }
+[data-theme="nordic-linen"] { --map-water: #c2c8bb; --map-land: #e2d4ba; --map-line: #9a8969; }
+[data-theme="blueprint"] { --map-water: #152a40; --map-land: #254866; --map-line: #6689a9; }
+[data-theme="serengeti-safari"] { --map-water: #3d3029; --map-land: #776041; --map-line: #a18156; }
+[data-theme="zanzibar-coast"] { --map-water: #82bcb4; --map-land: #dfcca3; --map-line: #8a9474; }
+
+.display[data-live-view="map"] {
+  display: block;
+  block-size: var(--display-viewport-height);
+  padding: 0;
+  background: var(--map-water);
+  --wallpaper: none;
+}
+
+.display[data-live-view="map"] > .display-landscape { display: none; }
+.display[data-live-view="map"] > .traffic-preview-indicator { z-index: 2; pointer-events: none; }
+.display[data-live-view="map"] > #nearby-status {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 45%;
+  inset-inline: 1rem;
+  width: fit-content;
+  max-inline-size: calc(100% - 2rem);
+  margin-inline: auto;
+  padding: .45em .75em;
+  background: var(--paper);
+  color: var(--ink);
+  pointer-events: none;
+}
+
+.live-map {
+  --marker-size: clamp(44px, 6.25vmin, 76px);
+  --aircraft-size: calc(var(--marker-size) * 2.25);
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.live-map-stage { position: absolute; z-index: 0; inset: 0; overflow: clip; }
+.live-map-basemap, .live-map-markers, .live-map-trails, .live-map-destinations { position: absolute; inset: 0; }
+.live-map-basemap, .live-map-markers, .live-map-center, .live-map-trails, .live-map-destinations { pointer-events: none; }
+.live-map-trails, .live-map-destinations { inline-size: 100%; block-size: 100%; }
+.live-map-basemap .maplibregl-canvas { position: absolute; inset: 0; }
+
+.live-map-center {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: .65rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--flap);
+  border-radius: 50%;
+  background: var(--paper);
+  box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 4px var(--flap);
+}
+
+.live-map-marker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: var(--marker-size);
+  aspect-ratio: 1;
+  transform: translate3d(var(--marker-x, 0px), var(--marker-y, 0px), 0) translate(-50%, -50%);
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  color: var(--ink);
+}
+.live-map-marker[data-clustered] { visibility: hidden; }
+
+button.live-map-marker { pointer-events: auto; cursor: pointer; }
+.live-map-marker:focus-visible { z-index: 1; outline: none; }
+.live-map-marker[data-selected] { z-index: 2; }
+.live-map-marker:is([data-selected], :focus-visible)::after {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: var(--selection-size, var(--marker-size));
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border: 1px solid var(--flap);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 30%, transparent);
+  content: "";
+  pointer-events: none;
+}
+.live-map-marker:focus-visible::after { border-color: var(--ink); border-width: 2px; }
+
+.live-map-marker-label {
+  position: absolute;
+  display: none;
+  top: calc(50% + var(--label-distance, 50%) + 4px);
+  left: calc(50% + var(--label-offset, 0px));
+  transform: translateX(-50%);
+  padding: .18rem .35rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: 650 .6875rem/1.2 system-ui, sans-serif;
+  letter-spacing: .07em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.live-map-marker[data-selected] .live-map-marker-label { display: block; }
+.live-map-marker[data-label-above] .live-map-marker-label { top: auto; bottom: calc(50% + var(--label-distance, 50%) + 4px); }
+
+.live-map-marker img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(var(--aircraft-size) * .92 * var(--aircraft-scale, .86));
+  max-height: calc(var(--aircraft-size) * .7 * var(--aircraft-scale, .86));
+  object-fit: contain;
+  transform: translate(-50%, -50%) rotate(var(--aircraft-rotation)) scaleX(var(--aircraft-mirror));
+  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 65%));
+  pointer-events: none;
+}
+button.live-map-marker img { pointer-events: auto; }
+
+.live-map-cluster {
+  position: absolute;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+}
+.live-map-cluster[open] { z-index: 3; }
+:is(span.live-map-cluster, .live-map-cluster summary) {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  aspect-ratio: 1;
+  border: 1px solid var(--flap);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+}
+.live-map-cluster summary { list-style: none; pointer-events: auto; cursor: pointer; }
+.live-map-cluster summary::-webkit-details-marker { display: none; }
+.live-map-cluster-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: calc(50% + var(--cluster-menu-x, 0px));
+  inline-size: 10rem;
+  max-block-size: min(50svh, 15rem);
+  transform: translateX(-50%);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  border: 1px solid var(--rule);
+  border-radius: .4rem;
+  background: var(--paper);
+  pointer-events: auto;
+}
+.live-map-cluster[data-menu-above] .live-map-cluster-list { top: auto; bottom: calc(100% + 4px); }
+.live-map-cluster-list button {
+  display: block;
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  border: 0;
+  padding: .4rem .65rem;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.live-map-cluster-list button:is(:hover, :focus-visible) { background: var(--control); }
+
+.live-map-marker:not([data-sprite])::before {
+  content: "";
+  width: .55rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--flap);
+  box-shadow: 0 1px 3px rgb(0 0 0 / 55%);
+}
+
+.live-map-marker[data-track]:not([data-sprite])::before {
+  width: .9rem;
+  aspect-ratio: .9;
+  border-radius: 0;
+  transform: rotate(var(--aircraft-bearing));
+  clip-path: polygon(50% 0%, 100% 96%, 50% 71%, 0 96%);
+}
+
+.live-map-credit, .live-map-caption {
+  position: absolute;
+  margin: 0;
+  padding: .2rem .35rem;
+  width: fit-content;
+  max-width: calc(100% - 1rem);
+  background: var(--paper);
+  color: var(--muted-ink);
+  font-size: .6875rem;
+  pointer-events: none;
+}
+.live-map-credit {
+  inset: auto max(.4rem, var(--safe-area-right)) calc(.35rem + var(--map-detail-height, 0px)) auto;
+  text-align: end;
+}
+.live-map-caption { inset: max(.4rem, var(--safe-area-top)) auto auto max(.4rem, var(--safe-area-left)); }
+
+.live-map-footer {
+  --map-panel-height: calc(var(--display-viewport-height) * .4);
+  --map-panel-top: .5rem;
+  --map-panel-bottom: max(.5rem, var(--safe-area-bottom));
+  position: absolute;
+  z-index: 1;
+  inset: auto 0 0;
+  min-inline-size: 0;
+  max-block-size: var(--map-panel-height);
+  overflow: auto;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+  padding: var(--map-panel-top) max(1rem, var(--safe-area-right)) var(--map-panel-bottom) max(1rem, var(--safe-area-left));
+  border-top: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper) 70%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.live-map-footer:has(.live-map-close) { padding-inline-end: max(3.6rem, calc(var(--safe-area-right) + 3.25rem)); }
+.live-map-details {
+  --primary-size: min(100%, 56rem, var(--fitted-primary-size, 100%));
+  display: grid;
+  justify-items: center;
+  max-block-size: calc(var(--map-panel-height) - var(--map-panel-top) - var(--map-panel-bottom) - 1px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.live-map-details .flight-picture { --scenery-footprint: 0px; }
+.live-map-detail-status { margin: .65rem 0; color: var(--muted-ink); text-align: center; }
+
+.live-map-close {
+  position: absolute;
+  inset-block-start: .5rem;
+  inset-inline-end: max(.6rem, var(--safe-area-right));
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  aspect-ratio: 1;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--control);
+  color: var(--ink);
+  font: 1.35rem/1 system-ui, sans-serif;
+  cursor: pointer;
+}

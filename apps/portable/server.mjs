@@ -2,6 +2,7 @@ import { createServer } from "node:http";
 import { isIPv4 } from "node:net";
 import { createNearbyFeed } from "../adsb/nearby-feed.mjs";
 import { createFlightReference } from "../adsb/flight-reference.mjs";
+import { mapLibreAssets } from "../maplibre-assets.mjs";
 import { createSettingsApi } from "../settings/settings-api.mjs";
 
 const lan = Deno.args.includes("--lan");
@@ -25,8 +26,8 @@ const roots = {
   dividers: new URL("../../assets/dividers/", import.meta.url),
 };
 const staticPath = /^\/(display|companion|shared|aircrafts|dividers)\/((?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.(html|css|js|json|png|webmanifest))$/;
-const nearbyFeed = createNearbyFeed();
 const flightReference = createFlightReference();
+const nearbyFeed = createNearbyFeed({ peekDestination: flightReference.peekDestination });
 const settingsApi = createSettingsApi("overhead.config.json");
 
 const server = createServer((request, response) => {
@@ -39,8 +40,9 @@ const server = createServer((request, response) => {
     return;
   }
 
-  settingsApi(request, response, () => nearbyFeed(request, response, () =>
-    flightReference(request, response, () => serveFile(request, response)))).catch((error) => {
+  mapLibreAssets(request, response, () =>
+    settingsApi(request, response, () => nearbyFeed(request, response, () =>
+      flightReference(request, response, () => serveFile(request, response))))).catch((error) => {
     console.error(error);
     if (!response.headersSent) response.writeHead(500);
     response.end();

@@ -5,7 +5,7 @@ import { displayLandscape } from "../shared/display/markup.js";
 import { migrateLegacySettings } from "../shared/legacy-settings.js";
 import { bindLocationSettings } from "../shared/location-settings.js";
 import { bindRadiusSettings } from "../shared/radius-settings.js";
-import { connectSettings, saveSettings, setTrafficPreview, trackLiveAircraft } from "../shared/settings-client.js";
+import { connectSettings, saveSettings, selectMapAircraft, setTrafficPreview, trackLiveAircraft } from "../shared/settings-client.js";
 import { defaultSettings, themes } from "../shared/settings-schema.js";
 import { bindTrackSettings } from "../shared/track-settings.js";
 
@@ -14,6 +14,8 @@ const settingsDialog = document.querySelector("#companion-settings");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const connectionStatus = document.querySelector("#connection-status");
 const modeStatus = document.querySelector("#mode-status");
+const liveViewStatus = document.querySelector("#live-view-status");
+const liveViews = [...document.querySelectorAll('input[name="liveView"]')];
 const themeStatus = document.querySelector("#theme-status");
 const formatStatus = document.querySelector("#format-status");
 const showFormats = bindDisplayFormatSettings(message => setMessage(formatStatus, message));
@@ -41,11 +43,13 @@ const display = mountDisplay(displayRoot, {
     if (nearbyUpdated.textContent !== message) nearbyUpdated.textContent = message;
   },
   onTrackAircraft: addLiveAircraft,
+  onMapAircraft: showMapAircraft,
 });
 const gallery = displayRoot.querySelector("#aircraft-gallery");
 let activeSettings = defaultSettings;
 let trackRequest = 0;
 let clearTrackStatus;
+let selectionRequest = 0;
 
 document.addEventListener("keydown", (event) => {
   if (gallery.hidden || settingsDialog.open || event.altKey || event.ctrlKey || event.metaKey) return;
@@ -89,6 +93,31 @@ document.addEventListener("wheel", (event) => {
 
 settingsButton.disabled = false;
 settingsButton.addEventListener("click", () => settingsDialog.showModal());
+
+for (const input of liveViews) {
+  input.addEventListener("change", async () => {
+    setMessage(liveViewStatus, "");
+    try {
+      await saveSettings({ liveView: input.value });
+    } catch (error) {
+      liveViews.find(view => view.value === (activeSettings.liveView ?? defaultSettings.liveView)).checked = true;
+      setMessage(liveViewStatus, error.message);
+    }
+  });
+}
+
+async function showMapAircraft(aircraft) {
+  const request = ++selectionRequest;
+  clearTimeout(clearTrackStatus);
+  setMessage(trackStatus, "");
+  try {
+    await selectMapAircraft(aircraft);
+  } catch (error) {
+    if (request !== selectionRequest) return;
+    setMessage(trackStatus, error.message);
+    clearTrackStatus = setTimeout(() => { setMessage(trackStatus, ""); }, 4_000);
+  }
+}
 
 for (const [select, parse] of motionFields) {
   select.addEventListener("change", async () => {
@@ -210,6 +239,7 @@ function applySettings(settings) {
     tab.tabIndex = selected ? 0 : -1;
   }
   for (const panel of modePanels) panel.hidden = panel.id !== settings.mode + "-panel";
+  for (const view of liveViews) view.checked = view.value === (settings.liveView ?? defaultSettings.liveView);
   showLocation(settings.location);
   showRadius(settings.radiusKm);
   showTrackQueue(settings.trackedFlights ?? [], settings.trackProvider, formatsChanged);

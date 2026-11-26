@@ -5,7 +5,7 @@ export function flightCardOrder(ranked) {
 export function fitFlightCards(list, alignRoutes) {
   list.style.removeProperty("--fitted-primary-size");
   const cards = Array.from(list.children, card => card.firstElementChild);
-  if (cards.length < 2 || !list.clientHeight) {
+  if (!cards.length || !list.clientHeight) {
     alignRoutes?.();
     return true;
   }

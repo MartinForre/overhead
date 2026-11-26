@@ -1,21 +1,25 @@
 import { formatClock, setMessage, t } from "../display-formats.js";
 import { defaultSettings, liveAircraftSelection, sameLocation } from "../settings-schema.js";
-import { distanceBetween, nearestMetar } from "../flight-weather.js";
+import { nearestMetar } from "../flight-weather.js";
 import { createAircraftPresentation } from "./flight-card.js";
 import { createFlightBoard } from "./flight-board.js";
+import { createLiveMap } from "./live-map.js";
+import { closestLongitude, destinationPoint } from "./map-geometry.js";
+import { aircraftForList, selectNearbyAircraft } from "./nearby-aircraft.js";
 import { renderTrafficPreview } from "./traffic-preview.js";
 
 const kmPerNauticalMile = 1.852;
 const searchPaddingKm = 40;
 const refreshIntervalMs = 5_000;
-const maxPositionAgeSeconds = 30;
-const groundTargetTypes = new Set(["GND", "GRND", "SERV", "EMER", "TWR"]);
+const previewLocation = { latitude: 58.87667, longitude: 5.63778 };
 
-export function createNearbyDisplay({ list, status, cardTemplate, getMotion, startGallery, onUpdate, onTrackAircraft }) {
+export function createNearbyDisplay({ list, map, status, cardTemplate, getMotion, startGallery, onUpdate, onTrackAircraft, onMapAircraft }) {
   const board = createFlightBoard(list, cardTemplate, setNearbyStatus, getMotion, onTrackAircraft);
+  const liveMap = createLiveMap(map, cardTemplate, getMotion, onMapAircraft);
   let radiusKm = defaultSettings.radiusKm;
   let nearbyLocation;
   let nearbyEnabled = false;
+  let showingMap = false;
   let preview;
   let displayController;
   let refreshTimer;
@@ -24,14 +28,20 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
   let galleryFallback;
   let checkedAt;
 
-  function applySettings({ location, radiusKm: radius, trafficPreview }) {
+  function applySettings({ location, radiusKm: radius, trafficPreview, liveView, mapAircraft, theme }) {
     const locationChanged = !sameLocation(nearbyLocation, location) || radiusKm !== radius;
     const previewChanged = preview?.id !== trafficPreview?.id;
-    const keepAircraft = Boolean(preview && trafficPreview && trafficPreview.mode !== "handoff");
+    const viewChanged = showingMap !== (liveView === "map");
+    showingMap = liveView === "map";
+    const keepAircraft = Boolean(!viewChanged && !showingMap && preview && trafficPreview && trafficPreview.mode !== "handoff");
     nearbyLocation = location;
     radiusKm = radius;
     preview = trafficPreview;
-    if (nearbyEnabled && (previewChanged || (locationChanged && !preview))) updateDisplay(keepAircraft);
+    liveMap.setTheme(theme);
+    liveMap.select(mapAircraft);
+    if (nearbyEnabled && (viewChanged || previewChanged || (locationChanged && (showingMap || !preview)))) {
+      updateDisplay(keepAircraft);
+    }
   }
 
   function setEnabled(enabled) {
@@ -46,6 +56,9 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
     checkedAt = undefined;
     showUpdateTime();
     updateListLabel();
+    const mapLocation = nearbyLocation ?? (preview ? previewLocation : undefined);
+    if (nearbyEnabled && showingMap) liveMap.setArea(mapLocation, radiusKm);
+    else liveMap.hide();
     if (!nearbyEnabled) {
       resetDisplay("");
       return;
@@ -60,15 +73,24 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
     }
 
     if (preview) {
-      void renderPreview(preview.mode, signal);
+      void renderPreview(preview.mode, mapLocation, signal);
     } else if (nearbyLocation) {
       refreshNearbyAircraft(nearbyLocation, radiusKm, signal);
     }
   }
 
-  async function renderPreview(mode, signal) {
+  async function renderPreview(mode, location, signal) {
     try {
-      await renderTrafficPreview(mode, (entries) => renderAircraft(entries, signal), signal);
+      await renderTrafficPreview(mode, (entries) => {
+        if (!showingMap) return renderAircraft(entries, signal);
+        if (signal.aborted) return;
+        liveMap.show(entries.map((entry, index) => {
+          const distanceKm = Math.min(entry.distanceKm, radiusKm * .77);
+          const [longitude, lat] = destinationPoint(location, distanceKm, 40 + index * 125);
+          return { ...entry, distanceKm, item: { ...entry.item, lat, lon: closestLongitude(longitude, 0) } };
+        }));
+        setNearbyStatus("");
+      }, signal);
     } catch {
       if (!signal.aborted) resetDisplay("Sample aircraft unavailable.");
     }
@@ -97,7 +119,8 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
         throw new Error("Aircraft feed is malformed or stale");
       }
 
-      const nearby = selectNearbyAircraft(feed.ac, location, radius, snapshotAgeSeconds);
+      const eligible = selectNearbyAircraft(feed.ac, location, radius, snapshotAgeSeconds);
+      const nearby = showingMap ? eligible : aircraftForList(eligible);
       for (const entry of nearby) entry.observedAt = feed.now - entry.item.seen_pos * 1_000;
       if (Array.isArray(feed.metars) && Number.isFinite(feed.maxStationDistanceKm)) {
         for (const entry of nearby) {
@@ -119,7 +142,10 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
 
   async function showLiveSnapshot(nearby, timestamp, signal) {
     try {
-      if (nearby.length) {
+      if (showingMap) {
+        liveMap.show(nearby);
+        setNearbyStatus("");
+      } else if (nearby.length) {
         if (!await renderAircraft(nearby, signal)) return;
       } else if (galleryFallback) {
         // A new empty snapshot supersedes any live card still being prepared.
@@ -180,6 +206,7 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
     preparing?.abort();
     preparing = undefined;
     activeAircraft.clear();
+    liveMap.show([]);
     board.reset(status, options);
   }
 
@@ -200,6 +227,7 @@ export function createNearbyDisplay({ list, status, cardTemplate, getMotion, sta
     updateListLabel();
     showUpdateTime();
     board.refreshPresentation();
+    liveMap.refresh();
   }
 
   return { applySettings, setEnabled, refreshPresentation };
@@ -211,26 +239,6 @@ function searchPath({ latitude, longitude }, radius) {
   // Rounding to a half-degree can move the center by up to 40 km.
   const searchRadiusNm = Math.ceil((radius + searchPaddingKm) / kmPerNauticalMile);
   return `/api/aircraft/v2/lat/${regionLatitude}/lon/${regionLongitude}/dist/${searchRadiusNm}`;
-}
-
-function selectNearbyAircraft(aircraft, location, radius, snapshotAgeSeconds) {
-  const nearby = aircraft
-    .filter((item) => Number.isFinite(item?.lat) && Math.abs(item.lat) <= 90 &&
-      Number.isFinite(item.lon) && Math.abs(item.lon) <= 180 &&
-      Number.isFinite(item.seen_pos) && item.seen_pos >= 0 &&
-      item.seen_pos + snapshotAgeSeconds <= maxPositionAgeSeconds && !isGroundTarget(item))
-    .map((item) => ({ item, distanceKm: distanceBetween(location, item) }))
-    .filter((entry) => entry.distanceKm <= radius)
-    .sort((first, second) => first.distanceKm - second.distanceKm);
-
-  const helicopterIndex = nearby.findIndex(({ item }) => item.category === "A7");
-  if (helicopterIndex > 0) nearby.unshift(nearby.splice(helicopterIndex, 1)[0]);
-  return nearby.slice(0, 3);
-}
-
-function isGroundTarget({ t, category }) {
-  return (typeof t === "string" && groundTargetTypes.has(t.trim().toUpperCase())) ||
-    (typeof category === "string" && /^C[1-5]$/i.test(category.trim()));
 }
 
 function aircraftKey({ hex, r, flight }) {

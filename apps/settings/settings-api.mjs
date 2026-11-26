@@ -3,7 +3,7 @@ import { createFlightTracker } from "../adsb/tracked-flights.mjs";
 import { callsignSelection, createCallsignTracker } from "../adsb/callsign-tracker.mjs";
 import { trackedAltimeter } from "../adsb/metar.mjs";
 import {
-  defaultSettings, isCallsignSelection, isFlightId, isLiveAircraftSelection, isSettingsObject,
+  defaultSettings, isCallsignSelection, isFlightId, isLiveAircraftSelection, isMapAircraftKey, isSettingsObject,
   isValidSetting, liveAircraftSelection, maxTrackedFlights, normalizeFlightNumber, sameLocation,
 } from "../shared/settings-schema.js";
 
@@ -16,6 +16,7 @@ const routes = new Map([
   [settingsPath + "/migrate", ["POST"]],
   ["/api/gallery/step", ["POST"]],
   ["/api/traffic-preview", ["POST"]],
+  ["/api/map/selection", ["POST"]],
   ["/api/track/search", ["GET"]],
   ["/api/track/status", ["GET"]],
   ["/api/track/queue", ["POST"]],
@@ -27,6 +28,7 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
   const temporaryPath = configPath + ".tmp";
   let storedSettings;
   let trafficPreview = null;
+  let mapAircraft = null;
   let pending = Promise.resolve();
 
   // Serialize reads and edits so each patch merges with the latest saved values.
@@ -40,7 +42,7 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
   }
 
   function snapshot() {
-    return { ...defaultSettings, ...storedSettings, trackProvider, trafficPreview };
+    return { ...defaultSettings, ...storedSettings, trackProvider, trafficPreview, mapAircraft };
   }
 
   async function trackedStatus(flight) {
@@ -71,10 +73,14 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
     }
 
     if (changed) {
+      const changedMapScope = ["mode", "liveView", "radiusKm"].some(key =>
+        (storedSettings[key] ?? defaultSettings[key]) !== (nextSettings[key] ?? defaultSettings[key])) ||
+        !sameLocation(storedSettings.location, nextSettings.location);
       await writeFile(temporaryPath, JSON.stringify(nextSettings, null, 2) + "\n", { mode: 0o600 });
       await rename(temporaryPath, configPath);
       storedSettings = nextSettings;
       if ((storedSettings.mode ?? defaultSettings.mode) !== "live") trafficPreview = null;
+      if (changedMapScope) mapAircraft = null;
       broadcast("settings", snapshot());
     }
     return snapshot();
@@ -183,7 +189,22 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
         await withSettings(() => {
           if (snapshot().mode !== "live") throw new HttpError(409, "Switch to Live first.");
           trafficPreview = mode === "0" ? null : { mode, id: crypto.randomUUID() };
+          mapAircraft = null;
           broadcast("settings", snapshot());
+          response.writeHead(204).end();
+        });
+        return;
+      }
+      if (pathname === "/api/map/selection") {
+        const { aircraft } = body;
+        if (aircraft !== null && !isMapAircraftKey(aircraft)) throw new HttpError(400, "Invalid aircraft selection.");
+        await withSettings(() => {
+          const { mode, liveView } = snapshot();
+          if (mode !== "live" || liveView !== "map") throw new HttpError(409, "Switch to Live Map first.");
+          if (mapAircraft !== aircraft) {
+            mapAircraft = aircraft;
+            broadcast("settings", snapshot());
+          }
           response.writeHead(204).end();
         });
         return;

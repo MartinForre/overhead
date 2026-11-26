@@ -10,6 +10,7 @@
 }
 
 .companion-screen:has(.track-list[data-scroll]) { touch-action: pan-y; }
+.companion-screen:has(.live-map-footer:not([hidden]), .live-map-cluster[open]) { touch-action: pan-y; }
 
 #open-companion-settings { touch-action: none; }
 
@@ -167,6 +168,28 @@
   background: var(--flap);
   color: var(--flap-ink);
 }
+
+.live-view-setting {
+  min-inline-size: 0;
+  margin: .9rem 0 0;
+  border: 0;
+  padding: 0 0 1rem;
+}
+.live-view-setting legend { padding: 0; font-size: 1.08rem; font-weight: 650; }
+.live-view-tabs { grid-template-columns: repeat(2, 1fr); margin-block-start: .5rem; }
+.live-view-tabs label { position: relative; cursor: pointer; }
+.live-view-tabs input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: inherit; }
+.live-view-tabs span {
+  display: grid;
+  place-items: center;
+  min-block-size: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: .42rem;
+  color: var(--muted-ink);
+  font-weight: 650;
+}
+.live-view-tabs input:checked + span { background: var(--flap); color: var(--flap-ink); }
+.live-view-tabs input:focus-visible + span { outline: 2px solid var(--ink); }
 
 .mode-panel { animation: panel-in 175ms ease-out; }
 @keyframes panel-in {

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../shared/display/display-themes.css">
     <link rel="stylesheet" href="../shared/display/display.css">
     <link rel="stylesheet" href="../shared/display/track.css">
+    <link rel="stylesheet" href="../shared/display/live-map.css">
     <link rel="stylesheet" href="../shared/track-settings.css">
     <link rel="stylesheet" href="../shared/display-format-settings.css">
     <link rel="stylesheet" href="../shared/display/settings-button.css">
@@ -54,6 +55,15 @@
             <p id="mode-status" class="status error" role="status"></p>
 
             <div id="live-panel" class="mode-panel" role="tabpanel" aria-labelledby="live-tab">
+              <fieldset class="setting live-view-setting">
+                <legend data-i18n>Live view</legend>
+                <div class="mode-tabs live-view-tabs">
+                  <label><input type="radio" name="liveView" value="list" checked><span data-i18n>List</span></label>
+                  <label><input type="radio" name="liveView" value="map"><span data-i18n>Map</span></label>
+                </div>
+                <p id="live-view-status" class="status error" role="status"></p>
+              </fieldset>
+
               <section class="setting" aria-labelledby="location-title">
                 <h3 id="location-title" data-i18n>Location</h3>
                 <p id="saved-location-status" class="status" role="status"></p>
@@ -172,6 +182,7 @@
               <li><span data-i18n>Aircraft, airline, and route reference data from</span> <a href="https://www.adsbdb.com/">ADSBDB</a>.</li>
               <li><span data-i18n>METAR altimeter settings from the</span> <a href="https://aviationweather.gov/data/api/">NOAA Aviation Weather Center</a>.</li>
               <li><span data-i18n>Tracked flight schedules, status, and positions from</span> <a href="https://www.flightaware.com/commercial/aeroapi/">FlightAware AeroAPI</a>.</li>
+              <li><span data-i18n>Maps from</span> <a href="https://openfreemap.org/">OpenFreeMap</a>, <a href="https://openmaptiles.org/">OpenMapTiles</a>, <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <span data-i18n>and</span> <a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth</a>.</li>
             </ul>
           </details>
         </footer>

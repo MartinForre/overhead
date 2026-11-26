@@ -4,6 +4,8 @@ export const modes = {
   track: "Track",
 };
 
+export const liveViews = { list: "List", map: "Map" };
+
 export const themes = {
   "forest-green": "Forest Green",
   "deep-blue": "Deep Blue",
@@ -26,6 +28,7 @@ export const maxRadiusKm = 423;
 export const maxTrackedFlights = 3;
 export const defaultSettings = Object.freeze({
   mode: "live",
+  liveView: "list",
   location: null,
   radiusKm: 50,
   theme: "forest-green",
@@ -37,6 +40,20 @@ export const defaultSettings = Object.freeze({
   trackedFlights: Object.freeze([]),
   trackProvider: "adsb-fi",
 });
+
+export function mapAircraftKey({ hex, r, flight, lat, lon }) {
+  const address = typeof hex === "string" ? hex.trim().toUpperCase() : "";
+  if (/^~?[A-F0-9]{6}$/.test(address)) return "hex:" + address;
+  const registration = typeof r === "string" ? r.trim().toUpperCase() : "";
+  if (/^[A-Z0-9-]{1,15}$/.test(registration)) return "registration:" + registration;
+  const callsign = normalizeBroadcastCallsign(flight);
+  if (callsign) return "callsign:" + callsign;
+  return `position:${lat.toFixed(5)},${lon.toFixed(5)}`;
+}
+
+export function isMapAircraftKey(key) {
+  return typeof key === "string" && /^(?:hex:~?[A-F0-9]{6}|registration:[A-Z0-9-]{1,15}|callsign:[A-Z0-9]{1,8}|position:-?\d{1,2}\.\d{5},-?\d{1,3}\.\d{5})$/.test(key);
+}
 
 export function normalizeFlightNumber(value) {
   if (typeof value !== "string") return "";
@@ -56,6 +73,12 @@ export function normalizeCallsign(value) {
 export function normalizeBroadcastCallsign(value) {
   const callsign = typeof value === "string" ? value.toUpperCase().replace(/\s+/g, "") : "";
   return /^[A-Z0-9]{1,8}$/.test(callsign) ? callsign : "";
+}
+
+export function flightReferenceCallsign({ flight, r }) {
+  const callsign = typeof flight === "string" ? flight.trim().toUpperCase() : "";
+  const registration = typeof r === "string" ? r.trim().toUpperCase().replaceAll("-", "") : "";
+  return /^[A-Z0-9]{3,8}$/.test(callsign) && callsign !== registration ? callsign : "";
 }
 
 export function liveAircraftSelection(hex, flight, registration) {
@@ -102,6 +125,7 @@ export function isValidRadius(radius) {
 
 const settingValidators = {
   mode: (value) => typeof value === "string" && Object.hasOwn(modes, value),
+  liveView: (value) => typeof value === "string" && Object.hasOwn(liveViews, value),
   location: (value) => value === null || isValidLocation(value),
   radiusKm: isValidRadius,
   theme: (value) => typeof value === "string" && Object.hasOwn(themes, value),
