@@ -67,6 +67,24 @@ test("Artwork anchors use the solid nose and tail past thin outlying pixels", ()
   });
 });
 
+test("Artwork trails anchor to an upswept tailcone below an overhanging fin", () => {
+  const width = 48;
+  const height = 28;
+  const pixels = new Uint8ClampedArray(width * height * 4);
+  for (let x = 4; x <= 42; x++) {
+    const bodyBottom = Math.min(24, 59 - x);
+    for (let y = 14; y < bodyBottom; y++) pixels[(y * width + x) * 4 + 3] = 255;
+  }
+  for (let x = 35; x <= 47; x++) {
+    const finBottom = Math.max(9, 52 - x);
+    for (let y = 4; y < finBottom; y++) pixels[(y * width + x) * 4 + 3] = 255;
+  }
+  const { nose, tail } = artworkEndpoints(pixels, width, height);
+  assert.deepEqual(nose, [4.5 / width, 19 / height]);
+  assert.deepEqual(tail, [42.5 / width, 15.5 / height]);
+  assert.deepEqual(artworkAnchor(40, 60, 180, width, height, tail), [41.5, 41.5]);
+});
+
 test("Map provides a diameter for either axis and handles the date line", () => {
   const dateline = { latitude: 40, longitude: 179.9 };
   const { horizontal, vertical } = mapDiameterBounds(dateline, 50);

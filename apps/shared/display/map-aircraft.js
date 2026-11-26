@@ -18,11 +18,11 @@ export function mapAircraftScale(aircraft, { icaoType = aircraft.t, category } =
 }
 
 export function artworkEndpoints(pixels, width, height) {
-  const profiles = Array.from({ length: width }, (_, x) => {
+  function opaqueColumn(x, top, bottom) {
     let length = 0;
     let best = 0;
     let middle = height / 2;
-    for (let y = 0; y < height; y++) {
+    for (let y = top; y < bottom; y++) {
       length = pixels[(y * width + x) * 4 + 3] >= 96 ? length + 1 : 0;
       if (length > best) {
         best = length;
@@ -30,13 +30,33 @@ export function artworkEndpoints(pixels, width, height) {
       }
     }
     return { x, best, middle };
-  });
+  }
+
+  const profiles = Array.from({ length: width }, (_, x) => opaqueColumn(x, 0, height));
   // Ignore isolated, thin rotor tips and shadows when finding the airframe ends.
   const minimum = Math.max(2, ...profiles.map(profile => profile.best * .15));
   const solid = profiles.filter(profile => profile.best >= minimum);
+  if (!solid.length) return { nose: [0, .5], tail: [1, .5] };
+
   const point = ({ x, middle }) => [(x + .5) / width, middle / height];
-  return solid.length ? { nose: point(solid[0]), tail: point(solid.at(-1)) }
-    : { nose: [0, .5], tail: [1, .5] };
+  const nose = solid[0];
+  const rear = solid.at(-1);
+
+  // Estimate the fuselage axis behind the nose, clear of the tapered tip and the wings.
+  const forwardBody = solid.slice(Math.floor(solid.length * .06), Math.ceil(solid.length * .18));
+  const middleIndex = Math.floor(forwardBody.length / 2);
+  const axis = forwardBody.map(column => column.middle).sort((a, b) => a - b)[middleIndex];
+  const thickness = forwardBody.map(column => column.best).sort((a, b) => a - b)[middleIndex];
+  // Allow for an upswept tailcone while excluding the vertical stabilizer above it.
+  const halfBand = Math.max(2, thickness * .45);
+  const top = Math.max(0, Math.floor(axis - halfBand));
+  const bottom = Math.min(height, Math.floor(axis + halfBand) + 1);
+  const tailMinimum = Math.max(2, thickness * .12);
+  for (let x = width - 1; x >= (nose.x + rear.x) / 2; x--) {
+    const column = opaqueColumn(x, top, bottom);
+    if (column.best >= tailMinimum) return { nose: point(nose), tail: point(column) };
+  }
+  return { nose: point(nose), tail: point(rear) };
 }
 
 export function artworkAnchor(x, y, track, width, height, anchor) {
