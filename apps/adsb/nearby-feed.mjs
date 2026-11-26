@@ -1,8 +1,10 @@
 import { adsbFi, adsbLol, isFreshSnapshot } from "./providers.mjs";
+import { metarCache, maxStationDistanceKm } from "./metar.mjs";
 
 const searchPath = /^\/api\/aircraft\/v2\/lat\/(-?\d+(?:\.5)?)\/lon\/(-?\d+(?:\.5)?)\/dist\/(\d+)$/;
 const primaryIntervalMs = 5_000;
 const fallbackIntervalMs = 180_000;
+const maxCachedRegions = 8;
 
 export function createNearbyFeed() {
   const primary = pollProvider(adsbFi, primaryIntervalMs);
@@ -30,31 +32,33 @@ export function createNearbyFeed() {
     }
 
     response.setHeader("Content-Type", "application/json");
-    response.end(JSON.stringify(snapshot));
+    const metars = metarCache.peek(key, query);
+    response.end(JSON.stringify({ ...snapshot, metars, maxStationDistanceKm }));
   };
 }
 
 function pollProvider(provider, intervalMs) {
   let nextRequestAt = 0;
   let inFlight;
-  let cached;
+  const snapshots = new Map();
 
   return function poll(key, query) {
-    const now = Date.now();
     if (inFlight?.key === key) return inFlight.result;
-    if (inFlight || now < nextRequestAt) {
-      return cached?.key === key && isFreshSnapshot(cached.snapshot) ? cached.snapshot : null;
-    }
+    const now = Date.now();
+    const cached = snapshots.get(key);
+    if (cached?.expiresAt > now && isFreshSnapshot(cached.snapshot)) return cached.snapshot;
+    snapshots.delete(key);
+    if (inFlight || now < nextRequestAt) return null;
 
     nextRequestAt = now + intervalMs;
     const result = provider.fetchNearby(query).then(({ snapshot, retryAfterMs = 0 }) => {
       nextRequestAt = Math.max(nextRequestAt, Date.now() + retryAfterMs);
-      cached = snapshot ? { key, snapshot } : undefined;
+      if (snapshot) {
+        snapshots.set(key, { snapshot, expiresAt: Date.now() + intervalMs });
+        if (snapshots.size > maxCachedRegions) snapshots.delete(snapshots.keys().next().value);
+      }
       return snapshot;
-    }).catch(() => {
-      cached = undefined;
-      return null;
-    }).finally(() => {
+    }).catch(() => null).finally(() => {
       inFlight = undefined;
     });
     inFlight = { key, result };

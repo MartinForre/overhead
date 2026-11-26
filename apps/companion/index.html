@@ -2,20 +2,192 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Overhead Companion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#252821">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Overhead">
+    <title data-i18n>Overhead Companion</title>
+    <link rel="manifest" href="./overhead.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="stylesheet" href="../shared/display/display-themes.css">
+    <link rel="stylesheet" href="../shared/display/display.css">
+    <link rel="stylesheet" href="../shared/display/track.css">
+    <link rel="stylesheet" href="../shared/track-settings.css">
+    <link rel="stylesheet" href="../shared/display-format-settings.css">
+    <link rel="stylesheet" href="../shared/display/settings-button.css">
+    <link rel="stylesheet" href="./companion.css">
+    <script type="module" src="./companion.js"></script>
   </head>
   <body>
-    <main>
-      <h1>Overhead Companion</h1>
-      <section id="data-sources" aria-labelledby="data-sources-title">
-        <h2 id="data-sources-title">Data sources</h2>
-        <ul>
-          <li>Live aircraft positions from <a href="https://adsb.fi/">adsb.fi</a>.</li>
-          <li>Backup aircraft positions from <a href="https://www.adsb.lol/docs/open-data/api">adsb.lol</a>, available under the <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Database License (ODbL) 1.0</a>.</li>
-          <li>Aircraft, airline, and route reference data from <a href="https://www.adsbdb.com/">ADSBDB</a>.</li>
-        </ul>
-      </section>
-    </main>
+    <div class="companion-screen">
+      <main id="aircraft-display" class="display" aria-label="Overhead display" data-i18n-label>
+        <noscript data-i18n>Enable JavaScript to show nearby aircraft.</noscript>
+      </main>
+    </div>
+    <button id="open-companion-settings" class="settings-button" type="button" aria-label="Settings" data-i18n-label aria-haspopup="dialog" aria-controls="companion-settings" disabled>
+      <span aria-hidden="true">⚙</span>
+    </button>
+    <p id="live-track-status" role="status"></p>
+
+    <dialog id="companion-settings" aria-labelledby="settings-title">
+      <div class="shell">
+        <header class="masthead">
+          <h1 id="settings-title" data-i18n>Display settings</h1>
+          <div class="dialog-actions">
+            <span id="connection-status" class="connection" role="status">Connecting…</span>
+            <form method="dialog"><button class="button primary" type="submit" autofocus data-i18n>Done</button></form>
+          </div>
+        </header>
+
+        <section class="display-formats" aria-label="Regional formats" data-i18n-label></section>
+        <p id="format-status" class="status error" role="status"></p>
+
+        <div class="workspace">
+          <section class="mode-settings" aria-labelledby="mode-title">
+            <h2 id="mode-title" data-i18n>Display mode</h2>
+            <div class="mode-tabs" role="tablist" aria-labelledby="mode-title">
+              <button id="live-tab" type="button" role="tab" aria-controls="live-panel" aria-selected="true" data-i18n>Live</button>
+              <button id="gallery-tab" type="button" role="tab" aria-controls="gallery-panel" aria-selected="false" tabindex="-1" data-i18n>Gallery</button>
+              <button id="track-tab" type="button" role="tab" aria-controls="track-panel" aria-selected="false" tabindex="-1" data-i18n>Track</button>
+            </div>
+            <p id="mode-status" class="status error" role="status"></p>
+
+            <div id="live-panel" class="mode-panel" role="tabpanel" aria-labelledby="live-tab">
+              <section class="setting" aria-labelledby="location-title">
+                <h3 id="location-title" data-i18n>Location</h3>
+                <p id="saved-location-status" class="status" role="status"></p>
+                <details id="location-settings" open>
+                  <summary data-i18n>Set display coordinates</summary>
+                  <form id="location-form">
+                    <div class="coordinates">
+                      <label for="latitude"><span data-i18n>Latitude</span>
+                        <input id="latitude" type="number" min="-90" max="90" step="any" inputmode="decimal" placeholder="59.91" required>
+                      </label>
+                      <label for="longitude"><span data-i18n>Longitude</span>
+                        <input id="longitude" type="number" min="-180" max="180" step="any" inputmode="decimal" placeholder="10.75" required>
+                      </label>
+                    </div>
+                    <button class="button primary" type="submit" data-i18n>Save location</button>
+                  </form>
+                </details>
+                <div class="actions">
+                  <button class="button quiet" id="check-location" type="button" disabled data-i18n>Check device location</button>
+                  <button class="button quiet" id="check-ip-location" type="button" disabled data-i18n>Estimate from IP</button>
+                </div>
+                <p id="location-status" class="status" role="status"></p>
+                <p id="ip-location-status" class="status" role="status"></p>
+                <button class="button" id="save-ip-location" type="button" hidden data-i18n>Save this estimate</button>
+              </section>
+
+              <section class="setting" aria-labelledby="radius-title">
+                <h3 id="radius-title" data-i18n>Search radius</h3>
+                <form id="nearby-radius-form">
+                  <label for="nearby-radius">Radius (km)</label>
+                  <div class="radius-controls">
+                    <input id="nearby-radius" type="number" min="1" step="1" inputmode="numeric" value="50" required>
+                    <button class="button" type="submit" data-i18n>Apply radius</button>
+                  </div>
+                  <p class="status" id="nearby-range">Within 50 km</p>
+                  <p class="status" id="nearby-radius-status" role="status"></p>
+                </form>
+                <p class="status" id="nearby-updated"></p>
+              </section>
+
+              <section class="setting" aria-labelledby="preview-title">
+                <h3 id="preview-title"><label for="traffic-preview" data-i18n>Traffic preview</label></h3>
+                <div class="actions">
+                  <select class="button" id="traffic-preview" autocomplete="off">
+                    <option value="0" data-i18n>Live traffic</option>
+                    <option value="1" data-i18n>1 sample aircraft</option>
+                    <option value="2" data-i18n>2 sample aircraft</option>
+                    <option value="3" data-i18n>3 sample aircraft</option>
+                    <option value="alaska" data-i18n>Alaska bush plane</option>
+                    <option value="airwolf">Airwolf</option>
+                    <option value="top-gun" data-i18n>Top Gun Tomcat</option>
+                    <option value="concorde" data-i18n>Concorde in flight</option>
+                    <option value="gear" data-i18n>Landing gear sequence</option>
+                    <option value="handoff" hidden disabled data-i18n>Sample handoff</option>
+                  </select>
+                  <button class="button" id="preview-handoff" type="button" data-i18n>Play sample handoff</button>
+                </div>
+                <p class="status error" id="preview-status" role="status"></p>
+              </section>
+            </div>
+
+            <div id="gallery-panel" class="mode-panel" role="tabpanel" aria-labelledby="gallery-tab" hidden>
+              <section class="setting" aria-labelledby="gallery-title">
+                <h3 id="gallery-title" data-i18n>Browse aircraft</h3>
+                <p data-i18n>The display advances every 10 minutes.</p>
+                <div class="actions">
+                  <button class="button" id="previous-aircraft" type="button"><span aria-hidden="true">←</span> <span data-i18n>Previous aircraft</span></button>
+                  <button class="button primary" id="next-aircraft" type="button"><span data-i18n>Next aircraft</span> <span aria-hidden="true">→</span></button>
+                </div>
+                <p class="status error" id="gallery-settings-status" role="status"></p>
+              </section>
+            </div>
+
+            <div id="track-panel" class="mode-panel" role="tabpanel" aria-labelledby="track-tab" tabindex="0" hidden>
+              <section id="track-settings" class="setting" aria-label="Track flights" data-i18n-label></section>
+            </div>
+          </section>
+
+          <fieldset class="appearance">
+            <legend data-i18n>Display theme</legend>
+            <p data-i18n>Choose how the display looks in every mode.</p>
+            <p id="theme-status" class="status error" role="status"></p>
+            <div class="theme-grid" id="theme-grid"></div>
+            <section class="setting transition-settings" aria-labelledby="motion-title">
+              <h3 id="motion-title" data-i18n>Transitions</h3>
+              <div class="actions">
+                <label><span data-i18n>Slot move duration</span>
+                  <select class="button" id="motion-duration" name="motionDuration" autocomplete="off">
+                    <option value="0" data-i18n>Off</option>
+                    <option value="700" data-i18n>0.7 seconds</option>
+                    <option value="900" data-i18n>0.9 seconds</option>
+                    <option value="1100" selected data-i18n>1.1 seconds</option>
+                    <option value="1300" data-i18n>1.3 seconds</option>
+                    <option value="1600" data-i18n>1.6 seconds</option>
+                  </select>
+                </label>
+                <label><span data-i18n>Aircraft easing</span>
+                  <select class="button" id="motion-easing" name="motionEasing" autocomplete="off">
+                    <option value="gentle" data-i18n>Gentle</option>
+                    <option value="ease-in-out" data-i18n>Ease in and out</option>
+                    <option value="linear" data-i18n>Linear</option>
+                  </select>
+                </label>
+              </div>
+              <p class="status error" id="motion-status" role="status"></p>
+            </section>
+          </fieldset>
+        </div>
+
+        <footer>
+          <details id="data-sources">
+            <summary data-i18n>Data sources</summary>
+            <ul>
+              <li><span data-i18n>Live aircraft positions and keyless aircraft tracking from</span> <a href="https://adsb.fi/">adsb.fi</a>.</li>
+              <li><span data-i18n>Backup aircraft positions from</span> <a href="https://www.adsb.lol/docs/open-data/api">adsb.lol</a><span data-i18n>, available under the</span> <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Database License (ODbL) 1.0</a>.</li>
+              <li><span data-i18n>Aircraft, airline, and route reference data from</span> <a href="https://www.adsbdb.com/">ADSBDB</a>.</li>
+              <li><span data-i18n>METAR altimeter settings from the</span> <a href="https://aviationweather.gov/data/api/">NOAA Aviation Weather Center</a>.</li>
+              <li><span data-i18n>Tracked flight schedules, status, and positions from</span> <a href="https://www.flightaware.com/commercial/aeroapi/">FlightAware AeroAPI</a>.</li>
+            </ul>
+          </details>
+        </footer>
+      </div>
+    </dialog>
+
+    <template id="theme-card">
+      <label class="theme-choice">
+        <input type="radio" name="display-theme">
+        <span class="theme-preview" aria-hidden="true">
+          <span class="preview-route"><span>OSL</span><span class="route-line"></span><span>LHR</span></span>
+          <img src="/aircrafts/airliners/a350-1000-neutral.png" alt="" loading="lazy">
+          <span class="preview-caption">Airbus A350-1000</span>
+        </span>
+        <span class="theme-label"><span class="theme-name"></span><span class="choice-mark" aria-hidden="true"></span></span>
+      </label>
+    </template>
   </body>
 </html>

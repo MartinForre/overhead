@@ -1,9 +1,10 @@
 {
   "name": "overhead",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite apps --host 127.0.0.1 --port 8000 --strictPort",
-    "build:windows": "deno compile --no-config --target x86_64-pc-windows-msvc --allow-net=127.0.0.1:8000,opendata.adsb.fi:443,api.adsb.lol:443 --include apps/display --include apps/companion --include assets/aircrafts --exclude '**/.DS_Store' --output dist/Overhead.exe apps/portable/server.mjs"
+    "build:windows": "deno compile --no-config --target x86_64-pc-windows-msvc --allow-net=127.0.0.1:8000,0.0.0.0:8000,opendata.adsb.fi:443,api.adsb.lol:443,api.adsbdb.com:443,aviationweather.gov:443,aeroapi.flightaware.com:443 --allow-env=OVERHEAD_AEROAPI_KEY --allow-read=overhead.config.json,overhead.config.json.tmp --allow-write=overhead.config.json,overhead.config.json.tmp --include apps/shared --include apps/display --include apps/companion --include assets/aircrafts --include assets/dividers --exclude '**/.DS_Store' --output dist/Overhead.exe apps/portable/server.mjs"
   },
   "devDependencies": {
     "vite": "^8.3.8"

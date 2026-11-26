@@ -1,0 +1,576 @@
+:root {
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-right: env(safe-area-inset-right, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-left: env(safe-area-inset-left, 0px);
+  color: var(--ink);
+  font-family: system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; }
+.kiosk, .kiosk body { overflow: clip; }
+.kiosk .display { pointer-events: none; user-select: none; }
+
+.sr-only {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.display {
+  --cloud-height-ratio: calc(190 / 2172);
+  --runway-height-ratio: calc(110 / 2172);
+  --display-inset: clamp(12px, 3svh, 36px);
+  --display-start: var(--display-inset);
+  --display-top: calc(var(--display-start) + var(--safe-area-top));
+  --display-bottom: max(var(--display-inset), var(--safe-area-bottom));
+  --display-gutter: clamp(12px, 3vw, 42px);
+  /* On iOS Home Screen, dvh can be shorter than the visible screen. */
+  --display-viewport-height: 100svh;
+  --display-safe-height: calc(var(--display-viewport-height) - var(--safe-area-top) - var(--safe-area-bottom));
+  --display-content-height: calc(var(--display-viewport-height) - var(--display-top) - var(--display-bottom));
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  min-block-size: var(--display-viewport-height);
+  align-content: center;
+  justify-items: center;
+  padding-block: var(--display-top) var(--display-bottom);
+  padding-left: max(var(--display-gutter), var(--safe-area-left));
+  padding-right: max(var(--display-gutter), var(--safe-area-right));
+}
+
+.display-status,
+.display > noscript {
+  position: relative;
+  margin: 0;
+  color: var(--muted-ink);
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
+  text-align: center;
+}
+
+.traffic-preview-indicator {
+  position: absolute;
+  inset-block-start: calc(var(--safe-area-top) + 10px);
+  inset-inline-start: calc(var(--safe-area-left) + 10px);
+  margin: 0;
+  padding: .25rem .5rem;
+  border: 1px solid var(--rule);
+  border-radius: .25rem;
+  background: var(--paper);
+  color: var(--muted-ink);
+  font-size: .8rem;
+}
+
+.display:has(.aircraft-gallery:not([hidden])) {
+  background: radial-gradient(ellipse at 50% 42%, color-mix(in srgb, var(--ink) 7%, transparent), transparent 68%);
+}
+
+.aircraft-gallery {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: min(100%, 76rem);
+}
+
+.gallery-card {
+  display: grid;
+  grid-area: 1 / 1;
+  justify-items: center;
+  inline-size: 100%;
+  gap: clamp(8px, 3.2svh, 36px);
+  margin: 0;
+  text-align: center;
+}
+
+.gallery-art {
+  display: grid;
+  place-items: center;
+  inline-size: min(100%, max(14rem, calc((var(--display-safe-height) - 162px) * 3)));
+  aspect-ratio: 3 / 1;
+}
+
+.gallery-art img {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+.gallery-card figcaption {
+  display: grid;
+  justify-items: center;
+  gap: clamp(4px, 1svh, 10px);
+  line-height: 1.1;
+}
+
+.gallery-name {
+  display: grid;
+  align-items: end;
+  min-block-size: 2.2em;
+  margin: 0;
+  font-size: clamp(20px, min(4.8vw, 6.2svh), 57px);
+  font-weight: 680;
+  text-wrap: balance;
+}
+
+.gallery-detail {
+  margin: 0;
+  color: var(--muted-ink);
+  font-size: clamp(13px, min(2.25vw, 3.8svh), 23px);
+  text-wrap: balance;
+}
+
+.flight-list {
+  --primary-size: min(100%, 76rem, calc((var(--display-safe-height) - 80px) * 2.48));
+  --flight-gap: clamp(14px, 3.2svh, 42px);
+  display: grid;
+  inline-size: 100%;
+  justify-items: center;
+  gap: var(--flight-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flight-list:is([data-count="2"], [data-count="3"]) {
+  block-size: 100%;
+  min-block-size: 0;
+}
+
+.flight-list[data-count="2"] {
+  --primary-size: min(100%, 76rem, calc((var(--display-content-height) - 85px) * 1.30), var(--fitted-primary-size, 100%));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.flight-list[data-count="3"] {
+  --primary-size: min(100%, 76rem, calc((var(--display-safe-height) - 200px) * 0.94), var(--fitted-primary-size, 100%));
+  grid-template-rows: 1fr auto 1fr;
+}
+
+.display:has(.flight-list:is([data-count="2"], [data-count="3"]):not([hidden])) {
+  block-size: var(--display-viewport-height);
+  grid-template-rows: minmax(0, 1fr);
+  overflow: clip;
+}
+
+.display:has(.flight-list[data-count="2"]:not([hidden])) { --display-inset: clamp(22px, 6svh, 72px); }
+.display:has(.flight-list[data-count="3"]:not([hidden])) { --display-inset: clamp(8px, 1.65svh, 22px); }
+
+.flight-card {
+  --card-scale: 0.7;
+  inline-size: max(0px, calc(var(--primary-size) * var(--card-scale)));
+  container-type: inline-size;
+}
+
+.flight-card[data-primary] { --card-scale: 1; }
+
+.flight-card:not(:last-child) {
+  --scenery-gap: max(0px, calc(var(--flight-gap) - 4px));
+}
+
+.flight-list[data-count="3"] > :last-child {
+  align-self: end;
+}
+
+.flight-card-content {
+  --meta-size: clamp(10px, 2.25cqi, calc(17px * var(--card-scale)));
+  --reading-size: clamp(11px, 2.45cqi, calc(19px * var(--card-scale)));
+  --flap-size: clamp(12px, 4.6cqi, calc(38px * var(--card-scale)));
+  --city-size: clamp(10px, 2.1cqi, calc(15px * var(--card-scale)));
+  --route-gap: clamp(2px, 0.7cqi, 5px);
+  --route-column-gap: clamp(4px, 1.4cqi, 13px);
+  --flap-height: calc(var(--flap-size) * 1.22);
+  display: grid;
+  gap: clamp(4px, 1.1cqi, 12px);
+}
+
+.flight-card:not([data-primary]) .flight-card-content {
+  --flap-size: clamp(12px, min(7.5cqi, 4cqi + 7.5px), 34px);
+  --city-size: clamp(12px, 2.75cqi, 14px);
+  /* The artwork clearance covers the first 80% of the card, including up to 9% left inset. */
+  --city-width: max(29cqi, calc(35.5cqi - var(--flap-size) / 2 - var(--route-column-gap)));
+}
+
+.flight-topline {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: clamp(8px, 2.3cqi, 24px);
+}
+
+.flight-identity { min-inline-size: 0; }
+
+.flight-name {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: clamp(12px, 4cqi, calc(36px * var(--card-scale)));
+  font-weight: 730;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.flight-description {
+  display: -webkit-box;
+  margin: 4px 0 0;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  color: var(--muted-ink);
+  font-size: var(--meta-size);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.flight-instruments {
+  display: flex;
+  align-items: start;
+  gap: clamp(5px, 1.7cqi, 20px);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.flight-readout {
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+}
+
+.flight-distance {
+  color: var(--muted-ink);
+  font-size: var(--meta-size);
+  line-height: 1.2;
+}
+
+.flight-values {
+  display: flex;
+  gap: clamp(5px, 1.6cqi, 16px);
+  font-size: var(--reading-size);
+  font-weight: 620;
+  line-height: 1.15;
+}
+
+.flight-track {
+  position: relative;
+  flex: none;
+  inline-size: clamp(26px, 9cqi, calc(66px * var(--card-scale)));
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--ink);
+}
+
+.flight-needle {
+  position: absolute;
+  inset: 0;
+  transform: rotate(var(--bearing));
+}
+
+.flight-track[data-track-unavailable] .flight-needle { display: none; }
+
+.flight-needle::before,
+.flight-needle::after {
+  position: absolute;
+  inset-inline: 40%;
+  content: "";
+}
+
+.flight-needle::before {
+  inset-block: 12% 50%;
+  background: var(--needle-tip);
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.flight-needle::after {
+  inset-block: 50% 20%;
+  background: var(--needle-tail);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+:is(.flight-picture, .track-picture) {
+  --art-bottom: 0.92;
+  --picture-height: calc(100cqi / var(--image-ratio, 3));
+  /* Reserve the larger artwork footprint, using the existing gap where another card follows. */
+  --scenery-footprint: max(
+    0px,
+    calc((var(--art-bottom) - 1) * var(--picture-height) + 100cqi * var(--cloud-height-ratio) * 1.042 - var(--scenery-gap, 0px)),
+    calc((var(--gear-contact, var(--art-bottom)) - 1) * var(--picture-height) + 50cqi * var(--runway-height-ratio) - var(--scenery-gap, 0px))
+  );
+}
+
+.flight-picture {
+  --arrival-time-size: clamp(11px, 2.5cqi, calc(21px * var(--card-scale)));
+  --route-city-height: 0px;
+  --route-clock-height: 0px;
+  --route-height: calc(var(--flap-height) + var(--route-city-height) + var(--route-clock-height));
+  --route-clearance: var(--art-route-top, var(--art-front-top, 0.34));
+  --route-top: min(
+    calc(var(--art-top, 0.07) * var(--picture-height)),
+    calc(var(--route-clearance) * var(--picture-height) - var(--route-height) - 2px)
+  );
+  position: relative;
+  min-inline-size: 0;
+}
+
+.flight-picture:has(.flight-city:not(:empty)) { --route-city-height: calc(var(--route-gap) + var(--city-size) * 1.2); }
+.flight-picture:has(.flight-arrival-time:not([hidden])) { --route-clock-height: calc(var(--route-gap) + var(--arrival-time-size) * 1.05); }
+
+.flight-picture:has(.flight-art img) {
+  aspect-ratio: var(--image-ratio, 3);
+  margin-block-start: calc(0px - var(--route-top));
+  margin-block-end: var(--scenery-footprint);
+}
+
+.flight-scenery-layer {
+  position: absolute;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+}
+
+/* Frame the visible rows of the source PNGs so their transparent padding stays outside the layout. */
+.flight-scenery {
+  --scenery-travel: 0px;
+  position: absolute;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.flight-scenery[data-scenery="cloud"] {
+  z-index: 2;
+  left: var(--aircraft-center);
+  inline-size: min(calc(var(--aircraft-width) * 1.6), calc(100% - 12px));
+  block-size: calc(var(--aircraft-width) * var(--cloud-height-ratio));
+  translate: -50% 4.2%;
+  background-image: url("/dividers/cloud-layer.png");
+  background-repeat: no-repeat;
+  /* Show source rows 324–591, including the full fade, within the card's reserved height. */
+  background-size: 100% calc(100% * 724 / 268);
+  background-position: center 71.053%;
+}
+
+.flight-scenery[data-scenery="runway"] {
+  --scenery-travel: clamp(10px, 100%, 28px);
+  z-index: -1;
+  inset-inline: 0;
+  block-size: calc(var(--aircraft-width) * var(--runway-height-ratio));
+  translate: 0 -50%;
+  background-image: var(--runway-artwork);
+  background-repeat: repeat-x;
+  background-size: var(--aircraft-width) auto;
+  /* Align the runway surface (source y = 361) with the wheel contact height. */
+  background-position: center 49.837%;
+}
+
+.flight-scenery[hidden] {
+  opacity: 0;
+  transform: translateY(var(--scenery-travel));
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root:not([data-motion-off]) .flight-scenery {
+    transition: opacity 420ms ease-in-out, transform 420ms ease-in-out, display 420ms allow-discrete;
+  }
+
+  @starting-style {
+    .flight-scenery:not([hidden]) {
+      opacity: 0;
+      transform: translateY(var(--scenery-travel));
+    }
+  }
+}
+
+@container (max-width: 160px) {
+  .flight-picture { --route-clearance: var(--art-route-top, var(--art-top, 0.07)); }
+}
+
+.flight-art:has(img) { position: absolute; inset: var(--art-inset, 0%); }
+
+.flight-aircraft {
+  position: absolute;
+  inset: 0;
+  isolation: isolate;
+  rotate: var(--art-tilt, 0deg);
+}
+
+.flight-airframe {
+  position: relative;
+  z-index: 1;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+.flight-gear-part {
+  position: absolute;
+  opacity: 0;
+  transform: rotate(var(--gear-rotation)) scaleY(var(--gear-folded-scale));
+}
+
+.flight-gear-part[data-over-airframe] {
+  z-index: 2;
+  clip-path: inset(var(--gear-clip) 0 0);
+}
+
+.flight-aircraft[data-gear-down] .flight-gear-part {
+  opacity: 1;
+  transform: rotate(0deg) scaleY(1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flight-list:not([data-in-transition]) .flight-aircraft { transition: rotate 420ms ease-out; }
+  .flight-aircraft[data-gear-motion] .flight-gear-part {
+    transition: transform 650ms ease-in-out, opacity 130ms linear 520ms;
+  }
+
+  .flight-aircraft[data-gear-motion][data-gear-down] .flight-gear-part { transition-delay: 0ms; }
+}
+
+.flight-route {
+  display: grid;
+  grid-template-columns: max-content max-content max-content;
+  align-items: start;
+  justify-content: start;
+  gap: var(--route-column-gap);
+}
+
+.flight-picture:has(.flight-art img) .flight-route {
+  position: absolute;
+  inset-block-start: var(--route-top);
+  inset-inline-start: var(--art-left, 4%);
+}
+
+.flight-airport {
+  display: grid;
+  gap: var(--route-gap);
+  font-size: var(--city-size);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.flight-flaps { display: flex; gap: 2px; }
+
+.flight-flaps > span {
+  position: relative;
+  display: grid;
+  inline-size: 0.88em;
+  block-size: var(--flap-height);
+  place-items: center;
+  border-radius: 2px;
+  color: var(--flap-ink);
+  background: var(--flap);
+  font: 700 var(--flap-size)/1 ui-monospace, monospace;
+}
+
+.flight-flaps > span::after {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: 1px;
+  background: var(--flap-seam);
+  content: "";
+}
+
+.flight-city {
+  max-inline-size: var(--city-width, 29cqi);
+  min-block-size: 1.2em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.flight-route .flight-city:empty { display: none; }
+
+.flight-arrival-time {
+  font-size: var(--arrival-time-size);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+.flight-route-arrow {
+  display: grid;
+  block-size: var(--flap-height);
+  align-items: center;
+  font-size: var(--flap-size);
+  line-height: 1;
+}
+
+.flight-motion-layer {
+  position: fixed;
+  z-index: 1;
+  inset: 0;
+  overflow: clip;
+  pointer-events: none;
+}
+
+.flight-motion-layer .flight-aircraft { inset: auto; }
+.flight-art[data-airborne] .flight-aircraft { visibility: hidden; }
+
+.flight-card [data-motion-value] { position: relative; color: transparent; }
+
+.flight-value-overlay {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  color: var(--ink);
+}
+
+.flight-distance .flight-value-overlay,
+.flight-description .flight-value-overlay { color: var(--muted-ink); }
+
+.flight-name .flight-value-overlay,
+.flight-description .flight-value-overlay {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.flight-readout .flight-value-overlay { text-align: end; }
+
+.flight-flaps .flight-value-overlay {
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  background: var(--flap);
+  color: var(--flap-ink);
+}
+
+.flight-flaps .flight-flap-drop {
+  z-index: 1;
+  clip-path: inset(0 0 49%);
+  transform-origin: center;
+}
+
+.flight-list[data-in-transition] .flight-topline { text-shadow: 0 1px 2px var(--paper), 0 0 4px var(--paper); }
+.flight-list[data-in-transition] .flight-track { background: var(--paper); }
+
+@container (max-width: 410px) {
+  .flight-values {
+    display: grid;
+    justify-items: end;
+    gap: 2px;
+  }
+}
+
+@media (max-height: 520px) {
+  .display:has(.flight-list[data-count="3"]:not([hidden])) { --display-inset: 5px; }
+}
+
+@media (max-width: 420px) {
+  .display { --display-start: 58px; }
+  .display:has(.flight-list[data-count="2"]:not([hidden])) { --display-start: var(--display-inset); --display-inset: 68px; }
+  .display:has(.flight-list[data-count="3"]:not([hidden])) { --display-inset: 58px; }
+}

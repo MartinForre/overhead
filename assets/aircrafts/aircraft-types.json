@@ -20,8 +20,11 @@
     "category": "airliner"
   },
   "A223": {
+    "aliasFor": "BCS3"
+  },
+  "A306": {
     "manufacturer": "Airbus",
-    "model": "A220-300",
+    "model": "A300-600",
     "category": "airliner"
   },
   "A318": {
@@ -94,6 +97,26 @@
     "model": "AS350 Écureuil",
     "category": "helicopter"
   },
+  "AT43": {
+    "manufacturer": "ATR",
+    "model": "42-300 / 42-320",
+    "category": "airliner"
+  },
+  "AT72": {
+    "manufacturer": "ATR",
+    "model": "72-200",
+    "category": "airliner"
+  },
+  "AT73": {
+    "manufacturer": "ATR",
+    "model": "72-211 / 72-212",
+    "category": "airliner"
+  },
+  "AT75": {
+    "manufacturer": "ATR",
+    "model": "72-500",
+    "category": "airliner"
+  },
   "AT76": {
     "manufacturer": "ATR",
     "model": "72-600",
@@ -107,6 +130,11 @@
   "B39M": {
     "manufacturer": "Boeing",
     "model": "737 MAX 9",
+    "category": "airliner"
+  },
+  "B734": {
+    "manufacturer": "Boeing",
+    "model": "737-400",
     "category": "airliner"
   },
   "B737": {
@@ -137,6 +165,11 @@
   "B752": {
     "manufacturer": "Boeing",
     "model": "757-200",
+    "category": "airliner"
+  },
+  "B762": {
+    "manufacturer": "Boeing",
+    "model": "767-200",
     "category": "airliner"
   },
   "B763": {
@@ -192,12 +225,12 @@
   "DA42": {
     "manufacturer": "Diamond",
     "model": "DA42",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "DA62": {
     "manufacturer": "Diamond",
     "model": "DA62",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "DH8A": {
     "manufacturer": "De Havilland Canada",
@@ -290,6 +323,11 @@
     "model": "206 JetRanger / LongRanger",
     "category": "helicopter"
   },
+  "B222": {
+    "manufacturer": "Bell",
+    "model": "222",
+    "category": "helicopter"
+  },
   "B407": {
     "manufacturer": "Bell",
     "model": "407",
@@ -303,17 +341,17 @@
   "BE20": {
     "manufacturer": "Beechcraft",
     "model": "King Air 200",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "BE36": {
     "manufacturer": "Beechcraft",
     "model": "Bonanza 36",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "BE58": {
     "manufacturer": "Beechcraft",
     "model": "Baron 58",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C130": {
     "manufacturer": "Lockheed",
@@ -323,12 +361,12 @@
   "C150": {
     "manufacturer": "Cessna",
     "model": "150",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C152": {
     "manufacturer": "Cessna",
     "model": "152",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C17": {
     "manufacturer": "Boeing",
@@ -338,47 +376,67 @@
   "C172": {
     "manufacturer": "Cessna",
     "model": "172 Skyhawk",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C182": {
     "manufacturer": "Cessna",
     "model": "182 Skylane",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C185": {
     "manufacturer": "Cessna",
     "model": "185 Skywagon",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C206": {
     "manufacturer": "Cessna",
     "model": "206 Stationair",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "C208": {
     "manufacturer": "Cessna",
     "model": "208 Caravan / Grand Caravan",
-    "category": "fixed-wing"
+    "category": "general-aviation"
+  },
+  "C408": {
+    "manufacturer": "Cessna",
+    "model": "408 SkyCourier",
+    "category": "general-aviation"
   },
   "C30J": {
     "manufacturer": "Lockheed Martin",
     "model": "C-130J Super Hercules",
     "category": "fixed-wing"
   },
+  "CONC": {
+    "manufacturer": "Aérospatiale / BAC",
+    "model": "Concorde",
+    "category": "airliner"
+  },
+  "DC3": {
+    "manufacturer": "Douglas",
+    "model": "DC-3 / Dakota",
+    "category": "fixed-wing"
+  },
   "DA40": {
     "manufacturer": "Diamond",
     "model": "DA40 Diamond Star",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "DHC2": {
     "manufacturer": "de Havilland Canada",
     "model": "DHC-2 Beaver",
+    "category": "general-aviation"
+  },
+  "DHC6": {
+    "manufacturer": "de Havilland Canada",
+    "model": "DHC-6 Twin Otter",
     "category": "fixed-wing"
   },
   "DV20": {
     "manufacturer": "Diamond",
     "model": "DA20 Katana / Eclipse",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "E3TF": {
     "manufacturer": "Boeing",
@@ -395,6 +453,11 @@
     "model": "Typhoon",
     "category": "fixed-wing",
     "role": "fighter-jet"
+  },
+  "F406": {
+    "manufacturer": "Reims-Cessna",
+    "model": "F406 Caravan II",
+    "category": "general-aviation"
   },
   "F104": {
     "manufacturer": "Lockheed",
@@ -478,12 +541,12 @@
   "HUSK": {
     "manufacturer": "Aviat",
     "model": "A-1 Husky",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "IKAR": {
     "manufacturer": "Comco Ikarus",
     "model": "C42",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "K35R": {
     "manufacturer": "Boeing",
@@ -493,7 +556,12 @@
   "LA4": {
     "manufacturer": "Lake",
     "model": "LA-4 Buccaneer",
-    "category": "fixed-wing"
+    "category": "general-aviation"
+  },
+  "MD11": {
+    "manufacturer": "McDonnell Douglas",
+    "model": "MD-11",
+    "category": "airliner"
   },
   "MIR2": {
     "manufacturer": "Dassault",
@@ -509,12 +577,12 @@
   "P28A": {
     "manufacturer": "Piper",
     "model": "PA-28 Cherokee / Warrior / Archer",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "P28R": {
     "manufacturer": "Piper",
     "model": "PA-28R Arrow",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "P3": {
     "manufacturer": "Lockheed",
@@ -527,25 +595,30 @@
     "category": "fixed-wing",
     "role": "propeller-fighter"
   },
+  "P8": {
+    "manufacturer": "Boeing",
+    "model": "P-8 Poseidon",
+    "category": "fixed-wing"
+  },
   "PA18": {
     "manufacturer": "Piper",
     "model": "PA-18 Super Cub",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "PA32": {
     "manufacturer": "Piper",
     "model": "PA-32 Cherokee Six / Saratoga",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "PA34": {
     "manufacturer": "Piper",
     "model": "PA-34 Seneca",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "PC12": {
     "manufacturer": "Pilatus",
     "model": "PC-12",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "R22": {
     "manufacturer": "Robinson",
@@ -571,7 +644,7 @@
   "RV7": {
     "manufacturer": "Van's Aircraft",
     "model": "RV-7 / RV-7A",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "SB29": {
     "manufacturer": "Saab",
@@ -600,7 +673,7 @@
   "SF50": {
     "manufacturer": "Cirrus",
     "model": "SF50 Vision Jet",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "SPIT": {
     "manufacturer": "Supermarine",
@@ -611,17 +684,17 @@
   "SR20": {
     "manufacturer": "Cirrus",
     "model": "SR20",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "SR22": {
     "manufacturer": "Cirrus",
     "model": "SR22",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "SREY": {
     "manufacturer": "Progressive Aerodyne",
     "model": "SeaRey",
-    "category": "fixed-wing"
+    "category": "general-aviation"
   },
   "TOR": {
     "manufacturer": "Panavia",

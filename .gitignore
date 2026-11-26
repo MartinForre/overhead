@@ -9,6 +9,8 @@ node_modules/
 !.env.example
 !.env.*.example
 *.local
+/overhead.config.json
+/overhead.config.json.tmp
 
 # Logs and test output
 *.log

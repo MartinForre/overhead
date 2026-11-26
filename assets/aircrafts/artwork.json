@@ -42,6 +42,14 @@
       "status": "ready",
       "referenceIllustration": "aw189-lufttransport-offshore"
     },
+    "aw189-chc-helikopter-service": {
+      "icaoType": "A189",
+      "livery": "CHC Helikopter Service",
+      "airframeOnly": true,
+      "path": "helicopters/aw189-chc-helikopter-service.png",
+      "status": "ready",
+      "reference": "https://aircraftregister.net/aircraft/LN-OPA/photo/17193"
+    },
     "h145-norsk-luftambulanse-yellow": {
       "icaoType": "EC45",
       "livery": "Norsk Luftambulanse operational yellow",
@@ -102,7 +110,8 @@
       "icaoType": "A20N",
       "livery": "Scandinavian Airlines",
       "operatorIcaoCodes": [
-        "SAS"
+        "SAS",
+        "SZS"
       ],
       "path": "airliners/a320neo-sas.png",
       "status": "ready"
@@ -131,6 +140,61 @@
       ],
       "path": "helicopters/s92-bristow-norway-offshore.png",
       "status": "ready"
+    },
+    "s92-bristow-norway-rescue": {
+      "icaoType": "S92",
+      "aircraft": "Sikorsky S-92A",
+      "livery": "Bristow Norway offshore rescue",
+      "airframeOnly": true,
+      "path": "helicopters/s92-bristow-norway-rescue.png",
+      "status": "ready",
+      "reference": "https://www.aeroboek.nl/S92/920126.HTM"
+    },
+    "s92-bristow-norway-red-rescue": {
+      "icaoType": "S92",
+      "aircraft": "Sikorsky S-92A",
+      "livery": "Bristow Norway red-and-white rescue",
+      "airframeOnly": true,
+      "path": "helicopters/s92-bristow-norway-red-rescue.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11295200",
+      "referenceIllustration": "s92-bristow-norway-rescue"
+    },
+    "s92-bristow-norway-red-nose-rescue": {
+      "icaoType": "S92",
+      "aircraft": "Sikorsky S-92A",
+      "livery": "Bristow Norway red-nosed rescue",
+      "airframeOnly": true,
+      "path": "helicopters/s92-bristow-norway-red-nose-rescue.png",
+      "status": "ready",
+      "reference": "https://www.aeroboek.nl/S92/920124.HTM",
+      "referenceIllustration": "s92-bristow-norway-red-rescue"
+    },
+    "s92-bristow-norway-orange-rescue": {
+      "icaoType": "S92",
+      "aircraft": "Sikorsky S-92A",
+      "livery": "Bristow Norway orange-and-white rescue",
+      "airframeOnly": true,
+      "path": "helicopters/s92-bristow-norway-orange-rescue.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11206047",
+      "referenceIllustration": "s92-bristow-norway-red-rescue"
+    },
+    "dhc6-twin-otter-neutral": {
+      "icaoType": "DHC6",
+      "livery": "Neutral",
+      "path": "airliners/dhc6-twin-otter-neutral.png",
+      "status": "ready",
+      "reference": "https://dehavilland.com/wp-content/uploads/2025/09/DHC_Twin_Otter_300-G_WHEELS_Spec_Sheet_v2_DIGITAL.pdf"
+    },
+    "dhc6-nordic-seaplanes-9h-ocean": {
+      "icaoType": "DHC6",
+      "aircraft": "de Havilland Canada DHC-6 Twin Otter on twin floats",
+      "livery": "Nordic Seaplanes",
+      "airframeOnly": true,
+      "path": "seaplanes/dhc6-nordic-seaplanes-9h-ocean.png",
+      "status": "ready",
+      "reference": "https://www.oy-reg.dk/register/6749.html"
     },
     "generic-fixed-wing": {
       "category": "fixed-wing",
@@ -2249,6 +2313,18 @@
       "status": "ready",
       "reference": "https://www.finnair.com/en/flight-information/finnair-fleet"
     },
+    "atr72-500-finnair": {
+      "icaoType": "AT75",
+      "livery": "Finnair",
+      "operatorIcaoCodes": [
+        "FIN",
+        "FCM"
+      ],
+      "path": "airliners/atr72-500-finnair.png",
+      "status": "ready",
+      "reference": "https://www.finnair.com/en/flight-information/finnair-fleet",
+      "referenceIllustration": "atr72-600-neutral"
+    },
     "e190-finnair": {
       "icaoType": "E190",
       "livery": "Finnair",
@@ -2782,6 +2858,14 @@
       "status": "ready",
       "reference": "https://www.piper.com/wp-content/uploads/2025/03/753-755-Customer-Service-Info-File-10.pdf"
     },
+    "piper-pa18-super-cub-n7883d": {
+      "icaoType": "PA18",
+      "livery": "Snow-dusted yellow and black with Marty Meierotto in the cockpit",
+      "airframeOnly": true,
+      "path": "general-aviation/piper-pa18-super-cub-n7883d.png",
+      "status": "ready",
+      "reference": "https://www.youtube.com/watch?v=_kYQhoNX2FU"
+    },
     "piper-pa28r-arrow-neutral": {
       "icaoType": "P28R",
       "livery": "Neutral",
@@ -3242,7 +3326,7 @@
       "reference": "https://www.forsvaret.no/aktuelt-og-presse/aktuelt/rask-respons-hercules-fly-i-lufta-mot-jan-mayen-etter-to-timer"
     },
     "p8a-poseidon-royal-norwegian-air-force": {
-      "icaoType": "B738",
+      "icaoType": "P8",
       "aircraft": "Boeing P-8A Poseidon",
       "livery": "Royal Norwegian Air Force colors, unmarked",
       "airframeOnly": true,
@@ -3314,9 +3398,876 @@
       "path": "military/f14a-tomcat-us-navy.png",
       "status": "ready",
       "reference": "https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/f/f-14a-tomcat.html"
+    },
+    "737-800sf-compass-air-cargo": {
+      "icaoType": "B738",
+      "aircraft": "Boeing 737-800SF",
+      "livery": "Compass Air Cargo standard",
+      "operatorIcaoCodes": [
+        "ADZ"
+      ],
+      "path": "airliners/737-800sf-compass-air-cargo.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12205986"
+    },
+    "747-400f-compass-air-cargo": {
+      "icaoType": "B744",
+      "aircraft": "Boeing 747-400F",
+      "livery": "Compass Air Cargo standard",
+      "airframeOnly": true,
+      "path": "airliners/747-400f-compass-air-cargo.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11813478"
+    },
+    "747-400erf-compass-air-cargo": {
+      "icaoType": "B744",
+      "aircraft": "Boeing 747-400ERF",
+      "livery": "Compass Air Cargo standard",
+      "airframeOnly": true,
+      "path": "airliners/747-400erf-compass-air-cargo.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12192508"
+    },
+    "a300-600f-dhl": {
+      "icaoType": "A306",
+      "aircraft": "Airbus A300-600F",
+      "livery": "DHL Express standard red and yellow",
+      "operatorIcaoCodes": [
+        "BCS"
+      ],
+      "path": "airliners/a300-600f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12250745"
+    },
+    "a330-200f-dhl": {
+      "icaoType": "A332",
+      "aircraft": "Airbus A330-200F",
+      "livery": "DHL Express red and yellow with Air Hong Kong titles",
+      "airframeOnly": true,
+      "path": "airliners/a330-200f-dhl.png",
+      "status": "ready",
+      "reference": "https://aeroxplorer.com/viewphoto.php?id=14573"
+    },
+    "a330-300p2f-dhl": {
+      "icaoType": "A333",
+      "aircraft": "Airbus A330-300P2F",
+      "livery": "DHL Express standard red and yellow",
+      "operatorIcaoCodes": [
+        "BCS"
+      ],
+      "path": "airliners/a330-300p2f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11216343"
+    },
+    "atr42-300f-dhl": {
+      "icaoType": "AT43",
+      "aircraft": "ATR 42-300F",
+      "livery": "DHL Express standard red and yellow",
+      "operatorIcaoCodes": [
+        "JOS"
+      ],
+      "path": "airliners/atr42-300f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1999632/tg-dhg-dhl-aviation-atr-42-300-f"
+    },
+    "atr72-500f-dhl": {
+      "icaoType": "AT75",
+      "aircraft": "ATR 72-500F",
+      "livery": "DHL Express standard red and yellow",
+      "airframeOnly": true,
+      "path": "airliners/atr72-500f-dhl.png",
+      "status": "ready",
+      "reference": "https://newsaero.info/airlines/gabon-acia-aero-livre-un-atr72-500-converti-en-cargo-solenta-aviation-pour-le-compte-de-dhl-express?true=6795"
+    },
+    "737-400sf-dhl": {
+      "icaoType": "B734",
+      "aircraft": "Boeing 737-400SF",
+      "livery": "DHL Express red and yellow, operated by Swiftair",
+      "airframeOnly": true,
+      "path": "airliners/737-400sf-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12231753"
+    },
+    "737-800bcf-dhl": {
+      "icaoType": "B738",
+      "aircraft": "Boeing 737-800BCF",
+      "livery": "DHL Express red and yellow, operated by DHL International Aviation Middle East",
+      "airframeOnly": true,
+      "path": "airliners/737-800bcf-dhl.png",
+      "status": "ready",
+      "reference": "https://www.planespotters.net/photo/1512464/a9c-txz-dhl-aviation-boeing-737-8as-bcf-wl"
+    },
+    "747-400bcf-dhl-kalitta": {
+      "icaoType": "B744",
+      "aircraft": "Boeing 747-400BCF",
+      "livery": "Kalitta Air white forward fuselage with DHL yellow aft fuselage and tail",
+      "airframeOnly": true,
+      "path": "airliners/747-400bcf-dhl-kalitta.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12211589"
+    },
+    "747-8f-dhl-polar": {
+      "icaoType": "B748",
+      "aircraft": "Boeing 747-8F",
+      "livery": "Polar Air Cargo white forward fuselage and blue titles with DHL yellow tail",
+      "airframeOnly": true,
+      "path": "airliners/747-8f-dhl-polar.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11084118"
+    },
+    "757-200f-dhl": {
+      "icaoType": "B752",
+      "aircraft": "Boeing 757-200F",
+      "livery": "DHL Express standard red and yellow, with winglets",
+      "operatorIcaoCodes": [
+        "DHA",
+        "DHK"
+      ],
+      "path": "airliners/757-200f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/10635954"
+    },
+    "767-200bdsf-dhl": {
+      "icaoType": "B762",
+      "aircraft": "Boeing 767-200BDSF",
+      "livery": "DHL Express red and yellow, operated by ABX Air",
+      "airframeOnly": true,
+      "path": "airliners/767-200bdsf-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12135339"
+    },
+    "767-300f-dhl": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300F",
+      "livery": "DHL Express standard red and yellow",
+      "operatorIcaoCodes": [
+        "DHA",
+        "DHK"
+      ],
+      "path": "airliners/767-300f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.airhistory.net/photo/850494/G-DHLE"
+    },
+    "777f-dhl": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "DHL Express standard red and yellow",
+      "operatorIcaoCodes": [
+        "DHK"
+      ],
+      "path": "airliners/777f-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/12032346"
+    },
+    "cessna-208b-super-cargomaster-dhl": {
+      "icaoType": "C208",
+      "aircraft": "Cessna 208B Super Cargomaster",
+      "livery": "DHL Express red and yellow, operated by Kingfisher Air Services",
+      "airframeOnly": true,
+      "path": "general-aviation/cessna-208b-super-cargomaster-dhl.png",
+      "status": "ready",
+      "reference": "https://www.netairspace.cc/photos/N960HL/DHL_Kingfisher_Air_Services/Cessna_208B_Super_Cargomaster/SJU_TJSJ_San_Juan_Luis_Munoz_Marin_International/photo_287133/"
+    },
+    "f406-caravan-ii-dhl": {
+      "icaoType": "F406",
+      "aircraft": "Reims-Cessna F406 Caravan II",
+      "livery": "DHL Express red and yellow, operated by Westair Aviation",
+      "airframeOnly": true,
+      "path": "general-aviation/f406-caravan-ii-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/registration/V5-WAY"
+    },
+    "atr72-200f-dhl": {
+      "icaoType": "AT72",
+      "aircraft": "ATR 72-200F",
+      "livery": "DHL Express standard red and yellow",
+      "airframeOnly": true,
+      "path": "airliners/atr72-200f-dhl.png",
+      "status": "ready",
+      "reference": "https://commons.wikimedia.org/wiki/File:DHLATRinDGAA.jpg"
+    },
+    "bell-206b-jetranger-dhl": {
+      "icaoType": "B06",
+      "aircraft": "Bell 206B JetRanger II",
+      "livery": "DHL Express red and yellow, operated by East End Helicopter",
+      "airframeOnly": true,
+      "path": "helicopters/bell-206b-jetranger-dhl.png",
+      "status": "ready",
+      "reference": "https://www.jetphotos.com/photo/11549123"
+    },
+    "777f-dhl-kalitta": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "Kalitta Air white forward fuselage with DHL yellow aft fuselage and tail",
+      "airframeOnly": true,
+      "path": "airliners/777f-dhl-kalitta.png",
+      "status": "ready",
+      "reference": "https://www.pactl.com/en/col199/list"
+    },
+    "a300-600f-fedex": {
+      "icaoType": "A306",
+      "aircraft": "Airbus A300-600F",
+      "livery": "FedEx Express standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX"
+      ],
+      "path": "airliners/a300-600f-fedex.png",
+      "status": "planned",
+      "reference": "https://www.airhistory.net/registration/N650FE"
+    },
+    "757-200sf-fedex": {
+      "icaoType": "B752",
+      "aircraft": "Boeing 757-200SF",
+      "livery": "FedEx Express standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX"
+      ],
+      "path": "airliners/757-200sf-fedex.png",
+      "status": "planned",
+      "reference": "https://aeroxplorer.com/viewphoto.php?id=50279"
+    },
+    "767-300f-fedex": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300F",
+      "livery": "FedEx Express standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX"
+      ],
+      "path": "airliners/767-300f-fedex.png",
+      "status": "planned",
+      "reference": "https://www.aeroxplorer.com/viewphoto.php?id=19679"
+    },
+    "777f-fedex": {
+      "icaoType": "B77L",
+      "aircraft": "Boeing 777F",
+      "livery": "FedEx Express standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX"
+      ],
+      "path": "airliners/777f-fedex.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/11930582"
+    },
+    "md11f-fedex": {
+      "icaoType": "MD11",
+      "aircraft": "McDonnell Douglas MD-11F",
+      "livery": "FedEx Express standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX"
+      ],
+      "path": "airliners/md11f-fedex.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/11230915"
+    },
+    "atr42-300f-fedex-feeder": {
+      "icaoType": "AT43",
+      "aircraft": "ATR 42-300F / 42-320F",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "airliners/atr42-300f-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://www.planespotters.net/airframe/atr-42-n906fx-fedex-feeder/ej41zk"
+    },
+    "atr72-202f-fedex-feeder": {
+      "icaoType": "AT72",
+      "aircraft": "ATR 72-202F",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "airliners/atr72-202f-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/5626124"
+    },
+    "atr72-212f-fedex-feeder": {
+      "icaoType": "AT73",
+      "aircraft": "ATR 72-212F",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "airliners/atr72-212f-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/11061346"
+    },
+    "atr72-600f-fedex-feeder": {
+      "icaoType": "AT76",
+      "aircraft": "ATR 72-600F",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "airliners/atr72-600f-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/11120071"
+    },
+    "cessna-208b-super-cargomaster-fedex-feeder": {
+      "icaoType": "C208",
+      "aircraft": "Cessna 208B Super Cargomaster",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "general-aviation/cessna-208b-super-cargomaster-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://www.airhistory.net/photo/350177/N766FE"
+    },
+    "cessna-408-skycourier-fedex-feeder": {
+      "icaoType": "C408",
+      "aircraft": "Cessna 408 SkyCourier Freighter",
+      "livery": "FedEx Feeder standard purple and orange",
+      "operatorIcaoCodes": [
+        "FDX",
+        "MTN"
+      ],
+      "path": "general-aviation/cessna-408-skycourier-fedex-feeder.png",
+      "status": "planned",
+      "reference": "https://investor.textron.com/news-releases/news-details/2022/Textron-Aviation-Celebrates-First-Delivery-of-the-New-Cessna-SkyCourier-to-Launch-Customer-FedEx-Express-05-09-2022/default.aspx"
+    },
+    "737-800bcf-fedex": {
+      "icaoType": "B738",
+      "aircraft": "Boeing 737-800BCF",
+      "livery": "FedEx Express standard purple and orange",
+      "airframeOnly": true,
+      "path": "airliners/737-800bcf-fedex.png",
+      "status": "planned",
+      "reference": "https://www.planespotters.net/photo/1977059/oe-iwe-fedex-express-boeing-737-8as-bcf-wl"
+    },
+    "a300-600f-ups": {
+      "icaoType": "A306",
+      "aircraft": "Airbus A300-600F",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "operatorIcaoCodes": [
+        "UPS"
+      ],
+      "path": "airliners/a300-600f-ups.png",
+      "status": "planned",
+      "reference": "https://flightcatcherpro.com/photos/reg/N170UP"
+    },
+    "757-200pf-ups": {
+      "icaoType": "B752",
+      "aircraft": "Boeing 757-200PF",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "operatorIcaoCodes": [
+        "UPS"
+      ],
+      "path": "airliners/757-200pf-ups.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/12022678"
+    },
+    "767-300f-ups": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300F",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "operatorIcaoCodes": [
+        "UPS"
+      ],
+      "path": "airliners/767-300f-ups.png",
+      "status": "planned",
+      "reference": "https://www.planespotters.net/photo/1904839/n913up-united-parcel-service-ups-boeing-767-300f"
+    },
+    "767-300f-winglets-ups": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300F (blended winglets)",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "airframeOnly": true,
+      "path": "airliners/767-300f-winglets-ups.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/11386728"
+    },
+    "767-300erbcf-ups": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER(BCF)",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "airframeOnly": true,
+      "path": "airliners/767-300erbcf-ups.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/12248674"
+    },
+    "767-300erbdsf-ups": {
+      "icaoType": "B763",
+      "aircraft": "Boeing 767-300ER(BDSF)",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "airframeOnly": true,
+      "path": "airliners/767-300erbdsf-ups.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/10118546"
+    },
+    "747-400f-ups": {
+      "icaoType": "B744",
+      "aircraft": "Boeing 747-400F",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "operatorIcaoCodes": [
+        "UPS"
+      ],
+      "path": "airliners/747-400f-ups.png",
+      "status": "planned",
+      "reference": "https://www.jetphotos.com/photo/10438387"
+    },
+    "747-400bcf-ups": {
+      "icaoType": "B744",
+      "aircraft": "Boeing 747-400BCF",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "airframeOnly": true,
+      "path": "airliners/747-400bcf-ups.png",
+      "status": "planned",
+      "reference": "https://commons.wikimedia.org/wiki/Category:N578UP_(aircraft)"
+    },
+    "747-8f-ups": {
+      "icaoType": "B748",
+      "aircraft": "Boeing 747-8F",
+      "livery": "UPS Worldwide Services standard white, brown and gold",
+      "operatorIcaoCodes": [
+        "UPS"
+      ],
+      "path": "airliners/747-8f-ups.png",
+      "status": "planned",
+      "reference": "https://www.airhistory.net/photo/511919/N629UP"
+    },
+    "bell-222-airwolf": {
+      "icaoType": "B222",
+      "livery": "Airwolf",
+      "path": "helicopters/bell-222-airwolf.png",
+      "status": "ready",
+      "reference": "https://digital.library.unt.edu/ark:/67531/metadc1706166/"
+    },
+    "hughes-500d-island-hoppers": {
+      "icaoType": "H500",
+      "aircraft": "Hughes 500D",
+      "livery": "Island Hoppers with T.C. in the cockpit",
+      "path": "helicopters/hughes-500d-island-hoppers.png",
+      "status": "ready",
+      "reference": "https://paradisecopters.com/news/Magnum-helicopter-flying-over-oahu"
+    },
+    "douglas-dc3-buffalo-airways": {
+      "icaoType": "DC3",
+      "aircraft": "Douglas DC-3",
+      "livery": "Buffalo Airways, C-GPNR with winter frost",
+      "path": "airliners/douglas-dc3-buffalo-airways.png",
+      "status": "ready",
+      "reference": "https://buffaloairways.com/fleet/"
+    },
+    "douglas-c53d-dakota-norway-ln-wnd": {
+      "icaoType": "DC3",
+      "aircraft": "Douglas C-53D Dakota",
+      "livery": "Dakota Norway Little Egypt, LN-WND",
+      "airframeOnly": true,
+      "path": "airliners/douglas-c53d-dakota-norway-ln-wnd.png",
+      "status": "ready",
+      "reference": "https://dakotanorway.no/"
+    },
+    "f14a-tomcat-top-gun": {
+      "icaoType": "F14",
+      "aircraft": "Grumman F-14A Tomcat",
+      "livery": "Top Gun VF-1 114 with Maverick and Goose",
+      "path": "military/f14a-tomcat-top-gun.png",
+      "status": "ready",
+      "reference": "https://backend.carrera-revell-toys.com/var/assets/_default_upload_bucket/85_5872.pdf"
+    },
+    "concorde-british-airways-g-boag": {
+      "icaoType": "CONC",
+      "aircraft": "Concorde",
+      "livery": "British Airways G-BOAG in flight",
+      "path": "airliners/concorde-british-airways-g-boag.png",
+      "status": "ready",
+      "reference": "https://www.museumofflight.org/Exhibits-and-Events/Aircraft/concorde"
+    },
+    "zeppelin-lz129-hindenburg": {
+      "aircraft": "Zeppelin LZ 129 Hindenburg",
+      "category": "airship",
+      "path": "airships/zeppelin-lz129-hindenburg.png",
+      "status": "ready",
+      "reference": "https://airandspace.si.edu/collection-archive/zeppelin-lz-129-hindenburg-memorabilia/sova-nasm-xxxx-1009"
+    },
+    "lockheed-sr71a-blackbird-nasa-844": {
+      "aircraft": "Lockheed SR-71A Blackbird",
+      "category": "fixed-wing",
+      "livery": "NASA 844",
+      "path": "experimental/lockheed-sr71a-blackbird-nasa-844.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/image-detail/sr-71-blackbird-13/"
+    },
+    "north-american-xb70a-valkyrie": {
+      "aircraft": "North American XB-70A Valkyrie",
+      "category": "fixed-wing",
+      "livery": "NASA 20001",
+      "path": "experimental/north-american-xb70a-valkyrie.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/image-article/level-cruise-flight-mode-xb-70/"
+    },
+    "north-american-x15": {
+      "aircraft": "North American X-15",
+      "category": "fixed-wing",
+      "livery": "NASA and U.S. Air Force, aircraft 66671",
+      "path": "experimental/north-american-x15.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/image-article/x-15a-2-with-rocket-engine-ignited/"
+    },
+    "wallis-wa116-little-nellie": {
+      "aircraft": "Wallis WA-116",
+      "category": "rotorcraft",
+      "livery": "Little Nellie from You Only Live Twice",
+      "path": "rotorcraft/wallis-wa116-little-nellie.png",
+      "status": "ready",
+      "reference": "https://www.007.com/you-only-live-twice-2/"
+    },
+    "boeing-747-shuttle-carrier-enterprise": {
+      "aircraft": "Boeing 747 Shuttle Carrier Aircraft",
+      "category": "fixed-wing",
+      "livery": "NASA 905 carrying Space Shuttle Enterprise",
+      "path": "airliners/boeing-747-shuttle-carrier-enterprise.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/image-article/space-shuttle-prototype-approach-landing-tests-8/"
+    },
+    "space-shuttle-discovery": {
+      "aircraft": "Space Shuttle Discovery",
+      "category": "spacecraft",
+      "livery": "NASA, OV-103",
+      "path": "spacecraft/space-shuttle-discovery.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/image-detail/amf-201103090003hq/"
+    },
+    "antonov-an225-mriya": {
+      "aircraft": "Antonov An-225 Mriya",
+      "category": "fixed-wing",
+      "livery": "Antonov Airlines UR-82060",
+      "path": "airliners/antonov-an225-mriya.png",
+      "status": "ready",
+      "reference": "https://commons.wikimedia.org/wiki/File:Antonov_An-225_Beltyukov-1.jpg"
+    },
+    "douglas-c47-dalton-air": {
+      "aircraft": "Douglas C-47A Skytrain",
+      "category": "fixed-wing",
+      "livery": "Dalton Air N3FY from MacGyver",
+      "path": "airliners/douglas-c47-dalton-air.png",
+      "status": "ready",
+      "reference": "https://impdb.org/index.php/MacGyver#Douglas_DC-3C"
+    },
+    "saturn-v-apollo-11": {
+      "aircraft": "Saturn V",
+      "category": "spacecraft",
+      "livery": "Apollo 11, SA-506",
+      "path": "spacecraft/saturn-v-apollo-11.png",
+      "status": "ready",
+      "reference": "https://www.nasa.gov/wp-content/uploads/static/history/ap11ann/kippsphotos/saturn5.html"
+    },
+    "apollo-11-lunar-module-eagle": {
+      "aircraft": "Apollo Lunar Module Eagle",
+      "category": "spacecraft",
+      "livery": "Apollo 11, LM-5",
+      "path": "spacecraft/apollo-11-lunar-module-eagle.png",
+      "status": "ready",
+      "reference": "https://science.nasa.gov/resource/the-eagle-prepares-to-land/"
     }
   },
   "airframes": {
+    "A37EFC": {
+      "registration": "N324UP",
+      "illustration": "767-300f-winglets-ups"
+    },
+    "A95C8F": {
+      "registration": "N702FX",
+      "illustration": "cessna-208b-super-cargomaster-fedex-feeder"
+    },
+    "A88D3C": {
+      "registration": "N650FE",
+      "illustration": "a300-600f-fedex"
+    },
+    "ACB12D": {
+      "registration": "N917FD",
+      "illustration": "757-200sf-fedex"
+    },
+    "A18A1C": {
+      "registration": "N199FE",
+      "illustration": "767-300f-fedex"
+    },
+    "AC638D": {
+      "registration": "N898FD",
+      "illustration": "777f-fedex"
+    },
+    "A80CF8": {
+      "registration": "N618FE",
+      "illustration": "md11f-fedex"
+    },
+    "AC7AE4": {
+      "registration": "N903FX",
+      "illustration": "atr42-300f-fedex-feeder"
+    },
+    "AC8609": {
+      "registration": "N906FX",
+      "illustration": "atr42-300f-fedex-feeder"
+    },
+    "AC912E": {
+      "registration": "N909FX",
+      "illustration": "atr42-300f-fedex-feeder"
+    },
+    "AB09EF": {
+      "registration": "N810FX",
+      "illustration": "atr72-202f-fedex-feeder"
+    },
+    "AB0DA6": {
+      "registration": "N811FX",
+      "illustration": "atr72-202f-fedex-feeder"
+    },
+    "AAE627": {
+      "registration": "N801FX",
+      "illustration": "atr72-212f-fedex-feeder"
+    },
+    "AAE9DE": {
+      "registration": "N802FX",
+      "illustration": "atr72-212f-fedex-feeder"
+    },
+    "AB316E": {
+      "registration": "N820FX",
+      "illustration": "atr72-212f-fedex-feeder"
+    },
+    "A958C7": {
+      "registration": "N701FE",
+      "illustration": "atr72-600f-fedex-feeder"
+    },
+    "A95C7E": {
+      "registration": "N702FE",
+      "illustration": "atr72-600f-fedex-feeder"
+    },
+    "A96035": {
+      "registration": "N703FE",
+      "illustration": "atr72-600f-fedex-feeder"
+    },
+    "A96B5A": {
+      "registration": "N706FE",
+      "illustration": "atr72-600f-fedex-feeder"
+    },
+    "A4CADB": {
+      "registration": "N408FE",
+      "illustration": "cessna-408-skycourier-fedex-feeder"
+    },
+    "39A207": {
+      "registration": "F-HIQH",
+      "illustration": "737-800bcf-fedex"
+    },
+    "4076E0": {
+      "registration": "G-NPTD",
+      "illustration": "737-800bcf-fedex"
+    },
+    "440B2F": {
+      "registration": "OE-IWE",
+      "illustration": "737-800bcf-fedex"
+    },
+    "440B30": {
+      "registration": "OE-IWF",
+      "illustration": "737-800bcf-fedex"
+    },
+    "440B61": {
+      "registration": "OE-IXA",
+      "illustration": "737-800bcf-fedex"
+    },
+    "440CEC": {
+      "registration": "OE-IXF",
+      "illustration": "737-800bcf-fedex"
+    },
+    "44A6E4": {
+      "registration": "OO-IWD",
+      "illustration": "737-800bcf-fedex"
+    },
+    "39A203": {
+      "registration": "F-HIQD",
+      "illustration": "737-800bcf-fedex"
+    },
+    "A11AFD": {
+      "registration": "N170UP",
+      "illustration": "a300-600f-ups"
+    },
+    "A59F22": {
+      "registration": "N461UP",
+      "illustration": "757-200pf-ups"
+    },
+    "ACA3A0": {
+      "registration": "N913UP",
+      "illustration": "767-300f-ups"
+    },
+    "A3F1C2": {
+      "registration": "N353UP",
+      "illustration": "767-300f-winglets-ups"
+    },
+    "A4158A": {
+      "registration": "N362UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A41941": {
+      "registration": "N363UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A41CF8": {
+      "registration": "N364UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A49375": {
+      "registration": "N394UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A49AE3": {
+      "registration": "N396UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A49E9A": {
+      "registration": "N397UP",
+      "illustration": "767-300erbcf-ups"
+    },
+    "A48850": {
+      "registration": "N391UP",
+      "illustration": "767-300erbdsf-ups"
+    },
+    "A48C07": {
+      "registration": "N392UP",
+      "illustration": "767-300erbdsf-ups"
+    },
+    "A48FBE": {
+      "registration": "N393UP",
+      "illustration": "767-300erbdsf-ups"
+    },
+    "A4972C": {
+      "registration": "N395UP",
+      "illustration": "767-300erbdsf-ups"
+    },
+    "A75039": {
+      "registration": "N570UP",
+      "illustration": "747-400f-ups"
+    },
+    "A76DF1": {
+      "registration": "N578UP",
+      "illustration": "747-400bcf-ups"
+    },
+    "A771A8": {
+      "registration": "N579UP",
+      "illustration": "747-400bcf-ups"
+    },
+    "A8397C": {
+      "registration": "N629UP",
+      "illustration": "747-8f-ups"
+    },
+    "201053": {
+      "registration": "V5-WAY",
+      "illustration": "f406-caravan-ii-dhl"
+    },
+    "346489": {
+      "registration": "EC-NLU",
+      "illustration": "737-400sf-dhl"
+    },
+    "452101": {
+      "registration": "LZ-CXB",
+      "illustration": "737-800sf-compass-air-cargo"
+    },
+    "452112": {
+      "registration": "LZ-CXC",
+      "illustration": "737-800sf-compass-air-cargo"
+    },
+    "452149": {
+      "registration": "LZ-CJA",
+      "illustration": "747-400f-compass-air-cargo"
+    },
+    "452180": {
+      "registration": "LZ-CJB",
+      "illustration": "747-400erf-compass-air-cargo"
+    },
+    "452181": {
+      "registration": "LZ-CJC",
+      "illustration": "747-400erf-compass-air-cargo"
+    },
+    "789251": {
+      "registration": "B-LDS",
+      "illustration": "a330-200f-dhl"
+    },
+    "4520EA": {
+      "registration": "LZ-CXA",
+      "illustration": "737-800sf-compass-air-cargo"
+    },
+    "45212D": {
+      "registration": "LZ-CXD",
+      "illustration": "737-800sf-compass-air-cargo"
+    },
+    "3C5425": {
+      "registration": "D-AEAE",
+      "illustration": "a300-600f-dhl"
+    },
+    "3C68CB": {
+      "registration": "D-AJFK",
+      "illustration": "a330-300p2f-dhl"
+    },
+    "0B437B": {
+      "registration": "TG-DHG",
+      "illustration": "atr42-300f-dhl"
+    },
+    "0B4374": {
+      "registration": "TG-DHJ",
+      "illustration": "atr42-300f-dhl"
+    },
+    "0B4068": {
+      "registration": "TG-DHP",
+      "illustration": "atr42-300f-dhl"
+    },
+    "03E130": {
+      "registration": "TR-LJQ",
+      "illustration": "atr72-500f-dhl"
+    },
+    "03E131": {
+      "registration": "TR-LJR",
+      "illustration": "atr72-500f-dhl"
+    },
+    "00BF5B": {
+      "registration": "ZS-XZE",
+      "illustration": "atr72-500f-dhl"
+    },
+    "8940D0": {
+      "registration": "A9C-TXZ",
+      "illustration": "737-800bcf-dhl"
+    },
+    "A9F2C6": {
+      "registration": "N740CK",
+      "illustration": "747-400bcf-dhl-kalitta"
+    },
+    "ABBA93": {
+      "registration": "N855GT",
+      "illustration": "747-8f-dhl-polar"
+    },
+    "440BCF": {
+      "registration": "OE-LNZ",
+      "illustration": "757-200f-dhl"
+    },
+    "A89119": {
+      "registration": "N651GT",
+      "illustration": "767-200bdsf-dhl"
+    },
+    "405F32": {
+      "registration": "G-DHLE",
+      "illustration": "767-300f-dhl"
+    },
+    "407C8A": {
+      "registration": "G-DHLY",
+      "illustration": "777f-dhl"
+    },
+    "3C5641": {
+      "registration": "D-AERA",
+      "illustration": "777f-dhl"
+    },
+    "AD5CE0": {
+      "registration": "N960HL",
+      "illustration": "cessna-208b-super-cargomaster-dhl"
+    },
+    "A7B626": {
+      "registration": "N59604",
+      "illustration": "bell-206b-jetranger-dhl"
+    },
+    "AA70B1": {
+      "registration": "N772CK",
+      "illustration": "777f-dhl-kalitta"
+    },
     "4D2064": {
       "registration": "9H-XLA",
       "illustration": "a321xlr-wizz-air"
@@ -3361,9 +4312,74 @@
       "registration": "LN-OQU",
       "illustration": "s92-chc-helikopter-service"
     },
+    "478123": {
+      "registration": "0262",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478124": {
+      "registration": "0264",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478125": {
+      "registration": "0265",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478126": {
+      "registration": "0268",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478127": {
+      "registration": "0270",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478128": {
+      "registration": "0273",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
     "478129": {
       "registration": "0275",
       "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812A": {
+      "registration": "0276",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812B": {
+      "registration": "0277",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812C": {
+      "registration": "0278",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812D": {
+      "registration": "0279",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812E": {
+      "registration": "0280",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "47812F": {
+      "registration": "0281",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478130": {
+      "registration": "0282",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478131": {
+      "registration": "0283",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "478132": {
+      "registration": "0284",
+      "illustration": "aw101-sar-queen-norwegian-rescue"
+    },
+    "4ACA6E": {
+      "registration": "SE-RSN",
+      "illustration": "e195-sas",
+      "misreportedIcaoType": "E190"
     },
     "485871": {
       "registration": "PH-EXV",
@@ -3384,6 +4400,66 @@
     "47804B": {
       "registration": "LN-OLA",
       "illustration": "aw139-lufttransport-rescue"
+    },
+    "4783E3": {
+      "registration": "LN-OLE",
+      "illustration": "aw139-lufttransport-rescue",
+      "misreportedIcaoType": "AS65"
+    },
+    "478395": {
+      "registration": "LN-OPA",
+      "illustration": "aw189-chc-helikopter-service",
+      "reference": "https://aircraftregister.net/aircraft/LN-OPA"
+    },
+    "47A156": {
+      "registration": "LN-OPB",
+      "illustration": "aw189-chc-helikopter-service",
+      "reference": "https://www.flightradar24.com/data/aircraft/LN-OPB"
+    },
+    "47BE97": {
+      "registration": "LN-OIN",
+      "illustration": "s92-bristow-norway-rescue",
+      "reference": "https://aircraftregister.net/aircraft/LN-OIN"
+    },
+    "478087": {
+      "registration": "LN-ONH",
+      "illustration": "s92-bristow-norway-rescue",
+      "reference": "https://nsia.no/Aviation/Aviation/Published-reports/2022-08"
+    },
+    "479E84": {
+      "registration": "LN-OQS",
+      "illustration": "s92-bristow-norway-red-rescue",
+      "reference": "https://aircraftregister.net/aircraft/LN-OQS"
+    },
+    "47C19E": {
+      "registration": "LN-OIE",
+      "illustration": "s92-bristow-norway-red-nose-rescue",
+      "reference": "https://www.aeroboek.nl/S92/920166.HTM"
+    },
+    "478382": {
+      "registration": "LN-ONY",
+      "illustration": "s92-bristow-norway-red-nose-rescue",
+      "reference": "https://www.aeroboek.nl/S92/920124.HTM"
+    },
+    "47A45D": {
+      "registration": "LN-ONM",
+      "illustration": "s92-bristow-norway-offshore",
+      "reference": "https://abpic.co.uk/pictures/view/1855032"
+    },
+    "47BFA2": {
+      "registration": "LN-OIK",
+      "illustration": "s92-bristow-norway-orange-rescue",
+      "reference": "https://www.jetphotos.com/photo/11206047"
+    },
+    "47BF73": {
+      "registration": "LN-OIM",
+      "illustration": "s92-bristow-norway-orange-rescue",
+      "reference": "https://www.aftenposten.no/norge/i/LM5k2P/et-redningshelikopter-var-i-luften-da-kollegene-styrtet-det-ble-ikke-tilkalt"
+    },
+    "4D2515": {
+      "registration": "9H-OCEAN",
+      "illustration": "dhc6-nordic-seaplanes-9h-ocean",
+      "reference": "https://globe.adsbexchange.com/?icao=4d2515"
     },
     "47807D": {
       "registration": "LN-ONA",
@@ -3456,6 +4532,26 @@
     "4CAF13": {
       "registration": "EI-HSC",
       "illustration": "crj900-sas-cityjet"
+    },
+    "4CAF12": {
+      "registration": "EI-HSB",
+      "illustration": "crj900-sas-cityjet",
+      "reference": "https://www.planespotters.net/photos/reg/EI-HSB"
+    },
+    "4CA660": {
+      "registration": "EI-FPF",
+      "illustration": "crj900-neutral",
+      "reference": "https://www.jetphotos.com/registration/EI-FPF"
+    },
+    "4CA6D9": {
+      "registration": "EI-FPG",
+      "illustration": "crj900-neutral",
+      "reference": "https://www.planespotters.net/photo/1807616/ei-fpg-cityjet-bombardier-crj-900lr-cl-600-2d24"
+    },
+    "4AB562": {
+      "registration": "SE-MKB",
+      "illustration": "atr72-600-sas",
+      "reference": "https://www.jetphotos.com/photo/12258087"
     },
     "4082E7": {
       "registration": "G-RYMA",
@@ -3645,6 +4741,16 @@
       "registration": "A6-EBK",
       "illustration": "777-300ersf-emirates-skycargo"
     },
+    "AAB103": {
+      "registration": "N7883D",
+      "illustration": "piper-pa18-super-cub-n7883d",
+      "reference": "https://registry.faa.gov/aircraftinquiry/Search/NNumberResult?nNumberTxt=7883D"
+    },
+    "478500": {
+      "registration": "LN-WND",
+      "illustration": "douglas-c53d-dakota-norway-ln-wnd",
+      "reference": "https://aircraftregister.net/aircraft/LN-WND"
+    },
     "C027D1": {
       "registration": "C-FPCA",
       "illustration": "767-300f-air-canada-cargo"
@@ -3717,25 +4823,65 @@
       "registration": "LN-AAI",
       "illustration": "cessna-206-floatplane-neutral"
     },
+    "3006E1": {
+      "registration": "I-BISB",
+      "illustration": "cessna-172-floatplane-neutral",
+      "reference": "https://aeroclubcomo.com/en/flotta/"
+    },
+    "300705": {
+      "registration": "I-SAAB",
+      "illustration": "cessna-172-floatplane-neutral",
+      "reference": "https://aeroclubcomo.com/en/flotta/"
+    },
+    "300725": {
+      "registration": "I-PVLC",
+      "illustration": "cessna-172-floatplane-neutral",
+      "reference": "https://aeroclubcomo.com/en/flotta/"
+    },
+    "300757": {
+      "registration": "I-GDRX",
+      "illustration": "cessna-172-floatplane-neutral",
+      "reference": "https://aeroclubcomo.com/en/flotta/"
+    },
+    "A0FFFE": {
+      "registration": "N1636A",
+      "illustration": "piper-pa18-super-cub-floatplane-neutral",
+      "reference": "https://planefox.com/listing/N1636A"
+    },
+    "A27568": {
+      "registration": "N258C",
+      "illustration": "aviat-a1-husky-floatplane-neutral",
+      "reference": "https://www.wipaire.com/aircraft-listings/1999-amphibious-aviat-a-1b/"
+    },
+    "A029F7": {
+      "registration": "N11BD",
+      "illustration": "dhc2-beaver-amphibious-floatplane-neutral",
+      "reference": "https://www.controller.com/listing/for-sale/262604107/1951-dehavilland-dhc-2-piston-amphibious-slash-floatplanes"
+    },
     "47819D": {
       "registration": "9582",
-      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+      "illustration": "p8a-poseidon-royal-norwegian-air-force",
+      "misreportedIcaoType": "B738"
     },
     "47819E": {
       "registration": "9583",
-      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+      "illustration": "p8a-poseidon-royal-norwegian-air-force",
+      "misreportedIcaoType": "B738"
     },
     "47819F": {
       "registration": "9584",
-      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+      "illustration": "p8a-poseidon-royal-norwegian-air-force",
+      "misreportedIcaoType": "B738"
     },
     "4781A0": {
       "registration": "9585",
-      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+      "illustration": "p8a-poseidon-royal-norwegian-air-force",
+      "misreportedIcaoType": "B738"
     },
     "4781A1": {
       "registration": "9586",
-      "illustration": "p8a-poseidon-royal-norwegian-air-force"
+      "illustration": "p8a-poseidon-royal-norwegian-air-force",
+      "misreportedIcaoType": "B738"
     }
   },
   "fallbacks": {
@@ -3744,7 +4890,6 @@
       "A189": "aw189-neutral",
       "A20N": "a320neo-neutral",
       "A21N": "a321neo-neutral",
-      "A223": "a220-300-neutral",
       "A319": "a319-neutral",
       "A320": "a320-neutral",
       "A321": "a321-neutral",
@@ -3755,6 +4900,7 @@
       "A359": "a350-900-neutral",
       "A35K": "a350-1000-neutral",
       "A388": "a380-800-neutral",
+      "AT75": "atr72-600-neutral",
       "AT76": "atr72-600-neutral",
       "B38M": "737-max-8-neutral",
       "B39M": "737-max-9-neutral",
@@ -3773,10 +4919,12 @@
       "B78X": "787-10-neutral",
       "BCS3": "a220-300-neutral",
       "CRJ9": "crj900-neutral",
+      "DC3": "douglas-dc3-buffalo-airways",
       "DH8A": "dash-8-100-neutral",
       "DH8B": "dash-8-200-neutral",
       "DH8C": "dash-8-300-neutral",
       "DH8D": "dash-8-q400-neutral",
+      "DHC6": "dhc6-twin-otter-neutral",
       "E190": "e190-neutral",
       "E195": "e195-neutral",
       "E290": "e190-e2-neutral",
@@ -3791,6 +4939,7 @@
       "A400": "a400m-atlas-neutral",
       "AS50": "as350-b3-neutral",
       "B06": "bell-206-jetranger-neutral",
+      "B222": "bell-222-airwolf",
       "B407": "bell-407-neutral",
       "B412": "bell-412-neutral",
       "BE20": "beechcraft-king-air-200-neutral",
@@ -3824,7 +4973,7 @@
       "F5": "f5a-freedom-fighter-neutral",
       "G2CA": "guimbal-cabri-g2-neutral",
       "H47": "ch47f-chinook-neutral",
-      "H500": "md-500-neutral",
+      "H500": "hughes-500d-island-hoppers",
       "H60": "uh60-black-hawk-neutral",
       "H64": "ah64-apache-neutral",
       "IKAR": "ikarus-c42-neutral",
@@ -3859,7 +5008,7 @@
     },
     "byCategory": {
       "fixed-wing": "generic-fixed-wing",
-      "helicopter": "generic-helicopter"
+      "helicopter": "bell-222-airwolf"
     }
   }
 }

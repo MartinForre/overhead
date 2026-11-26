@@ -1,0 +1,22 @@
+{
+  "id": "/companion/",
+  "name": "Overhead Companion",
+  "short_name": "Overhead",
+  "start_url": "/companion/",
+  "scope": "/companion/",
+  "display": "standalone",
+  "background_color": "#252821",
+  "theme_color": "#252821",
+  "icons": [
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+.display-formats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem 1rem;
+}
+
+.display-formats label {
+  display: grid;
+  gap: .3rem;
+  font-size: .85rem;
+}
+
+.display-formats select {
+  min-height: 2.35rem;
+  padding: .4rem .55rem;
+  border: 1px solid var(--rule);
+  border-radius: .4rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+#companion-settings .display-formats {
+  margin-top: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}

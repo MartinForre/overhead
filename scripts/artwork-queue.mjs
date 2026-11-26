@@ -8,6 +8,7 @@ const types = JSON.parse(readFileSync(new URL("aircraft-types.json", catalogDire
 const styleReferences = {
   airliner: "a320neo-sas",
   "fixed-wing": "a320neo-sas",
+  "general-aviation": "a320neo-sas",
   helicopter: "aw101-sar-queen-norwegian-rescue",
 };
 

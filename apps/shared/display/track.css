@@ -1,0 +1,164 @@
+.track-list[data-scroll] {
+  grid-template-rows: none;
+  grid-auto-rows: max-content;
+  align-items: start;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+  touch-action: pan-y;
+}
+
+.track-state {
+  margin: 4px 0 0;
+  color: var(--muted-ink);
+  font-size: var(--meta-size);
+  line-height: 1.25;
+}
+
+.track-picture {
+  --track-route-start: max(4%, var(--art-left, 0%));
+  min-inline-size: 0;
+}
+
+.track-route {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr) minmax(0, auto);
+  grid-template-rows: auto 1fr;
+  gap: 4px clamp(5px, 1.75cqi, 13px);
+  align-items: start;
+  margin-inline: var(--track-route-start) 20%;
+  font-variant-numeric: tabular-nums;
+}
+
+.track-departure { grid-area: 1 / 1 / 3 / 2; }
+.track-arrival { grid-area: 1 / 3 / 3 / 4; text-align: end; }
+.track-route[data-reference] { grid-template-rows: auto; }
+.track-route[data-reference] :is(.track-departure, .track-arrival) { grid-row: 1; }
+.track-arrival .flight-flaps { justify-content: end; }
+.track-route .flight-city { overflow-wrap: anywhere; }
+
+.track-route time {
+  display: block;
+  margin-block-start: clamp(3px, 1cqi, 8px);
+  font-size: clamp(15px, 4.35cqi, 33px);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.track-route [data-time-kind],
+.track-times dt {
+  display: block;
+  color: var(--muted-ink);
+  font-size: clamp(10px, 1.9cqi, 14px);
+  line-height: 1.2;
+}
+
+.track-route [data-time-kind] { min-block-size: 1lh; }
+
+.track-arc {
+  position: relative;
+  grid-area: 1 / 2;
+  block-size: clamp(20px, 6.4cqi, 44px);
+  margin: 3px 2px 0;
+}
+
+.track-arc svg { display: block; inline-size: 100%; block-size: 100%; overflow: visible; }
+.track-arc path { fill: none; stroke-width: 2px; }
+.track-arc-remaining { stroke: color-mix(in srgb, var(--ink) 53%, transparent); stroke-dasharray: 4 5; }
+.track-arc-complete { stroke: var(--ink); }
+
+.track-arc-position {
+  position: absolute;
+  inset-inline-start: var(--track-arc-x);
+  inset-block-start: var(--track-arc-y);
+  inline-size: 7px;
+  block-size: 7px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.track-arc[data-estimated] .track-arc-position {
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+}
+
+.track-times {
+  display: grid;
+  grid-area: 2 / 2;
+  grid-template-columns: repeat(2, 1fr);
+  align-self: center;
+  gap: clamp(6px, 2cqi, 22px);
+  margin: 0;
+  text-align: center;
+}
+
+.track-times div { display: grid; gap: 2px; }
+.track-times dt { grid-row: 2; }
+.track-times dd { margin: 0; font-size: clamp(12px, 2.8cqi, 22px); font-weight: 680; }
+
+.track-art {
+  position: relative;
+  aspect-ratio: var(--image-ratio, 3);
+  margin-block-end: var(--scenery-footprint);
+}
+
+.track-placeholder {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  opacity: .3;
+}
+
+.track-art:has(.flight-airframe) > .track-placeholder { visibility: hidden; }
+
+.track-route:not([hidden]) + .track-art {
+  margin-block-start: calc(0px - min(
+    max(0px, var(--picture-height) * var(--art-front-top, .25) - 2px),
+    clamp(28px, 16cqi, 120px)
+  ));
+}
+
+@container (max-width: 510px) {
+  .track-route { row-gap: 7px; }
+  .track-departure, .track-arrival { grid-row: 1; }
+  .track-times { grid-column: 1 / -1; }
+}
+
+@container (max-width: 300px) {
+  .track-picture {
+    --flap-size: clamp(8px, 5cqi, 14px);
+    --city-size: clamp(9px, 4.5cqi, 12px);
+    --route-gap: 2px;
+  }
+
+  .track-route {
+    grid-template-columns: minmax(34px, 1fr) minmax(16px, 1.75fr) minmax(34px, 1fr);
+    gap: 2px clamp(2px, 1cqi, 5px);
+  }
+
+  .track-route:not([data-reference]) :is(.track-departure, .track-arrival) { grid-row: 1 / span 2; }
+  .track-route .flight-flaps { gap: 1px; }
+  .track-route .flight-city { max-inline-size: 100%; }
+  .track-route time { margin-block-start: 2px; font-size: clamp(11px, 5.25cqi, 15px); }
+  .track-route [data-time-kind], .track-times dt {
+    font-size: clamp(8px, 3.7cqi, 10px);
+    line-height: 1.1;
+  }
+  .track-arc { block-size: clamp(12px, 7cqi, 22px); }
+  .track-times { grid-column: 2; grid-template-columns: minmax(0, 1fr); gap: 3px; }
+  .track-times div { gap: 0; }
+  .track-times dd { font-size: clamp(10px, 5cqi, 13px); line-height: 1.1; }
+}
+
+@container (215px <= width <= 300px) {
+  .track-times { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-height: 550px) {
+  .track-list[data-count="1"] .flight-topline { padding-inline-end: 48px; }
+}

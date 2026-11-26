@@ -8,10 +8,10 @@ Consider aircraft within the configured radius that have a fresh position. Exclu
 
 | Aircraft shown | Layout |
 | --- | --- |
-| 0 | Show “No aircraft nearby” when the feed is healthy. Show “Flight data unavailable” if the feed is stale or unavailable. |
+| 0 | Show Gallery when a fresh feed reports no nearby aircraft. Show “Flight data unavailable” if the feed is stale or unavailable. |
 | 1 | Give the priority aircraft the full poster layout. |
-| 2 | Place the primary card near the top and the secondary card near the bottom. Use larger outer insets and center the divider between the cards. |
-| 3 | Center the primary card vertically with secondary cards at the top and bottom insets. Center a divider in each gap. |
+| 2 | Place the primary card near the top and the secondary card near the bottom. Use larger outer insets. |
+| 3 | Center the primary card vertically with secondary cards at the top and bottom insets. |
 
 Use one flight card for all aircraft. The primary card uses full scale and secondary cards use 70%. Place the route above the forward part of the illustration and the altitude, speed and compass in the upper-right corner. Open display settings from a fixed button in the upper-right corner of the screen.
 
@@ -21,24 +21,54 @@ Each entry shows the following fields when available.
 - Origin and destination as split-flap-style airport codes with city names underneath when available. Show `N/A` across three tiles for each missing airport code, including on helicopter cards.
 - Aircraft make and model as the card title. Show the flight number and operator underneath when available.
 - Altitude in feet, ground speed in km/h, and a north-up compass with an unlabelled dial. The red needle tip shows ground track and the muted tail points in the opposite direction. Screen readers can announce the bearing and cardinal direction. Show `N/A` for missing altitude or speed and an empty dial for missing ground track. [Flight data field definitions](https://github.com/wiedehopf/readsb/blob/dev/README-json.md)
+- Prefix the estimated altitude above mean sea level with `≈` when a nearby METAR supplies the altimeter setting. Make the station and setting available on hover and to screen readers. Mark raw pressure altitude `PA` and geometric altitude above the WGS84 ellipsoid `HAE`.
 
-### Card styling and dividers
+### Card styling and scenery
 
 Source or generate a logo for each airline. One option is to let the logo fill the aircraft card as a faint watermark behind the illustration and readouts. Try low opacity and different blend modes across themes to see which treatments keep the aircraft and text easy to read.
 
 Give military and general aviation aircraft distinct card treatments. A category label and subtle accent can make them recognizable while keeping the flight details in the same positions across cards.
 
-Create cloud-layer and runway artwork as options for the gaps between aircraft cards. Either graphic could replace the horizontal divider when two or three cards are visible.
+Show a [cloud layer](../assets/dividers/cloud-layer.png) just below each illustrated aircraft whose displayed altitude is above 1,000 feet. Clouds fade in and out in place, and moving aircraft pass behind them during a slot change. Show a [runway](../assets/dividers/runway.png) across the full window beneath illustrated aircraft reported on the ground. It sits behind the aircraft, with the middle of the surface at wheel contact height. The runway rises as it fades in and drops as it fades out. Leave the space clear at or below 1,000 feet in flight or when altitude is unavailable. Both layers change immediately when transitions are off or the browser requests reduced motion.
+
+The dividers are 2172 × 724 transparent PNGs generated with the built-in image tool. The cloud renders up to 60% wider than the aircraft and fades to transparency through pale mist at the sides and bottom. The asphalt runway tile repeats horizontally with matching end columns and evenly spaced centerline dashes. Serengeti Safari uses an [unmarked dirt runway](../assets/dividers/runway-dirt.png) at the same wheel contact height in Live and Track.
+
+<details>
+<summary>Divider illustration prompts</summary>
+
+**Cloud layer**
+
+> Create one standalone horizontal cloud-layer divider for Overhead, a color e-paper aviation poster. The attached SAS aircraft PNG is a style and width reference only. Match its clean painted realism, soft dimensional shading and restrained detail. Paint the top of an extended cloud layer seen from the side at altitude. Make a low, broadly level bank spanning almost the entire image, with a varied, connected upper contour of small pearly white cumulus crowns and overlapping soft cool-gray shading. The image should read as the top edge of a sea of clouds, with several unobtrusive shallow crests. Fade the cloud smoothly into actual zero alpha at its bottom, left and right edges. Preserve a defined, softly antialiased upper contour. Leave the surrounding canvas genuinely transparent. Use a wide 3:1 composition targeting 2172 × 724, with the bank using nearly the full width, a low silhouette, and clear margin above and below. The only subject is the cloud layer. Omit aircraft, sky, horizon line, land, lettering, framing, detached clouds and background texture.
+
+**Cloud fade refinement**
+
+> Edit the supplied Overhead cloudbank PNG. Preserve the same pearly white and cool blue-gray painted light, softly rounded ridge silhouettes, and the general positions and heights of the three main crests. Make the atmospheric alpha fade longer and gentler. Feather the left and right outer 12–15% gradually inward from alpha zero, as if the edges melt into the page. In the lower part of the cloud, transition actual alpha gradually from opaque to transparent over about twice the height of the present fade. Start this transition higher within the bank and end it lower with a very light veil of mist, retaining the defined white crowns. Use translucent pale blue-gray cloud color in the fade, so it blends naturally over both dark green and light linen backgrounds. Keep the cloud bank low and horizontal, with a clean transparent background above it and fully transparent outer pixels on all sides. Preserve the same 2172 × 724, 3:1 RGBA canvas. No aircraft, scenery, textured background, checkerboard, drop shadows, or dark halo.
+
+**Runway**
+
+> Create one standalone horizontal, seamless repeating runway tile for Overhead, a color e-paper aviation poster. The attached SAS aircraft PNG is a style and width reference only. Match its matte illustrated realism, clean contours, subdued palette and restrained surface shading. Paint an uninterrupted strip of dark cool-gray asphalt viewed broadside from a low, slightly raised orthographic camera, looking straight across the runway from its side at a shallow downward angle, enough to see its top surface and a single row of evenly spaced white dashed centerline markings. The runway's length goes exactly horizontally from left to right, with perfectly horizontal parallel near and far edges, constant width and no convergence. Make it a thin, long strip that bleeds all the way through the left and right image boundaries at the same vertical location. It has no visible ends. Seamlessly tile horizontally for scrolling: exact same pavement cross-section, edge and shade at both ends, no left-to-right lighting gradients, evenly spaced equal dashes, cut at center of a gap on each side so dash rhythm continues across a join. Keep markings readable at a small scale and material texture very subtle. Wide 3:1 canvas targeting 2172 × 724 with real transparency above and below the strip. The runway is the only subject. Omit numbers, threshold bars, intersections, foreground terrain, scenery, aircraft, lights, buildings, frames, or text.
+
+**Runway refinement**
+
+> Refine this Overhead runway divider as one seamless horizontal scrolling tile on its existing 2172 × 724 transparent canvas. Keep the broadside angle and clean, minimalist matte gray pavement. Make the viewpoint slightly more foreshortened and side-on using subtly greater visual weight on the near lip. Preserve perfectly parallel level asphalt edges with identical cross-section, edge pixels and color at the left and right boundaries. Replace the closely spaced dash pattern with exactly twelve equally spaced identical centerline dashes, one centered in each of twelve equal 181-pixel bands across the width. The left and right edges each have precisely half a dash gap, so the space across the repeat equals every interior gap. A single row of dashes only. Keep the surface nearly uniform along x so repeated edges have no perceptible shading jump. Horizontal pavement runs through the left and right canvas edges with actual transparent background above and below. No features besides the runway, its edge paint, and its dashed centerline.
+
+**Serengeti Safari dirt runway**
+
+> Create a new repeating dirt runway tile for Overhead by retexturing the runway in the supplied 2172×724 RGBA image. Use the existing reference's exact thin strip footprint, horizontal low broadside orthographic camera, scale, cross-section, and placement. The strip should be centered vertically at y=361 with roughly y=311 to y=412 occupied, continuing flush across the full 2172-pixel width on both ends. Change the surface to dry compacted reddish ochre dirt on an East African bush airstrip, muted warm copper-tan top surface, lightly darker compacted foreground lip and subtle dusty brown shoulders, with fine granular uneven texture and at most faint longitudinal tire wear that reads realistically at small scale. Remove all pavement, white paint, centerline dashes, stripes, lines of white stones, edging and infrastructure. Make a single uninterrupted level aircraft landing strip, with level near and far edges, constant apparent depth and lighting, no perspective vanishing point. It needs to tile seamlessly lengthwise with matching end colors and edge heights. No fades, gaps, tapering, rolloff, localized shadows, rocks, tufted plants, obvious tire tracks, mounds, hills, vehicles, text, or decoration. Keep the band thin with completely transparent alpha in all space above and below, with no background, dust clouds, or drop shadows. Use the same wide 3:1 canvas and natural matte illustrated style.
+
+</details>
 
 ### Aircraft transitions
 
-Use the existing entrance, exit, and slot-change animations for fixed-wing aircraft. Give helicopters their own motion. Pitch the nose down slightly as they fly forward into or out of view, and bring the nose back to level as they settle into a card. Keep the body level as they rise or descend between card slots.
+Tilt the side profile nose-up during a climb and nose-down during a descent, up to 3° in either direction. Use ground speed and geometric vertical rate, falling back to barometric vertical rate. The tilt represents the ground-relative flight path. Keep the profile level on the ground, below 30 knots, or when speed or vertical rate is unavailable. Reserve clearance for the full tilt range so the route tiles stay put. [FAA ADS-B FAQ](https://www.faa.gov/air_traffic/technology/equipadsb/resources/faq)
+
+Use the existing entrance, exit, and slot-change animations for fixed-wing aircraft. Give helicopters their own motion. Pitch the nose down slightly as they fly forward into or out of view, then blend into the flight-path tilt as they settle into a card. Keep the body level as they rise or descend between card slots.
 
 ### Display themes
 
-Forest Green is the default. Display Settings also offers Deep Blue with yellow airport tiles, solid Deep Red, Sky Gradient, Nordic Linen, Blueprint, Walnut and Brass, Serengeti Safari, and Zanzibar Coast. The selection applies immediately and is saved in the browser.
+Forest Green is the default. The companion also offers Deep Blue with yellow airport tiles, solid Deep Red, Sky Gradient, Nordic Linen, Blueprint, Serengeti Safari, and Zanzibar Coast. The selection applies immediately and is saved on the Overhead server.
 
-All themes share the same aircraft card layout. Serengeti Safari puts low ridges and an acacia at the bottom of the display. Zanzibar Coast uses a strip of shallow water and sand in the same area.
+All themes share the same aircraft card layout. In Serengeti Safari, flat-topped acacias, a rounded tree, a giraffe, and an elephant appear as distant silhouettes among the low ridges, with a faint outline of Mount Kilimanjaro behind them. Zanzibar Coast shows The Rock restaurant on its islet just off the sandy shore.
 
 ## Linux runtime and display
 
@@ -51,21 +81,27 @@ Poll for flight data independently of the display refresh cycle. When the displa
 
 ## Companion and view modes
 
-Keep the display renderer open to multiple modes. Nearby is the default. The Pi owns the active mode and its settings so the frame can continue independently of the phone.
+Live is the default mode. The host owns the active mode and its settings in a JSON config so the display can continue independently of the phone. The companion and display share a same-origin API, and the server pushes saved changes to both apps.
 
-Expose a mobile-friendly configuration and companion page on the Pi’s home network. The proposed entry point is `/companion`, with a local name such as `overhead.local`. The page should work from a phone’s home-screen shortcut. [Apple’s Home Screen guide](https://support.apple.com/guide/iphone/open-as-web-app-iphea86e5236/27/ios/27)
+The `/display/` route is a passive kiosk. The companion at `/companion/` opens on the same aircraft view on phones, tablets, and desktops. Its gear opens settings for both views, including mode, regional formats, theme, transitions, location, and sample traffic. On a home network, open the companion using the host’s IP address with LAN serving enabled. A local name such as `overhead.local` could make that easier on a future Pi installation. The page should work from a home-screen shortcut. [Apple’s Home Screen guide](https://support.apple.com/guide/iphone/open-as-web-app-iphea86e5236/27/ios/27)
 
 ### Nearby polling hours
 
-Default to polling from **06:00 to 23:00** each day in the Pi’s local time zone. The companion app lets the person using the display change the start and end times. Pause Nearby flight-data requests outside that window.
+A future polling schedule would run from **06:00 to 23:00** each day in the Pi’s local time zone. The companion would let the user change the start and end times and pause Nearby flight-data requests outside that window.
 
 During active hours, start with a **five-second polling interval** for the primary provider, adsb.fi. If the primary is unavailable, try adsb.lol at most once every three minutes. This caps fallback traffic from one Pi at about 480 requests per 24 hours. Share provider cooldowns across display clients on the Pi and honor the provider’s `Retry-After` header. [adsb.fi API limits](https://github.com/adsbfi/opendata#limits) · [adsb.lol API schema](https://api.adsb.lol/api/openapi.json)
 
-### Future view modes
+### Display modes
 
-Follow a flight is a future mode. The proposed flow is to enter a flight number, confirm the date and route, and show that flight on the frame. The follow lookup works independently of the Nearby radius. Both modes should reuse the display components and aircraft illustrations. Flight lookup and the companion controls can be designed when the mode is scheduled for implementation.
+Gallery rotates through 23 illustrations, beginning with the Lufthansa centenary A350-1000. The rotation includes the Hindenburg, Concorde, Blackbird, Valkyrie, X-15, An-225 Mriya, the NASA 747 carrying Enterprise, and Discovery in free flight. The Apollo 11 Saturn V and the lunar module Eagle have their own cards. Little Nellie, Dalton Air, Marty Meierotto’s Super Cub, and Airwolf appear throughout the rotation alongside the Norsk Luftambulanse H135 and other aircraft. Each card has one large illustration, the aircraft make and model, and a short identifying detail. The frame advances every ten minutes. In Gallery mode, swipes, arrow keys, and previous and next buttons in the companion advance both views. Selecting Gallery as the display mode pauses live polling.
 
-Aircraft gallery is a future mode that can also be enabled as the empty-sky view. At a configurable interval in minutes, randomly select up to three distinct ready illustrations with known aircraft types. Show the make, model, and livery, and label the view “Aircraft gallery” so the frame makes clear that these are catalog entries. Respect the panel’s refresh interval. When used as the empty-sky view, resume Nearby on the next allowed refresh after a qualifying aircraft appears. A stale or unavailable feed still shows its availability status.
+In Live mode, a fresh feed with no qualifying aircraft starts Gallery. Consecutive empty polls keep its current card and rotation running. Live continues polling and replaces Gallery as soon as a nearby aircraft card is ready. A stale or unavailable feed shows its availability status.
+
+Track follows up to three queued flights or callsigns independently of the Nearby radius. Without a FlightAware key, save an exact adsb.fi broadcast callsign and wait for a matching aircraft. The card shows available aircraft and telemetry values, plus estimated airports when the shared ADSBDB lookup has a match. Use the same route layout with a dashed arc between the known endpoints. Project a fresh airborne position onto the direct great-circle route and show the result with a hollow marker. Keep the airborne arc dashed when coordinates are missing, the route has an intermediate stop, or the position is far off the direct route. Fill the arc when the aircraft reports on ground within 5 km of the destination and outside the departure airport's vicinity. Use a position up to one minute old if the ground report has no coordinates. If the broadcast stops on short final, Track can show “Likely landed” at the estimated touchdown time using the last descent, track, and airport elevation. Keep the completed card visible during quiet polls until the watch sees a new flight, and hold a landing aircraft in the primary position for ten seconds before promoting the next closest flight. In Live and ADS-B Track, show a plain approximate landing time beneath the destination when fresh telemetry places the aircraft near its direct route. Estimate from remaining distance and ground speed, using the short-final estimate when available. Use the display’s local time zone.
+
+Configuring a FlightAware key enables dated departure search by flight number. Select an occurrence by route and scheduled departure. FlightAware supplies a unique flight ID for each occurrence, so the same number can be queued for different departures. Replace an existing callsign watch by choosing a dated departure for that slot.
+
+Track cards lead with the flight number. The FlightAware route arc shows progress without a percentage, with departure and arrival clocks at the airports and airborne and remaining time below the arc. Clocks use airport-local time when available and UTC otherwise. Confirmed actual times replace estimates and schedules. Airborne time uses takeoff and landing, and time left uses the arrival estimate while airborne. Track shares Live’s aircraft tilt, clouds, runway, and animated landing gear when telemetry and artwork support them. The route reserves clearance above the forward fuselage throughout the tilt.
 
 A fighter-jet gallery can use the catalog’s `fighter-jet` role to select up to three ready profiles at a time and cycle them on the same interval. Prefer distinct aircraft types when several liveries are available for the same type. Ready artwork with an exact airframe requirement is eligible for the gallery. Use the illustration’s `aircraft` label where it names a more specific variant.
 
@@ -75,30 +111,72 @@ On April 1, have UFOs appear at random times using the same card slots and trans
 
 ## Aircraft artwork
 
-Store transparent illustrations locally and add liveries over time. Match a confirmed airframe by ICAO address or unambiguous registration, then use a verified operator and type match when the operator has a known livery and the airframe has no specific match. Fall back to a neutral profile for the type, then to an unmarked illustration for the known aircraft category. This applies to helicopters as well as fixed-wing aircraft.
+Store transparent illustrations locally and add liveries over time. Match a confirmed airframe by ICAO address or unambiguous registration, then use a verified operator and type match when the operator has a known livery and the airframe has no specific match. Fall back to the default profile for the type, then to an illustration for its category. This applies to helicopters as well as fixed-wing aircraft.
 
 Use the six-character ICAO address (`hex`) to resolve a known airframe. A readsb-style feed can enrich the observation with a registration or tail number (`r`) and ICAO type designator (`t`). Treat the callsign (`flight`) as contextual information because it can be reused. For example, a tracker recorded the Norwegian SAR Queen `0275` with hex `478129`, type `EH10`, and callsign `SAVER50`. Use the Norwegian rescue artwork when the airframe or operator and type are confirmed. With `EH10` alone, use neutral AW101 artwork when available. Check the selected feed for fresh positions during low flyovers near the installation. [readsb fields](https://github.com/wiedehopf/readsb/blob/dev/README-json.md) · [Recorded SAR Queen example](https://www.planetrack.ai/aircraft/478129) · [FAA type designators](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf)
 
 Keep descriptive filenames and use the two local catalogs for lookups and gallery captions.
 
+Resolve the aircraft type once for both the card title and artwork. A confirmed airframe can supply a missing type or correct the feed code recorded in its `misreportedIcaoType` field. Use `aircraft` from the matched illustration when it names the exact variant. For unlisted airframes with a missing feed type, use the ICAO type from the cached ADSBDB aircraft lookup when available.
+
 The [southwest Norway overflight list](overflight-airlines.md) records the sampled cruise traffic, current passenger fleets, and artwork priorities for the international catalog expansion.
 
 - [Artwork catalog](../assets/aircrafts/artwork.json) stores illustration IDs, type codes or generic categories, livery names, paths relative to the catalog, and `ready` or `planned` status. Set `aircraft` to give the generation queue the exact variant name when a type code covers several variants. For representative liveries, add the accepted three-letter codes in `operatorIcaoCodes`. Use `airframeOnly` for liveries or equipment that require a confirmed airframe and add airframe records when the match is verified. The airframes table is keyed by the uppercased, six-character ICAO address and contains the registration and illustration ID. A registration lookup can be built from the same records. Use the reported type to validate matches and use the ICAO address for short numeric military tail numbers. Recheck the match after a change of operator, paint or configuration.
-- [Aircraft type catalog](../assets/aircrafts/aircraft-types.json) maps uppercase ICAO type codes to a readable manufacturer, model, category and optional role. The gallery can join illustrations to this catalog without live flight data. [FAA aircraft type designators](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf)
+- [Aircraft type catalog](../assets/aircrafts/aircraft-types.json) maps uppercase ICAO type codes to a readable manufacturer, model, category and optional role. An `aliasFor` entry resolves a feed alias to the canonical code before selecting an illustration. The gallery can join illustrations to this catalog without live flight data. [FAA aircraft type designators](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf)
 
-Every level of the artwork lookup selects ready images only. The `fallbacks.byType` map selects an unbranded profile by exact ICAO type. The `fallbacks.byCategory` map selects a shaded, unmarked illustration when the aircraft is known to be fixed-wing or a helicopter. Airliner types use the fixed-wing illustration at that level. If the category is also unknown or all matches are still planned, render the entry with available text.
+Every level of the artwork lookup selects ready images only. The `fallbacks.byType` map selects the default profile by resolved ICAO type. Airwolf is the default for Bell 222s and the helicopter category fallback. Island Hoppers is the Hughes/MD 500 default, and the Buffalo Airways profile is the DC-3 default. The Dakota Norway artwork requires a match for LN-WND. The Top Gun Tomcat and British Airways Concorde appear in Gallery and Traffic preview. Other fixed-wing aircraft use the unmarked category illustration. Light aircraft identified only by the `A1` emitter category use a text-only card. A `PA18` gets the neutral Super Cub by default, with the snowy N7883D profile reserved for a confirmed airframe match. [FAA emitter categories](https://www.faa.gov/documentLibrary/media/Advisory_Circular/AC_20-165B.pdf)
+
+Offshore rescue callsigns can identify the operator for the card description. Select a rescue livery by confirmed airframe, since the same operator and type can also fly in passenger paint.
 
 | ICAO type | Livery | Example airframe | Illustration |
 | --- | --- | --- | --- |
 | `EH10` | Norwegian SAR Queen | `0275` with ICAO address `478129` | [AW101](../assets/aircrafts/helicopters/aw101-sar-queen-norwegian-rescue.png) |
 | `EC35` | Norsk Luftambulanse | [LN-OUD, 47C01E](https://www.flightradar24.com/data/aircraft/ln-oud/) | [H135](../assets/aircrafts/helicopters/h135-norsk-luftambulanse.png) |
 | `S92` | Bristow Norway offshore passenger | [LN-ONA, 47807D](https://www.flightradar24.com/data/aircraft/LN-ONA) | [S-92A](../assets/aircrafts/helicopters/s92-bristow-norway-offshore.png) |
+| `S92` | Bristow Norway red-and-white rescue | [LN-OQS, 479E84](https://aircraftregister.net/aircraft/LN-OQS) | [S-92A rescue](../assets/aircrafts/helicopters/s92-bristow-norway-red-rescue.png) |
 | `A20N` | Scandinavian Airlines standard silver and blue | [EI-SCD, 4CAD94](https://www.planespotters.net/hex/4CAD94) | [A320neo](../assets/aircrafts/airliners/a320neo-sas.png) |
 | `B738` | Norwegian Air Shuttle red nose with plain tail | [LN-NGD, 4787B3](https://www.flightradar24.com/data/aircraft/LN-NGD) | [737-800](../assets/aircrafts/airliners/737-800-norwegian-red-nose.png) |
 
 The Bristow illustration uses the paint scheme shown on the historical photo of `LN-ONV`. That airframe now flies with CHC, so the catalog links the illustration to `LN-ONA`, which was photographed in Bristow’s offshore livery. [Current LN-ONV operator](https://www.flightradar24.com/data/aircraft/ln-onv) · [LN-ONA photograph](https://www.jetphotos.com/photo/11837373)
 
+The red-and-white `LN-OQS` profile was generated with ImageGen using the supplied photograph for the paint and the existing blue Bristow rescue profile for the airframe. The live ADS-B feed reported `NORSAR7` as `LN-OQS` on 25 November 2026. The catalog selects the illustration by registration or ICAO address because `NORSAR7` is also used by other airframes. [LN-OQS photograph](https://www.jetphotos.com/photo/11295200) · [LN-OQS flight history](https://www.yaft.live/flight/NORSAR7) · [LN-OIN flight history](https://www.airnavradar.com/data/registration/LN-OIN/2966853524)
+
+ImageGen prompt for LN-OQS.
+
+> Create one new transparent aircraft profile for Overhead: the red-and-white Bristow Norway Sikorsky S-92A rescue helicopter LN-OQS. Input image 1 is the existing Overhead blue Bristow S-92A rescue illustration. Use it for its exact 2172 × 724-like, wide 3:1 level port-side silhouette, nose-left layout, scale, main and tail rotor extent, retracted landing gear and subtle matte painted realism. Input image 2 is the real LN-OQS photograph and supplies the only paint reference. Accurately transpose its blocks onto the level side profile: pure white forward nose and cockpit framing with black anti-glare nose panel, strong safety-red cabin-front band around the small forward window, mainly white and light grey mid cabin with its dark windows, diagonal black pinstriping marking the boundary between the light body and safety-red aft fuselage, white main gear sponson labeled verbatim "RESCUE" in black, red aft fuselage and red lower tail boom with white upper/diagonal tail sections and black separating stripe, white tail rotor pylon with the red tail cap, white rotor dome, and dark main blades with red-and-white rescue markings where visible. Include the small discreet black "Bristow" wordmark on the cabin just below the forward cabin window as in the photo. Keep the aircraft authentic, realistic and at the same poster scale as the first image. The rescue winch can appear on the far side only if consistent with the reference, and no other equipment should be invented. Keep the actual livery representative by omitting individual tail lettering and serials. Low three-quarter perspective is forbidden: port-side orthographic view, level fuselage, airborne, flight gear fully stowed. Use actual RGBA transparency all around the aircraft, clean antialiased silhouette, no gray or checkerboard backdrop, no building, runway, undercarriage, shadows, auxiliary labels, or cropped rotor tips.
+
 Use ChatGPT image generation to try an illustration style ahead of time. Use visual references for the exact model and livery, review the shape and markings, and keep the final transparent PNG for reuse. A consistent side angle, lighting, and shading should let images sit together on the same poster. Existing artwork is also an option where its usage terms fit.
+
+### Bristow Norway S-92 rescue liveries
+
+The Norwegian ADS-B archive showed seven S-92 registrations using Bristow rescue callsigns from August through 25 November 2026. The audit also includes the active red-nosed `LN-ONY`, pictured in Bristow’s Hammerfest fleet photo. Match the livery by registration or ICAO address. [Public ADS-B archive](https://github.com/ClickHouse/adsb.exposed#database-and-queries) · [Hammerfest SAR contract](https://www.equinor.com/news/20260202-helicopter-contract-barents-sea) · [Bristow fleet photo as published in 2026](https://www.oedigital.com/news/535141-bristow-lands-200m-helicopter-services-deal-with-equinor-and-v-r-energi)
+
+| Registration | ICAO address | Artwork | Paint evidence |
+| --- | --- | --- | --- |
+| `LN-OIE` | `47C19E` | Red nose and aft fuselage, white cabin | [Hammerfest photo, 2019](https://www.aeroboek.nl/S92/920166.HTM) |
+| `LN-OIK` | `47BFA2` | Orange cabin and tail, white nose and aft body | [Stavanger photo, 2024](https://www.jetphotos.com/photo/11206047) |
+| `LN-OIM` | `47BF73` | Orange cabin and tail, white nose and aft body | [Rescue aircraft photo published in 2024](https://www.aftenposten.no/norge/i/LM5k2P/et-redningshelikopter-var-i-luften-da-kollegene-styrtet-det-ble-ikke-tilkalt) |
+| `LN-OIN` | `47BE97` | Blue Bristow rescue | [Bergen photo, May 2026](https://www.aeroboek.nl/S92/920126.HTM) |
+| `LN-ONH` | `478087` | Blue Bristow rescue | [Investigation photographs published in 2022](https://nsia.no/Aviation/Aviation/Published-reports/2022-08?attach=1&pid=SHT-Report-ReportFile) |
+| `LN-ONM` | `47A45D` | Standard blue-and-white Bristow paint with a red sweep | [Stavanger photo, 2017](https://abpic.co.uk/pictures/view/1855032) |
+| `LN-ONY` | `478382` | Red nose and aft fuselage, white cabin | [Hammerfest photo, 2021](https://www.aeroboek.nl/S92/920124.HTM) · [Bristow fleet photo as published in 2026](https://www.oedigital.com/news/535141-bristow-lands-200m-helicopter-services-deal-with-equinor-and-v-r-energi) |
+| `LN-OQS` | `479E84` | White nose with red band and red aft fuselage | [Stavanger photo, 2024](https://www.jetphotos.com/photo/11295200) |
+
+`LN-ONM` flew both offshore and rescue callsigns. Its registry and recent tracks confirm the airframe and duties. Its paint match uses the latest photograph verified for this audit. `LN-ONI` was pictured in the Hammerfest fleet photo and was listed as an available registration in November 2026. `LN-OIJ` was lost in 2024. [LN-ONM registry and callsigns](https://aircraftregister.net/aircraft/LN-ONM) · [November 2026 registration list](https://www.luftfartstilsynet.no/globalassets/dokumenter/nlr/ledige-regmerker-pr-02-11-2026.pdf) · [LN-OIJ investigation](https://nsia.no/Aviation/Aviation/Published-reports/2026-03)
+
+ImageGen prompts for the new profiles.
+
+Orange-and-white rescue profile
+
+> Create one new standalone transparent Overhead illustration of the orange-and-white Bristow Norway rescue Sikorsky S-92A used on LN-OIK and LN-OIM. Image 1 supplies the exact in-flight, gear-stowed, nose-left level orthographic side silhouette, framing, rotor positions, approximate 2172 × 724 layout and matte painted style. Preserve its scale and silhouette while completely replacing its paint. Images 2 and 3 show the actual shared paint scheme, seen from opposite ends: white nose and cockpit surround with dark glazing, small Bristow wordmark and red/blue emblem below the cockpit, vivid vermilion-orange center cabin and upper engine cowl, slim white diagonal accent stripes at both ends of the center cabin, orange main sponson with bold white text "RESCUE" and a white slash toward the rear, broad white lower aft fuselage decoupled from the vivid orange tail boom, and orange tail pylon and horizontal stabilizer. White rotor dome, dark main rotor blades, metallic tail rotor blades with pale tips. Keep the forward FLIR and recognizable cabin windows as appropriate for this rescue variant. Do not add tail numbers, individual identifiers, or watermarks. Realistic restrained side-profile aircraft illustration, perfectly level, no wheels visible, actual transparent RGBA background, no shadow, scenery, people, runway, haze or checkerboard. Preserve clean margins and both complete rotor silhouettes.
+
+Orange-and-white paint correction
+
+> Make a localized paint correction to image 1, the orange-and-white Overhead Bristow S-92A profile, using the real LN-OIM and LN-OIK photographs in images 2 and 3 as paint references. The red-orange color covers the entire actual tail boom (the narrow straight structural beam from the aft end of the cabin body to the rising tail pylon), top and lower surfaces. Continue that red-orange into the existing orange tail pylon and horizontal stabilizer. Keep the broader bulged aft cabin and lower body ahead of where the tail boom starts white. Also paint the aft tip of the landing gear sponson beyond the narrow white diagonal separator white, as in the photo, while retaining the orange forward part and its large white RESCUE lettering. Preserve the existing coloring on the nose and central cabin, entire mechanical geometry, fully retracted gear, port-side nose-left framing, exact scale, transparent background and clean margins. Return a single wide 2172 × 724-style transparent RGBA profile, with no added text, scenery or shadows.
+
+Red-nosed rescue profile
+
+> Create one new transparent Overhead side-profile illustration of the red-nosed Bristow Norway offshore rescue Sikorsky S-92A used on LN-OIE and LN-ONY. Image 1 establishes the exact nose-left, perfectly level port-side silhouette with retracted landing gear, framing, matte painted style and 2172 × 724 wide composition. Use images 2 and 3 for the shared rescue paint. Paint the entire cockpit surround and forward nose vivid safety red with the usual inset charcoal anti-glare patch and dark glazing. The long center cabin, cowl and landing gear sponson are white. Put bold black "RESCUE" on the white sponson. The aft fuselage transitions to red in a swept block marked by slim dark navy and white boundary stripes, with a small white Bristow wordmark and emblem on that red panel. Use a mostly white tail-rotor pylon, red horizontal stabilizer, red aft tail accents, white rotor dome and dark main rotor blades with appropriate red-and-white markings. Clearly preserve the red nose, broad white central cabin and red aft panel as three distinct paint areas. Leave out individual registration lettering and serials. Render the complete aircraft level, airborne, nose left, a true orthographic side view, with the existing Overhead aspect ratio and scale and fully stowed gear. Genuine zero-alpha transparent background with no scenery, underslung shadow, captions, watermark, or clipped rotor tips.
 
 ### Illustration styles
 
@@ -106,9 +184,9 @@ Keep the current realistically shaded side profiles as the default and explore f
 
 ### Landing gear animation
 
-Create one reusable landing gear layer per airframe variant and align it to the nose and main gear attachment points across that variant’s liveries. Use CSS stacking (`z-index`) to let the body hide the gear as it retracts, and move both layers together during card transitions. Fixed gear and floats stay visible.
+The display layers shared landing gear sprites behind the fuselage on calibrated illustrations. Each livery supplies its own attachment coordinates and the kit supplies the pivot and folded pose. The composite moves together during card transitions. Fixed wheels, skids and floats stay part of the base illustration. [Aircraft configurations and artwork prompts](landing-gear-artwork.md)
 
-Extend retractable gear on final approach. Keep it down through touchdown, taxi, parking, and the takeoff roll, then retract it after liftoff. Use the reported on-ground state when available. Approach and liftoff timing would be inferred from the available flight data.
+The display extends the gear on an inferred final approach at or below a displayed altitude of 1,000 ft, where the cloud layer clears. It keeps the gear down through touchdown, taxi, parking and the takeoff roll, then retracts it once the aircraft climbs clear. The reported ground state takes priority. Approach and liftoff use altitude, ground speed, vertical rate and nearby airport elevation when available. These are visual estimates from the feed. [Flight data fields](https://github.com/wiedehopf/readsb/blob/dev/README-json.md) · [Airport reference fields](https://www.adsbdb.com/)
 
 ### MVP artwork queue
 

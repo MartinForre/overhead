@@ -1,0 +1,23 @@
+.settings-button {
+  position: fixed;
+  z-index: 1;
+  top: calc(var(--safe-area-top) + 10px);
+  right: calc(var(--safe-area-right) + 10px);
+  display: grid;
+  inline-size: 44px;
+  block-size: 44px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.settings-button:hover { background: var(--control); }
+.settings-button:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+

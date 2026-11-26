@@ -1,9 +1,13 @@
 import { createServer } from "node:http";
+import { isIPv4 } from "node:net";
 import { createNearbyFeed } from "../adsb/nearby-feed.mjs";
+import { createFlightReference } from "../adsb/flight-reference.mjs";
+import { createSettingsApi } from "../settings/settings-api.mjs";
 
-const hostname = "127.0.0.1";
+const lan = Deno.args.includes("--lan");
+const hostname = lan ? "0.0.0.0" : "127.0.0.1";
 const port = 8000;
-const host = `${hostname}:${port}`;
+const host = `127.0.0.1:${port}`;
 const displayUrl = `http://${host}/display/`;
 const mimeTypes = {
   html: "text/html; charset=utf-8",
@@ -11,22 +15,32 @@ const mimeTypes = {
   js: "text/javascript; charset=utf-8",
   json: "application/json",
   png: "image/png",
+  webmanifest: "application/manifest+json",
 };
 const roots = {
   display: new URL("../display/", import.meta.url),
   companion: new URL("../companion/", import.meta.url),
+  shared: new URL("../shared/", import.meta.url),
   aircrafts: new URL("../../assets/aircrafts/", import.meta.url),
+  dividers: new URL("../../assets/dividers/", import.meta.url),
 };
-const staticPath = /^\/(display|companion|aircrafts)\/((?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.(html|css|js|json|png))$/;
+const staticPath = /^\/(display|companion|shared|aircrafts|dividers)\/((?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.(html|css|js|json|png|webmanifest))$/;
 const nearbyFeed = createNearbyFeed();
+const flightReference = createFlightReference();
+const settingsApi = createSettingsApi("overhead.config.json");
 
 const server = createServer((request, response) => {
-  if (request.headers.host !== host && request.headers.host !== `localhost:${port}`) {
+  const requestHost = request.headers.host ?? "";
+  const localHost = requestHost === host || requestHost === `localhost:${port}`;
+  const [address, requestPort] = requestHost.split(":");
+  const lanHost = lan && requestPort === String(port) && requestHost === `${address}:${port}` && isIPv4(address);
+  if (!localHost && !lanHost) {
     response.writeHead(403).end();
     return;
   }
 
-  nearbyFeed(request, response, () => serveFile(request, response)).catch((error) => {
+  settingsApi(request, response, () => nearbyFeed(request, response, () =>
+    flightReference(request, response, () => serveFile(request, response)))).catch((error) => {
     console.error(error);
     if (!response.headersSent) response.writeHead(500);
     response.end();
@@ -39,6 +53,7 @@ server.on("error", (error) => {
 });
 server.listen(port, hostname, () => {
   console.log(`Overhead is running. Add ${displayUrl} to your Chrome tab rotation.`);
+  if (lan) console.log(`Open http://<this computer's IPv4 address>:${port}/companion/ from another device on the network.`);
   console.log("Keep this window open while the display is in use.");
 });
 

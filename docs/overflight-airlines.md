@@ -984,6 +984,47 @@ Finnair and Atlantic Airways lead this set of 40 jobs. The narrowbody audit used
 
 Emirates SkyCargo and Air Canada Cargo use airframe-only matches because their type and operator combinations overlap with passenger aircraft or can be reused. The Jettime 737-800 has airframe matches for aircraft observed under other airlines’ callsigns. Airlift’s AS350 uses `AS50` and operator code `ALI`. [Emirates freighter records](https://planefinder.net/data/airline/UAE/fleet) · [Air Canada freighter records](https://planefinder.net/data/airline/ACA/fleet) · [Finnair’s Jettime service](https://www.finnair.com/fi-en/flight-information/travel-updates/jettime-operates-some-finnair-short-haul-flights-from-february-2025-to-march-2027-3680562) · [Airlift reference aircraft](https://aircraftregister.net/aircraft/LN-OXP)
 
+### Finnair ATR 72-500
+
+The [Finnair ATR 72-500 illustration](../assets/aircrafts/airliners/atr72-500-finnair.png) matches `AT75` with a `FIN` or `FCM` callsign. Other `AT75` aircraft can use the existing neutral ATR profile. Finnair’s ATR 72-500s are operated by Nordic Regional Airlines. [Finnair fleet](https://www.finnair.com/en/flight-information/finnair-fleet)
+
+ImageGen prompt, with the neutral ATR 72-600 and Finnair E190 as references.
+
+> Create a new Overhead aircraft illustration, a Finnair ATR 72-500 (ATR 72-212A) as operated by Norra. Reference image 1 is the existing Overhead neutral ATR 72-600, for near-identical turboprop geometry, scale, orthographic nose-left side view, shading and belly/wing layout. Reference image 2 is the Overhead Finnair E190, only for Finnair's lettering and tail logo. Draw the white ATR turboprop with the -500's black cockpit-window mask, long cabin, high wing, T-tail, two compact high-mounted engine nacelles and six slim stationary black propeller blades with light tips on the visible engine. Put bold, dark navy, italic "FINNAIR" above the forward passenger windows and the dark navy Finnair F logo on the white vertical fin. Render subtle painted realism, matching the neutral ATR's matte surfaces, level attitude and restrained highlights. Single aircraft in flight with its landing gear fully retracted. Widescreen 3:1 composition, with clean margins on every side and no clipping. True transparent RGBA PNG with zero-alpha background, no shadow, checkerboard, scenery, registration, captions or extra objects.
+
+## DHL and Compass Air Cargo artwork queue
+
+Added 21 profiles on 25 November 2026. The DHL set covers the publicly documented DHL-branded network, including dedicated regional aircraft and partner aircraft carrying DHL paint. A partner's other aircraft need their own livery references. [DHL fleet and capacity report](https://reporting-hub.group.dhl.com/2025-fy/en/combined-management-report/report-on-economic-position/express-division-1/) · [Tracked DHL-branded fleet](https://www.flightradar24.com/data/airlines/d0-dhk/fleet) · [Artwork catalog](../assets/aircrafts/artwork.json)
+
+| Artwork | Queued profiles |
+| --- | --- |
+| DHL Airbus freighters | A300-600F, A330-200F with Air Hong Kong titles, A330-300P2F |
+| DHL Boeing freighters | 737-400SF, 737-800BCF, 757-200F, 767-200BDSF, 767-300F, 777F |
+| DHL regional aircraft | ATR 42-300F, ATR 72-200F, ATR 72-500F, Cessna 208B Super Cargomaster, Reims-Cessna F406 Caravan II, Bell 206B JetRanger II |
+| DHL partner liveries | Kalitta Air 747-400BCF and 777F, Polar Air Cargo 747-8F |
+| Compass Air Cargo | 737-800SF, 747-400F, 747-400ERF |
+
+Compass Air Cargo's seven aircraft are mapped by registration and ADS-B address. The four 737s also match `ADZ` with `B738`. The two 747 variants share `B744` and are matched by airframe. On services such as Bergen–Stavanger, the `BCS` callsign can belong to a wet-leased Compass 737. For example, `LZ-CXC` (`452112`) selects Compass artwork even when the flight broadcasts a DHL callsign. An unidentified `BCS` 737 uses the neutral fallback. [Compass fleet](https://compasscargo.eu/) · [Tracked registrations](https://www.flightradar24.com/data/airlines/hq-adz/fleet) · [LZ-CXC in Bergen](https://www.jetphotos.com/photo/12205986) · [European Air Transport ICAO code](https://www.iata.org/en/about/members/airline-list/european-air-transport/534/)
+
+Use the catalog's photo for each profile. The Air Hong Kong A330-200F is a factory freighter with the nose gear blister. The A330-300P2F is a passenger conversion. The DHL ATR 72-200F has a photographed livery reference and is available for gallery use once generated. Live matching is pending confirmation of a current registration in that paint. [Air Hong Kong fleet modernization](https://www.dhl.com/hk-en/home/press/press-archive/2025/dhl-express-completes-the-modernization-of-its-air-hong-kong-operated-fleet.html) · [ATR 72-200F reference](https://commons.wikimedia.org/wiki/File:DHLATRinDGAA.jpg)
+
+## FedEx and UPS artwork queue
+
+Added 21 standard-livery profiles on 25 November 2026. The queue covers the active mainline fleet types for both carriers and the documented FedEx-branded feeder and contracted fleet types. UPS feeder operators use their own liveries in the records reviewed for this update. [FedEx fleet filing](https://www.sec.gov/Archives/edgar/data/1048911/000104891126000105/fdx-20260531.htm) · [Mountain Air Cargo fleet](https://mtaircargo.com/fleet/) · [UPS fleet filing](https://investors.ups.com/sec-filings/all-sec-filings/content/0001628280-26-049912/0001628280-26-049912.pdf)
+
+| Fleet | Queued profiles |
+| --- | --- |
+| FedEx Express | Airbus A300-600F, Boeing 757-200SF, 767-300F and 777F, McDonnell Douglas MD-11F |
+| FedEx Feeder | ATR 42-300F / 42-320F, ATR 72-202F, ATR 72-212F, ATR 72-600F, Cessna 208B Super Cargomaster, Cessna 408 SkyCourier Freighter |
+| FedEx-branded contract aircraft | Boeing 737-800BCF |
+| UPS Airlines | Airbus A300-600F, Boeing 757-200PF, 767-300F, 767-300F with blended winglets, 767-300ER(BCF), 767-300ER(BDSF), 747-400F, 747-400BCF, 747-8F |
+
+FedEx returned most of its MD-11 fleet to active service by September 2026. UPS permanently retired its MD-11s in late 2025. [FedEx September filing](https://www.sec.gov/Archives/edgar/data/1048911/000104891126000131/fdx-20260930.htm) · [UPS September filing](https://www.sec.gov/Archives/edgar/data/1090727/000162828026070246/ups-20260930.htm)
+
+The eight contracted FedEx 737-800BCFs are matched by ADS-B address or registration. FedEx feeder artwork also supports the Mountain Air Cargo callsign `MTN`. The classic ATR 72 variants use `AT72` for the -202 and `AT73` for the -212. [Tracked FedEx fleet](https://www.flightradar24.com/data/airlines/fx-fdx/fleet) · [FAA callsign assignments](https://www.faa.gov/air_traffic/publications/atpubs/cnt_html/chap3_section_1.html) · [ICAO type designators](https://cfapps.icao.int/doc8643/reports/ATD_Changes_In_Last_Editon.pdf)
+
+UPS's 747-400BCFs have a longer upper deck than its factory 747-400Fs. Airframe matches cover both 747 conversions, the six Boeing 767 conversions, the four IAI Bedek 767 conversions and two verified winglet-equipped factory 767s. These aircraft share their type designators with the factory aircraft. [Tracked UPS fleet](https://www.flightradar24.com/data/airlines/5x-ups/fleet) · [UPS filing on the Bedek fleet](https://downloads.regulations.gov/FAA-2024-1699-0005/attachment_1.pdf) · [UPS 767 with winglets](https://www.planespotters.net/hex/A3F1C2)
+
 
 
 

@@ -1,14 +1,26 @@
 import { createNearbyFeed } from "./adsb/nearby-feed.mjs";
+import { createFlightReference } from "./adsb/flight-reference.mjs";
+import { createSettingsApi } from "./settings/settings-api.mjs";
 
-function registerNearbyFeed(server) {
+function registerDisplayApi(server) {
+  server.middlewares.use(createSettingsApi("overhead.config.json"));
   server.middlewares.use(createNearbyFeed());
+  server.middlewares.use(createFlightReference());
 }
 
 export default {
   publicDir: "../assets",
+  server: {
+    fs: {
+      deny: [
+        ".env", ".env.*", "*.{crt,pem,key,p12,pfx,cer,der}", ".npmrc", ".yarnrc.yml", "**/.git/**",
+        "overhead.config.json", "overhead.config.json.tmp",
+      ],
+    },
+  },
   plugins: [{
-    name: "overhead-nearby-feed",
-    configureServer: registerNearbyFeed,
-    configurePreviewServer: registerNearbyFeed,
+    name: "overhead-display-api",
+    configureServer: registerDisplayApi,
+    configurePreviewServer: registerDisplayApi,
   }],
 };
