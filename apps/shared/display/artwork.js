@@ -1,4 +1,10 @@
 const artworkDirectory = new URL("/aircrafts/", window.location.origin);
+// Bundled fallbacks can load even when the artwork catalogue is unavailable.
+const genericArtwork = {
+  "fixed-wing": { aircraft: "Generic fixed-wing aircraft", path: "fallbacks/generic-fixed-wing.png" },
+  "general-aviation": { aircraft: "Generic light aircraft", path: "general-aviation/vans-rv7-neutral.png" },
+  helicopter: { aircraft: "Generic helicopter", path: "fallbacks/generic-helicopter.png" },
+};
 const imageFiles = new Map();
 const catalogRetryMs = 30_000;
 const loadAircraftTypes = cacheCatalog("aircraft-types.json");
@@ -92,19 +98,23 @@ export async function catalogAircraft(aircraft) {
 
 export async function aircraftImage({ icaoType, category, illustrationId }, operatorIcao, currentImage) {
   const [assets, types] = await Promise.all([loadArtwork(), loadAircraftTypes()]);
-  if (!assets) return null;
+  const { catalog, ready, operatorIllustrations } = assets ?? {};
+  const { byType, byCategory } = catalog?.fallbacks ?? {};
+  const typeFallback = ready?.get(byType?.[icaoType]);
+  const categoryFallback = ready?.get(byCategory?.[category]);
+  const candidates = [
+    ready?.get(illustrationId),
+    operatorIllustrations?.get(`${identifier(operatorIcao)}/${icaoType}`),
+    typeFallback?.airframeOnly ? undefined : typeFallback,
+    categoryFallback?.airframeOnly ? undefined : categoryFallback,
+    genericArtwork[category],
+    genericArtwork["fixed-wing"],
+  ];
 
-  const { catalog, ready, operatorIllustrations } = assets;
-  const specific = ready.get(illustrationId);
-  const operator = operatorIllustrations.get(`${identifier(operatorIcao)}/${icaoType}`);
-  const candidates = new Set([specific, operator]);
-  const { byType, byCategory } = catalog.fallbacks;
-  for (const id of [byType[icaoType], byCategory[category]]) {
-    const fallback = ready.get(id);
-    if (!fallback?.airframeOnly) candidates.add(fallback);
-  }
-
+  const attemptedPaths = new Set();
   for (const illustration of candidates) {
+    if (!illustration || attemptedPaths.has(illustration.path)) continue;
+    attemptedPaths.add(illustration.path);
     const image = await decodeIllustration(illustration, types, currentImage);
     if (image) return image;
   }

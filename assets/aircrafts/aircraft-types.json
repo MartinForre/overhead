@@ -562,6 +562,11 @@
     "model": "Concorde",
     "category": "airliner"
   },
+  "CP32": {
+    "manufacturer": "Piel",
+    "model": "Super Emeraude",
+    "category": "general-aviation"
+  },
   "DC3": {
     "manufacturer": "Douglas",
     "model": "DC-3 / Dakota",
