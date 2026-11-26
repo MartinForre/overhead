@@ -132,6 +132,11 @@
     "model": "737 MAX 9",
     "category": "airliner"
   },
+  "B733": {
+    "manufacturer": "Boeing",
+    "model": "737-300",
+    "category": "airliner"
+  },
   "B734": {
     "manufacturer": "Boeing",
     "model": "737-400",

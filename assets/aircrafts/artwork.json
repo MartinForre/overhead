@@ -4717,6 +4717,180 @@
       "path": "general-aviation/aero-commander-1121-neutral.png",
       "status": "ready",
       "reference": "https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf"
+    },
+    "737-300-neutral": {
+      "icaoType": "B733",
+      "livery": "Neutral",
+      "path": "airliners/737-300-neutral.png",
+      "status": "ready",
+      "reference": "https://www.flickr.com/photos/riikkeary/28707991116"
+    },
+    "a320neo-egyptair": {
+      "icaoType": "A20N",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/a320neo-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "a320neo-neutral",
+      "reference": "https://commons.wikimedia.org/wiki/File:Airbus_A320-251N_(cn_9473,_SU-GFJ)_2024-08-15_Andre_Gerwing_Collection_ID_021636.jpg"
+    },
+    "a321neo-egyptair": {
+      "icaoType": "A21N",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/a321neo-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-neutral",
+      "reference": "https://www.airbus.com/en/newsroom/press-releases/2023-02-egyptair-takes-delivery-of-africas-first-airbus-a321neo"
+    },
+    "a330-200-egyptair": {
+      "icaoType": "A332",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/a330-200-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "a330-200-neutral",
+      "reference": "https://www.jetphotos.com/info/A330%2F40-696"
+    },
+    "a330-300-egyptair": {
+      "icaoType": "A333",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/a330-300-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "a330-300-neutral",
+      "reference": "https://www.egyptair.com/en/about-egyptair/fleet/Pages/default.aspx"
+    },
+    "a350-900-egyptair": {
+      "icaoType": "A359",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/a350-900-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "a350-900-neutral",
+      "reference": "https://www.airbus.com/en/newsroom/press-releases/2026-02-egyptair-takes-delivery-of-its-first-of-16-airbus-a350-900-aircraft"
+    },
+    "737-800-egyptair": {
+      "icaoType": "B738",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/737-800-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "737-800-neutral",
+      "reference": "https://www.egyptair.com/en/about-egyptair/fleet/Pages/default.aspx"
+    },
+    "737-max-8-egyptair": {
+      "icaoType": "B38M",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/737-max-8-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "737-max-8-neutral",
+      "reference": "https://investors.boeing.com/investors/news/press-release-details/2026/EgyptAir-Takes-Delivery-of-First-Boeing-737-MAX-Jet/default.aspx"
+    },
+    "777-300er-egyptair": {
+      "icaoType": "B77W",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/777-300er-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "777-300er-neutral",
+      "reference": "https://www.egyptair.com/en/about-egyptair/fleet/Pages/default.aspx"
+    },
+    "787-9-egyptair": {
+      "icaoType": "B789",
+      "livery": "EgyptAir",
+      "operatorIcaoCodes": [
+        "MSR"
+      ],
+      "path": "airliners/787-9-egyptair.png",
+      "status": "ready",
+      "referenceIllustration": "787-9-neutral",
+      "reference": "https://www.boeing-me.com/content/dam/boeing/v2/middle-east/documents/me-backgrounder-egypt-en.pdf"
+    },
+    "737-300-jet2": {
+      "icaoType": "B733",
+      "livery": "Jet2holidays",
+      "operatorIcaoCodes": [
+        "EXS"
+      ],
+      "path": "airliners/737-300-jet2.png",
+      "status": "ready",
+      "referenceIllustration": "737-300-neutral",
+      "reference": "https://www.flickr.com/photos/riikkeary/28707991116"
+    },
+    "737-800-jet2": {
+      "icaoType": "B738",
+      "livery": "Jet2.com, silver and red",
+      "operatorIcaoCodes": [
+        "EXS"
+      ],
+      "path": "airliners/737-800-jet2.png",
+      "status": "ready",
+      "referenceIllustration": "737-800-neutral",
+      "reference": "https://www.flugzeug-bild.de/bild/Fluggesellschaften~Europa~Jet2/87070/jet2-g-jzhb-boeing-b737-8k5-w-17dezember.html"
+    },
+    "a321-jet2": {
+      "icaoType": "A321",
+      "livery": "Jet2holidays",
+      "operatorIcaoCodes": [
+        "EXS"
+      ],
+      "path": "airliners/a321-jet2.png",
+      "status": "ready",
+      "referenceIllustration": "a321-neutral",
+      "reference": "https://www.jetphotos.com/photo/9850226"
+    },
+    "a321neo-jet2": {
+      "icaoType": "A21N",
+      "livery": "Jet2holidays",
+      "operatorIcaoCodes": [
+        "EXS"
+      ],
+      "path": "airliners/a321neo-jet2.png",
+      "status": "ready",
+      "referenceIllustration": "a321neo-neutral",
+      "reference": "https://www.jet2.com/news/2026/07/Jet2_welcomes_the_30th_brand_new_Airbus_A321neo_aircraft_into_its_fleet"
+    },
+    "a330-200p2f-egyptair-cargo": {
+      "icaoType": "A332",
+      "aircraft": "Airbus A330-200P2F",
+      "livery": "EgyptAir Cargo",
+      "operatorIcaoCodes": [
+        "MSX"
+      ],
+      "path": "airliners/a330-200p2f-egyptair-cargo.png",
+      "status": "ready",
+      "referenceIllustration": "a330-200-neutral",
+      "reference": "https://commons.wikimedia.org/wiki/File:SU-GCF_Airbus_A330-243(P2F)_Egyptair_Cargo_LHR_12.1.22.jpg"
+    },
+    "737-800sf-egyptair-cargo": {
+      "icaoType": "B738",
+      "aircraft": "Boeing 737-800SF",
+      "livery": "EgyptAir Cargo",
+      "operatorIcaoCodes": [
+        "MSX"
+      ],
+      "path": "airliners/737-800sf-egyptair-cargo.png",
+      "status": "ready",
+      "referenceIllustration": "737-800sf-compass-air-cargo",
+      "reference": "https://staralliancevirtual.org/fleet/models/egyptair-boeing-737-866-sf-wl"
     }
   },
   "airframes": {
@@ -5669,6 +5843,36 @@
       "registration": "HZ-ASBE",
       "illustration": "a321xlr-saudia",
       "reference": "https://midrma.com/en/rvsm/approvalList/sa"
+    },
+    "0100A2": {
+      "registration": "SU-GCE",
+      "illustration": "a330-200p2f-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gce"
+    },
+    "0100A3": {
+      "registration": "SU-GCF",
+      "illustration": "a330-200p2f-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gcf"
+    },
+    "0100A4": {
+      "registration": "SU-GCG",
+      "illustration": "a330-200p2f-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gcg"
+    },
+    "0100A5": {
+      "registration": "SU-GCH",
+      "illustration": "a330-200p2f-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gch"
+    },
+    "0100A7": {
+      "registration": "SU-GCJ",
+      "illustration": "a330-200p2f-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gcj"
+    },
+    "0100DE": {
+      "registration": "SU-GCP",
+      "illustration": "737-800sf-egyptair-cargo",
+      "reference": "https://www.flightradar24.com/data/aircraft/su-gcp"
     }
   },
   "fallbacks": {
@@ -5691,6 +5895,7 @@
       "AT76": "atr72-600-neutral",
       "B38M": "737-max-8-neutral",
       "B39M": "737-max-9-neutral",
+      "B733": "737-300-neutral",
       "B737": "737-700-neutral",
       "B738": "737-800-neutral",
       "B739": "737-900-neutral",

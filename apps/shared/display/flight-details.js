@@ -3,9 +3,12 @@ import { catalogAircraft } from "./artwork.js";
 const localAirlineNames = {
   BCY: "CityJet",
   BRX: "Braathens Regional Airways",
+  EXS: "Jet2.com",
   FCM: "Nordic Regional Airlines",
   FIN: "Finnair",
   HKS: "CHC Helikopter Service",
+  MSR: "EgyptAir",
+  MSX: "EgyptAir Cargo",
   NOR: "Bristow Norway",
   SVA: "Saudia",
   SVS: "SAS Link",
