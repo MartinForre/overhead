@@ -10,7 +10,9 @@ const minimumDisplacementKm = .003;
 const maximumSpeedKnots = 1_600;
 const kmPerNauticalMile = 1.852;
 
-export function updateMapMotion(previous, { item, observedAt }, now) {
+export function updateMapMotion(previous, {
+  item, observedAt, predictionMs = maximumPredictionMs, historyWindowMs: windowMs = historyWindowMs, reportGapMs = 30_000,
+}, now) {
   const before = previous?.report;
   if (before && observedAt < before.observedAt) return previous;
 
@@ -28,7 +30,7 @@ export function updateMapMotion(previous, { item, observedAt }, now) {
     last.location.latitude === item.lat && last.speed === observation.speed &&
     last.track === observation.track && last.turn === observation.turn) return previous;
 
-  const history = recordObservation(previous?.history ?? [], observation);
+  const history = recordObservation(previous?.history ?? [], observation, windowMs, reportGapMs);
   const prior = history.at(-2);
   const travel = prior ? distanceBetween(prior.location, item) : 0;
   const moving = travel >= minimumDisplacementKm;
@@ -37,7 +39,7 @@ export function updateMapMotion(previous, { item, observedAt }, now) {
   const rate = history.length >= 3 && moving && before?.track !== undefined && track !== undefined
     ? (closestLongitude(track, before.track) - before.track) * 1_000 / (observedAt - prior.observedAt) : 0;
   const turn = speed >= 55 ? Math.max(-4, Math.min(4, observation.turn ?? rate)) : 0;
-  const report = { location, observedAt, speed, track, turn, canPredict: moving };
+  const report = { location, observedAt, speed, track, turn, canPredict: moving, predictionMs };
   if (!before) return { observation, report, history };
 
   const current = sampleMapMotion(previous, now);
@@ -49,16 +51,16 @@ export function updateMapMotion(previous, { item, observedAt }, now) {
   return { observation, report, history, correction: { startedAt: now, longitude, latitude, bearing } };
 }
 
-function recordObservation(history, observation) {
+function recordObservation(history, observation, windowMs, reportGapMs) {
   const { location, observedAt } = observation;
   if (!Number.isFinite(observedAt)) return [];
-  const recent = history.filter(sample => sample.observedAt < observedAt && observedAt - sample.observedAt <= historyWindowMs);
+  const recent = history.filter(sample => sample.observedAt < observedAt && observedAt - sample.observedAt <= windowMs);
   const last = recent.at(-1);
   if (last) {
     const elapsed = observedAt - last.observedAt;
     const distance = distanceBetween(last.location, { lon: location.longitude, lat: location.latitude });
     // Break the trail across bad fixes or a gap too long to estimate a trajectory.
-    if (elapsed > 30_000 || distance > maximumSpeedKnots * kmPerNauticalMile * elapsed / 3_600_000 + .03) {
+    if (elapsed > reportGapMs || distance > maximumSpeedKnots * kmPerNauticalMile * elapsed / 3_600_000 + .03) {
       return [observation];
     }
   }
@@ -91,12 +93,12 @@ export function sampleMapMotion({ report, correction }, now, animate = true) {
   return pose;
 }
 
-function predict({ location, observedAt, speed, track, turn, canPredict }, now) {
-  if (!canPredict || track === undefined || !speed) {
+function predict({ location, observedAt, speed, track, turn, canPredict, predictionMs }, now) {
+  if (!canPredict || track === undefined || !speed || !predictionMs) {
     return { position: [location.longitude, location.latitude], track, moving: false };
   }
-  const elapsed = Math.max(0, Math.min(maximumPredictionMs, now - observedAt));
+  const elapsed = Math.max(0, Math.min(predictionMs, now - observedAt));
   const turnDegrees = turn * Math.min(elapsed / 1_000, 4);
   const position = destinationPoint(location, speed * elapsed / 3_600_000, track + turnDegrees / 2);
-  return { position, track: (track + turnDegrees + 360) % 360, moving: elapsed < maximumPredictionMs };
+  return { position, track: (track + turnDegrees + 360) % 360, moving: elapsed < predictionMs };
 }

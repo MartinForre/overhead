@@ -167,6 +167,7 @@ function normalizeFlight(row) {
   if (!isFlightId(row?.fa_flight_id)) return null;
   return {
     id: row.fa_flight_id,
+    callsign: clean(row.ident_icao ?? row.ident),
     aircraftType: clean(row.aircraft_type),
     registration: clean(row.registration),
     operator: clean(row.operator_icao ?? row.operator),
@@ -194,6 +195,7 @@ function normalizeAirport(airport) {
     code: clean(airport?.code_iata ?? airport?.code_icao ?? airport?.code),
     city: clean(airport?.city ?? airport?.name),
     timezone: clean(airport?.timezone),
+    ...coordinates(airport),
   };
 }
 
@@ -201,11 +203,19 @@ function normalizePosition(position) {
   if (!position) return;
   return {
     timestamp: timestamp(position.timestamp),
+    ...coordinates(position),
     altitude: Number.isFinite(position.altitude) ? position.altitude * 100 : undefined,
     altitudeTrend: position.altitude_change === "C" ? 1 : position.altitude_change === "D" ? -1 : undefined,
     speed: Number.isFinite(position.groundspeed) && position.groundspeed >= 0 ? Math.round(position.groundspeed * 1.852) : undefined,
     heading: Number.isFinite(position.heading) && position.heading >= 0 && position.heading < 360 ? position.heading : undefined,
   };
+}
+
+function coordinates(point) {
+  if (Number.isFinite(point?.latitude) && Math.abs(point.latitude) <= 90 &&
+      Number.isFinite(point.longitude) && Math.abs(point.longitude) <= 180) {
+    return { latitude: point.latitude, longitude: point.longitude };
+  }
 }
 
 function clean(value) {

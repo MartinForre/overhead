@@ -5,7 +5,10 @@ import { join } from "node:path";
 import { Readable } from "node:stream";
 import { test } from "node:test";
 import { callsignSelection, createCallsignTracker } from "../apps/adsb/callsign-tracker.mjs";
+import { createFlightTracker } from "../apps/adsb/tracked-flights.mjs";
 import { createSettingsApi } from "../apps/settings/settings-api.mjs";
+import { sampleMapMotion, updateMapMotion } from "../apps/shared/display/map-motion.js";
+import { trackedMapEntry } from "../apps/shared/display/map-aircraft.js";
 
 async function fixture(t, { tracker = { configured: false }, callsigns, stored } = {}) {
   const directory = await mkdtemp(join(tmpdir(), "overhead-live-track-"));
@@ -91,4 +94,38 @@ test("Live entries observe the selected aircraft with FlightAware configured", a
   const changed = await request("/api/track/status");
   assert.equal(changed.body.flights[1].state, "waiting");
   assert.equal(queried, 2);
+});
+
+test("Dated Track flights retain real position timestamps and form trails across slower reports", async () => {
+  let now = Date.UTC(2025, 10, 26, 12);
+  let longitude = 5;
+  const id = "SAS588-departure";
+  const selection = { id, number: "SK588" };
+  const tracker = createFlightTracker({ key: "fixture", now: () => now, fetcher: async url => {
+    if (url.pathname.endsWith("/position")) {
+      return Response.json({ last_position: {
+        latitude: 59, longitude, timestamp: new Date(now - 2_000).toISOString(), heading: 90, groundspeed: 430,
+      } });
+    }
+    return Response.json({ flights: [{
+      fa_flight_id: id, ident_icao: "SAS588", destination: { code_iata: "OSL" },
+      actual_off: new Date(now - 60 * 60_000).toISOString(),
+    }] });
+  } });
+  const first = trackedMapEntry(await tracker.status(selection), selection, undefined, now);
+  assert.equal(first.observedAt, now - 2_000);
+  assert.equal(first.item.flight, "SAS588");
+  assert.equal(first.destinationCode, "OSL");
+  assert.equal(first.item.lon, 5);
+  assert.equal(first.item.lat, 59);
+  const initial = updateMapMotion(undefined, first, now);
+  now += 5 * 60_000;
+  longitude = 6;
+  const latest = await tracker.status(selection);
+  const second = trackedMapEntry(latest, selection, undefined, now);
+  const moving = updateMapMotion(initial, second, now);
+  assert.equal(moving.history.length, 2);
+  assert.deepEqual(sampleMapMotion(moving, now + 30_000).position, [6, 59]);
+  assert.equal(trackedMapEntry(latest, selection, undefined, now + 10 * 60_000), undefined);
+  assert.equal(trackedMapEntry({ ...latest, landed: now }, selection, undefined, now), undefined);
 });

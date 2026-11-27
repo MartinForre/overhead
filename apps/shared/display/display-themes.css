@@ -2,6 +2,8 @@
   color-scheme: dark;
   --wallpaper: initial;
   --runway-artwork: url("/dividers/runway.png");
+  --aircraft-filter: initial;
+  --scenery-filter: none;
   --paper: #252821;
   --ink: #f3efe1;
   --muted-ink: #c8cdbb;
@@ -120,6 +122,59 @@
   --control: #cce3d9;
   --needle-tip: #a94d31;
   --needle-tail: #739992;
+}
+
+[data-theme="ivory-and-amber"] {
+  color-scheme: light;
+  --paper: #f8f2e1;
+  --wallpaper:
+    linear-gradient(to bottom, #e4a435 0 2px, #f4e6c9 2px 3px, #c46a29 3px 7px) bottom / 100% 7px no-repeat,
+    radial-gradient(ellipse at 48% 27%, #fffcf2, #f8f2e1 59%, #ecdcbf);
+  --ink: #35271e;
+  --muted-ink: #63513f;
+  --rule: #9e815a;
+  --flap: #edac47;
+  --flap-ink: #362410;
+  --flap-seam: #b7782e;
+  --control: #ede0c4;
+  --needle-tip: #bc4c19;
+  --needle-tail: #856845;
+  --aircraft-filter: sepia(.22) saturate(.83) contrast(.97);
+  --scenery-filter: sepia(.28) saturate(.85) contrast(.92);
+}
+
+[data-theme="silver-print"] {
+  color-scheme: light;
+  --paper: #dedede;
+  --wallpaper: radial-gradient(ellipse at 49% 38%, #f0f0f0, #dedede 46%, #bdbdbd 96%);
+  --ink: #202020;
+  --muted-ink: #424242;
+  --rule: #838383;
+  --flap: #373737;
+  --flap-ink: #f4f4f4;
+  --flap-seam: #626262;
+  --control: #cecece;
+  --needle-tip: #232323;
+  --needle-tail: #737373;
+  --aircraft-filter: grayscale(1) contrast(1.13) brightness(.94);
+  --scenery-filter: grayscale(1) contrast(1.15) brightness(.94);
+  --runway-artwork: url("/dividers/runway-dirt.png");
+}
+
+:root[data-theme="silver-print"] .display::after,
+.theme-preview[data-theme="silver-print"]::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 46%, transparent 43%, rgb(24 24 24 / 23%) 77%, rgb(16 16 16 / 76%) 113%),
+    url("./film-grain.png");
+  pointer-events: none;
+  content: "";
+}
+
+:is(.flight-aircraft, .track-placeholder, .gallery-art img, .theme-preview img) {
+  filter: var(--aircraft-filter, none);
 }
 
 .display-landscape {

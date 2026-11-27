@@ -1,13 +1,16 @@
+import { createCallsignTracker } from "./adsb/callsign-tracker.mjs";
 import { createNearbyFeed } from "./adsb/nearby-feed.mjs";
 import { createFlightReference } from "./adsb/flight-reference.mjs";
+import { createTakeoffTracker } from "./adsb/takeoff-tracker.mjs";
 import { createSettingsApi } from "./settings/settings-api.mjs";
 import { mapLibreAssets } from "./maplibre-assets.mjs";
 
 function registerDisplayApi(server) {
   const flightReference = createFlightReference();
+  const observeTakeoff = createTakeoffTracker();
   server.middlewares.use(mapLibreAssets);
-  server.middlewares.use(createSettingsApi("overhead.config.json"));
-  server.middlewares.use(createNearbyFeed({ peekDestination: flightReference.peekDestination }));
+  server.middlewares.use(createSettingsApi("overhead.config.json", undefined, createCallsignTracker({ observeTakeoff })));
+  server.middlewares.use(createNearbyFeed({ peekDestination: flightReference.peekDestination, observeTakeoff }));
   server.middlewares.use(flightReference);
 }
 

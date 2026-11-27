@@ -1,9 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { estimateTakeoffTime } from "../apps/shared/display/route-progress.js";
+import { createCallsignTracker } from "../apps/adsb/callsign-tracker.mjs";
 import { createFlightReference } from "../apps/adsb/flight-reference.mjs";
 import { metarCache } from "../apps/adsb/metar.mjs";
 import { createNearbyFeed } from "../apps/adsb/nearby-feed.mjs";
 import { adsbFi, adsbLol } from "../apps/adsb/providers.mjs";
+import { createTakeoffTracker } from "../apps/adsb/takeoff-tracker.mjs";
 
 async function request(middleware, url, { method = "GET", response = {} } = {}) {
   const result = { status: 200, headers: {} };
@@ -31,6 +34,71 @@ function pendingResponse() {
   const promise = new Promise((complete) => { resolve = complete; });
   return { promise, resolve };
 }
+
+test("Live ground reports pair with Track airborne reports to estimate takeoff", async (t) => {
+  const start = Date.UTC(2026, 0, 1, 12);
+  t.mock.timers.enable({ apis: ["Date"], now: start });
+  t.mock.method(metarCache, "peek", () => []);
+  const ground = { hex: "4CAD94", flight: "SAS588 ", lat: 58.88, lon: 5.64, seen_pos: 2, alt_baro: "ground" };
+  const airborne = { ...ground, hex: "4cad94", flight: "SAS588", lat: 58.89, seen_pos: 0, alt_baro: 400 };
+  const observeTakeoff = createTakeoffTracker();
+  const nearby = createNearbyFeed({ observeTakeoff });
+  const callsigns = createCallsignTracker({ observeTakeoff, lookup: async () => ({
+    snapshot: { now: Date.now(), ac: [airborne] },
+  }) });
+  let report = ground;
+  t.mock.method(adsbFi, "fetchNearby", async () => ({ snapshot: { now: Date.now(), ac: [report] } }));
+  const path = "/api/aircraft/v2/lat/59/lon/5.5/dist/50";
+  const readNearby = async () => JSON.parse((await request(nearby, path)).body).ac[0];
+  assert.equal((await readNearby()).observedTakeoff, undefined);
+
+  t.mock.timers.tick(18_000);
+  const tracked = await callsigns.status({ id: "adsb-fi-SAS588", callsign: "SAS588" });
+  assert.deepEqual(tracked.observedTakeoff, { latitude: 58.88, longitude: 5.64, timestamp: start + 8_000 });
+  report = airborne;
+  assert.deepEqual((await readNearby()).observedTakeoff, tracked.observedTakeoff);
+  const displayedTime = (departure) => estimateTakeoffTime({ departure }, tracked.position, tracked.updatedAt, tracked.observedTakeoff);
+  assert.equal(displayedTime({ latitude: 58.8767, longitude: 5.6378 }), start + 8_000);
+  assert.equal(displayedTime({ latitude: 60.1939, longitude: 11.1004 }), undefined);
+});
+
+test("Airborne telemetry can estimate a takeoff when the ground report was missed", (t) => {
+  const now = Date.UTC(2026, 0, 1, 12);
+  t.mock.timers.enable({ apis: ["Date"], now });
+  const route = { departure: { latitude: 0, longitude: 0 } };
+  const position = { latitude: 0, longitude: 3, speed: 800, ground: false };
+  assert.equal(estimateTakeoffTime(route, position, now), now - 25 * 60_000);
+  assert.equal(estimateTakeoffTime(route, { ...position, longitude: 0 }, now), now);
+  assert.equal(estimateTakeoffTime(route, { ...position, ground: true }, now), undefined);
+  assert.equal(estimateTakeoffTime(route, { ...position, speed: undefined }, now), undefined);
+  assert.equal(estimateTakeoffTime(route, position, now - 61_000), undefined);
+  assert.equal(estimateTakeoffTime({ hasIntermediateStop: true, ...route }, position, now), undefined);
+  assert.equal(estimateTakeoffTime({}, position, now), undefined);
+});
+
+test("Takeoff requires fresh consecutive ground and airborne observations for the same flight", () => {
+  let now = Date.UTC(2026, 0, 1, 12);
+  const observe = createTakeoffTracker({ now: () => now });
+  const ground = { hex: "4CAD94", flight: "SAS588", lat: 58.88, lon: 5.64, seen_pos: 0, alt_baro: "ground" };
+  const airborne = { ...ground, alt_baro: 400 };
+  assert.equal(observe(airborne, now), undefined);
+  assert.equal(observe(ground, now += 15_000), undefined);
+  assert.equal(observe(airborne, now += 61_000), undefined);
+  assert.equal(observe({ ...ground, seen_pos: 31 }, now += 32_000), undefined);
+  assert.equal(observe(airborne, now += 5_000), undefined);
+  const groundAt = now += 10_000;
+  observe(ground, groundAt);
+  const takeoff = observe(airborne, now += 10_000);
+  assert.equal(takeoff.timestamp, now - 5_000);
+  assert.equal(observe(ground, groundAt), undefined);
+  assert.deepEqual(observe(airborne, now += 5_000), takeoff);
+  assert.equal(observe({ ...airborne, flight: "SAS589" }, now += 5_000), undefined);
+  assert.equal(observe(airborne, now += 5_000), undefined);
+  observe(ground, now += 5_000);
+  observe(airborne, now += 5_000);
+  assert.equal(observe(ground, now += 5_000), undefined);
+  assert.equal(observe({ ...airborne, lat: 60 }, now += 5_000), undefined);
+});
 
 test("nearby clients share an upstream request and get five seconds of reuse after it completes", async (t) => {
   t.mock.timers.enable({ apis: ["Date"], now: Date.UTC(2026, 0, 1) });

@@ -28,6 +28,52 @@ export function mapDiameterBounds({ latitude, longitude }, radiusKm) {
   };
 }
 
+export function trackedAircraftBounds(positions) {
+  const longitudes = positions.map(([lon]) => (lon + 360) % 360).sort((a, b) => a - b);
+  let widestGap = -1;
+  let west, east;
+  // Use the complement of the largest gap so flights on either side of the date line stay together.
+  for (let i = 0; i < longitudes.length; i++) {
+    const end = longitudes[i];
+    const start = longitudes[i + 1] ?? longitudes[0] + 360;
+    if (start - end <= widestGap) continue;
+    widestGap = start - end;
+    west = start;
+    east = end + 360;
+  }
+  const latitudes = positions.map(([, lat]) => Math.max(-mercatorLatitude, Math.min(mercatorLatitude, lat)));
+  const south = Math.min(...latitudes);
+  const north = Math.max(...latitudes);
+  const latitude = (south + north) / 2;
+  const midLongitude = (west + east) / 2;
+  const longitude = closestLongitude(midLongitude, 0);
+  // Keep a neighborhood around a single aircraft and give its trail room to show.
+  const halfHeight = Math.max((north - south) / 2, .15);
+  const halfWidth = Math.max((east - west) / 2, .15 / Math.cos(latitude * radians));
+  return {
+    center: { latitude, longitude },
+    bounds: [[longitude - halfWidth, Math.max(-mercatorLatitude, latitude - halfHeight)],
+      [longitude + halfWidth, Math.min(mercatorLatitude, latitude + halfHeight)]],
+  };
+}
+
+export function projectTrackBounds({ center, bounds: [[west, south], [east, north]] }, width, height, padding) {
+  const mercatorY = latitude => {
+    const bounded = Math.max(-mercatorLatitude, Math.min(mercatorLatitude, latitude));
+    return Math.log(Math.tan(Math.PI / 4 + bounded * radians / 2)) / radians;
+  };
+  const top = mercatorY(north);
+  const bottom = mercatorY(south);
+  const scale = Math.min((width - padding.left - padding.right) / (east - west),
+    (height - padding.top - padding.bottom) / (top - bottom));
+  const centerX = (width + padding.left - padding.right) / 2;
+  const centerY = (height + padding.top - padding.bottom) / 2;
+  return ([lon, lat], reference = center.longitude) => [
+    centerX + (closestLongitude(lon, reference) - center.longitude) * scale,
+    centerY - (mercatorY(lat) - (top + bottom) / 2) * scale,
+  ];
+}
+
 // Preserve distance and bearing from the display location when Web Mercator cannot be used.
 export function projectFromCenter({ latitude, longitude }, [lon, lat], radiusKm, width, height) {
   const centerLat = latitude * radians;

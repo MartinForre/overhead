@@ -1,9 +1,50 @@
+import { trackMapAircraftKey } from "../settings-schema.js";
 import { isOnGround } from "./landing-gear.js";
 import { spriteOrientation } from "./map-geometry.js";
+import { hasCoordinates } from "./route-progress.js";
 
-const largestBodies = /^(A38[08]|B74[48]|A346|B77[39]|A35K)$/;
+const largestBodies = /^(A38[08]|B74[248]|A346|B77[39]|A35K)$/;
 const wideBodies = /^(A30[36]|A31[0]|A3[345][0-9K]|B7[678][0-9X]|DC10|MD11|IL96|AN12|A124)$/;
 const regionalBodies = /^(AT[47][0-9]|DH8[ABD]|E1[3479][0-9]|CRJ[0-9X]|SF34|F[57]0|B46[0-9]|RJ[0-9]+)/;
+
+export function trackedMapEntry(flight, selection, referenceDestination, now = Date.now()) {
+  const position = flight?.position;
+  if (!hasCoordinates(position) || flight.cancelled || flight.landed || flight.arrived) return;
+  const watchingAdsb = Boolean(selection.callsign || selection.aircraftHex);
+  const observedAt = position.timestamp ?? (watchingAdsb ? flight.updatedAt : undefined);
+  if (!Number.isFinite(observedAt) || now - observedAt > (watchingAdsb ? 45_000 : 10 * 60_000)) return;
+  return {
+    key: trackMapAircraftKey(selection.id),
+    label: selection.number,
+    observedAt,
+    predictionMs: watchingAdsb ? 15_000 : 0,
+    historyWindowMs: watchingAdsb ? undefined : 45 * 60_000,
+    reportGapMs: watchingAdsb ? undefined : 12 * 60_000,
+    lookupRoute: !watchingAdsb && Boolean(flight.destination?.code),
+    destinationCode: watchingAdsb ? undefined : flight.destination?.code,
+    details: {
+      destination: watchingAdsb ? referenceDestination : flight.destination,
+      model: flight.model,
+      operatorIcao: flight.operator,
+    },
+    item: {
+      flight: selection.callsign || flight.callsign || selection.number,
+      hex: flight.hex?.toUpperCase() ?? selection.aircraftHex,
+      r: flight.registration,
+      t: flight.aircraftType,
+      category: flight.category,
+      desc: flight.model,
+      lat: position.latitude,
+      lon: position.longitude,
+      alt_baro: position.pressureAltitude ?? position.altitude,
+      alt_geom: position.geometricAltitude,
+      ground: position.ground,
+      gs: position.speed / 1.852,
+      track: position.heading,
+      track_rate: position.trackRate,
+    },
+  };
+}
 
 export function mapAircraftScale(aircraft, { icaoType = aircraft.t, category } = {}) {
   const type = String(icaoType ?? "").toUpperCase();

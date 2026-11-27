@@ -1,5 +1,6 @@
 import { normalizeBroadcastCallsign, normalizeCallsign, normalizeFlightNumber } from "../shared/settings-schema.js";
 import { adsbFi } from "./providers.mjs";
+import { createTakeoffTracker } from "./takeoff-tracker.mjs";
 
 const localDesignators = { AY: "FIN", D8: "NSZ", DY: "NOZ", SK: "SAS", WF: "WIF" };
 const maxObservationAgeSeconds = 30;
@@ -13,7 +14,9 @@ export function callsignSelection(input) {
   return { id: "adsb-fi-" + callsign, number, callsign };
 }
 
-export function createCallsignTracker({ lookup = adsbFi.fetchCallsign, lookupHex = adsbFi.fetchHex, now = Date.now } = {}) {
+export function createCallsignTracker({
+  lookup = adsbFi.fetchCallsign, lookupHex = adsbFi.fetchHex, now = Date.now, observeTakeoff = createTakeoffTracker({ now }),
+} = {}) {
   const entries = new Map();
 
   async function status(selection) {
@@ -65,6 +68,7 @@ export function createCallsignTracker({ lookup = adsbFi.fetchCallsign, lookupHex
         category: typeof aircraft.category === "string" ? aircraft.category : undefined,
         operator: normalizeCallsign(callsign).slice(0, 3) || undefined,
         updatedAt: snapshot.now - age * 1_000,
+        observedTakeoff: observeTakeoff(aircraft, snapshot.now),
         position: {
           latitude: hasPosition ? aircraft.lat : undefined,
           longitude: hasPosition ? aircraft.lon : undefined,
@@ -73,6 +77,7 @@ export function createCallsignTracker({ lookup = adsbFi.fetchCallsign, lookupHex
           ground: ground || (hasAltitude ? false : undefined),
           speed: Number.isFinite(aircraft.gs) && aircraft.gs >= 0 ? Math.round(aircraft.gs * 1.852) : undefined,
           heading: Number.isFinite(aircraft.track) && aircraft.track >= 0 && aircraft.track < 360 ? aircraft.track : undefined,
+          trackRate: Number.isFinite(aircraft.track_rate) ? aircraft.track_rate : undefined,
           verticalRate: Number.isFinite(aircraft.geom_rate) ? aircraft.geom_rate :
             Number.isFinite(aircraft.baro_rate) ? aircraft.baro_rate : undefined,
         },

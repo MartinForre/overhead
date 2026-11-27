@@ -8,7 +8,8 @@ import { isOnGround } from "./landing-gear.js";
 import { artworkAnchor, artworkEndpoints, groupGroundAircraft, mapAircraftScale } from "./map-aircraft.js";
 import { basemapStyle, loadMapLibre } from "./map-basemap.js";
 import {
-  clipDestinationLine, closestLongitude, mapDiameterBounds, projectFromCenter, spriteOrientation,
+  clipDestinationLine, closestLongitude, mapDiameterBounds, projectFromCenter, projectTrackBounds, spriteOrientation,
+  trackedAircraftBounds,
 } from "./map-geometry.js";
 import { sampleMapMotion, updateMapMotion } from "./map-motion.js";
 import { hasCoordinates } from "./route-progress.js";
@@ -37,6 +38,8 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
   const clusters = new Map();
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let location, radiusKm, theme, diameter, selected, map, loading;
+  let trackFrame, trackKeys;
+  let detailHeight = 0;
   let projector;
   let width = 0;
   let height = 0;
@@ -59,7 +62,13 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
   }
 
   new ResizeObserver(fit).observe(stage);
-  new ResizeObserver(() => element.style.setProperty("--map-detail-height", footer.offsetHeight + "px")).observe(footer);
+  new ResizeObserver(() => {
+    const nextHeight = footer.offsetHeight;
+    if (detailHeight === nextHeight) return;
+    detailHeight = nextHeight;
+    element.style.setProperty("--map-detail-height", detailHeight + "px");
+    if (trackFrame) fit();
+  }).observe(footer);
   reducedMotion.addEventListener("change", () => redraw());
 
   async function load() {
@@ -67,7 +76,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     loading = request;
     try {
       const library = await loadMapLibre();
-      if (loading !== request || !diameter) return;
+      if (loading !== request || (!diameter && !trackFrame)) return;
       map = new library.Map({
         container: basemap,
         style: basemapStyle(element),
@@ -128,8 +137,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     location = nextLocation;
     radiusKm = nextRadius;
     diameter = mapDiameterBounds(location, radiusKm);
-    element.hidden = false;
-    root.dataset.liveView = "map";
+    reveal(false);
     if (!diameter) {
       removeMap();
       caption.hidden = false;
@@ -140,6 +148,37 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     }
     fit();
     refresh();
+  }
+
+  function showTracked(entries) {
+    if (!entries.length) {
+      hide();
+      return;
+    }
+    const positions = entries.map(({ item }) => [item.lon, item.lat]);
+    const keys = entries.map(entry => entry.key).join("/");
+    const margin = Math.min(55, Math.min(width, height - detailHeight) * .09);
+    const reframe = keys !== trackKeys || !projector || positions.some(position => {
+      const [x, y] = projector(position);
+      return x < margin || x > width - margin || y < margin || y > height - detailHeight - margin;
+    });
+    if (reframe) {
+      trackKeys = keys;
+      trackFrame = trackedAircraftBounds(positions);
+      location = trackFrame.center;
+      reveal(true);
+      if (!map && !loading) void load();
+      fit();
+    }
+    show(entries);
+  }
+
+  function reveal(tracking) {
+    element.hidden = false;
+    root.dataset.liveView = "map";
+    center.hidden = tracking;
+    element.setAttribute("aria-label", t(tracking ? "Tracked flights map" : "Nearby aircraft map"));
+    markerLayer.setAttribute("aria-label", t(tracking ? "Tracked flights" : "Nearby aircraft"));
   }
 
   function setTheme(nextTheme) {
@@ -164,6 +203,8 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     delete root.dataset.liveView;
     location = undefined;
     diameter = undefined;
+    trackFrame = undefined;
+    trackKeys = undefined;
     projector = undefined;
     clearTimeout(lookupTimer);
     lookupTimer = undefined;
@@ -186,7 +227,20 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     width = stage.clientWidth;
     height = stage.clientHeight;
     if (!width || !height) return;
-    if (map && diameter && caption.hidden) {
+    if (trackFrame) {
+      const pad = Math.min(90, Math.min(width, height - detailHeight) * .16);
+      const padding = { top: pad, left: pad, right: pad, bottom: pad + detailHeight };
+      if (map && caption.hidden) {
+        map.resize();
+        map.fitBounds(trackFrame.bounds, { padding, animate: false });
+        projector = ([lon, lat], reference = map.getCenter().lng) => {
+          const point = map.project([closestLongitude(lon, reference), lat]);
+          return [point.x, point.y];
+        };
+      } else {
+        projector = projectTrackBounds(trackFrame, width, height, padding);
+      }
+    } else if (map && diameter && caption.hidden) {
       map.resize();
       // Pass only the longer axis so the shorter side does not limit zoom.
       map.fitBounds(width > height ? diameter.horizontal : diameter.vertical, { padding: 0, animate: false });
@@ -256,7 +310,8 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     node.style.setProperty("--marker-x", left.toFixed(2) + "px");
     node.style.setProperty("--marker-y", top.toFixed(2) + "px");
     if (hasCoordinates(marker.destination)) {
-      const reference = closestLongitude(pose.position[0], location.longitude);
+      const mapLongitude = trackFrame && map && caption.hidden ? map.getCenter().lng : location.longitude;
+      const reference = closestLongitude(pose.position[0], mapLongitude);
       marker.destinationEnd = projector([marker.destination.longitude, marker.destination.latitude], reference);
       marker.nose = artworkAnchor(left, top, pose.track, artWidth, artHeight, marker.sprite?.nose);
       // Short guides would cross the artwork when the aircraft reaches the airport.
@@ -381,19 +436,21 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     const seen = new Set();
     const now = Date.now();
     for (const entry of entries) {
-      const key = mapAircraftKey(entry.item);
+      const key = entry.key ?? mapAircraftKey(entry.item);
       if (seen.has(key)) continue;
       seen.add(key);
       remaining.delete(key);
       const marker = markers.get(key) ?? addMarker(key);
+      if (entry.key && marker.entry && marker.entry.item.hex !== entry.item.hex) marker.motion = undefined;
       marker.entry = entry;
       const callsign = flightReferenceCallsign(entry.item);
-      if (marker.callsign !== callsign) {
+      if (marker.callsign !== callsign || marker.destinationCode !== entry.destinationCode) {
         marker.callsign = callsign;
+        marker.destinationCode = entry.destinationCode;
         marker.lookedUpRoute = false;
         marker.route = undefined;
       }
-      marker.destination = entry.details?.destination ?? entry.item.knownDestination ??
+      marker.destination = (hasCoordinates(entry.details?.destination) ? entry.details.destination : entry.item.knownDestination) ??
         (marker.route?.expiresAt > now ? marker.route.destination : undefined);
       marker.motion = updateMapMotion(marker.motion, entry, now);
       scaleMarker(marker);
@@ -476,12 +533,13 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
   }
 
   function labelMarker(marker) {
-    const callsign = identifier(marker.entry.item);
+    const callsign = marker.entry.label ?? identifier(marker.entry.item);
     setText(marker.label, callsign);
     marker.node.setAttribute("aria-label", [callsign, marker.model].filter(Boolean).join(" · "));
   }
 
   function refresh() {
+    if (!element.hidden) reveal(Boolean(trackFrame));
     for (const marker of markers.values()) {
       const active = marker.key === selected;
       marker.node.toggleAttribute("data-selected", active);
@@ -501,20 +559,22 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
 
   function nextRouteMarker() {
     return [...markers.values()].find(marker =>
-      marker.callsign && Number.isFinite(marker.entry.observedAt) && !marker.lookedUpRoute && !hasCoordinates(marker.destination));
+      marker.callsign && marker.entry.lookupRoute !== false && Number.isFinite(marker.entry.observedAt) &&
+      !marker.lookedUpRoute && !hasCoordinates(marker.destination));
   }
 
   async function lookupNextRoute() {
     lookupTimer = undefined;
     const marker = nextRouteMarker();
     if (!marker || element.hidden) return;
-    const callsign = marker.callsign;
+    const { callsign, destinationCode } = marker;
     const request = new AbortController();
     lookupController = request;
     marker.lookedUpRoute = true;
     try {
-      const destination = await callsignDestination(callsign, request.signal);
-      if (request.signal.aborted || markers.get(marker.key) !== marker || marker.callsign !== callsign || !hasCoordinates(destination)) return;
+      const destination = await callsignDestination(callsign, request.signal, destinationCode);
+      if (request.signal.aborted || markers.get(marker.key) !== marker || marker.callsign !== callsign ||
+        marker.destinationCode !== destinationCode || !hasCoordinates(destination)) return;
       marker.route = { destination, expiresAt: Date.now() + routeLifetimeMs };
       marker.destination = destination;
       redraw();
@@ -573,7 +633,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       for (const marker of members) {
         const choice = document.createElement("button");
         choice.type = "button";
-        choice.textContent = identifier(marker.entry.item);
+        choice.textContent = marker.entry.label ?? identifier(marker.entry.item);
         choice.addEventListener("click", () => {
           cluster.open = false;
           onSelect(marker.key);
@@ -586,7 +646,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     return cluster;
   }
 
-  return { hide, refresh, select, setArea, setTheme, show };
+  return { hide, refresh, select, setArea, setTheme, show, showTracked };
 }
 
 function createMapDetails(footer, cardTemplate, getMotion, showDestination) {
@@ -604,16 +664,33 @@ function createMapDetails(footer, cardTemplate, getMotion, showDestination) {
       ready = false;
       list.hidden = true;
       footer.hidden = !marker;
-      if (!marker) return;
-      presentation = createAircraftPresentation();
-      card = createFlightCard(cardTemplate, getMotion);
-      card.element.dataset.primary = "";
-      localize(card.element);
-      list.replaceChildren(card.element);
-      status.hidden = false;
-      setMessage(status, "Loading aircraft details…");
+      footer.scrollTop = 0;
+      if (!marker) {
+        list.replaceChildren();
+        return;
+      }
+      const { cardElement } = marker.entry;
+      if (cardElement) {
+        card = undefined;
+        cardElement.dataset.primary = "";
+        list.replaceChildren(cardElement);
+        status.hidden = true;
+        list.hidden = false;
+      } else {
+        presentation = createAircraftPresentation();
+        card = createFlightCard(cardTemplate, getMotion);
+        card.element.dataset.primary = "";
+        localize(card.element);
+        list.replaceChildren(card.element);
+        status.hidden = false;
+        setMessage(status, "Loading aircraft details…");
+      }
     }
     if (!marker) return;
+    if (marker.entry.cardElement) {
+      fitFlightCards(list);
+      return;
+    }
     if (ready) paint();
     if (!controller && marker.entry !== latestEntry) void update(marker.entry);
   }
@@ -645,7 +722,12 @@ function createMapDetails(footer, cardTemplate, getMotion, showDestination) {
     fitFlightCards(list, card.alignRoute);
   }
 
-  return { show, alignRoute: () => { if (marker && ready) fitFlightCards(list, card.alignRoute); } };
+  return {
+    show,
+    alignRoute() {
+      if (marker?.entry.cardElement || ready) fitFlightCards(list, card?.alignRoute);
+    },
+  };
 }
 
 function identifier({ flight, r, hex }) {

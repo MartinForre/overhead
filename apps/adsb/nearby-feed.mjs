@@ -1,12 +1,13 @@
 import { adsbFi, adsbLol, isFreshSnapshot } from "./providers.mjs";
 import { metarCache, maxStationDistanceKm } from "./metar.mjs";
+import { createTakeoffTracker } from "./takeoff-tracker.mjs";
 
 const searchPath = /^\/api\/aircraft\/v2\/lat\/(-?\d+(?:\.5)?)\/lon\/(-?\d+(?:\.5)?)\/dist\/(\d+)$/;
 const primaryIntervalMs = 5_000;
 const fallbackIntervalMs = 180_000;
 const maxCachedRegions = 8;
 
-export function createNearbyFeed({ peekDestination } = {}) {
+export function createNearbyFeed({ peekDestination, observeTakeoff = createTakeoffTracker() } = {}) {
   const primary = pollProvider(adsbFi, primaryIntervalMs);
   const fallback = pollProvider(adsbLol, fallbackIntervalMs);
 
@@ -33,10 +34,11 @@ export function createNearbyFeed({ peekDestination } = {}) {
 
     response.setHeader("Content-Type", "application/json");
     const metars = metarCache.peek(key, query);
-    const ac = peekDestination ? snapshot.ac.map(item => {
-      const destination = item && peekDestination(item);
-      return destination ? { ...item, knownDestination: destination } : item;
-    }) : snapshot.ac;
+    const ac = snapshot.ac.map(item => {
+      const destination = item && peekDestination?.(item);
+      const takeoff = observeTakeoff(item, snapshot.now);
+      return destination || takeoff ? { ...item, knownDestination: destination, observedTakeoff: takeoff } : item;
+    });
     response.end(JSON.stringify({ ...snapshot, ac, metars, maxStationDistanceKm }));
   };
 }

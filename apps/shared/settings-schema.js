@@ -4,7 +4,7 @@ export const modes = {
   track: "Track",
 };
 
-export const liveViews = { list: "List", map: "Map" };
+const flightViews = { list: "List", map: "Map" };
 
 export const themes = {
   "forest-green": "Forest Green",
@@ -15,6 +15,8 @@ export const themes = {
   blueprint: "Blueprint",
   "serengeti-safari": "Serengeti Safari",
   "zanzibar-coast": "Zanzibar Coast",
+  "ivory-and-amber": "Ivory & Amber",
+  "silver-print": "Silver Print",
 };
 
 export const motionDurations = [0, 700, 900, 1100, 1300, 1600];
@@ -29,6 +31,7 @@ export const maxTrackedFlights = 3;
 export const defaultSettings = Object.freeze({
   mode: "live",
   liveView: "list",
+  trackView: "list",
   location: null,
   radiusKm: 50,
   theme: "forest-green",
@@ -52,7 +55,12 @@ export function mapAircraftKey({ hex, r, flight, lat, lon }) {
 }
 
 export function isMapAircraftKey(key) {
-  return typeof key === "string" && /^(?:hex:~?[A-F0-9]{6}|registration:[A-Z0-9-]{1,15}|callsign:[A-Z0-9]{1,8}|position:-?\d{1,2}\.\d{5},-?\d{1,3}\.\d{5})$/.test(key);
+  return typeof key === "string" && (/^(?:hex:~?[A-F0-9]{6}|registration:[A-Z0-9-]{1,15}|callsign:[A-Z0-9]{1,8}|position:-?\d{1,2}\.\d{5},-?\d{1,3}\.\d{5})$/.test(key) ||
+    (key.startsWith("track:") && isFlightId(key.slice(6))));
+}
+
+export function trackMapAircraftKey(id) {
+  return "track:" + id;
 }
 
 export function normalizeFlightNumber(value) {
@@ -125,7 +133,8 @@ export function isValidRadius(radius) {
 
 const settingValidators = {
   mode: (value) => typeof value === "string" && Object.hasOwn(modes, value),
-  liveView: (value) => typeof value === "string" && Object.hasOwn(liveViews, value),
+  liveView: isFlightView,
+  trackView: isFlightView,
   location: (value) => value === null || isValidLocation(value),
   radiusKm: isValidRadius,
   theme: (value) => typeof value === "string" && Object.hasOwn(themes, value),
@@ -142,6 +151,10 @@ const settingValidators = {
       Number.isFinite(flight.departure))) &&
     new Set(value.map(flight => flight.id)).size === value.length,
 };
+
+function isFlightView(value) {
+  return typeof value === "string" && Object.hasOwn(flightViews, value);
+}
 
 export function isValidSetting(key, value) {
   return Object.hasOwn(settingValidators, key) && settingValidators[key](value);

@@ -3,7 +3,6 @@ import { defaultSettings, liveAircraftSelection, sameLocation } from "../setting
 import { nearestMetar } from "../flight-weather.js";
 import { createAircraftPresentation } from "./flight-card.js";
 import { createFlightBoard } from "./flight-board.js";
-import { createLiveMap } from "./live-map.js";
 import { closestLongitude, destinationPoint } from "./map-geometry.js";
 import { aircraftForList, selectNearbyAircraft } from "./nearby-aircraft.js";
 import { renderTrafficPreview } from "./traffic-preview.js";
@@ -13,9 +12,8 @@ const searchPaddingKm = 40;
 const refreshIntervalMs = 5_000;
 const previewLocation = { latitude: 58.87667, longitude: 5.63778 };
 
-export function createNearbyDisplay({ list, map, status, cardTemplate, getMotion, startGallery, onUpdate, onTrackAircraft, onMapAircraft }) {
+export function createNearbyDisplay({ list, map: liveMap, status, cardTemplate, getMotion, startGallery, onUpdate, onTrackAircraft }) {
   const board = createFlightBoard(list, cardTemplate, setNearbyStatus, getMotion, onTrackAircraft);
-  const liveMap = createLiveMap(map, cardTemplate, getMotion, onMapAircraft);
   let radiusKm = defaultSettings.radiusKm;
   let nearbyLocation;
   let nearbyEnabled = false;

@@ -68,9 +68,11 @@ export async function callsignDetails(aircraft, signal) {
   };
 }
 
-export async function callsignDestination(callsign, signal) {
+export async function callsignDestination(callsign, signal, expectedCode) {
   const response = await lookup(`callsign/${callsign}`, signal);
-  return airportDetails(response?.flightroute?.destination);
+  const destination = response?.flightroute?.destination;
+  if (expectedCode && ![destination?.iata_code, destination?.icao_code].map(identifier).includes(identifier(expectedCode))) return;
+  return airportDetails(destination);
 }
 
 async function airlineFromCode(airlineCode, signal) {

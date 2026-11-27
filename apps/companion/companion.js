@@ -14,8 +14,7 @@ const settingsDialog = document.querySelector("#companion-settings");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const connectionStatus = document.querySelector("#connection-status");
 const modeStatus = document.querySelector("#mode-status");
-const liveViewStatus = document.querySelector("#live-view-status");
-const liveViews = [...document.querySelectorAll('input[name="liveView"]')];
+const flightViews = [...document.querySelectorAll('input[name="liveView"], input[name="trackView"]')];
 const themeStatus = document.querySelector("#theme-status");
 const formatStatus = document.querySelector("#format-status");
 const showFormats = bindDisplayFormatSettings(message => setMessage(formatStatus, message));
@@ -94,14 +93,16 @@ document.addEventListener("wheel", (event) => {
 settingsButton.disabled = false;
 settingsButton.addEventListener("click", () => settingsDialog.showModal());
 
-for (const input of liveViews) {
+for (const input of flightViews) {
+  const status = input.closest("fieldset").querySelector(".status");
+  const { name } = input;
   input.addEventListener("change", async () => {
-    setMessage(liveViewStatus, "");
+    setMessage(status, "");
     try {
-      await saveSettings({ liveView: input.value });
+      await saveSettings({ [name]: input.value });
     } catch (error) {
-      liveViews.find(view => view.value === (activeSettings.liveView ?? defaultSettings.liveView)).checked = true;
-      setMessage(liveViewStatus, error.message);
+      flightViews.find(view => view.name === name && view.value === (activeSettings[name] ?? defaultSettings[name])).checked = true;
+      setMessage(status, error.message);
     }
   });
 }
@@ -239,7 +240,7 @@ function applySettings(settings) {
     tab.tabIndex = selected ? 0 : -1;
   }
   for (const panel of modePanels) panel.hidden = panel.id !== settings.mode + "-panel";
-  for (const view of liveViews) view.checked = view.value === (settings.liveView ?? defaultSettings.liveView);
+  for (const view of flightViews) view.checked = view.value === (settings[view.name] ?? defaultSettings[view.name]);
   showLocation(settings.location);
   showRadius(settings.radiusKm);
   showTrackQueue(settings.trackedFlights ?? [], settings.trackProvider, formatsChanged);

@@ -138,6 +138,14 @@
             </div>
 
             <div id="track-panel" class="mode-panel" role="tabpanel" aria-labelledby="track-tab" tabindex="0" hidden>
+              <fieldset class="setting live-view-setting">
+                <legend data-i18n>Track view</legend>
+                <div class="mode-tabs live-view-tabs">
+                  <label><input type="radio" name="trackView" value="list" checked><span data-i18n>List</span></label>
+                  <label><input type="radio" name="trackView" value="map"><span data-i18n>Map</span></label>
+                </div>
+                <p id="track-view-status" class="status error" role="status"></p>
+              </fieldset>
               <section id="track-settings" class="setting" aria-label="Track flights" data-i18n-label></section>
             </div>
           </section>

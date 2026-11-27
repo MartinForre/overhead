@@ -4,7 +4,7 @@ import { callsignSelection, createCallsignTracker } from "../adsb/callsign-track
 import { trackedAltimeter } from "../adsb/metar.mjs";
 import {
   defaultSettings, isCallsignSelection, isFlightId, isLiveAircraftSelection, isMapAircraftKey, isSettingsObject,
-  isValidSetting, liveAircraftSelection, maxTrackedFlights, normalizeFlightNumber, sameLocation,
+  isValidSetting, liveAircraftSelection, maxTrackedFlights, normalizeFlightNumber, sameLocation, trackMapAircraftKey,
 } from "../shared/settings-schema.js";
 
 const settingsPath = "/api/settings";
@@ -73,9 +73,13 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
     }
 
     if (changed) {
-      const changedMapScope = ["mode", "liveView", "radiusKm"].some(key =>
-        (storedSettings[key] ?? defaultSettings[key]) !== (nextSettings[key] ?? defaultSettings[key])) ||
-        !sameLocation(storedSettings.location, nextSettings.location);
+      const before = snapshot();
+      const after = { ...defaultSettings, ...nextSettings };
+      const changedMapScope = before.mode !== after.mode ||
+        (after.mode === "live" && (before.liveView !== after.liveView || before.radiusKm !== after.radiusKm ||
+          !sameLocation(before.location, after.location))) ||
+        (after.mode === "track" && (before.trackView !== after.trackView ||
+          (mapAircraft && !after.trackedFlights.some(flight => trackMapAircraftKey(flight.id) === mapAircraft))));
       await writeFile(temporaryPath, JSON.stringify(nextSettings, null, 2) + "\n", { mode: 0o600 });
       await rename(temporaryPath, configPath);
       storedSettings = nextSettings;
@@ -199,8 +203,13 @@ export function createSettingsApi(configPath, tracker = createFlightTracker(), c
         const { aircraft } = body;
         if (aircraft !== null && !isMapAircraftKey(aircraft)) throw new HttpError(400, "Invalid aircraft selection.");
         await withSettings(() => {
-          const { mode, liveView } = snapshot();
-          if (mode !== "live" || liveView !== "map") throw new HttpError(409, "Switch to Live Map first.");
+          const { mode, liveView, trackView, trackedFlights } = snapshot();
+          const tracking = mode === "track" && trackView === "map";
+          if (!tracking && (mode !== "live" || liveView !== "map")) throw new HttpError(409, "Switch to Map first.");
+          const invalidScope = aircraft !== null && (tracking
+            ? !trackedFlights.some(flight => trackMapAircraftKey(flight.id) === aircraft)
+            : aircraft.startsWith("track:"));
+          if (invalidScope) throw new HttpError(409, "This aircraft is no longer on the map.");
           if (mapAircraft !== aircraft) {
             mapAircraft = aircraft;
             broadcast("settings", snapshot());

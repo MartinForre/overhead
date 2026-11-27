@@ -3,6 +3,7 @@ import { stepGallery } from "../settings-client.js";
 import { defaultSettings } from "../settings-schema.js";
 import { startAircraftGallery } from "./aircraft-gallery.js";
 import { preloadAircraftArtwork } from "./artwork.js";
+import { createLiveMap } from "./live-map.js";
 import { displayContents } from "./markup.js";
 import { flightMotionSettings } from "./motion.js";
 import { createNearbyDisplay } from "./nearby.js";
@@ -20,16 +21,17 @@ export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGall
   let tracked;
 
   const getMotion = () => flightMotionSettings(settings);
+  const cardTemplate = root.querySelector("#flight-card-template");
+  const map = createLiveMap(root.querySelector("#live-map"), cardTemplate, getMotion, interactive ? onMapAircraft : undefined);
   const nearby = createNearbyDisplay({
     list: root.querySelector("#nearby-aircraft"),
-    map: root.querySelector("#live-map"),
+    map,
     status: root.querySelector("#nearby-status"),
-    cardTemplate: root.querySelector("#flight-card-template"),
+    cardTemplate,
     getMotion,
     startGallery,
     onUpdate: onNearbyUpdate,
     onTrackAircraft,
-    onMapAircraft: interactive ? onMapAircraft : undefined,
   });
 
   function startGallery(signal) {
@@ -73,7 +75,7 @@ export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGall
 
     if (activeMode === settings.mode) {
       if (live) nearby.applySettings(settings);
-      tracked?.setQueue(settings.trackedFlights ?? []);
+      tracked?.applySettings(settings);
       if (formatsChanged) {
         nearby.refreshPresentation();
         tracked?.refreshPresentation();
@@ -94,8 +96,8 @@ export function mountDisplay(root, { interactive = false, onNearbyUpdate, onGall
     } else if (activeMode === "gallery") {
       startGallery(signal);
     } else if (activeMode === "track") {
-      tracked = startTrackedFlights(root, signal, getMotion, interactive);
-      tracked.setQueue(settings.trackedFlights ?? []);
+      tracked = startTrackedFlights(root, signal, getMotion, interactive, map);
+      tracked.applySettings(settings);
     }
     if (live && settings.liveView !== "map") void preloadAircraftArtwork(signal);
     return formatsChanged;

@@ -8,6 +8,7 @@ const playlist = [
   { id: "bell-222-airwolf" },
   { id: "lockheed-sr71a-blackbird-nasa-844", detail: "NASA 844 · Mach 3+" },
   { id: "f14a-tomcat-us-navy", detail: "U.S. Navy" },
+  { id: "boeing-vc25a-air-force-one" },
   { id: "wallis-wa116-little-nellie", detail: "You Only Live Twice · Little Nellie" },
   { id: "douglas-dc3-buffalo-airways", detail: "Ice Pilots NWT · Buffalo Airways · C-GPNR" },
   { id: "zeppelin-lz129-hindenburg", detail: "D-LZ129 · 1936" },
@@ -46,7 +47,7 @@ export function startAircraftGallery(gallery, template, getMotion, signal) {
   function paint({ image, name, detail }) {
     const card = template.content.firstElementChild.cloneNode(true);
     card.querySelector(".gallery-art").append(image);
-    card.querySelector(".gallery-name").textContent = name;
+    setMessage(card.querySelector(".gallery-name"), name);
     const detailElement = card.querySelector(".gallery-detail");
     setMessage(detailElement, detail ?? "");
     detailElement.hidden = !detail;

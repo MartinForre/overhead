@@ -1,7 +1,9 @@
 import { createServer } from "node:http";
 import { isIPv4 } from "node:net";
+import { createCallsignTracker } from "../adsb/callsign-tracker.mjs";
 import { createNearbyFeed } from "../adsb/nearby-feed.mjs";
 import { createFlightReference } from "../adsb/flight-reference.mjs";
+import { createTakeoffTracker } from "../adsb/takeoff-tracker.mjs";
 import { mapLibreAssets } from "../maplibre-assets.mjs";
 import { createSettingsApi } from "../settings/settings-api.mjs";
 
@@ -40,8 +42,9 @@ const roots = {
 };
 const staticPath = /^\/(display|companion|shared|aircrafts|dividers)\/((?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_-]+\.(html|css|js|json|png|webmanifest))$/;
 const flightReference = createFlightReference();
-const nearbyFeed = createNearbyFeed({ peekDestination: flightReference.peekDestination });
-const settingsApi = createSettingsApi("overhead.config.json");
+const observeTakeoff = createTakeoffTracker();
+const nearbyFeed = createNearbyFeed({ peekDestination: flightReference.peekDestination, observeTakeoff });
+const settingsApi = createSettingsApi("overhead.config.json", undefined, createCallsignTracker({ observeTakeoff }));
 
 const server = createServer(async (request, response) => {
   const requestHost = request.headers.host ?? "";

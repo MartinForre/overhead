@@ -4,6 +4,23 @@ const earthRadiusKm = 6_371;
 const radiansPerDegree = Math.PI / 180;
 const airportVicinityKm = 5;
 
+export function estimateTakeoffTime({ departure, hasIntermediateStop }, position, observedAt, observedTakeoff) {
+  const age = Date.now() - observedAt;
+  if (position?.ground !== false || !hasCoordinates(departure) || !(age >= 0 && age <= 60_000)) return;
+  if (hasCoordinates(observedTakeoff) && Number.isFinite(observedTakeoff.timestamp)) {
+    const { latitude: lat, longitude: lon, timestamp } = observedTakeoff;
+    if (timestamp <= observedAt && distanceBetween(departure, { lat, lon }) <= airportVicinityKm) return timestamp;
+    return;
+  }
+
+  if (hasIntermediateStop || !hasCoordinates(position) || !Number.isFinite(position.speed) || position.speed < 55) return;
+  const distance = distanceBetween(departure, { lat: position.latitude, lon: position.longitude });
+  const elapsed = distance / position.speed * 3_600_000;
+  const interval = elapsed > 15 * 60_000 ? 5 * 60_000 : 60_000;
+  const estimate = Math.round((observedAt - elapsed) / interval) * interval;
+  return Math.min(estimate, Math.floor(observedAt / 60_000) * 60_000);
+}
+
 export function isAtDestination(departure, destination, position) {
   if (![departure, destination, position].every(hasCoordinates)) return false;
   const point = { lat: position.latitude, lon: position.longitude };

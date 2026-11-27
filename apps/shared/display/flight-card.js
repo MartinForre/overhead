@@ -2,7 +2,7 @@ import { formatAltitude, formatClock, formatDistance, formatNumber, formatSpeed,
 import { aircraftGear, aircraftImage, catalogAircraft } from "./artwork.js";
 import { callsignDetails, resolveAircraft } from "./flight-details.js";
 import { cloudThresholdFeet, createLandingGearState, isOnGround } from "./landing-gear.js";
-import { estimateArrivalTime } from "./route-progress.js";
+import { estimateArrivalTime, estimateTakeoffTime } from "./route-progress.js";
 
 const trackDirections = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
 const standardPressureHpa = 1_013.25;
@@ -11,6 +11,10 @@ const pressureExponent = 0.190284;
 const maxArtworkTilt = 3;
 const feetPerMinutePerKnot = 1852 / 0.3048 / 60;
 const artworkBounds = new Map();
+const routeTimeLabels = {
+  takeoff: "Estimated takeoff time in the display’s time zone",
+  landing: "Estimated landing time in the display’s time zone",
+};
 const sample = document.createElement("canvas");
 sample.width = 144;
 sample.height = 48;
@@ -54,13 +58,14 @@ export function createAircraftPresentation() {
     const isHelicopter = identity.category === "helicopter";
     const onGround = isOnGround(item);
     const altitude = altitudeReadout(item, onGround, altimeter);
-    const arrivalTime = estimateArrivalTime(flight, {
+    const position = {
       ground: onGround || (Number.isFinite(altitude.altitudeFeet) ? false : undefined),
       latitude: item.lat, longitude: item.lon,
       speed: Number.isFinite(item.gs) ? item.gs * 1.852 : undefined,
       heading: item.track,
       verticalRate: Number.isFinite(item.geom_rate) ? item.geom_rate : item.baro_rate,
-    }, altitude.altitudeFeet, observedAt);
+    };
+    const arrivalTime = estimateArrivalTime(flight, position, altitude.altitudeFeet, observedAt);
     const name = model || identity.icaoType;
     const description = [flightIdentifier, flight.airline].filter(Boolean).join(" · ");
     view = {
@@ -68,6 +73,7 @@ export function createAircraftPresentation() {
       get description() { return description || t("N/A"); },
       departure,
       destination,
+      takeoffTime: estimateTakeoffTime(flight, position, observedAt, item.observedTakeoff),
       arrivalTime,
       routeKey: JSON.stringify([departure?.code, departure?.city, destination?.code, destination?.city]),
       get distance() { return formatDistance(distanceKm, 1, 1); },
@@ -118,7 +124,8 @@ export function createFlightCard(cardTemplate, getMotion) {
       routeKey = view.routeKey;
       setRoute(route, view);
     }
-    setArrivalTime(route.querySelector(".flight-arrival-time"), view.arrivalTime);
+    setRouteTime(route.querySelector("[data-takeoff-time]"), view.takeoffTime, "takeoff");
+    setRouteTime(route.querySelector("[data-landing-time]"), view.arrivalTime, "landing");
     labelRoute(route, view);
     artwork.paint(view);
   }
@@ -260,22 +267,20 @@ function setRoute(element, { departure, destination }) {
   arrow.className = "flight-route-arrow";
   arrow.setAttribute("aria-hidden", "true");
   arrow.textContent = "→";
-  const destinationAirport = createAirport(destination);
-  const arrivalTime = document.createElement("time");
-  arrivalTime.className = "flight-arrival-time";
-  arrivalTime.hidden = true;
-  destinationAirport.append(arrivalTime);
-  element.replaceChildren(createAirport(departure), arrow, destinationAirport);
+  const origin = createAirport(departure, { time: "takeoff" });
+  const arrival = createAirport(destination, { time: "landing" });
+  element.replaceChildren(origin, arrow, arrival);
 }
 
-function labelRoute(element, { departure, destination, arrivalTime }) {
+function labelRoute(element, { departure, destination, takeoffTime, arrivalTime }) {
   const airportName = (airport) => [airport?.city, airport?.code].filter(Boolean).join(" ") || t("unknown airport");
-  const route = t("{origin} to {destination}", { origin: airportName(departure), destination: airportName(destination) });
-  const label = Number.isFinite(arrivalTime) ? `${route}. ${t("Estimated landing time in the display’s time zone")} ${formatClock(arrivalTime)}` : route;
+  let label = t("{origin} to {destination}", { origin: airportName(departure), destination: airportName(destination) });
+  if (Number.isFinite(takeoffTime)) label += `. ${t(routeTimeLabels.takeoff)} ${formatClock(takeoffTime)}`;
+  if (Number.isFinite(arrivalTime)) label += `. ${t(routeTimeLabels.landing)} ${formatClock(arrivalTime)}`;
   if (element.getAttribute("aria-label") !== label) element.setAttribute("aria-label", label);
 }
 
-export function setArrivalTime(time, timestamp) {
+export function setRouteTime(time, timestamp, kind) {
   time.hidden = !Number.isFinite(timestamp);
   if (time.hidden) {
     time.removeAttribute("datetime");
@@ -283,12 +288,12 @@ export function setArrivalTime(time, timestamp) {
     setText(time, "");
   } else {
     time.dateTime = new Date(timestamp).toISOString();
-    time.title = t("Estimated landing time in the display’s time zone");
+    time.title = t(routeTimeLabels[kind]);
     setText(time, formatClock(timestamp));
   }
 }
 
-export function createAirport(airport, { knownOnly = false } = {}) {
+export function createAirport(airport, { knownOnly = false, time } = {}) {
   const airportElement = document.createElement("div");
   airportElement.className = "flight-airport";
   airportElement.setAttribute("aria-hidden", "true");
@@ -305,6 +310,13 @@ export function createAirport(airport, { knownOnly = false } = {}) {
   city.textContent = airport?.city ?? "";
   if (code) airportElement.append(flaps);
   airportElement.append(city);
+  if (time) {
+    const clock = document.createElement("time");
+    clock.className = "flight-route-time";
+    clock.setAttribute(`data-${time}-time`, "");
+    clock.hidden = true;
+    airportElement.append(clock);
+  }
   return airportElement;
 }
 

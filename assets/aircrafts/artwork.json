@@ -3926,6 +3926,15 @@
       "status": "ready",
       "reference": "https://www.nasa.gov/image-article/space-shuttle-prototype-approach-landing-tests-8/"
     },
+    "boeing-vc25a-air-force-one": {
+      "icaoType": "B742",
+      "aircraft": "Boeing VC-25A",
+      "livery": "Air Force One",
+      "airframeOnly": true,
+      "path": "military/boeing-vc25a-air-force-one.png",
+      "status": "ready",
+      "reference": "https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104588/vc-25-air-force-one/"
+    },
     "space-shuttle-discovery": {
       "aircraft": "Space Shuttle Discovery",
       "category": "spacecraft",
@@ -4894,6 +4903,16 @@
     }
   },
   "airframes": {
+    "ADFDF8": {
+      "registration": "82-8000",
+      "illustration": "boeing-vc25a-air-force-one",
+      "reference": "https://airport-data.com/aircraft/82-8000"
+    },
+    "ADFDF9": {
+      "registration": "92-9000",
+      "illustration": "boeing-vc25a-air-force-one",
+      "reference": "https://airport-data.com/aircraft/92-9000"
+    },
     "A37EFC": {
       "registration": "N324UP",
       "illustration": "767-300f-winglets-ups"

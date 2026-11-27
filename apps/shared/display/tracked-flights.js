@@ -2,10 +2,11 @@ import { formatNumber, formatSpeed, localize, setMessage, t } from "../display-f
 import { distanceBetween } from "../flight-weather.js";
 import { flightDate } from "../track-settings.js";
 import { aircraftGear, aircraftImage, catalogAircraft } from "./artwork.js";
-import { altitudeReadout, createAircraftArtwork, createAircraftMotion, createAirport, placeAircraftScenery, setArrivalTime, setTrack } from "./flight-card.js";
+import { altitudeReadout, createAircraftArtwork, createAircraftMotion, createAirport, placeAircraftScenery, setRouteTime, setTrack } from "./flight-card.js";
 import { callsignDetails } from "./flight-details.js";
 import { fitFlightCards, flightCardOrder } from "./flight-layout.js";
-import { estimateArrivalTime, estimateRouteProgress, estimateTouchdown, hasCoordinates, isAtDestination } from "./route-progress.js";
+import { trackedMapEntry } from "./map-aircraft.js";
+import { estimateArrivalTime, estimateRouteProgress, estimateTakeoffTime, estimateTouchdown, hasCoordinates, isAtDestination } from "./route-progress.js";
 
 const updateInterval = 15_000;
 const landingPositionMaxAge = 60_000;
@@ -19,7 +20,7 @@ const trackStateText = {
   "key-required": "FlightAware key required",
 };
 
-export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
+export function startTrackedFlights(root, modeSignal, getMotion, interactive, map) {
   const list = root.querySelector("#tracked-aircraft");
   const status = root.querySelector("#track-status");
   const template = root.querySelector("#track-card-template");
@@ -35,6 +36,8 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
   let layoutFrame;
   let primaryCard;
   let handoffTimer;
+  let showingMap = false;
+  let updatesUnavailable = false;
   const resize = new ResizeObserver(layout);
   resize.observe(root);
   resize.observe(list);
@@ -43,9 +46,11 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
   }
 
   function layout() {
+    if (showingMap) return;
     if (layoutFrame !== undefined) return;
     layoutFrame = requestAnimationFrame(() => {
       layoutFrame = undefined;
+      if (showingMap) return;
       const scrollTop = list.scrollTop;
       const scrollable = !fitFlightCards(list) && interactive;
       list.toggleAttribute("data-scroll", scrollable);
@@ -59,6 +64,7 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
   function orderCards() {
     clearTimeout(handoffTimer);
     handoffTimer = undefined;
+    if (showingMap) return;
     const now = Date.now();
     const ranked = queue.map(({ id }) => {
       const card = cards.get(id);
@@ -106,11 +112,39 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
       sceneryLayer.append(...card.scenery);
     }
     list.dataset.count = queue.length;
-    list.hidden = queue.length === 0;
-    status.hidden = queue.length !== 0;
-    setMessage(status, "Add a flight or callsign in Companion settings → Track.");
     orderCards();
     if (queue.length) void refresh(signal);
+  }
+
+  function applySettings({ trackedFlights = [], trackView, mapAircraft, theme }) {
+    const nextMap = trackView === "map";
+    if (nextMap !== showingMap) {
+      showingMap = nextMap;
+      sceneryLayer.hidden = nextMap;
+      if (!showingMap) {
+        map.hide();
+        orderCards();
+      }
+    }
+    setQueue(trackedFlights);
+    if (showingMap) {
+      map.setTheme(theme);
+      map.select(mapAircraft);
+    }
+    paintView();
+  }
+
+  function paintView() {
+    if (showingMap) {
+      const entries = queue.map(({ id }) => cards.get(id).mapEntry()).filter(Boolean);
+      map.showTracked(entries);
+      status.hidden = entries.length !== 0;
+    } else {
+      status.hidden = queue.length !== 0;
+    }
+    list.hidden = showingMap || queue.length === 0;
+    setMessage(status, !queue.length ? "Add a flight or callsign in Companion settings → Track." :
+      updatesUnavailable ? "Updates unavailable" : "No current positions for tracked flights.");
   }
 
   async function refresh(signal) {
@@ -120,11 +154,24 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
       if (!response.ok) throw new Error("Track status unavailable");
       const { flights } = await response.json();
       if (signal.aborted) return;
-      await Promise.all(flights.map(flight => cards.get(flight.id)?.show(flight)));
-      if (!signal.aborted) orderCards();
+      if (!Array.isArray(flights)) throw new Error("Track status unavailable");
+      updatesUnavailable = false;
+      const snapshots = new Map(flights.map(flight => [flight.id, flight]));
+      const updates = [...cards].map(([id, card]) => {
+        const snapshot = snapshots.get(id);
+        return snapshot ? card.show(snapshot) : card.unavailable();
+      });
+      if (showingMap) paintView();
+      await Promise.all(updates);
+      if (!signal.aborted) {
+        if (showingMap) paintView();
+        else orderCards();
+      }
     } catch {
       if (signal.aborted) return;
+      updatesUnavailable = true;
       for (const card of cards.values()) card.unavailable();
+      if (showingMap) paintView();
     } finally {
       if (!signal.aborted) timer = setTimeout(() => void refresh(signal), updateInterval);
     }
@@ -134,6 +181,7 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
     clearTimeout(timer);
     clearTimeout(handoffTimer);
     controller?.abort();
+    if (showingMap) map.hide();
     cancelAnimationFrame(layoutFrame);
     resize.disconnect();
     for (const card of cards.values()) card.remove();
@@ -147,9 +195,11 @@ export function startTrackedFlights(root, modeSignal, getMotion, interactive) {
   }, { once: true });
 
   return {
-    setQueue,
+    applySettings,
     refreshPresentation() {
       for (const card of cards.values()) card.refreshPresentation();
+      if (showingMap) map.refresh();
+      else layout();
     },
   };
 }
@@ -182,6 +232,7 @@ function createTrackedCard(template, selection, getMotion, layout) {
     scheduledDeparture: selection.departure,
   };
   let flight = fallback;
+  let mapSnapshot;
   let displayedAltitudeFeet;
   let identity;
   let aircraftArt;
@@ -224,8 +275,8 @@ function createTrackedCard(template, selection, getMotion, layout) {
       paintReferenceAirports();
     } else {
       paintAirport(departure, flight.origin ?? fallback.origin, {
-        timestamp: flight.departed ?? flight.estimatedDeparture ?? flight.scheduledDeparture ?? selection.departure,
-        kind: flight.departed ? "Actual" : flight.estimatedDeparture ? "Estimated" : "Scheduled",
+        timestamp: takeoff ?? flight.departed ?? flight.estimatedDeparture ?? flight.scheduledDeparture ?? selection.departure,
+        kind: takeoff ? "Took off" : flight.departed ? "Actual" : flight.estimatedDeparture ? "Estimated" : "Scheduled",
       });
       paintAirport(arrival, flight.destination ?? fallback.destination, {
         timestamp: finished ?? estimatedArrival ?? scheduledArrival,
@@ -368,8 +419,11 @@ function createTrackedCard(template, selection, getMotion, layout) {
   }
 
   function paintReferenceAirports() {
-    paintAirport(departure, referenceAirports?.departure, { reference: true });
-    paintAirport(arrival, referenceAirports?.destination, { reference: true, timestamp: approximateArrival() });
+    const origin = referenceAirports?.departure;
+    const takeoff = !latestNote && !landedFlight && referenceAirports
+      ? estimateTakeoffTime(referenceAirports, flight.position, flight.updatedAt, flight.observedTakeoff) : undefined;
+    paintAirport(departure, origin, { reference: "takeoff", timestamp: takeoff });
+    paintAirport(arrival, referenceAirports?.destination, { reference: "landing", timestamp: approximateArrival() });
   }
 
   function approximateArrival() {
@@ -410,6 +464,11 @@ function createTrackedCard(template, selection, getMotion, layout) {
     sceneryFrame: artwork.sceneryFrame,
     element,
     arrivalPriority,
+    mapEntry() {
+      const entry = trackedMapEntry(mapSnapshot, selection, referenceAirports?.destination);
+      if (entry) entry.cardElement = element;
+      return entry;
+    },
     remainingLandingHold() {
       return landingShownAt === undefined ? 0 : landingShownAt + primaryLandingHold - performance.now();
     },
@@ -418,6 +477,7 @@ function createTrackedCard(template, selection, getMotion, layout) {
       if (watchingAdsb) paintReferenceArc();
     },
     show(snapshot) {
+      mapSnapshot = snapshot;
       const now = Date.now();
       if (snapshot.state === "waiting" && Number.isFinite(expectedTouchdown) && now - flight.updatedAt <= approachMaxAge) {
         if (now < expectedTouchdown) {
@@ -448,6 +508,7 @@ function createTrackedCard(template, selection, getMotion, layout) {
       return updateReferenceRoute(snapshot);
     },
     unavailable() {
+      mapSnapshot = undefined;
       if (landedFlight) {
         flight = landedFlight;
         paint("Updates unavailable");
@@ -475,9 +536,9 @@ function paintAirport(side, airport, { timestamp, kind, reference = false } = {}
   }
   const time = side.querySelector("time");
   const timeKind = side.querySelector("[data-time-kind]");
-  timeKind.hidden = reference;
+  timeKind.hidden = Boolean(reference);
   if (reference) {
-    setArrivalTime(time, timestamp);
+    setRouteTime(time, timestamp, reference);
     return;
   }
   time.hidden = false;

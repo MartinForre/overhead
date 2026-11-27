@@ -12,6 +12,8 @@
 [data-theme="blueprint"] { --map-water: #152a40; --map-land: #254866; --map-line: #6689a9; }
 [data-theme="serengeti-safari"] { --map-water: #3d3029; --map-land: #776041; --map-line: #a18156; }
 [data-theme="zanzibar-coast"] { --map-water: #82bcb4; --map-land: #dfcca3; --map-line: #8a9474; }
+[data-theme="ivory-and-amber"] { --map-water: #f7f0dd; --map-land: #e9d2a8; --map-line: #9b6a39; }
+[data-theme="silver-print"] { --map-water: #c4c4c4; --map-land: #e3e3e3; --map-line: #777777; }
 
 .display[data-live-view="map"] {
   display: block;
@@ -123,7 +125,7 @@ button.live-map-marker { pointer-events: auto; cursor: pointer; }
   max-height: calc(var(--aircraft-size) * .7 * var(--aircraft-scale, .86));
   object-fit: contain;
   transform: translate(-50%, -50%) rotate(var(--aircraft-rotation)) scaleX(var(--aircraft-mirror));
-  filter: drop-shadow(0 2px 2px rgb(0 0 0 / 65%));
+  filter: var(--aircraft-filter, ) drop-shadow(0 2px 2px rgb(0 0 0 / 65%));
   pointer-events: none;
 }
 button.live-map-marker img { pointer-events: auto; }
@@ -229,6 +231,7 @@ button.live-map-marker img { pointer-events: auto; }
   backdrop-filter: blur(4px);
 }
 
+.kiosk .live-map-footer { overflow: clip; }
 .live-map-footer:has(.live-map-close) { padding-inline-end: max(3.6rem, calc(var(--safe-area-right) + 3.25rem)); }
 .live-map-details {
   --primary-size: min(100%, 56rem, var(--fitted-primary-size, 100%));
@@ -239,7 +242,7 @@ button.live-map-marker img { pointer-events: auto; }
   padding: 0;
   list-style: none;
 }
-.live-map-details .flight-picture { --scenery-footprint: 0px; }
+.live-map-details :is(.flight-picture, .track-picture) { --scenery-footprint: 0px; }
 .live-map-detail-status { margin: .65rem 0; color: var(--muted-ink); text-align: center; }
 
 .live-map-close {

@@ -66,9 +66,11 @@ Use the existing entrance, exit, and slot-change animations for fixed-wing aircr
 
 ### Display themes
 
-Forest Green is the default. The companion also offers Deep Blue with yellow airport tiles, solid Deep Red, Sky Gradient, Nordic Linen, Blueprint, Serengeti Safari, and Zanzibar Coast. The selection applies immediately and is saved on the Overhead server.
+Forest Green is the default. The companion also offers Deep Blue with yellow airport tiles, solid Deep Red, Sky Gradient, Nordic Linen, Blueprint, Serengeti Safari, Zanzibar Coast, Ivory & Amber, and Silver Print. The selection applies immediately and is saved on the Overhead server.
 
 All themes share the same aircraft card layout. In Serengeti Safari, flat-topped acacias, a rounded tree, a giraffe, and an elephant appear as distant silhouettes among the low ridges, with a faint outline of Mount Kilimanjaro behind them. Zanzibar Coast shows The Rock restaurant on its islet just off the sandy shore.
+
+Ivory & Amber pairs a creamy background and amber airport tiles with a light sepia grade on the aircraft and scenery. Silver Print gives the display a black-and-white photographic look with grain and a vignette. It uses the dirt airstrip wherever runway artwork appears.
 
 ## Linux runtime and display
 
@@ -93,7 +95,7 @@ During active hours, start with a **five-second polling interval** for the prima
 
 ### Display modes
 
-Gallery rotates through 23 illustrations, beginning with the Lufthansa centenary A350-1000. The rotation includes the Hindenburg, Concorde, Blackbird, Valkyrie, X-15, An-225 Mriya, the NASA 747 carrying Enterprise, and Discovery in free flight. The Apollo 11 Saturn V and the lunar module Eagle have their own cards. Little Nellie, Dalton Air, Marty Meierotto’s Super Cub, and Airwolf appear throughout the rotation alongside the Norsk Luftambulanse H135 and other aircraft. Each card has one large illustration, the aircraft make and model, and a short identifying detail. The frame advances every ten minutes. In Gallery mode, swipes, arrow keys, and previous and next buttons in the companion advance both views. Selecting Gallery as the display mode pauses live polling.
+Gallery rotates through 24 illustrations, beginning with the Lufthansa centenary A350-1000. The rotation includes the Hindenburg, Concorde, Air Force One, Blackbird, Valkyrie, X-15, An-225 Mriya, the NASA 747 carrying Enterprise, and Discovery in free flight. The Apollo 11 Saturn V and the lunar module Eagle have their own cards. Little Nellie, Dalton Air, Marty Meierotto’s Super Cub, and Airwolf appear throughout the rotation alongside the Norsk Luftambulanse H135 and other aircraft. Each card has one large illustration, the aircraft make and model, and a short identifying detail. The frame advances every ten minutes. In Gallery mode, swipes, arrow keys, and previous and next buttons in the companion advance both views. Selecting Gallery as the display mode pauses live polling.
 
 In Live List, a fresh feed with no qualifying aircraft starts Gallery. Consecutive empty polls keep its current card and rotation running. Live continues polling and replaces Gallery as soon as a nearby aircraft card is ready. A stale or unavailable feed shows its availability status.
 
@@ -124,6 +126,8 @@ Use the six-character ICAO address (`hex`) to resolve a known airframe. A readsb
 Keep descriptive filenames and use the two local catalogs for lookups and gallery captions.
 
 Resolve the aircraft type once for both the card title and artwork. A confirmed airframe can supply a missing type or correct the feed code recorded in its `misreportedIcaoType` field. Use `aircraft` from the matched illustration when it names the exact variant. For unlisted airframes with a missing feed type, use the ICAO type from the cached ADSBDB aircraft lookup when available.
+
+The [Air Force One illustration](../assets/aircrafts/military/boeing-vc25a-air-force-one.png) represents the shared livery of the two Boeing VC-25As. A confirmed match for either airframe selects it in Live and Track. [U.S. Air Force VC-25 fact sheet](https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104588/vc-25-air-force-one/)
 
 The [southwest Norway overflight list](overflight-airlines.md) records the sampled cruise traffic, current passenger fleets, and artwork priorities for the international catalog expansion.
 

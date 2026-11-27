@@ -7,13 +7,14 @@ import { Readable } from "node:stream";
 import { test } from "node:test";
 import { createSettingsApi } from "../apps/settings/settings-api.mjs";
 import {
-  clipDestinationLine, destinationPoint, mapDiameterBounds, mapTrack, projectFromCenter, spriteOrientation,
+  clipDestinationLine, destinationPoint, mapDiameterBounds, mapTrack, projectFromCenter, projectTrackBounds,
+  spriteOrientation, trackedAircraftBounds,
 } from "../apps/shared/display/map-geometry.js";
 import { artworkAnchor, artworkEndpoints, groupGroundAircraft, mapAircraftScale } from "../apps/shared/display/map-aircraft.js";
 import { sampleMapMotion, updateMapMotion } from "../apps/shared/display/map-motion.js";
 import { aircraftForList, selectNearbyAircraft } from "../apps/shared/display/nearby-aircraft.js";
 import { distanceBetween } from "../apps/shared/flight-weather.js";
-import { isMapAircraftKey, mapAircraftKey } from "../apps/shared/settings-schema.js";
+import { isMapAircraftKey, mapAircraftKey, trackMapAircraftKey } from "../apps/shared/settings-schema.js";
 
 test("Map keeps artwork upright across all bearings", () => {
   for (let step = 0; step < 3600; step++) {
@@ -103,6 +104,23 @@ test("Fallback projection also uses the longer side for the diameter", () => {
     const [x, y] = projectFromCenter(pole, destinationPoint(pole, 50, 75), 50, width, height);
     assert.ok(Math.abs(Math.hypot(x - width / 2, y - height / 2) - 300) < 1e-6);
   }
+});
+
+test("Track Map frames queued aircraft across the date line with room for the details card", () => {
+  const positions = [[179, 60], [-178, 61], [-179, 59]];
+  const frame = trackedAircraftBounds(positions);
+  assert.equal(frame.bounds[1][0] - frame.bounds[0][0], 3);
+  for (const [width, height] of [[400, 800], [900, 520]]) {
+    const project = projectTrackBounds(frame, width, height, { top: 40, left: 40, right: 40, bottom: 200 });
+    const points = positions.map(position => project(position));
+    assert.ok(points[0][0] < points[1][0]);
+    for (const [x, y] of points) {
+      assert.ok(x >= 39.99 && x <= width - 39.99);
+      assert.ok(y >= 39.99 && y <= height - 199.99);
+    }
+  }
+  const one = trackedAircraftBounds([[5, 59]]);
+  assert.ok(one.bounds[0][0] < 5 && one.bounds[1][0] > 5);
 });
 
 test("Map records only distinct reports and bounds its prediction and history", () => {
@@ -198,6 +216,7 @@ test("Map selection synchronizes and clears when its shared scope changes", asyn
   const snapshot = subscriber => JSON.parse(subscriber.messages.at(-1).split("data: ")[1]);
   const aircraft = "hex:478129";
   assert.equal((await request("/api/settings")).body.liveView, "list");
+  assert.equal((await request("/api/settings")).body.trackView, "list");
   assert.equal((await select(aircraft)).status, 409);
   assert.equal((await patch({ liveView: "map" })).status, 200);
   const companion = await request("/api/settings/events");
@@ -220,7 +239,29 @@ test("Map selection synchronizes and clears when its shared scope changes", asyn
   await select(aircraft);
   await patch({ mode: "gallery" });
   assert.equal(snapshot(display).mapAircraft, null);
+  const { body: queue } = await request("/api/track/queue", "POST", { action: "add-live", hex: "478129", callsign: "SAS588" });
+  const id = queue.trackedFlights[0].id;
+  const trackKey = trackMapAircraftKey(id);
+  await patch({ mode: "track" });
+  assert.equal((await select(trackKey)).status, 409);
+  assert.equal((await patch({ trackView: "map" })).status, 200);
+  assert.equal((await select(aircraft)).status, 409);
+  assert.equal((await select(trackMapAircraftKey("other-flight"))).status, 409);
+  assert.equal((await select(trackKey)).status, 204);
+  assert.equal(snapshot(companion).mapAircraft, trackKey);
+  assert.equal(snapshot(display).mapAircraft, trackKey);
+  await patch({ radiusKm: 5 });
+  assert.equal(snapshot(display).mapAircraft, trackKey);
+  await patch({ trackView: "list" });
+  assert.equal(snapshot(display).mapAircraft, null);
+  await patch({ trackView: "map" });
+  await select(trackKey);
+  await request("/api/track/queue", "POST", { action: "remove", id });
+  assert.equal(snapshot(display).mapAircraft, null);
+  await patch({ mode: "live" });
+  assert.equal((await select(trackKey)).status, 409);
   const saved = JSON.parse(await readFile(path, "utf8"));
   assert.equal(saved.liveView, "map");
+  assert.equal(saved.trackView, "map");
   assert.equal(Object.hasOwn(saved, "mapAircraft"), false);
 });

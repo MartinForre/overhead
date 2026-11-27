@@ -157,6 +157,11 @@
     "model": "737-900",
     "category": "airliner"
   },
+  "B742": {
+    "manufacturer": "Boeing",
+    "model": "747-200",
+    "category": "airliner"
+  },
   "B744": {
     "manufacturer": "Boeing",
     "model": "747-400",

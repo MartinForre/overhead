@@ -309,7 +309,7 @@ body { margin: 0; }
 }
 
 .flight-picture {
-  --arrival-time-size: clamp(11px, 2.5cqi, calc(21px * var(--card-scale)));
+  --route-time-size: clamp(11px, 2.5cqi, calc(21px * var(--card-scale)));
   --route-city-height: 0px;
   --route-clock-height: 0px;
   --route-height: calc(var(--flap-height) + var(--route-city-height) + var(--route-clock-height));
@@ -323,7 +323,7 @@ body { margin: 0; }
 }
 
 .flight-picture:has(.flight-city:not(:empty)) { --route-city-height: calc(var(--route-gap) + var(--city-size) * 1.2); }
-.flight-picture:has(.flight-arrival-time:not([hidden])) { --route-clock-height: calc(var(--route-gap) + var(--arrival-time-size) * 1.05); }
+.flight-picture:has(.flight-route-time:not([hidden])) { --route-clock-height: calc(var(--route-gap) + var(--route-time-size) * 1.05); }
 
 .flight-picture:has(.flight-art img) {
   aspect-ratio: var(--image-ratio, 3);
@@ -342,6 +342,7 @@ body { margin: 0; }
 .flight-scenery {
   --scenery-travel: 0px;
   position: absolute;
+  filter: var(--scenery-filter);
   opacity: 1;
   transform: translateY(0);
 }
@@ -492,8 +493,8 @@ body { margin: 0; }
 
 .flight-route .flight-city:empty { display: none; }
 
-.flight-arrival-time {
-  font-size: var(--arrival-time-size);
+.flight-route-time {
+  font-size: var(--route-time-size);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
   line-height: 1.05;
