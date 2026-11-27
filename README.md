@@ -114,6 +114,13 @@ sudo sed -i '/--password-store=basic/!s/^exec chromium /exec chromium --password
 sudo reboot
 ```
 
+If Chromium offers to translate the kiosk display, turn off its translation feature in the installed launcher over SSH. [Chromium translation feature](https://chromium.googlesource.com/chromium/src/+/master/components/translate/core/browser/translate_prefs.h)
+
+```sh
+sudo sed -i '/--disable-features=Translate/!s/^exec chromium /exec chromium --disable-features=Translate /' /usr/local/bin/overhead-kiosk
+sudo reboot
+```
+
 | Task | Command on the Pi |
 | --- | --- |
 | See the active, previous, and rejected builds | `sudo overheadctl status` |

@@ -8,4 +8,5 @@ done
 
 # The dedicated display profile runs under desktop autologin without a keyring.
 exec chromium --kiosk --noerrdialogs --no-first-run --password-store=basic \
-    --user-data-dir="$HOME/.config/overhead-chromium" http://127.0.0.1:8000/display/
+    --disable-features=Translate --user-data-dir="$HOME/.config/overhead-chromium" \
+    http://127.0.0.1:8000/display/
