@@ -107,6 +107,13 @@ systemctl list-timers overhead-update.timer
 
 ## Troubleshooting
 
+If an older kiosk install opens a keyring password dialog, connect over SSH and update the installed launcher with the commands below. This applies to the Overhead Chromium profile. [Chromium password storage options](https://chromium.googlesource.com/chromium/src/+/main/docs/linux/password_storage.md)
+
+```sh
+sudo sed -i '/--password-store=basic/!s/^exec chromium /exec chromium --password-store=basic /' /usr/local/bin/overhead-kiosk
+sudo reboot
+```
+
 | Task | Command on the Pi |
 | --- | --- |
 | See the active, previous, and rejected builds | `sudo overheadctl status` |
