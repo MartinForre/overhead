@@ -1,0 +1,9 @@
+[Unit]
+Description=Check GitHub for a new Overhead release
+Wants=network-online.target
+After=network-online.target overhead.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/overheadctl update
+TimeoutStartSec=25min

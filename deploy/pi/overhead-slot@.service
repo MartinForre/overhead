@@ -1,0 +1,16 @@
+[Unit]
+Description=Overhead application on port %i
+
+[Service]
+User=overhead
+Group=overhead
+EnvironmentFile=-/etc/overhead/app.env
+ExecStart=/usr/local/sbin/overheadctl slot %i
+Restart=on-failure
+RestartSec=2s
+TimeoutStopSec=5s
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/overhead/settings
+PrivateTmp=yes

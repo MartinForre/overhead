@@ -57,6 +57,19 @@ function queueWrite(path, method, data) {
 
 export function connectSettings({ onSettings, onConnection, onGalleryStep }) {
   const events = new EventSource(settingsPath + "/events");
+  const build = document.querySelector('meta[name="overhead-build"]')?.content;
+  if (build) {
+    events.addEventListener("open", async () => {
+      try {
+        const response = await fetch("/healthz", { cache: "no-store", signal: AbortSignal.timeout(3000) });
+        if (!response.ok) return;
+        const { number } = await response.json();
+        if (Number.isSafeInteger(number) && String(number) !== build) location.reload();
+      } catch {
+        // The next settings connection will check again.
+      }
+    });
+  }
   events.addEventListener("settings", (event) => {
     onSettings(JSON.parse(event.data));
     onConnection?.(true);

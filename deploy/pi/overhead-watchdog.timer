@@ -1,0 +1,9 @@
+[Unit]
+Description=Check that the confirmed Overhead release is serving
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=45s
+
+[Install]
+WantedBy=timers.target

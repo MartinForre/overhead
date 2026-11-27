@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+# Start with the last confirmed release even when the internet is unavailable.
+while ! curl --silent --fail --max-time 2 http://127.0.0.1:8000/healthz >/dev/null; do
+    sleep 2
+done
+
+exec chromium --kiosk --noerrdialogs --no-first-run \
+    --user-data-dir="$HOME/.config/overhead-chromium" http://127.0.0.1:8000/display/

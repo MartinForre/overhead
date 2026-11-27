@@ -1,0 +1,20 @@
+[Unit]
+Description=Overhead display and companion address
+After=network.target
+
+[Service]
+User=caddy
+Group=caddy
+RuntimeDirectory=overhead-proxy
+RuntimeDirectoryMode=0700
+StateDirectory=overhead-proxy
+Environment=XDG_CONFIG_HOME=/var/lib/overhead-proxy
+Environment=XDG_DATA_HOME=/var/lib/overhead-proxy
+ExecStart=/usr/bin/caddy run --config /run/overhead/Caddyfile --adapter caddyfile
+ExecReload=/usr/bin/caddy reload --config /run/overhead/Caddyfile --adapter caddyfile --address unix//run/overhead-proxy/admin.sock
+Restart=on-failure
+RestartSec=2s
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes

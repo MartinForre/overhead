@@ -210,6 +210,7 @@ export const norwegian = {
   "Reconnecting…": { nb: "Kobler til på nytt…", nn: "Koplar til på nytt…" },
   "Couldn’t reach the display. Try again.": { nb: "Fikk ikke kontakt med skjermen. Prøv igjen.", nn: "Fekk ikkje kontakt med skjermen. Prøv på nytt." },
   "The display couldn’t apply the change.": { nb: "Skjermen kunne ikke bruke endringen.", nn: "Skjermen kunne ikkje ta i bruk endringa." },
+  "Overhead is updating. Try again in a moment.": { nb: "Overhead oppdateres. Prøv igjen om litt.", nn: "Overhead blir oppdatert. Prøv på nytt om litt." },
   "Use the same origin as the display.": { nb: "Bruk samme adresse som skjermen.", nn: "Bruk same adresse som skjermen." },
   "Method not allowed.": { nb: "Metoden er ikke tillatt.", nn: "Metoden er ikkje tillaten." },
   "Enter a broadcast callsign such as SAS588.": { nb: "Skriv inn et kallesignal, for eksempel SAS588.", nn: "Skriv inn eit kallesignal, til dømes SAS588." },

@@ -1,0 +1,8 @@
+[Unit]
+Description=Recover an unhealthy Overhead display
+After=overhead.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/overheadctl watchdog
+TimeoutStartSec=2min
