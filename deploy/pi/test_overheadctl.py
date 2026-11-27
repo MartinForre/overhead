@@ -82,6 +82,20 @@ class UpdateTests(unittest.TestCase):
 
 
 class DownloadTests(unittest.TestCase):
+    def test_github_requests_only_authenticate_when_a_token_is_saved(self):
+        with tempfile.TemporaryDirectory() as directory, \
+                patch.object(deploy, "TOKEN", Path(directory) / "github-token"), \
+                patch.object(deploy, "build_opener") as opener:
+            for token in (None, "\n", "github_pat_example\n"):
+                with self.subTest(token=token):
+                    if token is not None:
+                        deploy.TOKEN.write_text(token)
+                    deploy.github("releases/latest")
+                    request = opener.return_value.open.call_args.args[0]
+                    expected = f"Bearer {token.strip()}" if token and token.strip() else None
+                    self.assertEqual(request.get_header("Authorization"), expected)
+                    self.assertNotIn("Authorization", request.headers)
+
     def test_verifies_the_archive_before_installing(self):
         binary = b"Overhead release"
         archive = gzip.compress(binary)

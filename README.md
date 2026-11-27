@@ -59,18 +59,18 @@ While connected to the Pi, run `sudo raspi-config`. Under **System Options → B
 ## 3. Publish the first build and install it
 
 1. Once the release workflow is on `main`, open **Actions → Publish Overhead → Run workflow**. Choose `main` and leave **prerelease** unchecked. Wait for the release to appear under **Releases** with the `overhead-linux-arm64.gz` asset. The workflow assigns a tag such as `build-42` automatically.
-2. In GitHub, create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) for the Pi. Select only the **Overhead** repository and grant repository **Contents → Read-only**. Choose an expiration you can track. The Pi needs this to download assets from the private repository.
+2. The public Overhead repository can be used without a token. If the repository is private, create a [fine-grained personal access token](https://github.com/settings/personal-access-tokens/new) for the Pi. Select only the **Overhead** repository and grant repository **Contents → Read-only**.
 3. From the Overhead checkout on your Mac, copy the installer directory and then connect to the Pi.
 
    ```sh
-   scp -r deploy/pi martin@overhead.local:overhead-pi
+   scp -r deploy/pi martin@overhead.local:./
    ssh martin@overhead.local
    ```
 
-4. On the Pi, run the installer. Paste the GitHub token when prompted. The input is hidden and the token is stored in a root-only file.
+4. On the Pi, run the installer. For a private repository, paste the token at the hidden prompt. Wait for the installer to print **Overhead is installed** before rebooting.
 
    ```sh
-   sudo bash ~/overhead-pi/install.sh
+   sudo bash ~/pi/install.sh
    sudo reboot
    ```
 
@@ -113,7 +113,7 @@ systemctl list-timers overhead-update.timer
 | Inspect the last update | `sudo journalctl -u overhead-update.service -n 80 --no-pager` |
 | Inspect proxy or application logs | `sudo journalctl -u overhead-proxy -u overhead-slot@8101 -u overhead-slot@8102 -n 80 --no-pager` |
 | Pause automatic updates | `sudo systemctl disable --now overhead-update.timer` |
-| Replace an expired GitHub token | `sudoedit /etc/overhead/github-token`, then replace the line with the new token and run `sudo systemctl start overhead-update.service`. |
+| Replace an expired GitHub token for a private repository | `sudoedit /etc/overhead/github-token`, then replace the line with the new token and run `sudo systemctl start overhead-update.service`. |
 | Restart or shut down before moving the frame | `sudo reboot` or `sudo poweroff`. |
 
 Overhead updates cover the app and artwork. Raspberry Pi OS and Chromium receive updates through the OS package manager. The [app README](apps/README.md) covers development, Windows packaging, and display settings.

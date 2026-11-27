@@ -37,7 +37,9 @@ install -m 0755 "$source_dir/overheadctl.py" /usr/local/sbin/overheadctl
 install -m 0755 "$source_dir/overhead-kiosk.sh" /usr/local/bin/overhead-kiosk
 install -m 0644 "$source_dir"/overhead*.service "$source_dir"/overhead*.timer /etc/systemd/system/
 
-if [[ ! -s /etc/overhead/github-token ]]; then
+if [[ ! -s /etc/overhead/github-token ]] &&
+    [[ "$(curl -sS --max-time 15 -o /dev/null -w '%{http_code}' \
+        https://api.github.com/repos/MartinForre/overhead)" == 404 ]]; then
     read -r -s -p 'Paste the read-only GitHub token, then press Enter: ' token
     printf '\n'
     if [[ "$token" != github_pat_* ]]; then

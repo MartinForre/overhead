@@ -246,8 +246,13 @@ def github(path, accept="application/vnd.github+json"):
     request = Request(f"https://api.github.com/repos/{REPOSITORY}/{path}", headers={
         "Accept": accept, "User-Agent": "Overhead-Pi-Updater",
     })
-    # Unredirected headers stay with api.github.com when the asset redirects.
-    request.add_unredirected_header("Authorization", f"Bearer {TOKEN.read_text().strip()}")
+    try:
+        token = TOKEN.read_text().strip()
+    except FileNotFoundError:
+        token = ""
+    if token:
+        # Unredirected headers stay with api.github.com when the asset redirects.
+        request.add_unredirected_header("Authorization", f"Bearer {token}")
     return build_opener(SecureRedirect()).open(request, timeout=45)
 
 
@@ -462,7 +467,8 @@ if __name__ == "__main__":
     except (OSError, ValueError, KeyError, RuntimeError, subprocess.SubprocessError) as error:
         print(f"Overhead: {error}", file=sys.stderr)
         if isinstance(error, HTTPError) and error.code in {401, 403, 404}:
-            print("Check the GitHub token and that a stable release is published.", file=sys.stderr)
+            print("Check that a stable release is published and that the Pi can access it. "
+                  "A private repository requires a read-only GitHub token.", file=sys.stderr)
         if error.__cause__:
             print(f"Cause: {error.__cause__}", file=sys.stderr)
         sys.exit(1)
