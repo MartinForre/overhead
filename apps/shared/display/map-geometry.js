@@ -93,13 +93,6 @@ export function mapTrack(value) {
   return Number.isFinite(value) && value >= 0 && value < 360 ? value : undefined;
 }
 
-export function spriteOrientation(track) {
-  // Face the nose along the track while keeping the top of the source image above its body.
-  const angle = ((track + 270) % 360) - 180;
-  const mirror = Math.abs(angle) > 90;
-  return { rotation: mirror ? angle - 180 * Math.sign(angle) : angle, mirror };
-}
-
 export function clipDestinationLine([x, y], [destinationX, destinationY], width, height) {
   const dx = destinationX - x;
   const dy = destinationY - y;

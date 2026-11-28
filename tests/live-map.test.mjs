@@ -8,24 +8,21 @@ import { test } from "node:test";
 import { createSettingsApi } from "../apps/settings/settings-api.mjs";
 import {
   clipDestinationLine, destinationPoint, mapDiameterBounds, mapTrack, projectFromCenter, projectTrackBounds,
-  spriteOrientation, trackedAircraftBounds,
+  trackedAircraftBounds,
 } from "../apps/shared/display/map-geometry.js";
-import { artworkAnchor, artworkEndpoints, groupGroundAircraft, mapAircraftScale } from "../apps/shared/display/map-aircraft.js";
+import { artworkAnchor, cropArtworkAnchor, groupGroundAircraft, mapAircraftScale } from "../apps/shared/display/map-aircraft.js";
 import { sampleMapMotion, updateMapMotion } from "../apps/shared/display/map-motion.js";
 import { aircraftForList, selectNearbyAircraft } from "../apps/shared/display/nearby-aircraft.js";
 import { distanceBetween } from "../apps/shared/flight-weather.js";
 import { isMapAircraftKey, mapAircraftKey, trackMapAircraftKey } from "../apps/shared/settings-schema.js";
 
-test("Map keeps artwork upright across all bearings", () => {
+test("Map rotates north-up artwork to match every ground track", () => {
   for (let step = 0; step < 3600; step++) {
     const track = step / 10;
-    const { rotation, mirror } = spriteOrientation(track);
-    const angle = rotation * Math.PI / 180;
+    const [x, y] = artworkAnchor(0, 0, track, 20, 2, [.5, 0]);
     const bearing = track * Math.PI / 180;
-    const facing = mirror ? 1 : -1;
-    assert.ok(Math.abs(rotation) <= 90);
-    assert.ok(Math.abs(facing * Math.cos(angle) - Math.sin(bearing)) < 1e-12);
-    assert.ok(Math.abs(facing * Math.sin(angle) + Math.cos(bearing)) < 1e-12);
+    assert.ok(Math.abs(x - Math.sin(bearing)) < 1e-12);
+    assert.ok(Math.abs(y + Math.cos(bearing)) < 1e-12);
   }
   assert.equal(mapTrack(0), 0);
   assert.equal(mapTrack(360), undefined);
@@ -33,11 +30,10 @@ test("Map keeps artwork upright across all bearings", () => {
 });
 
 test("Destination guides start at the nose and end at the airport or viewport edge", () => {
-  assert.deepEqual(artworkAnchor(40, 60, 0, 40, 20, [0, .5]), [40, 40]);
-  assert.deepEqual(artworkAnchor(40, 60, 180, 40, 20, [0, .5]), [40, 80]);
-  assert.deepEqual(artworkAnchor(40, 60, 0, 40, 20, [1, .5]), [40, 80]);
-  assert.deepEqual(artworkAnchor(40, 60, 90, 40, 20, [.1, .7]), [56, 64]);
-  assert.deepEqual(artworkAnchor(40, 60, undefined, 40, 20, [0, .5]), [40, 60]);
+  assert.deepEqual(artworkAnchor(40, 60, 0, 20, 40, [.5, 0]), [40, 40]);
+  assert.deepEqual(artworkAnchor(40, 60, 180, 20, 40, [.5, 0]), [40, 80]);
+  assert.deepEqual(artworkAnchor(40, 60, 0, 20, 40, [.5, 1]), [40, 80]);
+  assert.deepEqual(artworkAnchor(40, 60, undefined, 20, 40, [.5, 0]), [40, 60]);
   assert.deepEqual(clipDestinationLine([40, 40], [70, 60], 100, 100), [70, 60]);
   assert.deepEqual(clipDestinationLine([40, 40], [40040, -39960], 100, 100), [80, 0]);
 });
@@ -55,35 +51,14 @@ test("Aircraft size is bounded by airframe and altitude and close ground aircraf
   assert.deepEqual(groupGroundAircraft([first, next, alone]), [[first, next]]);
 });
 
-test("Artwork anchors use the solid nose and tail past thin outlying pixels", () => {
-  const width = 24;
-  const height = 20;
-  const pixels = new Uint8ClampedArray(width * height * 4);
-  for (let x = 4; x <= 19; x++) {
-    for (let y = 10; y <= 15; y++) pixels[(y * width + x) * 4 + 3] = 255;
-  }
-  for (let x = 0; x < width; x++) pixels[(2 * width + x) * 4 + 3] = 255;
-  assert.deepEqual(artworkEndpoints(pixels, width, height), {
-    nose: [4.5 / width, 13 / height], tail: [19.5 / width, 13 / height],
-  });
-});
-
-test("Artwork trails anchor to an upswept tailcone below an overhanging fin", () => {
-  const width = 48;
-  const height = 28;
-  const pixels = new Uint8ClampedArray(width * height * 4);
-  for (let x = 4; x <= 42; x++) {
-    const bodyBottom = Math.min(24, 59 - x);
-    for (let y = 14; y < bodyBottom; y++) pixels[(y * width + x) * 4 + 3] = 255;
-  }
-  for (let x = 35; x <= 47; x++) {
-    const finBottom = Math.max(9, 52 - x);
-    for (let y = 4; y < finBottom; y++) pixels[(y * width + x) * 4 + 3] = 255;
-  }
-  const { nose, tail } = artworkEndpoints(pixels, width, height);
-  assert.deepEqual(nose, [4.5 / width, 19 / height]);
-  assert.deepEqual(tail, [42.5 / width, 15.5 / height]);
-  assert.deepEqual(artworkAnchor(40, 60, 180, width, height, tail), [41.5, 41.5]);
+test("Cropped sprites retain off-centre catalogue anchors through rotation", () => {
+  const crop = [.125, .125, .625, .875];
+  const nose = cropArtworkAnchor([.375, .125], crop);
+  const tail = cropArtworkAnchor([.4375, .6875], crop);
+  assert.deepEqual(nose, [.5, 0]);
+  assert.deepEqual(tail, [.625, .75]);
+  assert.deepEqual(artworkAnchor(40, 60, 90, 40, 20, nose), [50, 60]);
+  assert.deepEqual(artworkAnchor(40, 60, 90, 40, 20, tail), [35, 65]);
 });
 
 test("Map provides a diameter for either axis and handles the date line", () => {

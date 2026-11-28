@@ -1,9 +1,9 @@
 const artworkDirectory = new URL("/aircrafts/", window.location.origin);
 // Bundled fallbacks can load even when the artwork catalogue is unavailable.
 const genericArtwork = {
-  "fixed-wing": { aircraft: "Generic fixed-wing aircraft", path: "fallbacks/generic-fixed-wing.png" },
-  "general-aviation": { aircraft: "Generic light aircraft", path: "general-aviation/vans-rv7-neutral.png" },
-  helicopter: { aircraft: "Generic helicopter", path: "fallbacks/generic-helicopter.png" },
+  "fixed-wing": bundledArtwork("generic-fixed-wing", "Generic fixed-wing aircraft", "fallbacks/generic-fixed-wing.png"),
+  "general-aviation": bundledArtwork("vans-rv7-neutral", "Generic light aircraft", "general-aviation/vans-rv7-neutral.png"),
+  helicopter: bundledArtwork("generic-helicopter", "Generic helicopter", "fallbacks/generic-helicopter.png"),
 };
 const imageFiles = new Map();
 const catalogRetryMs = 30_000;
@@ -13,6 +13,10 @@ const loadLandingGear = cacheCatalog("landing-gear/catalog.json", gearLayouts);
 
 loadAircraftTypes();
 loadArtwork();
+
+function bundledArtwork(id, aircraft, path) {
+  return { id, aircraft, path, topDown: { path: `top-down/${path}` } };
+}
 
 function gearLayouts({ kits, illustrations }) {
   return new Map(Object.entries(illustrations).map(([path, { kit, groundPose, ...mounts }]) => {
@@ -96,7 +100,15 @@ export async function catalogAircraft(aircraft) {
   };
 }
 
-export async function aircraftImage({ icaoType, category, illustrationId }, operatorIcao, currentImage) {
+export async function aircraftImage(identity, operatorIcao, currentImage) {
+  return (await selectAircraftArtwork(identity, operatorIcao, currentImage, false))?.image ?? null;
+}
+
+export function aircraftTopDown(identity, operatorIcao, currentImage) {
+  return selectAircraftArtwork(identity, operatorIcao, currentImage, true);
+}
+
+async function selectAircraftArtwork({ icaoType, category, illustrationId }, operatorIcao, currentImage, topDown) {
   const [assets, types] = await Promise.all([loadArtwork(), loadAircraftTypes()]);
   const { catalog, ready, operatorIllustrations } = assets ?? {};
   const { byType, byCategory } = catalog?.fallbacks ?? {};
@@ -113,10 +125,12 @@ export async function aircraftImage({ icaoType, category, illustrationId }, oper
 
   const attemptedPaths = new Set();
   for (const illustration of candidates) {
-    if (!illustration || attemptedPaths.has(illustration.path)) continue;
-    attemptedPaths.add(illustration.path);
-    const image = await decodeIllustration(illustration, types, currentImage);
-    if (image) return image;
+    if (!illustration) continue;
+    const variant = topDown ? ready?.get(illustration.id)?.topDown ?? illustration.topDown : illustration;
+    if (!variant?.path || attemptedPaths.has(variant.path)) continue;
+    attemptedPaths.add(variant.path);
+    const image = await decodeIllustration(illustration, types, currentImage, variant.path);
+    if (image) return { image, nose: variant.nose, tail: variant.tail };
   }
   return null;
 }
@@ -149,9 +163,9 @@ function aircraftCategory(catalogCategory, feedCategory) {
   return /^A[2-6]$/.test(feedCategory) ? "fixed-wing" : undefined;
 }
 
-async function decodeIllustration(illustration, types, currentImage) {
+async function decodeIllustration(illustration, types, currentImage, path = illustration?.path) {
   if (!illustration) return null;
-  const source = await loadImageFile(illustration.path);
+  const source = await loadImageFile(path);
   if (!source) return null;
 
   const label = illustration.aircraft || formatAircraftType(types?.[illustration.icaoType]) || illustration.category;
@@ -164,7 +178,7 @@ async function decodeIllustration(illustration, types, currentImage) {
   const image = new Image();
   image.alt = alt;
   image.src = source;
-  image.dataset.artworkPath = illustration.path;
+  image.dataset.artworkPath = path;
   try {
     await image.decode();
     return image;

@@ -1,6 +1,5 @@
 import { trackMapAircraftKey } from "../settings-schema.js";
 import { isOnGround } from "./landing-gear.js";
-import { spriteOrientation } from "./map-geometry.js";
 import { hasCoordinates } from "./route-progress.js";
 
 const largestBodies = /^(A38[08]|B74[248]|A346|B77[39]|A35K)$/;
@@ -58,57 +57,18 @@ export function mapAircraftScale(aircraft, { icaoType = aircraft.t, category } =
   return Math.max(.43, Math.min(1.2, body * height));
 }
 
-export function artworkEndpoints(pixels, width, height) {
-  function opaqueColumn(x, top, bottom) {
-    let length = 0;
-    let best = 0;
-    let middle = height / 2;
-    for (let y = top; y < bottom; y++) {
-      length = pixels[(y * width + x) * 4 + 3] >= 96 ? length + 1 : 0;
-      if (length > best) {
-        best = length;
-        middle = y + 1 - length / 2;
-      }
-    }
-    return { x, best, middle };
-  }
-
-  const profiles = Array.from({ length: width }, (_, x) => opaqueColumn(x, 0, height));
-  // Ignore isolated, thin rotor tips and shadows when finding the airframe ends.
-  const minimum = Math.max(2, ...profiles.map(profile => profile.best * .15));
-  const solid = profiles.filter(profile => profile.best >= minimum);
-  if (!solid.length) return { nose: [0, .5], tail: [1, .5] };
-
-  const point = ({ x, middle }) => [(x + .5) / width, middle / height];
-  const nose = solid[0];
-  const rear = solid.at(-1);
-
-  // Estimate the fuselage axis behind the nose, clear of the tapered tip and the wings.
-  const forwardBody = solid.slice(Math.floor(solid.length * .06), Math.ceil(solid.length * .18));
-  const middleIndex = Math.floor(forwardBody.length / 2);
-  const axis = forwardBody.map(column => column.middle).sort((a, b) => a - b)[middleIndex];
-  const thickness = forwardBody.map(column => column.best).sort((a, b) => a - b)[middleIndex];
-  // Allow for an upswept tailcone while excluding the vertical stabilizer above it.
-  const halfBand = Math.max(2, thickness * .45);
-  const top = Math.max(0, Math.floor(axis - halfBand));
-  const bottom = Math.min(height, Math.floor(axis + halfBand) + 1);
-  const tailMinimum = Math.max(2, thickness * .12);
-  for (let x = width - 1; x >= (nose.x + rear.x) / 2; x--) {
-    const column = opaqueColumn(x, top, bottom);
-    if (column.best >= tailMinimum) return { nose: point(nose), tail: point(column) };
-  }
-  return { nose: point(nose), tail: point(rear) };
+export function cropArtworkAnchor([x, y], [left, top, right, bottom]) {
+  return [(x - left) / (right - left), (y - top) / (bottom - top)];
 }
 
 export function artworkAnchor(x, y, track, width, height, anchor) {
   if (track === undefined || !anchor) return [x, y];
-  const { rotation, mirror } = spriteOrientation(track);
-  const angle = rotation * Math.PI / 180;
-  const along = (anchor[0] - .5) * width * (mirror ? -1 : 1);
-  const across = (anchor[1] - .5) * height;
+  const angle = track * Math.PI / 180;
+  const offsetX = (anchor[0] - .5) * width;
+  const offsetY = (anchor[1] - .5) * height;
   return [
-    x + along * Math.cos(angle) - across * Math.sin(angle),
-    y + along * Math.sin(angle) + across * Math.cos(angle),
+    x + offsetX * Math.cos(angle) - offsetY * Math.sin(angle),
+    y + offsetX * Math.sin(angle) + offsetY * Math.cos(angle),
   ];
 }
 

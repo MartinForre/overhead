@@ -24,9 +24,13 @@ async function loadArtwork(t, { missing = [], corrupt = [] } = {}) {
     if (corrupt.includes(path)) return new Response("Invalid PNG");
     return new Response(await readFile(new URL(path, assetDirectory)));
   });
-  const { aircraftImage, catalogAircraft } = await import(`../apps/shared/display/artwork.js?${t.name}`);
-  return async (observation, operator) => {
+  const { aircraftImage, aircraftTopDown, catalogAircraft } = await import(`../apps/shared/display/artwork.js?${t.name}`);
+  return async (observation, operator, topDown = false) => {
     const identity = await catalogAircraft(observation);
+    if (topDown) {
+      const artwork = await aircraftTopDown(identity, operator);
+      return { path: artwork?.image.dataset.artworkPath, nose: artwork?.nose, tail: artwork?.tail };
+    }
     const image = await aircraftImage(identity, operator);
     return { model: identity.model, path: image?.dataset.artworkPath };
   };
@@ -55,4 +59,21 @@ test("bundled fallback artwork loads without the artwork catalogue", async (t) =
   assert.equal((await lookup({ t: "CP32" })).path, lightProfile);
   assert.equal((await lookup({ category: "A7" })).path, "fallbacks/generic-helicopter.png");
   assert.equal((await lookup({})).path, fixedWingProfile);
+  assert.equal((await lookup({ category: "A1" }, null, true)).path, `top-down/${lightProfile}`);
+  assert.equal((await lookup({ category: "A7" }, null, true)).path, "top-down/fallbacks/generic-helicopter.png");
+  assert.equal((await lookup({}, null, true)).path, `top-down/${fixedWingProfile}`);
+});
+
+test("top-down artwork uses its own fallback chain and returns the chosen airframe's anchors", async (t) => {
+  const lookup = await loadArtwork(t, {
+    missing: ["aircrafts/top-down/airliners/a320neo-sas.png"],
+    corrupt: ["aircrafts/top-down/airliners/a320neo-neutral.png"],
+  });
+  const rescue = { hex: "478129", t: "EH10" };
+  const { illustrations } = JSON.parse(await readFile(new URL("aircrafts/artwork.json", assetDirectory)));
+  assert.deepEqual(await lookup(rescue, null, true), illustrations["aw101-sar-queen-norwegian-rescue"].topDown);
+  assert.equal((await lookup(rescue)).path, "helicopters/aw101-sar-queen-norwegian-rescue.png");
+  assert.equal((await lookup({ t: "B739" }, "KLM", true)).path, "top-down/airliners/737-900-klm.png");
+  assert.equal((await lookup({ t: "A20N" }, "SAS", true)).path, `top-down/${fixedWingProfile}`);
+  assert.equal((await lookup({ t: "A20N" }, "SAS")).path, "airliners/a320neo-sas.png");
 });

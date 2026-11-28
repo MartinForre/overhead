@@ -121,10 +121,10 @@ button.live-map-marker { pointer-events: auto; cursor: pointer; }
   position: absolute;
   top: 50%;
   left: 50%;
-  width: calc(var(--aircraft-size) * .92 * var(--aircraft-scale, .86));
-  max-height: calc(var(--aircraft-size) * .7 * var(--aircraft-scale, .86));
-  object-fit: contain;
-  transform: translate(-50%, -50%) rotate(var(--aircraft-rotation)) scaleX(var(--aircraft-mirror));
+  --sprite-size: calc(var(--aircraft-size) * .7 * var(--aircraft-scale, .86));
+  max-width: var(--sprite-size);
+  max-height: var(--sprite-size);
+  transform: translate(-50%, -50%) rotate(var(--aircraft-bearing));
   filter: var(--aircraft-filter, ) drop-shadow(0 2px 2px rgb(0 0 0 / 65%));
   pointer-events: none;
 }

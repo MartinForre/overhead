@@ -1,7 +1,7 @@
 import { formatNumber, formatSpeed, localize, setMessage, t } from "../display-formats.js";
 import { distanceBetween } from "../flight-weather.js";
 import { flightDate } from "../track-settings.js";
-import { aircraftGear, aircraftImage, catalogAircraft } from "./artwork.js";
+import { aircraftGear, aircraftImage, aircraftTopDown, catalogAircraft } from "./artwork.js";
 import { altitudeReadout, createAircraftArtwork, createAircraftMotion, createAirport, placeAircraftScenery, setRouteTime, setTrack } from "./flight-card.js";
 import { callsignDetails } from "./flight-details.js";
 import { fitFlightCards, flightCardOrder } from "./flight-layout.js";
@@ -309,7 +309,7 @@ function createTrackedCard(template, selection, getMotion, layout) {
     speed.hidden = !Number.isFinite(position?.speed);
     if (!speed.hidden) speed.textContent = formatSpeed(position.speed);
     bearing.hidden = !Number.isFinite(position?.heading);
-    if (!bearing.hidden) setTrack(bearing, position.heading);
+    if (!bearing.hidden) setTrack(bearing, position.heading, aircraftArt?.compassImage);
     instruments.hidden = Boolean(finished || landedFlight?.inferredLanding || cancelled ||
       (altitudeField.hidden && speed.hidden && bearing.hidden));
     layout();
@@ -339,21 +339,27 @@ function createTrackedCard(template, selection, getMotion, layout) {
   async function updateArt({ aircraftType, model, operator, operatorIata, registration, hex, category }) {
     const fields = [aircraftType, model, operator, operatorIata, registration, hex, category];
     const key = fields.join("/");
-    if (key === identity || !fields.some(Boolean)) {
+    const hasIdentity = fields.some(Boolean);
+    if (key === identity || (!hasIdentity && (aircraftArt || bearing.hidden))) {
       paintArtwork();
       return;
     }
     identity = key;
     try {
       const aircraft = await catalogAircraft({ t: aircraftType, r: registration, hex, category });
-      const image = await aircraftImage(aircraft, operator);
+      const [image, topDown] = await Promise.all([
+        hasIdentity ? aircraftImage(aircraft, operator, aircraftArt?.image) : null,
+        aircraftTopDown(aircraft, operator, aircraftArt?.compassImage),
+      ]);
       const gear = await aircraftGear(image);
       if (signal.aborted || identity !== key) return;
       if (hex !== aircraftArt?.hex || registration !== aircraftArt?.registration) aircraftMotion = createAircraftMotion();
       const label = [aircraft.model ?? model ?? aircraftType, operatorIata ?? operator].filter(Boolean).join(" · ");
-      aircraftArt = { image, gear, hex, registration, description: label, isHelicopter: aircraft.category === "helicopter" };
+      aircraftArt = { image, gear, hex, registration, description: label, compassImage: topDown?.image,
+        isHelicopter: aircraft.category === "helicopter" };
       description.textContent = label || t("N/A");
       description.hidden = !label && !status.hidden;
+      if (!bearing.hidden) setTrack(bearing, flight.position?.heading, aircraftArt.compassImage);
       paintArtwork();
     } catch {
       if (identity === key) identity = undefined;

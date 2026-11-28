@@ -1,14 +1,14 @@
 import { localize, setMessage, t } from "../display-formats.js";
 import { flightReferenceCallsign, mapAircraftKey, sameLocation } from "../settings-schema.js";
-import { aircraftImage, catalogAircraft } from "./artwork.js";
+import { aircraftTopDown, catalogAircraft } from "./artwork.js";
 import { createAircraftPresentation, createFlightCard, measureArtwork } from "./flight-card.js";
 import { callsignDestination } from "./flight-details.js";
 import { fitFlightCards } from "./flight-layout.js";
 import { isOnGround } from "./landing-gear.js";
-import { artworkAnchor, artworkEndpoints, groupGroundAircraft, mapAircraftScale } from "./map-aircraft.js";
+import { artworkAnchor, cropArtworkAnchor, groupGroundAircraft, mapAircraftScale } from "./map-aircraft.js";
 import { basemapStyle, loadMapLibre } from "./map-basemap.js";
 import {
-  clipDestinationLine, closestLongitude, mapDiameterBounds, projectFromCenter, projectTrackBounds, spriteOrientation,
+  clipDestinationLine, closestLongitude, mapDiameterBounds, projectFromCenter, projectTrackBounds,
   trackedAircraftBounds,
 } from "./map-geometry.js";
 import { sampleMapMotion, updateMapMotion } from "./map-motion.js";
@@ -288,12 +288,9 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
     let artworkX = 0;
     let artworkY = 0;
     if (hasTrack) {
-      const { rotation, mirror } = spriteOrientation(pose.track);
       node.style.setProperty("--aircraft-bearing", pose.track.toFixed(2) + "deg");
-      node.style.setProperty("--aircraft-rotation", rotation.toFixed(2) + "deg");
-      node.style.setProperty("--aircraft-mirror", mirror ? "-1" : "1");
       if (marker.sprite && artWidth) {
-        const angle = rotation * Math.PI / 180;
+        const angle = pose.track * Math.PI / 180;
         const cos = Math.abs(Math.cos(angle));
         const sin = Math.abs(Math.sin(angle));
         artworkX = (artWidth * cos + artHeight * sin) / 2;
@@ -315,7 +312,8 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       marker.destinationEnd = projector([marker.destination.longitude, marker.destination.latitude], reference);
       marker.nose = artworkAnchor(left, top, pose.track, artWidth, artHeight, marker.sprite?.nose);
       // Short guides would cross the artwork when the aircraft reaches the airport.
-      marker.showDestination = Math.hypot(marker.destinationEnd[0] - left, marker.destinationEnd[1] - top) > artWidth / 2 + 4;
+      marker.showDestination = Math.hypot(marker.destinationEnd[0] - left, marker.destinationEnd[1] - top) >
+        Math.max(artWidth, artHeight) / 2 + 4;
     } else {
       marker.showDestination = false;
     }
@@ -392,7 +390,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       const highlighted = marker.key === selected;
       if (marker.trailEnd && marker.tail && Math.hypot(
         marker.tail[0] - marker.trailEnd[0], marker.tail[1] - marker.trailEnd[1],
-      ) < marker.artWidth + 35) {
+      ) < Math.max(marker.artWidth, marker.artHeight) + 35) {
         context.lineWidth = highlighted ? 2.6 : 1.65;
         context.globalAlpha = highlighted ? .96 : .75;
         context.setLineDash([]);
@@ -504,20 +502,21 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
 
   function updateArtwork(marker) {
     const { item, details } = marker.entry;
-    const lookup = JSON.stringify([item.hex, item.r, item.t, item.category, item.flight, item.desc, details?.illustrationId]);
+    const operator = details?.operatorIcao ?? /^([A-Z]{3})\d/.exec(String(item.flight ?? "").trim().toUpperCase())?.[1];
+    const lookup = JSON.stringify([item.hex, item.r, item.t, item.category, item.flight, item.desc,
+      details?.illustrationId, details?.model, operator]);
     if (marker.lookup === lookup) return;
     marker.lookup = lookup;
     marker.sprite = undefined;
     marker.model = undefined;
-    const operator = details?.operatorIcao ?? /^([A-Z]{3})\d/.exec(String(item.flight ?? "").trim().toUpperCase())?.[1];
     void (async () => {
       const identity = await catalogAircraft(item);
       if (details?.illustrationId) identity.illustrationId = details.illustrationId;
-      const image = await aircraftImage(identity, operator);
+      const artwork = await aircraftTopDown(identity, operator);
       if (markers.get(marker.key) !== marker || marker.lookup !== lookup) return;
       marker.identity = identity;
       marker.model = details?.model || identity.model || item.desc || identity.icaoType;
-      marker.sprite = image ? sprite(image) : undefined;
+      marker.sprite = artwork ? sprite(artwork) : undefined;
       scaleMarker(marker);
       paintSprite(marker);
       labelMarker(marker);
@@ -738,11 +737,13 @@ function setText(element, value) {
   if (element.textContent !== value) element.textContent = value;
 }
 
-function sprite(image) {
+function sprite({ image, nose, tail }) {
   const key = image.src;
   if (spriteCache.has(key)) return spriteCache.get(key);
+
+  const uncropped = { src: key, nose: nose ?? [.5, 0], tail: tail ?? [.5, 1] };
   const bounds = measureArtwork(image, 0);
-  if (!bounds) return { src: image.src };
+  if (!bounds) return uncropped;
   const [left, top, right, bottom] = bounds.crop;
   const width = (right - left) * image.naturalWidth;
   const height = (bottom - top) * image.naturalHeight;
@@ -751,10 +752,13 @@ function sprite(image) {
   canvas.width = Math.max(1, Math.round(width * scale));
   canvas.height = Math.max(1, Math.round(height * scale));
   const context = canvas.getContext("2d");
-  if (!context) return { src: image.src };
+  if (!context) return uncropped;
   context.drawImage(image, left * image.naturalWidth, top * image.naturalHeight, width, height, 0, 0, canvas.width, canvas.height);
-  const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-  const data = { src: canvas.toDataURL("image/webp", .9), ...artworkEndpoints(pixels, canvas.width, canvas.height) };
+  const data = {
+    src: canvas.toDataURL("image/webp", .9),
+    nose: nose ? cropArtworkAnchor(nose, bounds.crop) : uncropped.nose,
+    tail: tail ? cropArtworkAnchor(tail, bounds.crop) : uncropped.tail,
+  };
   spriteCache.set(key, data);
   return data;
 }

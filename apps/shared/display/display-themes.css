@@ -13,7 +13,6 @@
   --flap-seam: #9ca595;
   --control: #383b31;
   --needle-tip: #ff665d;
-  --needle-tail: #9da592;
 }
 
 :root {
@@ -31,7 +30,6 @@
   --flap-ink: #101d39;
   --flap-seam: #a68b49;
   --control: #1a2945;
-  --needle-tail: #b7b893;
 }
 
 [data-theme="deep-red"] {
@@ -44,7 +42,6 @@
   --flap-seam: #8a555e;
   --control: #43272d;
   --needle-tip: #dc8588;
-  --needle-tail: #ba9395;
 }
 
 [data-theme="sky-gradient"] {
@@ -59,7 +56,6 @@
   --flap-seam: #5a7c9a;
   --control: #cce2f5;
   --needle-tip: #b52d29;
-  --needle-tail: #486a86;
 }
 
 [data-theme="nordic-linen"] {
@@ -73,7 +69,6 @@
   --flap-seam: #bd9d82;
   --control: #e7d9c5;
   --needle-tip: #a4392b;
-  --needle-tail: #706b56;
 }
 
 [data-theme="blueprint"] {
@@ -89,7 +84,6 @@
   --flap-ink: #1b354c;
   --flap-seam: #8ca6bf;
   --control: #274960;
-  --needle-tail: #92b5d0;
 }
 
 [data-theme="serengeti-safari"] {
@@ -106,7 +100,6 @@
   --flap-seam: #ac885f;
   --control: #533e30;
   --needle-tip: #eea16c;
-  --needle-tail: #b8a587;
 }
 
 [data-theme="zanzibar-coast"] {
@@ -121,7 +114,6 @@
   --flap-seam: #619289;
   --control: #cce3d9;
   --needle-tip: #a94d31;
-  --needle-tail: #739992;
 }
 
 [data-theme="ivory-and-amber"] {
@@ -138,7 +130,6 @@
   --flap-seam: #b7782e;
   --control: #ede0c4;
   --needle-tip: #bc4c19;
-  --needle-tail: #856845;
   --aircraft-filter: sepia(.22) saturate(.83) contrast(.97);
   --scenery-filter: sepia(.28) saturate(.85) contrast(.92);
 }
@@ -155,7 +146,6 @@
   --flap-seam: #626262;
   --control: #cecece;
   --needle-tip: #232323;
-  --needle-tail: #737373;
   --aircraft-filter: grayscale(1) contrast(1.13) brightness(.94);
   --scenery-filter: grayscale(1) contrast(1.15) brightness(.94);
   --runway-artwork: url("/dividers/runway-dirt.png");

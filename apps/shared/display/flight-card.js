@@ -1,7 +1,8 @@
 import { formatAltitude, formatClock, formatDistance, formatNumber, formatSpeed, t } from "../display-formats.js";
-import { aircraftGear, aircraftImage, catalogAircraft } from "./artwork.js";
+import { aircraftGear, aircraftImage, aircraftTopDown, catalogAircraft } from "./artwork.js";
 import { callsignDetails, resolveAircraft } from "./flight-details.js";
 import { cloudThresholdFeet, createLandingGearState, isOnGround } from "./landing-gear.js";
+import { mapTrack } from "./map-geometry.js";
 import { estimateArrivalTime, estimateTakeoffTime } from "./route-progress.js";
 
 const trackDirections = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"];
@@ -45,7 +46,11 @@ export function createAircraftPresentation() {
     const artworkIdentity = details?.illustrationId
       ? { ...identity, illustrationId: details.illustrationId }
       : identity;
-    const image = await aircraftImage(artworkIdentity, flight.operatorIcao, view.image);
+    const track = mapTrack(item.track);
+    const [image, topDown] = await Promise.all([
+      aircraftImage(artworkIdentity, flight.operatorIcao, view.image),
+      track === undefined ? null : aircraftTopDown(artworkIdentity, flight.operatorIcao, view.compassImage),
+    ]);
     const gear = await aircraftGear(image);
     if (signal.aborted) return;
 
@@ -80,7 +85,8 @@ export function createAircraftPresentation() {
       get altitude() { return altitude.altitude; },
       get altitudeLabel() { return altitude.altitudeLabel; },
       get speed() { return Number.isFinite(item.gs) && item.gs >= 0 ? formatSpeed(item.gs * 1.852) : t("N/A"); },
-      track: Number.isFinite(item.track) && item.track >= 0 && item.track < 360 ? item.track : undefined,
+      track,
+      compassImage: topDown?.image,
       image,
       isHelicopter,
       gear,
@@ -119,7 +125,7 @@ export function createFlightCard(cardTemplate, getMotion) {
     setText(altitudeLabel, view.altitudeLabel);
     const altitude = altitudeLabel.parentElement;
     if (altitude.title !== view.altitudeLabel) altitude.title = view.altitudeLabel;
-    setTrack(track, view.track);
+    setTrack(track, view.track, view.compassImage);
     if (routeKey !== view.routeKey) {
       routeKey = view.routeKey;
       setRoute(route, view);
@@ -251,8 +257,8 @@ function setText(element, value) {
   if (element.textContent !== value) element.textContent = value;
 }
 
-export function setTrack(element, track) {
-  const available = Number.isFinite(track) && track >= 0 && track < 360;
+export function setTrack(element, track, image) {
+  const available = mapTrack(track) !== undefined;
   const bearing = available ? `${String(Math.round(track) % 360).padStart(3, "0")}°` : "";
   const cardinal = available ? t(trackDirections[Math.round(track / 45) % trackDirections.length]) : "";
   const rotation = available ? `${track}deg` : "";
@@ -260,6 +266,9 @@ export function setTrack(element, track) {
   element.toggleAttribute("data-track-unavailable", !available);
   if (element.style.getPropertyValue("--bearing") !== rotation) element.style.setProperty("--bearing", rotation);
   if (element.getAttribute("aria-label") !== label) element.setAttribute("aria-label", label);
+  const needle = element.querySelector(".flight-needle");
+  if (image && needle.getAttribute("src") !== image.src) needle.src = image.src;
+  needle.hidden = !available || !image;
 }
 
 function setRoute(element, { departure, destination }) {

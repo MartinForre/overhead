@@ -56,7 +56,7 @@ export const displayContents = `
               <span class="flight-altitude"><span class="sr-only" data-altitude-label></span> <span data-altitude></span></span>
               <span data-speed></span>
             </div>
-            <div class="flight-track" role="img"><span class="flight-needle" aria-hidden="true"></span></div>
+            <div class="flight-track" role="img"><img class="flight-needle" alt="" hidden></div>
           </div>
         </header>
         <div class="track-picture">
@@ -117,7 +117,7 @@ export const displayContents = `
               </div>
             </div>
             <div class="flight-track" role="img">
-              <span class="flight-needle" aria-hidden="true"></span>
+              <img class="flight-needle" alt="" hidden>
             </div>
           </div>
         </header>

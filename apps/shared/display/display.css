@@ -272,29 +272,12 @@ body { margin: 0; }
 
 .flight-needle {
   position: absolute;
-  inset: 0;
+  inset: 10%;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
   transform: rotate(var(--bearing));
-}
-
-.flight-track[data-track-unavailable] .flight-needle { display: none; }
-
-.flight-needle::before,
-.flight-needle::after {
-  position: absolute;
-  inset-inline: 40%;
-  content: "";
-}
-
-.flight-needle::before {
-  inset-block: 12% 50%;
-  background: var(--needle-tip);
-  clip-path: polygon(50% 0, 100% 100%, 0 100%);
-}
-
-.flight-needle::after {
-  inset-block: 50% 20%;
-  background: var(--needle-tail);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  filter: var(--aircraft-filter, ) drop-shadow(0 0 1px color-mix(in srgb, currentColor 45%, transparent));
 }
 
 :is(.flight-picture, .track-picture) {
