@@ -51,10 +51,14 @@ export function mapAircraftScale(aircraft, { icaoType = aircraft.t, category } =
   const light = category === "general-aviation" || aircraft.category === "A1";
   const body = helicopter ? .65 : light ? .58 : largestBodies.test(type) ? 1.19
     : wideBodies.test(type) || aircraft.category === "A5" ? 1.05 : regionalBodies.test(type) ? .78 : .92;
-  const altitude = [aircraft.alt_baro, aircraft.alt_geom].find(Number.isFinite);
+  const altitude = mapAircraftAltitude(aircraft);
   const height = isOnGround(aircraft) ? .58
     : altitude === undefined ? .86 : .65 + .35 * Math.min(1, Math.max(0, altitude / 14_000));
   return Math.max(.43, Math.min(1.2, body * height));
+}
+
+export function mapAircraftAltitude({ alt_baro, alt_geom }) {
+  return Number.isFinite(alt_baro) ? alt_baro : Number.isFinite(alt_geom) ? alt_geom : undefined;
 }
 
 export function cropArtworkAnchor([x, y], [left, top, right, bottom]) {

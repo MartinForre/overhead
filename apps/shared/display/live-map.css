@@ -66,6 +66,7 @@
 
 .live-map-marker {
   position: absolute;
+  z-index: calc(var(--marker-layer, 0) + var(--marker-emphasis, 0));
   top: 0;
   left: 0;
   display: grid;
@@ -82,8 +83,8 @@
 .live-map-marker[data-clustered] { visibility: hidden; }
 
 button.live-map-marker { pointer-events: auto; cursor: pointer; }
-.live-map-marker:focus-visible { z-index: 1; outline: none; }
-.live-map-marker[data-selected] { z-index: 2; }
+.live-map-marker:focus-visible { --marker-emphasis: 1; outline: none; }
+.live-map-marker[data-selected] { --marker-emphasis: 2; }
 .live-map-marker:is([data-selected], :focus-visible)::after {
   position: absolute;
   z-index: -1;
@@ -132,10 +133,10 @@ button.live-map-marker img { pointer-events: auto; }
 
 .live-map-cluster {
   position: absolute;
-  z-index: 2;
+  z-index: 3;
   transform: translate(-50%, -50%);
 }
-.live-map-cluster[open] { z-index: 3; }
+.live-map-cluster[open] { z-index: var(--cluster-menu-layer, 4); }
 :is(span.live-map-cluster, .live-map-cluster summary) {
   display: grid;
   place-items: center;

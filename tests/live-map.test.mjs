@@ -7,8 +7,8 @@ import { Readable } from "node:stream";
 import { test } from "node:test";
 import { createSettingsApi } from "../apps/settings/settings-api.mjs";
 import {
-  clipDestinationLine, destinationPoint, mapDiameterBounds, mapTrack, projectFromCenter, projectTrackBounds,
-  trackedAircraftBounds,
+  clipDestinationLine, curvedDestinationGuide, destinationPoint, mapDiameterBounds, mapTrack, projectFromCenter,
+  projectTrackBounds, trackedAircraftBounds,
 } from "../apps/shared/display/map-geometry.js";
 import { artworkAnchor, cropArtworkAnchor, groupGroundAircraft, mapAircraftScale } from "../apps/shared/display/map-aircraft.js";
 import { sampleMapMotion, updateMapMotion } from "../apps/shared/display/map-motion.js";
@@ -36,6 +36,49 @@ test("Destination guides start at the nose and end at the airport or viewport ed
   assert.deepEqual(artworkAnchor(40, 60, undefined, 20, 40, [.5, 0]), [40, 60]);
   assert.deepEqual(clipDestinationLine([40, 40], [70, 60], 100, 100), [70, 60]);
   assert.deepEqual(clipDestinationLine([40, 40], [40040, -39960], 100, 100), [80, 0]);
+});
+
+test("Curved destination guides leave along the ground track and join the great-circle route", () => {
+  const width = 1_000;
+  const height = 650;
+  const reference = 5;
+  const position = [5, 59];
+  const destination = { longitude: -74, latitude: 40.6 };
+  const project = projectTrackBounds({ center: { longitude: -34.5 }, bounds: [[-81, 35], [12, 68]] },
+    width, height, { left: 25, right: 25, top: 25, bottom: 25 });
+  const center = project(position, reference);
+  const track = 45;
+  const nose = artworkAnchor(...center, track, 22, 30, [.5, 0]);
+  const { curves, points } = curvedDestinationGuide({
+    position, center, markerCenter: center, track, nose, destination, reference, project, width, height,
+  });
+  const [[firstX, firstY]] = curves[0];
+  assert.ok(firstX > nose[0] && firstY < nose[1]);
+  assert.ok(Math.abs(firstX - nose[0] + firstY - nose[1]) < 1e-9);
+  assert.ok(points[0][0] < curves.at(-1)[2][0]);
+  assert.ok(points.some(([, y]) => y < center[1] - 20));
+  assert.deepEqual(points.at(-1), project([-74, 40.6], reference));
+});
+
+test("Curved destination guides retain their longitude across the date line and round a reversal", () => {
+  const width = 900;
+  const height = 500;
+  const reference = 179.8;
+  const position = [reference, 0];
+  const destination = { longitude: -179.2, latitude: 0 };
+  const project = projectTrackBounds({ center: { longitude: 180 }, bounds: [[178.5, -.75], [181.5, .75]] },
+    width, height, { left: 0, right: 0, top: 0, bottom: 0 });
+  const center = project(position, reference);
+  const track = 270;
+  const nose = artworkAnchor(...center, track, 22, 30, [.5, 0]);
+  const { curves, points } = curvedDestinationGuide({
+    position, center, markerCenter: center, track, nose, destination, reference, project, width, height,
+  });
+  assert.equal(curves.length, 2);
+  assert.ok(curves[0][0][0] < nose[0]);
+  assert.ok(Math.abs(curves[0][2][1] - center[1]) > 25);
+  assert.deepEqual(points.at(-1), project([180.8, 0], reference));
+  assert.ok(points.every(([x]) => x > center[0]));
 });
 
 test("Aircraft size is bounded by airframe and altitude and close ground aircraft can share a pin", () => {

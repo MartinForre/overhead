@@ -1,3 +1,6 @@
+import { distanceBetween } from "../flight-weather.js";
+import { bearingTo } from "./route-progress.js";
+
 const earthRadiusKm = 6_371;
 const radians = Math.PI / 180;
 const mercatorLatitude = 85.05112878;
@@ -12,7 +15,12 @@ export function destinationPoint({ latitude, longitude }, distanceKm, bearing) {
 }
 
 export function closestLongitude(longitude, center) {
-  return center + ((longitude - center + 540) % 360) - 180;
+  const offset = (longitude - center + 180) % 360;
+  return center + (offset + 360) % 360 - 180;
+}
+
+export function clampMercatorLatitude(latitude) {
+  return Math.max(-mercatorLatitude, Math.min(mercatorLatitude, latitude));
 }
 
 export function mapDiameterBounds({ latitude, longitude }, radiusKm) {
@@ -41,7 +49,7 @@ export function trackedAircraftBounds(positions) {
     west = start;
     east = end + 360;
   }
-  const latitudes = positions.map(([, lat]) => Math.max(-mercatorLatitude, Math.min(mercatorLatitude, lat)));
+  const latitudes = positions.map(([, lat]) => clampMercatorLatitude(lat));
   const south = Math.min(...latitudes);
   const north = Math.max(...latitudes);
   const latitude = (south + north) / 2;
@@ -59,8 +67,7 @@ export function trackedAircraftBounds(positions) {
 
 export function projectTrackBounds({ center, bounds: [[west, south], [east, north]] }, width, height, padding) {
   const mercatorY = latitude => {
-    const bounded = Math.max(-mercatorLatitude, Math.min(mercatorLatitude, latitude));
-    return Math.log(Math.tan(Math.PI / 4 + bounded * radians / 2)) / radians;
+    return Math.log(Math.tan(Math.PI / 4 + clampMercatorLatitude(latitude) * radians / 2)) / radians;
   };
   const top = mercatorY(north);
   const bottom = mercatorY(south);
@@ -101,4 +108,74 @@ export function clipDestinationLine([x, y], [destinationX, destinationY], width,
   const vertical = dy ? ((dy > 0 ? height : 0) - y) / dy : Infinity;
   const limit = Math.min(1, horizontal, vertical);
   return [x + dx * limit, y + dy * limit];
+}
+
+export function curvedDestinationGuide({ position, center, markerCenter, track, nose, destination, reference, project, width, height }) {
+  const [longitude, latitude] = position;
+  const start = { longitude, latitude };
+  const distance = distanceBetween(start, { lon: destination.longitude, lat: destination.latitude });
+  if (!distance) return;
+  const bearing = bearingTo(start, destination);
+  const pointAt = (km, previousLongitude) => {
+    const [lon, lat] = km === distance ? [destination.longitude, destination.latitude]
+      : destinationPoint(start, km, bearing);
+    const unwrapped = closestLongitude(lon, previousLongitude);
+    return { point: project([unwrapped, lat], unwrapped), longitude: unwrapped };
+  };
+
+  const probeKm = Math.min(1, distance / 2);
+  const [nearX, nearY] = pointAt(probeKm, reference).point;
+  const pixelsPerKm = Math.hypot(nearX - center[0], nearY - center[1]) / probeKm;
+  if (!(pixelsPerKm > 0 && Number.isFinite(pixelsPerKm))) return;
+
+  // Keep the turn legible at the current zoom and give the nose room to clear the artwork.
+  const noseOffset = Math.hypot(nose[0] - markerCenter[0], nose[1] - markerCenter[1]);
+  const turnPixels = Math.max(2 * noseOffset + 12, Math.min(130, .22 * Math.min(width, height)));
+  const joinKm = Math.min(distance, turnPixels / pixelsPerKm);
+  const before = pointAt(Math.max(0, joinKm - probeKm), reference);
+  const join = pointAt(joinKm, before.longitude);
+  const [x, y] = join.point;
+  const dx = x - before.point[0];
+  const dy = y - before.point[1];
+  const tangent = Math.hypot(dx, dy);
+  const chord = Math.hypot(x - nose[0], y - nose[1]);
+  if (!(tangent > 0 && chord > 0)) return;
+
+  const forward = [Math.sin(track * radians), -Math.cos(track * radians)];
+  const out = [dx / tangent, dy / tangent];
+  const reach = Math.min(turnPixels, chord) * .45;
+  const first = [nose[0] + reach * forward[0], nose[1] + reach * forward[1]];
+  const last = [x - reach * out[0], y - reach * out[1]];
+  const alignment = forward[0] * out[0] + forward[1] * out[1];
+  const cross = out[0] * forward[1] - out[1] * forward[0];
+  const sideways = (cross < -1e-8 ? -1 : 1) * Math.max(0, -alignment - .5) * reach * 2;
+  const curves = sideways ? splitTurn(nose, first, last, join.point, [-out[1] * sideways, out[0] * sideways])
+    : [[first, last, join.point]];
+
+  const points = [];
+  const airportOnscreen = inViewport(project([destination.longitude, destination.latitude], reference), width, height);
+  const step = Math.min(160, 64 / pixelsPerKm);
+  let sample = join;
+  for (let km = joinKm; km < distance && (airportOnscreen || inViewport(sample.point, width, height));) {
+    km = Math.min(distance, km + step);
+    sample = pointAt(km, sample.longitude);
+    points.push(sample.point);
+  }
+  return { curves, points };
+}
+
+function inViewport([x, y], width, height) {
+  return x >= 0 && x <= width && y >= 0 && y <= height;
+}
+
+function splitTurn(start, first, last, end, offset) {
+  // Split at the midpoint so a reversal has room to go around the aircraft with continuous tangents.
+  const midpoint = ([x, y], [otherX, otherY]) => [(x + otherX) / 2, (y + otherY) / 2];
+  const shift = ([x, y]) => [x + offset[0], y + offset[1]];
+  const a = midpoint(start, first);
+  const b = midpoint(first, last);
+  const c = midpoint(last, end);
+  const d = midpoint(a, b);
+  const e = midpoint(b, c);
+  return [[a, shift(d), shift(midpoint(d, e))], [shift(e), c, end]];
 }

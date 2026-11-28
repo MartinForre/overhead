@@ -5,11 +5,13 @@ import { createAircraftPresentation, createFlightCard, measureArtwork } from "./
 import { callsignDestination } from "./flight-details.js";
 import { fitFlightCards } from "./flight-layout.js";
 import { isOnGround } from "./landing-gear.js";
-import { artworkAnchor, cropArtworkAnchor, groupGroundAircraft, mapAircraftScale } from "./map-aircraft.js";
+import {
+  artworkAnchor, cropArtworkAnchor, groupGroundAircraft, mapAircraftAltitude, mapAircraftScale,
+} from "./map-aircraft.js";
 import { basemapStyle, loadMapLibre } from "./map-basemap.js";
 import {
-  clipDestinationLine, closestLongitude, mapDiameterBounds, projectFromCenter, projectTrackBounds,
-  trackedAircraftBounds,
+  clampMercatorLatitude, clipDestinationLine, closestLongitude, curvedDestinationGuide, mapDiameterBounds,
+  projectFromCenter, projectTrackBounds, trackedAircraftBounds,
 } from "./map-geometry.js";
 import { sampleMapMotion, updateMapMotion } from "./map-motion.js";
 import { hasCoordinates } from "./route-progress.js";
@@ -234,7 +236,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
         map.resize();
         map.fitBounds(trackFrame.bounds, { padding, animate: false });
         projector = ([lon, lat], reference = map.getCenter().lng) => {
-          const point = map.project([closestLongitude(lon, reference), lat]);
+          const point = map.project([closestLongitude(lon, reference), clampMercatorLatitude(lat)]);
           return [point.x, point.y];
         };
       } else {
@@ -245,7 +247,7 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       // Pass only the longer axis so the shorter side does not limit zoom.
       map.fitBounds(width > height ? diameter.horizontal : diameter.vertical, { padding: 0, animate: false });
       projector = ([longitude, latitude], reference = location.longitude) => {
-        const point = map.project([closestLongitude(longitude, reference), latitude]);
+        const point = map.project([closestLongitude(longitude, reference), clampMercatorLatitude(latitude)]);
         return [point.x, point.y];
       };
     } else {
@@ -314,6 +316,11 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       // Short guides would cross the artwork when the aircraft reaches the airport.
       marker.showDestination = Math.hypot(marker.destinationEnd[0] - left, marker.destinationEnd[1] - top) >
         Math.max(artWidth, artHeight) / 2 + 4;
+      marker.guide = marker.showDestination && hasTrack && !isOnGround(marker.entry.item)
+        ? curvedDestinationGuide({
+          position: pose.position, center: [x, y], markerCenter: [left, top], track: pose.track, nose: marker.nose,
+          destination: marker.destination, reference, project: projector, width, height,
+        }) : undefined;
     } else {
       marker.showDestination = false;
     }
@@ -400,7 +407,15 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
         context.lineWidth = highlighted ? 1.6 : 1.1;
         context.globalAlpha = highlighted ? .83 : .53;
         context.setLineDash([6, 5]);
-        drawLine(context, marker.nose, clipDestinationLine(marker.nose, marker.destinationEnd, width, height));
+        if (marker.guide) {
+          context.beginPath();
+          context.moveTo(...marker.nose);
+          for (const [first, last, end] of marker.guide.curves) context.bezierCurveTo(...first, ...last, ...end);
+          for (const point of marker.guide.points) context.lineTo(...point);
+          context.stroke();
+        } else {
+          drawLine(context, marker.nose, clipDestinationLine(marker.nose, marker.destinationEnd, width, height));
+        }
       }
     }
     if (routesDrawn && !context) clearOverlay(destinations);
@@ -459,8 +474,26 @@ export function createLiveMap(element, cardTemplate, getMotion, onSelect) {
       markers.get(key).node.remove();
       markers.delete(key);
     }
+    stackMarkers();
     refresh();
     queueRoutes();
+  }
+
+  function stackMarkers() {
+    const ordered = [...markers.values()].map(({ node, entry: { item } }) => ({
+      node,
+      altitude: (isOnGround(item) ? undefined : mapAircraftAltitude(item)) ?? -Infinity,
+    })).sort((a, b) => a.altitude - b.altitude);
+    let altitude = -Infinity;
+    let layer = 0;
+    for (const marker of ordered) {
+      if (marker.altitude !== altitude) {
+        altitude = marker.altitude;
+        layer += 4;
+      }
+      marker.node.style.setProperty("--marker-layer", layer);
+    }
+    markerLayer.style.setProperty("--cluster-menu-layer", layer + 4);
   }
 
   function addMarker(key) {
