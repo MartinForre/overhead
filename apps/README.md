@@ -1,18 +1,18 @@
 # Overhead apps
 
-One Overhead server hosts the passive kiosk at `/display/` and its control app at `/companion/`. The companion works on phones, tablets, and desktops. The server pushes settings changes to both views without a reload.
+One Overhead server hosts the passive kiosk at `/display/` and its control app at `/companion/`. The Companion works on phones, tablets, and desktops. The server pushes settings changes to both views without a reload.
 
-From the repository root, install Vite and start the local development server. It reloads the browser as you edit the app files.
+With Node.js 24, install the dependencies and start the local development server from the repository root. It reloads the browser as you edit the app files.
 
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
 - [Display](http://127.0.0.1:8000/display/)
 - [Companion](http://127.0.0.1:8000/companion/)
 
-The companion opens on the same aircraft view as the kiosk. Select the gear in the upper-right corner to open settings. The **Live**, **Gallery**, and **Track** tabs switch both views. Live has a List or Map view, location, radius, and sample traffic controls. Gallery has previous and next aircraft controls. Theme, transitions, and regional formats apply across all modes. The settings footer lists the data sources.
+The Companion opens on the same aircraft view as the kiosk. Select the gear in the upper-right corner to open settings. The **Live**, **Gallery**, and **Track** tabs switch both views. Live has List and Map views, location, radius, and sample traffic controls. Gallery has previous and next aircraft controls. Track has its own List and Map setting. Theme, transitions, and regional formats apply across all modes. The settings footer lists the data sources.
 
 Both pages mount the renderer in `apps/shared/display/`, which contains the aircraft card markup, styles, and rendering for each mode. The companion hosts the settings UI and accepts gallery input.
 
@@ -24,15 +24,16 @@ The server saves settings in `overhead.config.json` in its working directory. Un
 
 ## Portable Windows display
 
-On the build machine, use Deno 2.9 or later and run this from the repository root. Deno downloads the Windows runtime on the first build.
+On the build machine, install Node.js 24 and Deno 2.9 or later, then run these commands from the repository root. Deno downloads the Windows runtime on the first build.
 
 ```sh
+npm ci
 deno task build:windows
 ```
 
-Copy `dist/Overhead.exe` to the Windows x64 laptop. The executable includes the display, companion, and aircraft artwork. Double-click it, leave its console window open, and add `http://127.0.0.1:8000/display/` to the Chrome tab rotation. Set the office location in the companion the first time. Launch the executable again after a restart.
+Copy `dist/Overhead.exe` to a Windows x64 computer. The executable includes the server, both views, and aircraft artwork. Double-click it, leave its console window open, and open [the Display](http://127.0.0.1:8000/display/) in Chrome. Choose the display’s location in the Companion to show nearby aircraft. Launch the executable again after restarting the computer.
 
-Chrome is the only other application the laptop needs. The server listens only on the laptop by default. To use the companion on a trusted local network, launch `Overhead.exe --lan` from its folder and open the laptop’s IPv4 address on port 8000. Use a writable working directory for the JSON config. Live traffic needs internet access. The executable is unsigned.
+The target computer needs a browser. The server listens on loopback by default. To use the Companion on a trusted local network, launch `Overhead.exe --lan` from its folder and open `http://<computer-ip>:8000/companion/` from another device. Use a writable working directory for the JSON config. Live traffic needs internet access. The executable is unsigned.
 
 ## Display settings and behavior
 
@@ -47,6 +48,8 @@ In the companion, open **Settings → Live → Traffic preview** and choose one,
 Choose **Landing gear sequence** and close Settings to watch an AW101 and A320neo extend their gear on approach, roll with it down, and retract it after liftoff.
 
 The **Track** queue holds up to three items and is shared between the display and companion. Track stacks the aircraft vertically using the Live card sizes. The airborne flight closest to landing is the larger card and sits between the other two when three are tracked. ADS-B watches are ordered by distance remaining. If FlightAware landing estimates are available, Track compares time instead, using distance and ground speed to estimate it for ADS-B watches. Flights without enough data to rank follow in queue order. Track shows a neutral aircraft and airport placeholders while the details load.
+
+Choose **Settings → Track → Map** to follow queued aircraft on a map. Track saves its view independently of Live.
 
 In the companion, tap an aircraft card in **Live** to add it to **Track** using adsb.fi. Live stays on screen. When the queue is full, the tap replaces its oldest entry. Tapping the same aircraft again keeps its place.
 

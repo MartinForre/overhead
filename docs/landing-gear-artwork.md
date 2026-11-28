@@ -16,7 +16,7 @@ When adding a livery, reuse the kit for its configuration and check the mounts a
 
 ## Image generation prompts
 
-The built-in image generation tool produced the transparent originals. The repository PNGs are crops of the selected outputs. The prompts below record the inputs for recreating them.
+The transparent originals were generated with ImageGen. The repository PNGs are crops of the selected outputs. The prompts below record the inputs for recreating them.
 
 ### Airbus A320neo
 

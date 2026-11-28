@@ -1,6 +1,6 @@
 # Overhead design
 
-Overhead is a wall-mounted aviation poster for a home on the southwest coast of Norway. It shows up to three nearby aircraft and gives helicopters priority. The poster combines FlightPortrait’s large side profiles with the airport-board route codes and compass cues seen in avioframe.
+Overhead is a self-hosted aviation display with large aircraft illustrations, airport-board route codes, and compass cues. Its Live List view shows up to three aircraft near a configured location and gives helicopters priority. The display draws on the large side profiles of FlightPortrait and the route codes and compass cues of avioframe.
 
 ## Nearby view
 
@@ -13,7 +13,7 @@ Consider aircraft within the configured radius that have a fresh position. Exclu
 | 2 | Place the primary card near the top and the secondary card near the bottom. Use larger outer insets. |
 | 3 | Center the primary card vertically with secondary cards at the top and bottom insets. |
 
-Use one flight card for all aircraft. The primary card uses full scale and secondary cards use 70%. Place the route above the forward part of the illustration and the altitude, speed and compass in the upper-right corner. Open display settings from a fixed button in the upper-right corner of the screen.
+Use one flight card for all aircraft. The primary card uses full scale and secondary cards use 70%. Place the route above the forward part of the illustration and the altitude, speed and compass in the upper-right corner. Open display settings from the gear button in the upper-right corner of the Companion.
 
 Each entry shows the following fields when available.
 
@@ -25,9 +25,9 @@ Each entry shows the following fields when available.
 
 ### Card styling and scenery
 
-Source or generate a logo for each airline. One option is to let the logo fill the aircraft card as a faint watermark behind the illustration and readouts. Try low opacity and different blend modes across themes to see which treatments keep the aircraft and text easy to read.
+One styling proposal uses a faint airline logo as a watermark behind the aircraft and readouts. Try low opacity and different blend modes across themes to see which treatments keep the aircraft and text easy to read.
 
-Give military and general aviation aircraft distinct card treatments. A category label and subtle accent can make them recognizable while keeping the flight details in the same positions across cards.
+Another proposal uses a category label and subtle accent for military and general aviation aircraft. The flight details stay in the same positions across cards.
 
 Show a [cloud layer](../assets/dividers/cloud-layer.png) just below each illustrated aircraft whose displayed altitude is above 1,000 feet. Clouds fade in and out in place, and moving aircraft pass behind them during a slot change. Show a [runway](../assets/dividers/runway.png) across the full window beneath illustrated aircraft reported on the ground. It sits behind the aircraft, with the middle of the surface at wheel contact height. The runway rises as it fades in and drops as it fades out. Leave the space clear at or below 1,000 feet in flight or when altitude is unavailable. Both layers change immediately when transitions are off or the browser requests reduced motion.
 
@@ -74,24 +74,25 @@ Ivory & Amber pairs a creamy background and amber airport tiles with a light sep
 
 ## Linux runtime and display
 
-Build the poster in HTML, CSS, and JavaScript. Keep the app and artwork on disk and serve them over local HTTP. The same page should be usable in a development browser and renderable at a panel’s native dimensions. Use sample data to preview the empty sky and the one-, two-, and three-aircraft layouts before choosing hardware. The candidate resolutions discussed are 800 × 480 and 1600 × 1200.
+Overhead serves its HTML, CSS, JavaScript, and bundled artwork over local HTTP. The same display page runs in a development browser or at a monitor’s native dimensions in Chromium kiosk mode. Use Gallery and the one-, two-, and three-aircraft previews to check a layout on the chosen display. [Raspberry Pi kiosk setup](raspberry-pi.md)
 
-- For a display connected as a monitor, Linux can automatically launch Chromium in kiosk mode and open `/display`. [Raspberry Pi kiosk guide](https://www.raspberrypi.com/tutorials/how-to-use-a-raspberry-pi-in-kiosk-mode/)
-- For an SPI e-paper panel, a Linux boot service can render `/display` with headless Chromium, capture a PNG, and pass it to the panel driver. Raspberry Pi OS Lite and `systemd` are the proposed setup for that path. Benchmark rendering and memory on the chosen Pi. [Playwright screenshots](https://playwright.dev/docs/screenshots) · [Pimoroni Inky driver](https://github.com/pimoroni/inky)
+### E-paper proposal
 
-Poll for flight data independently of the display refresh cycle. When the display is ready and its configured interval has elapsed, draw the latest available state and skip older queued updates. Panel dimensions and refresh timing belong to the display configuration. A short flyover can finish before a slow e-paper update completes. [Waveshare 7.3-inch Spectra 6 manual](https://www.waveshare.com/wiki/7.3inch_e-Paper_HAT_%28E%29_Manual)
+For an SPI e-paper panel, a Linux boot service could render `/display/` with headless Chromium, capture a PNG, and pass it to the panel driver. Raspberry Pi OS Lite and `systemd` are candidates for this approach. The panel, host hardware, capture resolution, and refresh cadence need testing. [Playwright screenshots](https://playwright.dev/docs/screenshots) · [Pimoroni Inky driver](https://github.com/pimoroni/inky)
+
+Poll for flight data independently of the display refresh cycle. When the panel is ready, draw the latest available state and skip older queued updates. A short flyover can finish before a slow e-paper update completes. [Waveshare 7.3-inch Spectra 6 manual](https://www.waveshare.com/wiki/7.3inch_e-Paper_HAT_%28E%29_Manual)
 
 ## Companion and view modes
 
 Live is the default mode. The host owns the active mode and its settings in a JSON config so the display can continue independently of the phone. The companion and display share a same-origin API, and the server pushes saved changes to both apps.
 
-The `/display/` route is a passive kiosk. The companion at `/companion/` opens on the same aircraft view on phones, tablets, and desktops. Its gear opens settings for both views, including mode, regional formats, theme, transitions, location, and sample traffic. On a home network, open the companion using the host’s IP address with LAN serving enabled. A local name such as `overhead.local` could make that easier on a future Pi installation. The page should work from a home-screen shortcut. [Apple’s Home Screen guide](https://support.apple.com/guide/iphone/open-as-web-app-iphea86e5236/27/ios/27)
+The `/display/` route is a passive kiosk. The Companion at `/companion/` opens on the same aircraft view on phones, tablets, and desktops. Its gear opens settings for both views, including mode, regional formats, theme, transitions, location, and sample traffic. On a trusted local network, use the host’s LAN address or a local hostname such as `overhead.local` on a Raspberry Pi. The Companion can also open from a home-screen shortcut. [App guide](../apps/README.md) · [Apple’s Home Screen guide](https://support.apple.com/guide/iphone/open-as-web-app-iphea86e5236/27/ios/27)
 
-### Nearby polling hours
+### Nearby polling hours proposal
 
 A future polling schedule would run from **06:00 to 23:00** each day in the Pi’s local time zone. The companion would let the user change the start and end times and pause Nearby flight-data requests outside that window.
 
-During active hours, start with a **five-second polling interval** for the primary provider, adsb.fi. If the primary is unavailable, try adsb.lol at most once every three minutes. This caps fallback traffic from one Pi at about 480 requests per 24 hours. Share provider cooldowns across display clients on the Pi and honor the provider’s `Retry-After` header. [adsb.fi API limits](https://github.com/adsbfi/opendata#limits) · [adsb.lol API schema](https://api.adsb.lol/api/openapi.json)
+Keep the current polling and failover behavior during active hours. The app guide describes polling intervals, shared provider cooldowns, and retry behavior. [App guide](../apps/README.md#display-settings-and-behavior)
 
 ### Display modes
 
@@ -111,9 +112,9 @@ Configuring a FlightAware key enables dated departure search by flight number. S
 
 Track cards lead with the flight number. The FlightAware route arc shows progress without a percentage, with departure and arrival clocks at the airports and airborne and remaining time below the arc. Clocks use airport-local time when available and UTC otherwise. Confirmed actual times replace estimates and schedules. Airborne time uses takeoff and landing, and time left uses the arrival estimate while airborne. Track shares Live’s aircraft tilt, clouds, runway, and animated landing gear when telemetry and artwork support them. The route reserves clearance above the forward fuselage throughout the tilt.
 
-A fighter-jet gallery can use the catalog’s `fighter-jet` role to select up to three ready profiles at a time and cycle them on the same interval. Prefer distinct aircraft types when several liveries are available for the same type. Ready artwork with an exact airframe requirement is eligible for the gallery. Use the illustration’s `aircraft` label where it names a more specific variant.
+A proposed fighter-jet gallery could use the catalog’s `fighter-jet` role to select up to three ready profiles at a time and cycle them on the same interval. Prefer distinct aircraft types when several liveries are available for the same type. Ready artwork with an exact airframe requirement is eligible for the gallery. Use the illustration’s `aircraft` label where it names a more specific variant.
 
-### April 1 easter egg
+### April 1 proposal
 
 On April 1, have UFOs appear at random times using the same card slots and transitions as other aircraft. Randomize how long each UFO stays on the poster.
 
@@ -129,7 +130,7 @@ Resolve the aircraft type once for both the card title and artwork. A confirmed 
 
 The [Air Force One illustration](../assets/aircrafts/military/boeing-vc25a-air-force-one.png) represents the shared livery of the two Boeing VC-25As. A confirmed match for either airframe selects it in Live and Track. [U.S. Air Force VC-25 fact sheet](https://www.af.mil/About-Us/Fact-Sheets/Display/Article/104588/vc-25-air-force-one/)
 
-The [southwest Norway overflight list](overflight-airlines.md) records the sampled cruise traffic, current passenger fleets, and artwork priorities for the international catalog expansion.
+The [southwest Norway overflight study](overflight-airlines.md) records sampled cruise traffic, a dated passenger-fleet snapshot, and the artwork priorities it informed.
 
 - [Artwork catalog](../assets/aircrafts/artwork.json) stores illustration IDs, type codes or generic categories, livery names, paths relative to the catalog, and `ready` or `planned` status. Set `aircraft` to give the generation queue the exact variant name when a type code covers several variants. For representative liveries, add the accepted three-letter codes in `operatorIcaoCodes`. Use `airframeOnly` for liveries or equipment that require a confirmed airframe and add airframe records when the match is verified. The airframes table is keyed by the uppercased, six-character ICAO address and contains the registration and illustration ID. A registration lookup can be built from the same records. Use the reported type to validate matches and use the ICAO address for short numeric military tail numbers. Recheck the match after a change of operator, paint or configuration.
 - [Aircraft type catalog](../assets/aircrafts/aircraft-types.json) maps uppercase ICAO type codes to a readable manufacturer, model, category and optional role. An `aliasFor` entry resolves a feed alias to the canonical code before selecting an illustration. The gallery can join illustrations to this catalog without live flight data. [FAA aircraft type designators](https://www.faa.gov/documentLibrary/media/Order/FAA_Order_JO_7360.1K_Aircraft_Type_Designators.pdf)
@@ -204,13 +205,13 @@ The display layers shared landing gear sprites behind the fuselage on calibrated
 
 The display extends the gear on an inferred final approach at or below a displayed altitude of 1,000 ft, where the cloud layer clears. It keeps the gear down through touchdown, taxi, parking and the takeoff roll, then retracts it once the aircraft climbs clear. The reported ground state takes priority. Approach and liftoff use altitude, ground speed, vertical rate and nearby airport elevation when available. These are visual estimates from the feed. [Flight data fields](https://github.com/wiedehopf/readsb/blob/dev/README-json.md) · [Airport reference fields](https://www.adsbdb.com/)
 
-### MVP artwork queue
+### Artwork queue
 
 Complete one standard livery for each in-service aircraft type in an airline's fleet before generating its special liveries. Apply the same priority to regional subsidiaries such as KLM Cityhopper. Use the verified standard profiles as geometry references for the existing model-specific fallback jobs.
 
 The first queue adds Widerøe’s Dash 8‑Q400 and E190‑E2, Norwegian’s 737 MAX 8 with Karin Boye tail art, KLM Cityhopper’s E190, Norsk Luftambulanse’s H145, and CHC Helikopter Service’s offshore S‑92. Each has an example airframe and a livery reference in the catalog. The queue also includes one unbranded profile per catalog type and two generic aircraft illustrations. Use sightings near the installation to guide the next additions. [Widerøe fleet](https://www.wideroe.no/en/about-wideroe/fleet) · [Norwegian fleet](https://www.norwegian.com/en/about/our-story/our-aircraft/) · [KLM Cityhopper fleet](https://estonia.klm.com/information/travel-class-extra-options/aircraft-types) · [Norwegian air ambulance fleet](https://www.luftambulanse.no/basene-vare/fartoyene-vare) · [CHC offshore S‑92 example](https://www.aircraftregister.net/aircraft/LN-OQU)
 
-Run `node scripts/artwork-queue.mjs` to print the planned artwork as JSON. Each job gives Codex the intended filename, an approved style reference, and a livery or aircraft geometry reference where available. Use the built-in image tool once per entry marked `generate`. Jobs marked `wait-for-reference` become available after their reference illustration is ready. Jobs marked `review` already have a file at the intended path. For neutral profiles, keep the exact airframe shape and apply plain light paint with no operator markings. For every new image, check the side profile, livery where applicable, and alpha channel before marking it `ready`. Run the queue again to pick up the next jobs.
+Run `node scripts/artwork-queue.mjs` to print the planned artwork as JSON. Each job lists the intended filename, a style reference, and a livery or aircraft geometry reference where available. Jobs marked `generate` are ready to start. Jobs marked `wait-for-reference` become available after their reference illustration is ready. Jobs marked `review` already have a file at the intended path. For neutral profiles, keep the exact airframe shape and apply plain light paint. For every new image, check the side profile, livery where applicable, and alpha channel before marking it `ready`. Run the queue again to pick up the next jobs.
 
 ### General aviation, seaplanes and military aircraft
 
@@ -221,10 +222,6 @@ The expansion starts with floatplanes and amphibians, followed by trainer and to
 The Cessna 172, 185 and 206 and Piper Super Cub have both type-level wheeled profiles and floatplane entries that require an airframe match for live use. Start with the documented LN-ABO Skywagon and LN-AAI Stationair. Use the same airframe rule for the Husky and Beaver float variants. The Lake Buccaneer and SeaRey have amphibious hulls and can use type-level artwork. [LN-ABO airframe record](https://aircraftregister.net/aircraft/LN-ABO) · [LN-AAI airframe record](https://aircraftregister.net/aircraft/LN-AAI) · [Norwegian Safety Investigation Authority Beaver report](https://aibn.no/Aviation/Aviation/Published-reports/2025-02)
 
 Use representative service colors for each military type, including camouflage where it was part of the paint scheme. Leave off insignia, lettering and serial numbers. Type-level matches use the representative scheme. Confirmed operator or airframe matches can select a more specific service scheme. A P-8A Poseidon can appear as `B738` in the feed, so the Norwegian Poseidon illustration requires a confirmed airframe. The fighter-jet role covers aircraft such as the Tomcat, Fighting Falcon, Lightning II, Gripen and Viggen. Propeller fighters have their own role. [Royal Norwegian Air Force](https://www.forsvaret.no/en/organisation/air-force) · [P-8A type and airframe record](https://planefinder.net/data/aircraft/9582) · [Swedish Air Force Museum](https://flygvapenmuseum.se/kunskapsbank/flygplan-och-helikoptrar-i-samlingarna/jaktflygplan/) · [U.S. Naval Aviation Museum F-14A](https://www.history.navy.mil/content/history/museums/nnam/explore/collections/aircraft/f/f-14a-tomcat.html)
-
-## Open decisions
-
-The panel, Linux hardware, flight-data provider, radius, position freshness limit, and panel refresh cadence are still open.
 
 ## AW101 illustration
 

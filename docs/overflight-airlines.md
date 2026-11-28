@@ -1,6 +1,6 @@
 # Southwest Norway cruise overflights and airline fleets
 
-Fleet snapshot and queue update on 24 November 2026.
+This regional case study shows how archived flight tracks informed Overhead’s aircraft artwork. The initial passenger-fleet snapshot was recorded on 24 November 2026. Later sections record additional artwork batches. Overhead uses the location configured in the Companion for live traffic.
 
 ## How the airlines were selected
 
@@ -321,7 +321,7 @@ Each first render used the shared prompt followed by the corresponding aircraft 
 
 > Draw the Airbus A330-200 on PH-AOM, the compact 58.8 m A330 with a noticeably shorter distance between the four passenger doors and a slightly taller tail relative to the fuselage. Preserve the classic Airbus cockpit, short upright triangular wingtip fences, rounded smooth-ended gray-white GE CF6 nacelles, and typical A330 tailcone. Ignore the other aircraft and ground equipment. Use current standard KLM paint as in Attachment 2: vivid sky-blue body above a white lower fuselage with a fine dark-navy boundary stripe that sweeps downward near the nose, a white tail with the blue KLM crown and letters, white KLM titles and smaller “Royal Dutch Airlines” high on the forward blue fuselage, and white engine nacelles with the appropriate small blue mark if shown. Keep the white tail, blue body boundaries, nose shape, contours and unmistakable type differences from the photo.
 
-> Correct one aircraft geometry detail in the first image, a KLM Airbus A330-200 in our existing painted catalogue style. The A330-200 has four separately spaced full-size passenger doors along the visible fuselage. Keep the first door close to the cockpit, the second door just ahead of the wing root and the rear door in place. Add the missing third full-size door immediately behind the wing root, at roughly two-thirds of the length of the fuselage, just beyond the near wingtip in this side elevation. Match its top and height to the existing rectangular door outlines and route the cabin windows around it naturally. Refer to the actual A330-200 in attachment 2. Preserve the short 58.8 m fuselage, color, readable KLM marks, scale, airframe silhouette, and clean left-facing profile. Keep the full aircraft comfortably in frame and the surrounding pixels truly transparent. Deliver only the complete corrected aircraft.
+> Correct one aircraft geometry detail in the first image, a KLM Airbus A330-200 in Overhead’s painted catalogue style. The A330-200 has four separately spaced full-size passenger doors along the visible fuselage. Keep the first door close to the cockpit, the second door just ahead of the wing root and the rear door in place. Add the missing third full-size door immediately behind the wing root, at roughly two-thirds of the length of the fuselage, just beyond the near wingtip in this side elevation. Match its top and height to the existing rectangular door outlines and route the cabin windows around it naturally. Refer to the actual A330-200 in attachment 2. Preserve the short 58.8 m fuselage, color, readable KLM marks, scale, airframe silhouette, and clean left-facing profile. Keep the full aircraft comfortably in frame and the surrounding pixels truly transparent. Deliver only the complete corrected aircraft.
 
 #### Airbus A330-300
 
